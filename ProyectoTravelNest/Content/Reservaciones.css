@@ -1,0 +1,73 @@
+﻿.table table-striped {
+    /* Estilos personalizados para la tabla con la clase "table-striped" */
+    /* Por ejemplo, puedes cambiar el color de fondo de las filas alternas */
+    background-color: #f9f9f9;
+    margin-top: 800px;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    /* Estilos para las filas impares */
+    background-color: #f0f0f0;
+}
+
+.table-striped tbody tr:hover {
+    /* Estilos para cuando el cursor se coloca sobre una fila */
+    background-color: #eaeaea;
+}
+
+form {
+    width: 116.5%; /* Ajusta el valor según el tamaño deseado */
+    margin: 0 auto; /* Centra el formulario horizontalmente en la página */
+    margin-left: -7.85%; /* Ajusta el valor según el tamaño de aumento hacia la izquierda que desees */
+}
+/* Estilo para el fondo oscuro detrás del modal */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo para el contenedor del modal */
+.modal-content {
+    border: 1px solid #336666;
+    border-radius: 0; /* Borde cuadrado */
+}
+
+/* Estilo para el encabezado del modal */
+.modal-header {
+    background-color: #336666;
+    color: #000;
+    border-bottom: 1px solid #336666;
+    border-radius: 0;
+}
+
+/* Estilo para el título del modal */
+.modal-title {
+    color: #fff;
+}
+
+/* Estilo para el cuerpo del modal */
+.modal-body {
+    padding: 15px;
+}
+
+/* Estilo para el pie del modal */
+.modal-footer {
+    background-color: #336666;
+    border-top: 1px solid #336666;
+    border-radius: 0;
+}
+
+/* Estilo para el botón "Guardar" dentro del modal */
+.btn-success {
+    background-color: #77cc77;
+    border-color: #77cc77;
+    border-radius: 20px; /* Bordes redondos */
+    color: #fff;
+}
+
+/* Estilo para el botón "Cancelar" dentro del modal */
+.btn-secondary {
+    background-color: #999;
+    border-color: #999;
+    border-radius: 20px;
+    color: #fff;
+}

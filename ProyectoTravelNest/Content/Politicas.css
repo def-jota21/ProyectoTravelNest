@@ -1,0 +1,234 @@
+﻿
+#rectangle-271 {
+    position: absolute;
+    width: 597px;
+    height: 207px;
+    left: 100px;
+    top: 160px;
+    background: rgba(149, 207, 72, 0.4);
+    border-radius: 8px;
+    Añade bordes redondos con un radio de 8px
+}
+
+.titulo {
+    position: absolute;
+    left: 8.06%;
+    right: 73.31%;
+    top: 11%;
+    bottom: 83.52%;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100px;
+    color: #000000;
+    white-space: nowrap;
+    Evita el salto de línea
+}
+
+
+#mi-banco {
+    position: absolute;
+    width: 710px;
+    height: 85px;
+    left: 140px;
+    top: 170px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 36px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Depósitos de seguridad */
+#depositos-seguridad {
+    position: absolute;
+    width: 372px;
+    height: 24px;
+    left: 140px;
+    top: 240px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 27px;
+    color: #000000;
+}
+
+/* Evitar el fraude, la estafa y el abuso */
+#evitar-fraude {
+    position: absolute;
+    width: 557px;
+    height: 23px;
+    left: 140px;
+    top: 290px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 27px;
+    color: #000000;
+}
+/* Estilo del botón */
+.boton {
+    padding: 10px 20px;
+    color: #fff;
+    Color del texto del botón cursor: pointer;
+    Cambia el cursor al pasar sobre el botón
+}
+
+/* Rectangle 269 */
+#rectangle-269 {
+    position: absolute;
+    width: 597px;
+    height: 207px;
+    left: 800px;
+    top: 160px;
+    background: rgba(149, 207, 72, 0.4);
+    border-radius: 8px;
+    Añade bordes redondos con un radio de 8px
+}
+
+#rectangle-270 {
+    position: relative;
+    width: 597px;
+    height: 207px;
+    left: -10px;
+    top: 290px;
+    background: rgba(149, 207, 72, 0.4);
+    border-radius: 8px;
+}
+
+#rectangle-272 {
+    position: absolute;
+    width: 597px;
+    height: 207px;
+    left: 800px;
+    top: 400px;
+    background: rgba(149, 207, 72, 0.4);
+    border-radius: 8px;
+    Añade bordes redondos con un radio de 8px
+}
+
+/* Seguridad */
+#seguridad {
+    position: absolute;
+    width: 710px;
+    height: 85px;
+    left: 850px;
+    top: 175px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 36px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#seguridad-anfitriones-huéspedes {
+    position: absolute;
+    width: 372px;
+    height: 24px;
+    left: 850px;
+    top: 240px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 27px;
+    color: #000000;
+}
+
+/* Política de reembolso y asistencia para cambio de reservación */
+#politica-reembolso {
+    position: absolute;
+    width: 528px;
+    height: 46px;
+    left: 168px;
+    top: 750px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 27px;
+    color: #000000;
+}
+
+/* Cancelaciones y reembolsos */
+#Contenido--reseñas {
+    position: absolute;
+    width: 708px;
+    height: 59px;
+    left: 140px;
+    top: 415px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 36px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+/* Cancelaciones y reembolsos */
+#Contenido--reseñas2 {
+    position: absolute;
+    width: 708px;
+    height: 59px;
+    left: 140px;
+    top: 480px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#Contenido--reseñas3 {
+    position: absolute;
+    width: 708px;
+    height: 59px;
+    left: 140px;
+    top: 525px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#cancelaciones-reembolsos {
+    position: absolute;
+    width: 708px;
+    height: 59px;
+    left: 850px;
+    top: 415px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 36px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#cancelaciones-reembolsos2 {
+    position: absolute;
+    width: 708px;
+    height: 59px;
+    left: 850px;
+    top: 480px;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

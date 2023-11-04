@@ -129,11 +129,16 @@
     <Content Include="Content\RecepcionMensajes.css" />
     <Content Include="Content\Reservaciones.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\style.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="img\carousel-1.jpg" />
+    <Content Include="img\carousel-2.jpg" />
     <Content Include="img\logo1.png" />
     <Content Include="img\logo2.png" />
+    <Content Include="img\package-1.jpg" />
     <Content Include="pages\DatosPersonales.aspx" />
     <Content Include="pages\Favoritos.aspx" />
     <Content Include="pages\ModificarCalendarioReserva.aspx" />

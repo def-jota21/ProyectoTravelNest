@@ -3,7 +3,7 @@
         <div style="color: #000000">
             <h1>
                 <asp:Label ID="lblTitulo" runat="server">Editar Información Personal</asp:Label>
-                <link href="../Content/Favoritos.css" rel="stylesheet" />
+                <link href="../Content/DatosPersonales.css" rel="stylesheet" />
             </h1>
         </div>
 <div class="row">

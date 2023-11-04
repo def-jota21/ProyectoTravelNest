@@ -1,18 +1,21 @@
-﻿body {
+﻿
+body {
     font-family: 'Comfortaa', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     color: #000000;
+    margin-top: 30px;
 }
-
 
 .title {
     font-family: 'Comfortaa', sans-serif;
-    font-size: 40px;
+    font-size: 32px;
 }
 
 .subtitle {
@@ -26,69 +29,43 @@
     margin-top: 20px;
 }
 
-.label-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-    .label-group label {
-        margin-bottom: 20px;
-    }
-
-.textbox {
-    width: 80%;
-    max-width: 400px;
-    padding: 10px;
-    margin: 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
 .input-text {
-    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 6px solid #ccc;
     border-radius: 5px;
+    width: 600%;
 }
 
 .btn-success {
     background-color: #95CF48;
-    margin-top: 20px;
+    margin-top: 30px;
+    width: 60%;
 }
 
 .p-link {
     margin-top: 30px;
-    margin-left: 810px;
     font-family: 'Comfortaa', sans-serif;
     font-size: 24px;
     color: #000000;
+    margin-left: 700px;
 }
 
-/* Estilos para el calendario */
-#calendario {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
+/* Personaliza tus estilos CSS aquí */
+/* Ejemplo de regla CSS para hacer la página responsive */
+@media (max-width: 768px) {
+    /* Estilos para pantallas pequeñas */
+    .container
+
+{
+    padding: 20px;
 }
 
-    #calendario table {
-        width: 100%;
-        text-align: center;
-    }
+.col-md-6 {
+    width: 100%;
+    margin-bottom: 20px;
+}
 
-    #calendario th {
-        background-color: #333;
-        color: white;
-    }
+}
 
-    #calendario th, #calendario td {
-        padding: 5px;
-        border: 1px solid #ccc;
-    }
 
-        #calendario td:hover {
-            background-color: #f0f0f0;
-        }

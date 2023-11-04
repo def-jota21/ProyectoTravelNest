@@ -1,73 +1,186 @@
-﻿.table table-striped {
-    /* Estilos personalizados para la tabla con la clase "table-striped" */
-    /* Por ejemplo, puedes cambiar el color de fondo de las filas alternas */
-    background-color: #f9f9f9;
-    margin-top: 800px;
+﻿/* Importación de fuentes de google fonts */
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
+
+body {
+    height: 100%;
+    font-family: 'Comfortaa', sans-serif;
+    background: url('https://news.airbnb.com/wp-content/uploads/sites/4/2020/04/Airbnb_Ireland_Lakeside_House_Featured.jpg?w=2048') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #fff; /* Color de fondo de respaldo si la imagen no se carga */
 }
 
-.table-striped tbody tr:nth-child(odd) {
-    /* Estilos para las filas impares */
-    background-color: #f0f0f0;
+
+
+.contact_form {
+    width: 460px;
+    height: auto;
+    margin: 80px auto;
+    border-radius: 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    background-color: #97d848;
+    padding-left: 30px;
+    transition: transform 0.3s, box-shadow 0.3s; /* Agregar transición para suavizar el efecto y el sombreado */
+    /* Escala normal al estado inicial y estilo de borde */
+    transform: scale(1);
+    border: 2px solid #6da321; /* Ancho y color del borde */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombreado */
 }
 
-.table-striped tbody tr:hover {
-    /* Estilos para cuando el cursor se coloca sobre una fila */
-    background-color: #eaeaea;
+    .contact_form:hover {
+        transform: scale(1.05); /* Escala aumentada en un 5% al pasar el mouse sobre el elemento */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Sombreado más pronunciado en el estado de "hover" */
+    }
+
+
+
+
+input {
+    background-color: #fbfbfb;
+    width: 408px;
+    height: 40px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ab4493;
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
 }
 
-form {
-    width: 116.5%; /* Ajusta el valor según el tamaño deseado */
-    margin: 0 auto; /* Centra el formulario horizontalmente en la página */
-    margin-left: -7.85%; /* Ajusta el valor según el tamaño de aumento hacia la izquierda que desees */
-}
-/* Estilo para el fondo oscuro detrás del modal */
-.modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
+
+textarea {
+    background-color: #fbfbfb;
+    width: 405px;
+    height: 150px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ab4493;
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    padding-top: 15px;
 }
 
-/* Estilo para el contenedor del modal */
-.modal-content {
-    border: 1px solid #336666;
-    border-radius: 0; /* Borde cuadrado */
+
+label {
+    display: block;
+    float: center;
 }
 
-/* Estilo para el encabezado del modal */
-.modal-header {
-    background-color: #336666;
-    color: #000;
-    border-bottom: 1px solid #336666;
-    border-radius: 0;
+
+button {
+    height: 45px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    background-color: #ab4493;
+    border-color: #ab4493;
+    border-style: solid;
+    border-radius: 10px;
+    width: 420px;
+    cursor: pointer;
 }
 
-/* Estilo para el título del modal */
-.modal-title {
+
+    button p {
+        color: #fff;
+    }
+
+
+span {
+    color: #ab4493;
+}
+
+
+.aviso {
+    font-size: 13px;
+    color: #0e0e0e;
+}
+
+
+h1 {
+    font-size: 39px;
+    text-align: letf;
+    padding-bottom: 20px;
+    color: #ab4493;
+}
+
+
+h3 {
+    font-size: 16px;
+    padding-bottom: 30px;
+    color: #0e0e0e;
+}
+
+
+p {
+    font-size: 14px;
+    color: #0e0e0e;
+}
+
+
+::-webkit-input-placeholder {
+    color: #a8a8a8;
+}
+
+
+::-webkit-textarea-placeholder {
+    color: #a8a8a8;
+}
+
+
+.formulario input:focus {
+    outline: 0;
+    border: 1px solid #97d848;
+}
+
+
+.formulario textarea:focus {
+    outline: 0;
+    border: 1px solid #97d848;
+}
+
+
+/* Estilos para los campos de entrada de texto */
+input[type="text"] {
+    border: 1px solid #000;
+    padding: 8px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:hover {
+    border-color: #333;
+}
+
+/* Estilos para el contenedor contact_form */
+.contact_form {
+    border: 1px solid #000;
+    padding: 20px;
+    transition: border-color 0.3s;
+}
+
+    .contact_form:hover {
+        border-color: #333;
+    }
+
+/* Estilos para el botón */
+button {
+    border: none;
+    padding: 10px 20px;
+      background-color: #95CF48;
     color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Estilo para el cuerpo del modal */
-.modal-body {
-    padding: 15px;
-}
+    button:hover {
+        background-color: #0056b3;
+    }
 
-/* Estilo para el pie del modal */
-.modal-footer {
-    background-color: #336666;
-    border-top: 1px solid #336666;
-    border-radius: 0;
-}
 
-/* Estilo para el botón "Guardar" dentro del modal */
-.btn-success {
-    background-color: #77cc77;
-    border-color: #77cc77;
-    border-radius: 20px; /* Bordes redondos */
-    color: #fff;
-}
 
-/* Estilo para el botón "Cancelar" dentro del modal */
-.btn-secondary {
-    background-color: #999;
-    border-color: #999;
-    border-radius: 20px;
-    color: #fff;
-}

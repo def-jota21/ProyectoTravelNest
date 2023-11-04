@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Pantalla Politicas.aspx.cs" Inherits="ProyectoTravelNest.pages.Pantalla_Politicas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="pantallapoliticas.aspx.cs" Inherits="ProyectoTravelNest.pages.Pantalla_Politicas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!DOCTYPE html>
 <html>

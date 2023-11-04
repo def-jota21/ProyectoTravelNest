@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ModificarCalendarioReserva.aspx.cs" Inherits="ProyectoTravelNest.pages.ModificarCalendarioReserva" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="modificarcalendarioreserva.aspx.cs" Inherits="ProyectoTravelNest.pages.ModificarCalendarioReserva" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!DOCTYPE html>
 <html lang="en">

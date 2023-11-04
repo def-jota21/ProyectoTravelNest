@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RecepcionMensajes.aspx.cs" Inherits="ProyectoTravelNest.pages.RecepcionMensajes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="recepcionmensajes.aspx.cs" Inherits="ProyectoTravelNest.pages.RecepcionMensajes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!DOCTYPE html>
 <html lang="es">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DatosPersonales.aspx.cs" Inherits="ProyectoTravelNest.pages.DatosPersonales" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="datospersonales.aspx.cs" Inherits="ProyectoTravelNest.pages.DatosPersonales" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <div style="color: #000000">
             <h1>

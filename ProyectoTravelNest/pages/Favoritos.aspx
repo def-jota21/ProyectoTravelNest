@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Favoritos.aspx.cs" Inherits="ProyectoTravelNest.pages.Favoritos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="favoritos.aspx.cs" Inherits="ProyectoTravelNest.pages.Favoritos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!DOCTYPE html>
 <html lang="en">

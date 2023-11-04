@@ -16,6 +16,7 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="Content/Site.css" rel="stylesheet" />
+    <link href="Content/Navbar.css" rel="stylesheet" />
     <!-- Bootstrap 5 CDN Links -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -24,7 +25,7 @@
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
-            <Scripts>
+             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
@@ -40,12 +41,13 @@
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
             </Scripts>
+           
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-lg p-3">
+    <nav class="navbar navbar-expand-lg p-3">
     <div class="container-fluid">
         <div class="logo">
-            <a class="nav-link active" aria-current="page" href="Inicio.aspx"><img src="img/logo2.png" class="logoo" alt="Logo de la marca"/></a>
+            <a class="nav-link active" aria-current="page" href="Inicio.aspx"><img src="../img/logo2.png" class="logoo" alt="Logo de la marca"/></a>
         </div>
         <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon custom-toggler-icon"></span>
@@ -69,10 +71,10 @@
                 <li>
                     <a class="dropdown-item" href="#">Lista de Favoritos</a>
                 </li>
-                  <li>
+                <li>
                     <a class="dropdown-item" href="#">Notificaciones</a>
                 </li>
-                 <li>
+                <li>
                     <a class="dropdown-item" href="#">Cuenta</a>
                 </li>
             </ul>
@@ -90,7 +92,7 @@
                     <div class="row pt-5">
                         <div class="col-lg-3 col-md-6 mb-5">
                             <div class="logo">
-                                <a class="nav-link active" aria-current="page" href="Inicio.aspx"><img src="img/logo1.png" class="logoo" alt="Logo de la marca"/></a>
+                                <a class="nav-link active" aria-current="page" href="Inicio.aspx"><img src="../img/logo1.png" class="logoo" alt="Logo de la marca"/></a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-5">
@@ -101,7 +103,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6 mb-5">
                             <!-- Columna de "Contact Us" -->
-                            <div class="text-right"> <!-- Añadimos la clase "text-right" para alinear el contenido a la derecha -->
+                            <div class="text-right">
                                 <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 15px;">Contactenos</h5>
                                 <p><i class="fa fa-map-marker-alt mr-2"></i>CUC, Cartago, Costa Rica</p>
                                 <p><i class="fa fa-phone-alt mr-2"></i>24562353</p>

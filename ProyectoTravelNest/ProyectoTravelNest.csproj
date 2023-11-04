@@ -124,6 +124,7 @@
     <Content Include="Content\estiloSite.css" />
     <Content Include="Content\Favoritos.css" />
     <Content Include="Content\ModificarCalendarioReserva.css" />
+    <Content Include="Content\Navbar.css" />
     <Content Include="Content\Politicas.css" />
     <Content Include="Content\RecepcionMensajes.css" />
     <Content Include="Content\Reservaciones.css" />

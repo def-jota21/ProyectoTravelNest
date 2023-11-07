@@ -22,6 +22,52 @@
     <!-- Customized Bootstrap Stylesheet -->
 
     <link href="Content/style.css" rel="stylesheet" />
+
+
+    <style>
+        .center-cont {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+        }
+    </style>
+
+    <script>
+        function validarContrasena() {
+            const contrasena = document.getElementById("password").value;
+            const longitudValida = contrasena.length >= 10;
+            const contieneMayuscula = /[A-Z]/.test(contrasena);
+            const contieneNumero = /\d/.test(contrasena);
+            const noConsecutivos = !/(.)\1{1,}/.test(contrasena);
+            const mensaje = document.getElementById("mensaje");
+            if (longitudValida && contieneMayuscula && contieneNumero && noConsecutivos) {
+                mensaje.innerHTML = "Contraseña válida";
+                mensaje.style.color = "green";
+            } else {
+                mensaje.innerHTML = "La contraseña debe cumplir con los siguientes requisitos:<br>";
+                if (!longitudValida) {
+                    mensaje.innerHTML += " - Debe tener al menos 10 caracteres<br>";
+                }
+                if (!contieneMayuscula) {
+                    mensaje.innerHTML += " - Debe contener al menos una letra mayúscula<br>";
+                }
+                if (!contieneNumero) {
+                    mensaje.innerHTML += " - Debe contener al menos un número<br>";
+                }
+                if (!noConsecutivos) {
+                    mensaje.innerHTML += " - No debe tener caracteres consecutivos<br>";
+                }
+                mensaje.style.color = "red";
+            }
+
+            // Habilitar o deshabilitar el botón de envío
+            const botonEnvio = document.getElementById("accionEnviar");
+            botonEnvio.disabled = !(longitudValida && contieneMayuscula && contieneNumero && noConsecutivos);
+        }
+    </script>
+
     <!-- Carousel Start -->
     <div class="container-fluid p-0">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -162,12 +208,6 @@
 
         </div>
     </div>
-    </div>
-
-                <!-- mas cartas -->
-    </div>
-        </div>
-    </div>
     <!-- Cartas -->
 
     <!-- Modal Iniciar Sesion -->
@@ -182,7 +222,7 @@
                             style="color: #000000;"></i>
                     </button>
                 </div>
-                <div class="modal-body text-center ">
+                <div class="modal-body text-center center-cont">
                     <input id="txtid" type="hidden" value="0" />
                     <div class="row  col-sm-12 text-center">
                         <div class="col-sm-12">
@@ -242,7 +282,7 @@
                             style="color: #000000;"></i>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body center-cont">
                     <input id="txtid" type="hidden" value="0" />
                     <div class="row col-lg-12 col-sm-12 text-center">
                         <div class="col-sm-12 col-lg-12">
@@ -332,7 +372,7 @@
                             style="color: #000000;"></i>
                     </button>
                 </div>
-                <div class="modal-body text-center ">
+                <div class="modal-body text-center center-cont">
                     <input id="txtid" type="hidden" value="0" />
                     <div class="row  col-sm-12 text-center">
                         <p>El código de verificación fue enviado a su correo</p>

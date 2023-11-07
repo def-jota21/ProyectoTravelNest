@@ -11,7 +11,7 @@ namespace ProyectoTravelNest.pages
 {
 
 
-    public partial class DatosPersonales
+    public partial class paneladministracionhuesped
     {
     }
 }

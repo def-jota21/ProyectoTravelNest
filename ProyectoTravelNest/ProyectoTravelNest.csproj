@@ -149,16 +149,22 @@
     <Content Include="img\logo2.png" />
     <Content Include="img\package-1.jpg" />
     <Content Include="img\package-5.jpg" />
+    <Content Include="pages\anunciospublicados.aspx" />
     <Content Include="pages\comentariohuesped.aspx" />
     <Content Include="pages\comentariosanfitrion.aspx" />
+    <Content Include="pages\cotizacion.aspx" />
+    <Content Include="pages\crearalojamiento.aspx" />
     <Content Include="pages\datospersonales.aspx" />
+    <Content Include="pages\editaranuncio.aspx" />
     <Content Include="pages\favoritos.aspx" />
     <Content Include="pages\gestionusuarios.aspx" />
     <Content Include="pages\modificarcalendarioreserva.aspx" />
+    <Content Include="pages\paneladministracionhuesped.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
     <Content Include="pages\recepciondenuncias.aspx" />
     <Content Include="pages\recepcionmensajes.aspx" />
     <Content Include="pages\reservas.aspx" />
+    <Content Include="pages\sesionyseguridad.aspx" />
     <Content Include="pages\verinformacion.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -248,6 +254,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="pages\anunciospublicados.aspx.cs">
+      <DependentUpon>anunciospublicados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\anunciospublicados.aspx.designer.cs">
+      <DependentUpon>anunciospublicados.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\comentariohuesped.aspx.cs">
       <DependentUpon>comentariohuesped.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -262,12 +275,33 @@
     <Compile Include="pages\comentariosanfitrion.aspx.designer.cs">
       <DependentUpon>comentariosanfitrion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\cotizacion.aspx.cs">
+      <DependentUpon>cotizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\cotizacion.aspx.designer.cs">
+      <DependentUpon>cotizacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\crearalojamiento.aspx.cs">
+      <DependentUpon>crearalojamiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\crearalojamiento.aspx.designer.cs">
+      <DependentUpon>crearalojamiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\datospersonales.aspx.cs">
       <DependentUpon>datospersonales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\datospersonales.aspx.designer.cs">
       <DependentUpon>datospersonales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\editaranuncio.aspx.cs">
+      <DependentUpon>editaranuncio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\editaranuncio.aspx.designer.cs">
+      <DependentUpon>editaranuncio.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\favoritos.aspx.cs">
       <DependentUpon>favoritos.aspx</DependentUpon>
@@ -289,6 +323,13 @@
     </Compile>
     <Compile Include="pages\modificarcalendarioreserva.aspx.designer.cs">
       <DependentUpon>modificarcalendarioreserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\paneladministracionhuesped.aspx.cs">
+      <DependentUpon>paneladministracionhuesped.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\paneladministracionhuesped.aspx.designer.cs">
+      <DependentUpon>paneladministracionhuesped.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\pantallapoliticas.aspx.cs">
       <DependentUpon>pantallapoliticas.aspx</DependentUpon>
@@ -317,6 +358,13 @@
     </Compile>
     <Compile Include="pages\reservas.aspx.designer.cs">
       <DependentUpon>reservas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\sesionyseguridad.aspx.cs">
+      <DependentUpon>sesionyseguridad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\sesionyseguridad.aspx.designer.cs">
+      <DependentUpon>sesionyseguridad.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\verinformacion.aspx.cs">
       <DependentUpon>verinformacion.aspx</DependentUpon>

@@ -3,7 +3,7 @@
     <link href="../Content/stylesInmueble.css" rel="stylesheet" />
     <div class="container" style="margin-top: 6vh;">
         <h1>Agregar descuento</h1>
-        <h5>Ingrese, modifique o elimine una descuento según sea necesario.</h5>
+        <h5>Ingrese, modifique o elimine un descuento según sea necesario.</h5>
 
         <div class="container-fluid mt-5">
             <div class="row">

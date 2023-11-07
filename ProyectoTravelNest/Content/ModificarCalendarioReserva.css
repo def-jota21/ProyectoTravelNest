@@ -10,20 +10,24 @@ body {
     display: flex;
     flex-direction: column;
     color: #000000;
-    margin-top: 30px;
+    margin-top: 24px;
 }
 
 .title {
     font-family: 'Comfortaa', sans-serif;
-    font-size: 32px;
+    font-size: 28px;
+    text-align:left;
 }
+
 
 .subtitle {
     font-family: 'Comfortaa', sans-serif;
     font-size: 24px;
     color: #000000;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
+    text-align: left;
 }
+
 
 .form-group {
     margin-top: 20px;

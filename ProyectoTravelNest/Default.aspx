@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ProyectoTravelNest._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-     <!-- Favicon -->
+    <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
@@ -20,9 +20,9 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <!-- Customized Bootstrap Stylesheet -->
-  
+
     <link href="Content/style.css" rel="stylesheet" />
-     <!-- Carousel Start -->
+    <!-- Carousel Start -->
     <div class="container-fluid p-0">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -97,7 +97,8 @@
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-primary btn-block" type="submit"
-                            style="height: 47px; margin-top: -2px;">Filtrar</button>
+                            style="height: 47px; margin-top: -2px;">
+                            Filtrar</button>
                     </div>
                 </div>
             </div>
@@ -116,44 +117,55 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="package-item bg-white mb-2">
-                        <img class="img-fluid" src="img/package-1.jpg" alt="">
+                        <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server" ImageUrl="img/package-1.jpg" AlternateText="Imagen del mueble" />
                         <div class="p-4">
                             <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i
-                                        class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                <small class="m-0"><i class="fa fa-heart text-danger"></i><a href="#">
-                                        Favorito</a></small>
-                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 Person</small>
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>
+                                    <asp:Label ID="lblUbicacion" runat="server" Text="Thailand"></asp:Label></small>
+                                <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server" OnClick="AgregarFavorito_Click" data-idinmueble="1">
+                                                <i class="fa fa-heart text-danger"></i>Favorito
+                                </asp:LinkButton>
+                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>
+                                    <asp:Label ID="lblPersonas" runat="server" Text="2 Person"></asp:Label></small>
                             </div>
-                            <a class="h5 text-decoration-none" href="">Islas Canarias</a>
+                            <asp:HyperLink ID="lnkDetalle" CssClass="h5 text-decoration-none" runat="server" NavigateUrl="#">Islas Canarias</asp:HyperLink>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
                                     <h5 class="m-0">$350</h5>
                                     <p><b>por noche</b></p>
                                 </div>
-                            </div>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary btn-block" id="showModalButton"
-                                        style="height: 47px; margin-top: -2px;" data-bs-toggle="modal"
-                                        data-bs-target="#iniciarsesionmodal">Ver Información</button>
-                                    <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;"
-                                        id="showModalButtonCrearCuenta" data-bs-toggle="modal"
-                                        data-bs-target="#crearcuentamodal" data-bs-dismiss="modal">Crear
-                                        Cuenta</button>
-                                    <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;"
-                                        id="showModalButtonvalidariniciomodal" data-bs-toggle="modal"
-                                        data-bs-target="#validariniciomodal" data-bs-dismiss="modal">validar</button>
+                                <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary btn-block" id="showModalButton"
+                                            style="height: 47px; margin-top: -2px;" data-bs-toggle="modal"
+                                            data-bs-target="#iniciarsesionmodal">
+                                            Ver Información</button>
+                                        <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;"
+                                            id="showModalButtonCrearCuenta" data-bs-toggle="modal"
+                                            data-bs-target="#crearcuentamodal" data-bs-dismiss="modal">
+                                            Crear
+                                                        Cuenta</button>
+                                        <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;"
+                                            id="showModalButtonvalidariniciomodal" data-bs-toggle="modal"
+                                            data-bs-target="#validariniciomodal" data-bs-dismiss="modal">
+                                            validar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    </div>
 
                 <!-- mas cartas -->
-            </div>
+    </div>
         </div>
     </div>
     <!-- Cartas -->
@@ -165,8 +177,10 @@
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Bienvenido</h5>
-                    <button type="button" class=" btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-x"
-                            style="color: #000000;"></i></button>
+                    <button type="button" class=" btn btn-primary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-x"
+                            style="color: #000000;"></i>
+                    </button>
                 </div>
                 <div class="modal-body text-center ">
                     <input id="txtid" type="hidden" value="0" />
@@ -177,28 +191,29 @@
 
                         <div class="col-sm-12">
                             <div class="col-sm-12">
-                                <label for="txtcorreo" class="form-label">Correo Electrónico</label>
-                                <input type="text" class="form-control" id="txtcorreo" name="txtcorreo"
-                                    autocomplete="off">
+                                <asp:Label ID="lblCorreo" runat="server" AssociatedControlID="txtcorreo" CssClass="form-label">Correo Electrónico</asp:Label>
+                                <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
                             </div>
                         </div>
 
                         <div class="col-sm-12">
                             <div class="col-sm-12">
-                                <label for="txtcontrasena" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="txtcontrasena" name="txtcontrasena"
-                                    autocomplete="off">
+                                <asp:Label ID="lblContraseña" runat="server" AssociatedControlID="txtcontrasena" CssClass="form-label">Contraseña</asp:Label>
+                                <asp:TextBox ID="txtcontrasena" runat="server" TextMode="Password" CssClass="form-control" autocomplete="off"></asp:TextBox>
                             </div>
                         </div>
 
+
+
                         <div class="col-sm-12 mt-4">
-                            <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;">Iniciar
-                                Sesión</button>
+                            <asp:Button ID="btnIniciarSesion" runat="server" Text="Iniciar Sesión" CssClass="btn btn-primary btn-block" Style="height: 47px; margin-top: -2px" OnClick="btnIniciarSesion_Click" />
+
                         </div>
                         <div class="col-sm-12 mt-4">
                             <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;"
                                 id="showModalButtonCrearCuenta" data-bs-toggle="modal"
-                                data-bs-target="#crearcuentamodal" data-bs-dismiss="modal">Crear
+                                data-bs-target="#crearcuentamodal" data-bs-dismiss="modal">
+                                Crear
                                 Cuenta</button>
                         </div>
 
@@ -222,8 +237,10 @@
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Crear Cuenta</h5>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-x"
-                            style="color: #000000;"></i></button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-x"
+                            style="color: #000000;"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <input id="txtid" type="hidden" value="0" />
@@ -289,7 +306,8 @@
                         </div>
 
                         <div class="col-sm-12 mt-4">
-                            <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;">Crear
+                            <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;">
+                                Crear
                                 Cuenta</button>
                         </div>
                     </div>
@@ -309,8 +327,10 @@
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Bienvenido</h5>
-                    <button type="button" class=" btn btn-primary" data-bs-dismiss="modal"><i class="fa-solid fa-x"
-                            style="color: #000000;"></i></button>
+                    <button type="button" class=" btn btn-primary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-x"
+                            style="color: #000000;"></i>
+                    </button>
                 </div>
                 <div class="modal-body text-center ">
                     <input id="txtid" type="hidden" value="0" />
@@ -330,7 +350,8 @@
 
                         <div class="col-sm-12 mt-4">
                             <button class="btn btn-primary btn-block"
-                                style="height: 47px; margin-top: -2px;">Validar</button>
+                                style="height: 47px; margin-top: -2px;">
+                                Validar</button>
                         </div>
 
                     </div>
@@ -381,8 +402,43 @@
             $('#validariniciomodal').modal("show");
 
         });
+        document.addEventListener("DOMContentLoaded", function () {
+            const enlaceFavorito = document.getElementById("enlace-favorito");
+            const corazon = document.getElementById("corazon");
 
-        
+            enlaceFavorito.addEventListener("click", function (event) {
+                event.preventDefault(); // Evita que el enlace siga el enlace original
+
+                // Cambia la clase del corazón para cambiar su color a rojo
+                corazon.classList.toggle("favorito-activo");
+            });
+        });
+
+        // Función para agregar elementos a favoritos
+        function agregarAFavoritos(elemento) {
+            // Obtener los datos relevantes de la tarjeta (puedes usar atributos de datos personalizados)
+            var ubicacion = elemento.getAttribute("data-ubicacion");
+            var personas = elemento.getAttribute("data-personas");
+            var detalle = elemento.getAttribute("data-detalle");
+            var precio = elemento.getAttribute("data-precio");
+
+            // Crear un objeto que contenga la información de la tarjeta
+            var lugarFavorito = {
+                ubicacion: ubicacion,
+                personas: personas,
+                detalle: detalle,
+                precio: precio
+            };
+
+            // Guardar el lugar favorito en el almacenamiento local o en una cookie
+            var favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+            favoritos.push(lugarFavorito);
+            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+
+            // Redireccionar a la página de Favoritos
+            window.location.href = 'favoritos.html';
+        }
+
     </script>
 
 </asp:Content>

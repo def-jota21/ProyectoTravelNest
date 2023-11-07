@@ -7,12 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="../Content/Favoritos.css" rel="stylesheet" />
+    <link href="../Content/style.css" rel="stylesheet" />
 </head>
 <body>
     <div class="titulo">Favoritos</div>
+   
+                            
     
         <asp:Button ID="btnAddMore" runat="server" Text="Añadir más" CssClass="add-more-button" OnClick="btnAddMore_Click" />
-    
+<div id="lstfrmMantenimiento" runat="server" class="contenedor">
+ </div>
 </body>
 </html>
 </asp:Content>

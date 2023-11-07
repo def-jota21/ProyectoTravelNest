@@ -1,0 +1,109 @@
+﻿/* Comentario y Calificaciones */
+
+div img {
+    float: left;
+}
+
+#user-info {
+    float: left;
+}
+
+/* ! Calificacion estrellas */
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+    .rate.r-1 label {
+        font-size: 50px;
+    }
+
+    .rate.r-2 label {
+        font-size: 30px;
+    }
+
+
+    .rate > label {
+        float: left;
+        width: 1em;
+        white-space: nowrap;
+        color: #ccc;
+    }
+
+#colorStar {
+    color: #ffbd41;
+}
+
+/* TODO: Calificacion decimal (Ej: 2.5) */
+#halfStar {
+    background: #ffbd41;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNmZmQ2NDEiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNjY2NjY2MiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(left, #ffbd41 42%, #cccccc 42%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(42%,#ffbd41), color-stop(42%,#cccccc));
+    background: -webkit-linear-gradient(left, #ffbd41 42%,#cccccc 42%);
+    background: -o-linear-gradient(left, #ffbd41 42%,#cccccc 42%);
+    background: -ms-linear-gradient(left, #ffbd41 42%,#cccccc 42%);
+    background: linear-gradient(to right, #ffbd41 42%,#cccccc 42%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffbd41', endColorstr='#cccccc',GradientType=1 );
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.detalles {
+    display: flex;
+    justify-content: space-around;
+}
+
+.detalles-info {
+    text-align: left;
+    margin-left: 20%;
+}
+
+svg {
+    fill: #171717
+}
+
+/* Cartas */
+.package-item:hover {
+    transform: scale(1.02);
+    z-index: 1;
+}
+
+.package-item {
+    transition: transform .2s;
+}
+
+/* Reglas */
+#agregar-regla {
+    color: transparent;
+    background-color: #F9F9F9;
+    border: 1px solid #A4A4A4;
+}
+
+    #agregar-regla:hover {
+        background-color: #ececec;
+    }
+
+    #agregar-regla:active {
+        background-color: #e7e7e7;
+    }
+
+
+/* Promociones */
+#agregar-promocion {
+    color: transparent;
+    background-color: #F9F9F9;
+    border: 1px solid #A4A4A4;
+}
+
+    #agregar-promocion:hover {
+        background-color: #ececec;
+    }
+
+    #agregar-promocion:active {
+        background-color: #e7e7e7;
+    }

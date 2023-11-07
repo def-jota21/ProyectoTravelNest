@@ -7,101 +7,83 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace ProyectoTravelNest
+namespace ProyectoTravelNest.pages
 {
 
 
-    public partial class _Default
+    public partial class ModificarCalendarioReserva
     {
 
         /// <summary>
-        /// Control imgMueble.
+        /// Control estadiaMinima.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgMueble;
+        protected global::System.Web.UI.WebControls.TextBox estadiaMinima;
 
         /// <summary>
-        /// Control lblUbicacion.
+        /// Control estadiaMaxima.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUbicacion;
+        protected global::System.Web.UI.WebControls.TextBox estadiaMaxima;
 
         /// <summary>
-        /// Control lnkFavorito.
+        /// Control reservaMinima.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFavorito;
+        protected global::System.Web.UI.WebControls.DropDownList reservaMinima;
 
         /// <summary>
-        /// Control lblPersonas.
+        /// Control reservaMaxima.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPersonas;
+        protected global::System.Web.UI.WebControls.DropDownList reservaMaxima;
 
         /// <summary>
-        /// Control lnkDetalle.
+        /// Control PrecioporNoche.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkDetalle;
+        protected global::System.Web.UI.WebControls.TextBox PrecioporNoche;
 
         /// <summary>
-        /// Control lblCorreo.
+        /// Control DropDownList1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCorreo;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
-        /// Control txtCorreo.
+        /// Control btnGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreo;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
 
         /// <summary>
-        /// Control lblContraseña.
+        /// Control lblMessage.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContraseña;
-
-        /// <summary>
-        /// Control txtcontrasena.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcontrasena;
-
-        /// <summary>
-        /// Control btnIniciarSesion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIniciarSesion;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
     }
 }

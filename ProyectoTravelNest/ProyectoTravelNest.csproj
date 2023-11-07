@@ -120,13 +120,32 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\DatosPersonales.css" />
     <Content Include="Content\estiloSite.css" />
+    <Content Include="Content\Favoritos.css" />
+    <Content Include="Content\ModificarCalendarioReserva.css" />
+    <Content Include="Content\Navbar.css" />
+    <Content Include="Content\Politicas.css" />
+    <Content Include="Content\RecepcionMensajes.css" />
+    <Content Include="Content\Reservaciones.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\style.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="img\carousel-1.jpg" />
+    <Content Include="img\carousel-2.jpg" />
     <Content Include="img\logo1.png" />
     <Content Include="img\logo2.png" />
+    <Content Include="img\package-1.jpg" />
+    <Content Include="pages\datospersonales.aspx" />
+    <Content Include="pages\favoritos.aspx" />
+    <Content Include="pages\modificarcalendarioreserva.aspx" />
+    <Content Include="pages\pantallapoliticas.aspx" />
+    <Content Include="pages\recepciondenuncias.aspx" />
+    <Content Include="pages\recepcionmensajes.aspx" />
+    <Content Include="pages\reservas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -215,6 +234,55 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="pages\datospersonales.aspx.cs">
+      <DependentUpon>datospersonales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\datospersonales.aspx.designer.cs">
+      <DependentUpon>datospersonales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\favoritos.aspx.cs">
+      <DependentUpon>favoritos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\favoritos.aspx.designer.cs">
+      <DependentUpon>favoritos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\modificarcalendarioreserva.aspx.cs">
+      <DependentUpon>modificarcalendarioreserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\modificarcalendarioreserva.aspx.designer.cs">
+      <DependentUpon>modificarcalendarioreserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\pantallapoliticas.aspx.cs">
+      <DependentUpon>pantallapoliticas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\pantallapoliticas.aspx.designer.cs">
+      <DependentUpon>pantallapoliticas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\recepciondenuncias.aspx.cs">
+      <DependentUpon>recepciondenuncias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\recepciondenuncias.aspx.designer.cs">
+      <DependentUpon>recepciondenuncias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\recepcionmensajes.aspx.cs">
+      <DependentUpon>recepcionmensajes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\recepcionmensajes.aspx.designer.cs">
+      <DependentUpon>recepcionmensajes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\reservas.aspx.cs">
+      <DependentUpon>reservas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\reservas.aspx.designer.cs">
+      <DependentUpon>reservas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -240,7 +308,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="pages\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -252,6 +319,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{b409b282-7308-4d68-817e-a6900acc3b64}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocios\Negocios.csproj">
+      <Project>{1006273a-d5d3-445b-9c94-3335b74fafd6}</Project>
+      <Name>Negocios</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

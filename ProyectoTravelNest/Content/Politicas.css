@@ -1,0 +1,30 @@
+﻿body {
+    height: 100%;
+    font-family: 'Comfortaa', sans-serif;
+    background: url('https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfd0c4aa52a78e466/618406a16676ac790d1b8f8f/policy-feature-page-banner-optimized.png') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #fff; /* Color de fondo de respaldo si la imagen no se carga */
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+.custom-card {
+    margin: 20px;
+    transition: transform 0.2s;
+}
+
+.custom-card:hover {
+    transform: scale(1.05);
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+
+

@@ -1,0 +1,75 @@
+﻿
+body {
+    font-family: 'Comfortaa', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+    margin-top: 24px;
+}
+
+.title {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 28px;
+    text-align:left;
+}
+
+
+.subtitle {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+
+.form-group {
+    margin-top: 20px;
+}
+
+.input-text {
+    padding: 10px;
+    margin: 10px 0;
+    border: 6px solid #ccc;
+    border-radius: 5px;
+    width: 600%;
+}
+
+.btn-success {
+    background-color: #95CF48;
+    margin-top: 30px;
+    width: 60%;
+}
+
+.p-link {
+    margin-top: 30px;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 24px;
+    color: #000000;
+    margin-left: 700px;
+}
+
+/* Personaliza tus estilos CSS aquí */
+/* Ejemplo de regla CSS para hacer la página responsive */
+@media (max-width: 768px) {
+    /* Estilos para pantallas pequeñas */
+    .container
+
+{
+    padding: 20px;
+}
+
+.col-md-6 {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+}
+
+

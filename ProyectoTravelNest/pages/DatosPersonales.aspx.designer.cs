@@ -7,101 +7,83 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace ProyectoTravelNest
+namespace ProyectoTravelNest.pages
 {
 
 
-    public partial class _Default
+    public partial class DatosPersonales
     {
 
         /// <summary>
-        /// Control imgMueble.
+        /// Control lblTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgMueble;
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// Control lblUbicacion.
+        /// Control TxtIdentificacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUbicacion;
+        protected global::System.Web.UI.WebControls.TextBox TxtIdentificacion;
 
         /// <summary>
-        /// Control lnkFavorito.
+        /// Control TxtDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFavorito;
+        protected global::System.Web.UI.WebControls.TextBox TxtDireccion;
 
         /// <summary>
-        /// Control lblPersonas.
+        /// Control TxtNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPersonas;
+        protected global::System.Web.UI.WebControls.TextBox TxtNombre;
 
         /// <summary>
-        /// Control lnkDetalle.
+        /// Control TxtApellidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkDetalle;
+        protected global::System.Web.UI.WebControls.TextBox TxtApellidos;
 
         /// <summary>
-        /// Control lblCorreo.
+        /// Control TxtTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCorreo;
+        protected global::System.Web.UI.WebControls.TextBox TxtTelefono;
 
         /// <summary>
-        /// Control txtCorreo.
+        /// Control btnGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreo;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
 
         /// <summary>
-        /// Control lblContraseña.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContraseña;
-
-        /// <summary>
-        /// Control txtcontrasena.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcontrasena;
-
-        /// <summary>
-        /// Control btnIniciarSesion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIniciarSesion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblMensaje;
     }
 }

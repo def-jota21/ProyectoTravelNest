@@ -1,0 +1,69 @@
+﻿/* Estilo para la sección de chat */
+.body {
+    margin-top: 100%;
+}
+
+.container {
+    margin-top: 5%;
+}
+/* Estilo para el botón de selección de categorías */
+.category-button {
+    background-color: #4CAF50;
+    color: #000;
+}
+
+/* Estilo para la sección de chat */
+.chat-section {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    height: 400px;
+    overflow-y: auto;
+}
+
+/* Estilo para los mensajes */
+.message {
+    background-color: #d8caca;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.user-button {
+    width: 200px;
+    height: 50px;
+    background-color: #808080;
+    color: #808080;
+    border: none;
+    margin-top: 6%;
+}
+
+.divider {
+    background-color: #ccc;
+    height: 2px;
+    margin-top: 20px;
+}
+
+.col-md-4 {
+    position: absolute;
+    left: 5.06%;
+    right: 73.31%;
+    top: 12.53%;
+    bottom: 83.52%;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 100px;
+}
+
+
+
+.col-md-8 {
+    bottom: 83.52%;
+    font-family: 'Comfortaa';
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    height: 550px; /* Ajusta el valor de "300px" según tu preferencia */
+    top: 50%; /* Ajusta el valor de "12.53%" según tu preferencia */
+}

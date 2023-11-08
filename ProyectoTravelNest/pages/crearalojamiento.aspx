@@ -68,6 +68,10 @@ figcaption{
                     <input type="number" step="0.01" class="form-control" id="txtprecio" autocomplete="off">
                     <label for="exampleFormControlInput1" class="form-label mt-2">Huespedes</label>
                     <input type="number" class="form-control" id="txthuespedes" autocomplete="off">
+                    <label for="exampleFormControlInput1" class="form-label mt-2">Habitaciones</label>
+                    <input type="number" class="form-control" id="txthabitaciones" autocomplete="off">
+                    <label for="exampleFormControlInput1" class="form-label mt-2">Baños</label>
+                    <input type="number" class="form-control" id="txtbaños" autocomplete="off">
                     <label for="exampleFormControlInput1" class="form-label mt-4">Servicios</label>
                     <a href="#" id="editarServicios" class="stretched-link text-danger " style="position: relative; margin-left: 25rem;" >Editar</a>
                     <br>

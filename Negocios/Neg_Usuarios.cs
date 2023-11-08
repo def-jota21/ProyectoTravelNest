@@ -33,5 +33,30 @@ namespace Negocios
 
         }
 
+        public void AgregarUsuario(Entidades.Usuarios Usuario, int Accion)
+        {
+            try
+            {
+                string strNombreSP = "CRUDUsuarios";
+                List<SqlParameter> lstParametros = new List<SqlParameter>();
+                lstParametros.Add(new SqlParameter("@Opcion", Accion));
+                lstParametros.Add(new SqlParameter("@Identificacion", Usuario.IdUsuarioRegistro));
+                lstParametros.Add(new SqlParameter("@Nombre", Usuario.Nombre));
+                lstParametros.Add(new SqlParameter("@Apellidos", Usuario.Apellidos));
+                lstParametros.Add(new SqlParameter("@Rol", Usuario.T_Rol));
+                lstParametros.Add(new SqlParameter("@Telefono",Usuario.TelefonoRegistro));
+                lstParametros.Add(new SqlParameter("@CorreoElectronico", Usuario.Correo));
+                lstParametros.Add(new SqlParameter("@Contrasena", Usuario.Contrasena));
+                lstParametros.Add(new SqlParameter("@FotoPerfil", Usuario.ÏmagenPerfil));
+
+                Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }//fin de agregar usuario
     }
 }

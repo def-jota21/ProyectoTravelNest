@@ -124,7 +124,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3 mb-md-0">
                                     <div class="date" id="date1" data-target-input="nearest">
-                                        <input type="text" class="form-control p-4 datetimepicker-input"
+                                        <input type="date" class="form-control p-4 datetimepicker-input"
                                             placeholder="Fecha de Ingreso" data-target="#date1"
                                             data-toggle="datetimepicker" />
                                     </div>
@@ -133,7 +133,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3 mb-md-0">
                                     <div class="date" id="date2" data-target-input="nearest">
-                                        <input type="text" class="form-control p-4 datetimepicker-input"
+                                        <input type="date" class="form-control p-4 datetimepicker-input"
                                             placeholder="Fecha de Salida" data-target="#date2"
                                             data-toggle="datetimepicker" />
                                     </div>

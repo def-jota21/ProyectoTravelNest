@@ -276,14 +276,13 @@
         <div class="modal-dialog" style="z-index: 2000;">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="exampleModalLabel">Crear Cuenta</h5>
+                    <h5 class="modal-title" id="ModalCrearCuenta">Crear Cuenta</h5>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
                         <i class="fa-solid fa-x"
                             style="color: #000000;"></i>
                     </button>
                 </div>
                 <div class="modal-body center-cont">
-                    <input id="txtid" type="hidden" value="0" />
                     <div class="row col-lg-12 col-sm-12 text-center">
                         <div class="col-sm-12 col-lg-12">
                             <img src="img/logo2.png" alt="logo" class="img-fluid">
@@ -296,8 +295,8 @@
                         </div>
 
                         <div class="col-sm-12 col-lg-6 mt-2">
-                            <label for="txtcorreo" class="form-label">Correo Electrónico</label>
-                            <input type="text" class="form-control" id="txtcorreo" name="txtcorreo" autocomplete="off"
+                            <label for="txtcorreoElectronico" class="form-label">Correo Electrónico</label>
+                            <input type="text" class="form-control" id="txtcorreoElectronico" name="txtcorreoElectronico" autocomplete="off"
                                 placeholder="alguien@ejemplo.com">
                         </div>
 
@@ -314,7 +313,7 @@
                             <input type="text" class="form-control" name="txtidentificacion" maxlength="11"
                                 aria-describedby="idHelp" pattern="[0-9]{1}-[0-9]{4}-[0-9]{4}" placeholder="1-1111-1111"
                                 required>
-                            <small id="idHelp" class="form-text text-muted">El formato debe ser #-####-####</small>
+                            <small id="idHelpIdentificación" class="form-text text-muted">El formato debe ser #-####-####</small>
                         </div>
 
                         <div class="col-sm-6 col-lg-6 mt-2">
@@ -324,7 +323,7 @@
                         </div>
 
                         <div class="col-sm-6 col-lg-6 mt-2">
-                            <label for="txtcontraseña">Contraseña</label>
+                            <label for="txtcontrasena">Contraseña</label>
                             <input type="password" class="form-control" id="password" name="txtcontrasena"
                                 placeholder="Contraseña" minlength="10" required onkeyup="validarContrasena()">
                             <div>
@@ -346,7 +345,7 @@
                         </div>
 
                         <div class="col-sm-12 mt-4">
-                            <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;">
+                            <button ID="btnCrearCuenta" class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;" OnClick="btnCrearCuenta_Click">
                                 Crear
                                 Cuenta</button>
                         </div>

@@ -128,6 +128,12 @@ namespace ProyectoTravelNest
                 script = "toastr.warning('Ha ocurrido un error, inténtelo más tarde');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "ToastrNotification", script, true);
             }
+        }//fin de iniciar sesion
+
+
+        protected void btnCrearCuenta_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }  

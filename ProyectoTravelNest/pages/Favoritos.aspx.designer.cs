@@ -15,15 +15,6 @@ namespace ProyectoTravelNest.pages
     {
 
         /// <summary>
-        /// Control btnAddMore.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddMore;
-
-        /// <summary>
         /// Control lstfrmMantenimiento.
         /// </summary>
         /// <remarks>
@@ -31,5 +22,14 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lstfrmMantenimiento;
+
+        /// <summary>
+        /// Control btnAddMore.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddMore;
     }
 }

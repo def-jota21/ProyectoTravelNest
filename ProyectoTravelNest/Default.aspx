@@ -36,35 +36,40 @@
 
     <script>
         function validarContrasena() {
-            const contrasena = document.getElementById("password").value;
-            const longitudValida = contrasena.length >= 10;
-            const contieneMayuscula = /[A-Z]/.test(contrasena);
-            const contieneNumero = /\d/.test(contrasena);
-            const noConsecutivos = !/(.)\1{1,}/.test(contrasena);
-            const mensaje = document.getElementById("mensaje");
-            if (longitudValida && contieneMayuscula && contieneNumero && noConsecutivos) {
-                mensaje.innerHTML = "Contraseña válida";
-                mensaje.style.color = "green";
-            } else {
-                mensaje.innerHTML = "La contraseña debe cumplir con los siguientes requisitos:<br>";
-                if (!longitudValida) {
-                    mensaje.innerHTML += " - Debe tener al menos 10 caracteres<br>";
+            const contrasenaInput = document.getElementById('<%= txtcontrasenaCrear.ClientID %>');
+            if (contrasenaInput) {
+                const contrasena = contrasenaInput.value;
+                const longitudValida = contrasena.length >= 10;
+                const contieneMayuscula = /[A-Z]/.test(contrasena);
+                const contieneNumero = /\d/.test(contrasena);
+                const noConsecutivos = !/(.)\1{1,}/.test(contrasena);
+                const mensajes = document.getElementsByClassName("mensaje");
+                const mensaje = mensajes.length > 0 ? mensajes[0] : null;
+                if (longitudValida && contieneMayuscula && contieneNumero && noConsecutivos) {
+                    mensaje.innerHTML = "Contraseña válida";
+                    mensaje.style.color = "green";
+                } else {
+                    mensaje.innerHTML = "La contraseña debe cumplir con los siguientes requisitos:<br>";
+                    if (!longitudValida) {
+                        mensaje.innerHTML += " - Debe tener al menos 10 caracteres<br>";
+                    }
+                    if (!contieneMayuscula) {
+                        mensaje.innerHTML += " - Debe contener al menos una letra mayúscula<br>";
+                    }
+                    if (!contieneNumero) {
+                        mensaje.innerHTML += " - Debe contener al menos un número<br>";
+                    }
+                    if (!noConsecutivos) {
+                        mensaje.innerHTML += " - No debe tener caracteres consecutivos<br>";
+                    }
+                    mensaje.style.color = "red";
                 }
-                if (!contieneMayuscula) {
-                    mensaje.innerHTML += " - Debe contener al menos una letra mayúscula<br>";
-                }
-                if (!contieneNumero) {
-                    mensaje.innerHTML += " - Debe contener al menos un número<br>";
-                }
-                if (!noConsecutivos) {
-                    mensaje.innerHTML += " - No debe tener caracteres consecutivos<br>";
-                }
-                mensaje.style.color = "red";
-            }
 
-            // Habilitar o deshabilitar el botón de envío
-            const botonEnvio = document.getElementById("accionEnviar");
-            botonEnvio.disabled = !(longitudValida && contieneMayuscula && contieneNumero && noConsecutivos);
+
+                // Habilitar o deshabilitar el botón de envío
+                const botonEnvio = document.getElementById('<%= btnCrearCuenta.ClientID %>');
+                botonEnvio.disabled = !(longitudValida && contieneMayuscula && contieneNumero && noConsecutivos);
+            }
         }
     </script>
 
@@ -154,51 +159,55 @@
                 <h1>Encuentra Tu Lugar Perfecto</h1>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="package-item bg-white mb-2">
-                        <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server" ImageUrl="img/package-1.jpg" AlternateText="Imagen del mueble" />
-                        <div class="p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>
-                                    <asp:Label ID="lblUbicacion" runat="server" Text="Thailand"></asp:Label></small>
-                                <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server" OnClick="AgregarFavorito_Click" data-idinmueble="1111111111111">
-                                                <i class="fa fa-heart text-danger"></i>Favorito
-                                </asp:LinkButton>
-                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>
-                                    <asp:Label ID="lblPersonas" runat="server" Text="2 Person"></asp:Label></small>
-                            </div>
-                            <asp:HyperLink ID="lnkDetalle" CssClass="h5 text-decoration-none" runat="server" NavigateUrl="#">Islas Canarias</asp:HyperLink>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                    <h5 class="m-0">$350</h5>
-                                    <p><b>por noche</b></p>
-                                </div>
-                                <div class="border-top mt-4 pt-4">
-                                    <div class="d-flex justify-content-between">
-                                        <button class="btn btn-primary btn-block" id="showModalButton"
-                                            style="height: 47px; margin-top: -2px;" data-bs-toggle="modal"
-                                            data-bs-target="#iniciarsesionmodal">
-                                            Ver Información</button>
-                                        <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;"
-                                            id="showModalButtonCrearCuenta" data-bs-toggle="modal"
-                                            data-bs-target="#crearcuentamodal" data-bs-dismiss="modal">
-                                            Crear
-                                                        Cuenta</button>
-                                        <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;"
-                                            id="showModalButtonvalidariniciomodal" data-bs-toggle="modal"
-                                            data-bs-target="#validariniciomodal" data-bs-dismiss="modal">
-                                            validar</button>
+                <asp:Repeater ID="rptInmuebles" runat="server">
+                    <ItemTemplate>
+                        <div class="col-lg-4 col-md-6 mb-4" data-categoria='<%# Eval("Categoria") %>'>
+                            <div class="package-item bg-white mb-2">
+                                <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
+                                    src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
+                                    AlternateText="Imagen del mueble" />
+
+                                <div class="p-4">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>
+                                            <asp:Label ID="lblUbicacion" runat="server" Text='<%# Eval("Direccion") %>'></asp:Label></small>
+                                        <small class="m-0"><i class="fa fa-heart text-danger"></i>
+                                            <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server" OnClick="AgregarFavorito_Click" data-idinmueble="1">
+                                                &nbsp;Favorito
+                                            </asp:LinkButton>
+                                        </small>
+                                        <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>
+                                            <asp:Label ID="lblPersonas" runat="server" Text='<%# Eval("Cantidad_Huesped") %>'></asp:Label></small>
+                                    </div>
+                                    <asp:Label ID="lnkDetalle" CssClass="h5 text-decoration-none" runat="server" NavigateUrl="#"><%# Eval("Nombre") %></asp:Label>
+                                    <div class="border-top mt-4 pt-4">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i><%# Math.Round(Convert.ToDecimal(Eval("Calificacion")), 2) %><small></small></h6>
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="m-0" style="margin-right: 5px;">$<%# Math.Round(Convert.ToDecimal(Eval("Precio")), 2) %></h5>
+                                                <p class="m-0"><b>&nbsp;por noche</b></p>
+                                            </div>
+
+                                        </div>
+                                        <div class="border-top mt-4 pt-4">
+                                            <div class="d-flex justify-content-between">
+                                                <asp:Button ID="btnVerInformacion" runat="server" Text="Ver Información" CssClass="btn btn-primary btn-block"
+                                                    Style="height: 47px; margin-top: -2px" CommandName="VerInformacion"
+                                                    CommandArgument='<%# $"{Eval("IdUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnVerInformacion_Command"
+                                                    UseSubmitBehavior="false" />
+
+
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <!--Fin carta-->
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
-
-
-
         </div>
     </div>
     <!-- Cartas -->
@@ -216,7 +225,6 @@
                     </button>
                 </div>
                 <div class="modal-body text-center center-cont">
-                    <input id="txtid" type="hidden" value="0" />
                     <div class="row  col-sm-12 text-center">
                         <div class="col-sm-12">
                             <img src="img/logo2.png" alt="logo" class="img-fluid">
@@ -231,7 +239,7 @@
 
                         <div class="col-sm-12">
                             <div class="col-sm-12">
-                                <asp:Label ID="lblContraseña" runat="server" AssociatedControlID="txtcontrasena" CssClass="form-label">Contraseña</asp:Label>
+                                <asp:Label ID="lblContrasena" runat="server" AssociatedControlID="txtcontrasena" CssClass="form-label">Contraseña</asp:Label>
                                 <asp:TextBox ID="txtcontrasena" runat="server" TextMode="Password" CssClass="form-control" autocomplete="off"></asp:TextBox>
                             </div>
                         </div>
@@ -282,66 +290,62 @@
                         </div>
 
                         <div class="col-sm-12 col-lg-6 mt-2">
-                            <label for="txtnombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="txtnombre" name="txtnombre" autocomplete="off"
-                                placeholder="Nombre">
+                            <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label">Nombre</asp:Label>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Nombre"></asp:TextBox>
                         </div>
 
                         <div class="col-sm-12 col-lg-6 mt-2">
-                            <label for="txtcorreoElectronico" class="form-label">Correo Electrónico</label>
-                            <input type="text" class="form-control" id="txtcorreoElectronico" name="txtcorreoElectronico" autocomplete="off"
-                                placeholder="alguien@ejemplo.com">
+                            <asp:Label ID="lblCorreoElectronico" runat="server" AssociatedControlID="txtCorreoElectronico" CssClass="form-label">Correo Electrónico</asp:Label>
+                            <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" AutoComplete="off" placeholder="alguien@ejemplo.com"></asp:TextBox>
                         </div>
 
                         <div class="col-sm-6 col-lg-6 mt-2">
-                            <label for="selectrol" class="form-label">Rol</label>
-                            <select class="form-select" aria-label="Default select example" name="selectrol">
-                                <option value="Anfitrión">Anfitrión</option>
-                                <option value="Huésped">Huésped</option>
-                            </select>
+                            <asp:Label ID="lblRol" runat="server" AssociatedControlID="ddlRol" CssClass="form-label">Rol</asp:Label>
+                            <asp:DropDownList ID="ddlRol" runat="server" CssClass="form-select" aria-label="Default select example">
+                                <asp:ListItem Value="Anfitrión">Anfitrión</asp:ListItem>
+                                <asp:ListItem Value="Huésped">Huésped</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
 
                         <div class="col-sm-6 col-lg-6 mt-2">
-                            <label for="txtidentificacion">Identificación</label>
-                            <input type="text" class="form-control" name="txtidentificacion" maxlength="11"
-                                aria-describedby="idHelp" pattern="[0-9]{1}-[0-9]{4}-[0-9]{4}" placeholder="1-1111-1111"
-                                required>
-                            <small id="idHelpIdentificación" class="form-text text-muted">El formato debe ser #-####-####</small>
+                            <asp:Label ID="lblIdentificacion" runat="server" AssociatedControlID="txtIdentificacion" CssClass="form-label">Identificación</asp:Label>
+                            <asp:TextBox ID="txtIdentificacion" runat="server" CssClass="form-control" MaxLength="11" aria-describedby="idHelp"
+                                pattern="[0-9]{1}-[0-9]{4}-[0-9]{4}" placeholder="1-1111-1111" required="true"></asp:TextBox>
+                            <small id="idHelpIdentificacion" class="form-text text-muted">El formato debe ser #-####-####</small>
                         </div>
 
                         <div class="col-sm-6 col-lg-6 mt-2">
-                            <label for="txtapellidos" class="form-label">Apellidos</label>
-                            <input type="text" class=" form-control" id="txtapellidos" name="txtapellidos"
-                                autocomplete="off" placeholder="Apellidos">
+                            <asp:Label ID="lblApellidos" runat="server" AssociatedControlID="txtApellidos" CssClass="form-label">Apellidos</asp:Label>
+                            <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Apellidos"></asp:TextBox>
                         </div>
 
                         <div class="col-sm-6 col-lg-6 mt-2">
-                            <label for="txtcontrasena">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="txtcontrasena"
-                                placeholder="Contraseña" minlength="10" required onkeyup="validarContrasena()">
+                            <asp:Label ID="lblContrasenaCrear" runat="server" AssociatedControlID="txtContrasena" CssClass="form-label">Contraseña</asp:Label>
+                            <asp:TextBox ID="txtcontrasenaCrear" runat="server" TextMode="Password" CssClass="form-control" placeholder="Contraseña"
+                                MinLength="10" OnKeyUp="validarContrasena()" required="true"></asp:TextBox>
                             <div>
-                                <span id="mensaje" style="color: red;"></span>
+                                <span class="mensaje" style="color: red;"></span>
                             </div>
                         </div>
 
                         <div class="col-sm-6 col-lg-6 mt-2">
-                            <label for="txttelefono" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="txttelefono" name="txttelefono"
-                                autocomplete="off" placeholder="8888-8888" pattern="[0-9]{4}-[0-9]{4}">
-                            <small id="idHelp" class="form-text text-muted">El formato debe ser ####-####</small>
+                            <asp:Label ID="lblTelefono" runat="server" AssociatedControlID="txtTelefono" CssClass="form-label">Teléfono</asp:Label>
+                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" AutoComplete="off" placeholder="88888888"
+                                pattern="[0-9]{4}[0-9]{4}"></asp:TextBox>
+                            <small id="idHelp" class="form-text text-muted">El formato debe ser ########</small>
                         </div>
 
                         <div class="col-sm-6 col-lg-6 mt-2">
-                            <label for="imagen">Foto Perfil: </label>
-                            <input style="margin: auto; max-width: 126px;" type="file" name="imagen" accept="image/*"
-                                required>
+                            <asp:Label ID="lblImagen" runat="server" AssociatedControlID="fileImagen" CssClass="form-label">Foto Perfil:</asp:Label>
+                            <asp:FileUpload ID="fileImagen" runat="server" Style="margin: auto; max-width: 126px;" accept=".jpg" required="true"></asp:FileUpload>
                         </div>
 
-                        <div class="col-sm-12 mt-4">
-                            <button id="btnCrearCuenta" class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;" onclick="btnCrearCuenta_Click">
-                                Crear
-                                Cuenta</button>
+                        <div class="col-sm-12 mt-12">
+                            <asp:Button disabled="true" ID="btnCrearCuenta" runat="server" Text="Crear Cuenta" CssClass="btn btn-primary btn-block"
+                                Style="height: 47px; margin-top: -2px" OnClick="btnCrearCuenta_Click" />
+
                         </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -352,7 +356,7 @@
     </div>
 
 
-    <!-- Modal Iniciar Sesion -->
+    <!-- Modal Valdiar Iniciar Sesion -->
     <div class="modal fade" id="validariniciomodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         data-bs-backdrop="static">
         <div class="modal-dialog">

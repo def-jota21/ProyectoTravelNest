@@ -12,10 +12,9 @@ namespace Entidades
         public string Contrasena { get; set; }
         public char T_Rol { get; set; }
         public int Telefono { get; set; }
-        public int TelefonoRegistro { get; set; }
         public string Estado { get; set; }
 
-        public byte[] ÏmagenPerfil { get; set; }
+        public byte[] ImagenPerfil { get; set; }
     }
 }
 

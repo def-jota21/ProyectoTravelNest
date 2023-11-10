@@ -24,6 +24,33 @@ namespace ProyectoTravelNest
         protected global::System.Web.UI.HtmlControls.HtmlSelect ddlCategorias;
 
         /// <summary>
+        /// Control ddlCantidadPersonas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlCantidadPersonas;
+
+        /// <summary>
+        /// Control ddlCalificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlCalificacion;
+
+        /// <summary>
+        /// Control Filtrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Filtrar;
+
+        /// <summary>
         /// Control imgMueble.
         /// </summary>
         /// <remarks>

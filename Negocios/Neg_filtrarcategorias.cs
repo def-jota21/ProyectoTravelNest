@@ -21,6 +21,5 @@ namespace Negocios
             return iConexion.ExecuteSPWithDT(spName, lstParametros);
         }
 
-
     }
 }

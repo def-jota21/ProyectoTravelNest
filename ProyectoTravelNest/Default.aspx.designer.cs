@@ -15,9 +15,6 @@ namespace ProyectoTravelNest
     {
 
         /// <summary>
-
-        /// Control rptInmuebles.
-
         /// Control ddlCategorias.
         /// </summary>
         /// <remarks>
@@ -54,8 +51,7 @@ namespace ProyectoTravelNest
         protected global::System.Web.UI.WebControls.LinkButton Filtrar;
 
         /// <summary>
-        /// Control imgMueble.
-
+        /// Control rptInmuebles.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.

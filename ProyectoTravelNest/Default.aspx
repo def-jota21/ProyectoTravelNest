@@ -142,7 +142,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                <asp:LinkButton ID="Filtrar" runat="server" CssClass="btn btn-primary btn-block add-more-button" style="height: 47px; margin-top: -2px;" OnClick="FiltrarIn">Filtrar</asp:LinkButton>
+                <asp:LinkButton ID="Filtrar" runat="server" CssClass="btn btn-primary btn-block add-more-button" style="height: 47px; margin-top: -2px;">Filtrar</asp:LinkButton>
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@
                                         <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>
                                             <asp:Label ID="lblUbicacion" runat="server" Text='<%# Eval("Direccion") %>'></asp:Label></small>
                                         <small class="m-0"><i class="fa fa-heart text-danger"></i>
-                                            <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server" OnClick="AgregarFavorito_Click" data-idinmueble="1">
+                                            <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server"  data-idinmueble="1">
                                                 &nbsp;Favorito
                                             </asp:LinkButton>
                                         </small>

@@ -3,6 +3,7 @@ using Negocios;
 using ProyectoTravelNest.pages;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -16,9 +17,34 @@ namespace ProyectoTravelNest
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
+            if (!IsPostBack)
+            {
+                CargarCategorias();
+            }
         }
+
+        private void CargarCategorias()
+            {
+                // Crea una instancia de la clase de negocio
+                Neg_filtrarcategorias negocio = new Neg_filtrarcategorias();
+
+                // Obtén los datos de la base de datos
+                DataTable dt = negocio.ObtenerTodasLasCategorias();
+
+                // Asegúrate de que tu control select esté vacío
+                ddlCategorias.Items.Clear();
+
+                // Agrega los datos al control select
+                foreach (DataRow row in dt.Rows)
+                {
+                    ListItem item = new ListItem(row["Nombre"].ToString(), row["IdCategoria"].ToString());
+                    ddlCategorias.Items.Add(item);
+                }
+            }
+
+        
+
+
 
         protected void AgregarFavorito_Click(object sender, EventArgs e)
         {
@@ -28,7 +54,7 @@ namespace ProyectoTravelNest
             string idInmueble = lnkFavorito.Attributes["data-idinmueble"];
 
             // Asignar un valor fijo para idUsuario (esto debe ser reemplazado por autenticación)
-            string IdUsuario = "1";
+            string IdUsuario = "2222222222";
 
             // Obtener los valores de los controles en tu página
 
@@ -39,6 +65,7 @@ namespace ProyectoTravelNest
             // Llamar a la función AgregarFavorito
             Neg_Favoritos.AgregarFavorito(IdUsuario, idInmueble);
 
+          
 
             // Puedes redirigir al usuario a la página de resultados u otra página
             Response.Redirect("Default.aspx");

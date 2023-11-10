@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="reservas.aspx.cs" Inherits="ProyectoTravelNest.pages.Reservas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<!DOCTYPE html>
-<html lang="en">
+
+ <!DOCTYPE html>
+    <html lang="en">
+  
 <head>
   <meta charset="UTF-8">
   <title>Formulario de contacto</title>
@@ -42,7 +44,8 @@
           </label>
           <input type="text" name="Estado" id="Estado" required="obligatorio" placeholder="Estado Actual">
         </p>
-        <button type="submit" name="VerHistorial" id="VerHistorial"><p>Ver Historial</p></button>         
+          <button type="submit" name="VerHistorial" id="VerHistorial" onclick="btnVerHistorial_Click">
+              <p>Ver Historial</p></button>         
       </form>
     </div>  
   </div>

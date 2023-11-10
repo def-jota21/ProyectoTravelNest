@@ -28,15 +28,32 @@ namespace Negocios
                 throw new Exception(ex.Message);
             }
         }
-       
+
+
+
+        public static void EliminarFavorito(string idInmueble, string idUsuario)
+        {
+            try
+            {
+                string deleteQuery = "DELETE FROM Favoritos (IdUsuario, IdInmueble) " +
+                            $"VALUES ('{idUsuario}', '{idInmueble}')";
+
+
+                Datos.ConexionSQL iConexion = new Datos.ConexionSQL();
+                iConexion.QueryDB(deleteQuery);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception here
+                throw new Exception(ex.Message);
+            }
+        }
+
 
         public DataTable ObtenerFavoritosDeUsuario(string IdUsuario)
         {
-            string spName = "ObtenerFavoritosDeUsuario";
-            var lstParametros = new List<SqlParameter>()
-            {
-                new SqlParameter("@IdUsuario", IdUsuario),
-            };
+            string spName = "ListarInmueblesPrincipal";
+            var lstParametros = new List<SqlParameter>();
             Datos.ConexionSQL iConexion = new Datos.ConexionSQL();
             return iConexion.ExecuteSPWithDT(spName, lstParametros);
         }

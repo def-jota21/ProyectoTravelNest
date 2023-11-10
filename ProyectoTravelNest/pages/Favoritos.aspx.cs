@@ -25,19 +25,22 @@ namespace ProyectoTravelNest.pages
 
             System.Text.StringBuilder strListaProductos = new System.Text.StringBuilder();
 
+
+
             foreach (DataRow drEtapas in dtEtapas.Rows)
             {
 
+
                 ////Convertir la imagen para que se muestre
-                //byte[] imageBytes = (byte[])drEtapas["Imagen"];
-                //string base64Image = Convert.ToBase64String(imageBytes);
+                byte[] imageBytes = (byte[])drEtapas["Imagen"];
+                string base64Image = Convert.ToBase64String(imageBytes);
 
                 // Comienza a construir un elemento de tarjeta
                 strListaProductos.Append("<div class=\"col-lg-4 col-md-6 mb-4\">");
                 strListaProductos.Append("<div class=\"package-item bg-white mb-2\">");
 
-                //// Agrega la imagen del producto (debes proporcionar la base64Image)
-                //strListaProductos.Append("<img class=\"img-fluid\" src=\"data:image/jpg;base64," + base64Image + "\" alt=\"Imagen del producto\" />");
+                // Agrega la imagen del producto (debes proporcionar la base64Image)
+                strListaProductos.Append("<img class=\"img-fluid\" src=\"data:image/jpg;base64,").Append(base64Image).Append("\" /></div>");
 
                 strListaProductos.Append("<div class=\"p-4\">");
                 strListaProductos.Append("<div class=\"d-flex justify-content-between mb-3\">");
@@ -46,7 +49,8 @@ namespace ProyectoTravelNest.pages
                 strListaProductos.Append("<small class=\"m-0\"><i class=\"fa fa-map-marker-alt text-primary mr-2\"></i>" + drEtapas["Direccion"] + "</small>");
 
                 // Agrega el botón "Favorito"
-                strListaProductos.Append("<a class=\"m-0\" href=\"#\"><i class=\"fa fa-heart text-danger\"></i>Favorito</a>");
+                strListaProductos.Append("<a class=\"m-0\" href=\"#\" onclick=\"EliminarFavorito('" + drEtapas["IdInmueble"] + "')\"><i class=\"fa fa-heart text-danger\"></i>Favorito</a>");
+
 
                 // Agrega el número de personas
                 strListaProductos.Append("<small class=\"m-0\"><i class=\"fa fa-user text-primary mr-2\"></i>" + drEtapas["Cantidad_Huesped"] + "</small>");
@@ -59,8 +63,8 @@ namespace ProyectoTravelNest.pages
                 // Agrega la sección de calificación y precio
                 strListaProductos.Append("<div class=\"border-top mt-4 pt-4\">");
                 strListaProductos.Append("<div class=\"d-flex justify-content-between\">");
-                strListaProductos.Append("<h6 class=\"m-0\"><i class=\"fa fa-star text-primary mr-2\"></i>" + drEtapas["Calificacion"] + " <small>(" + drEtapas["Comentario"] + ")</small></h6>");
-                strListaProductos.Append("<h5 class=\"m-0\">" + drEtapas["PrecioBasexNoche"] + "</h5>");
+                strListaProductos.Append("<h6 class=\"m-0\"><i class=\"fa fa-star text-primary mr-2\"></i>" + drEtapas["Calificacion"] + "</h6>");
+                strListaProductos.Append("<h5 class=\"m-0\">" + drEtapas["Precio"] + "</h5>");
                 strListaProductos.Append("<p><b>por noche</b></p>");
                 strListaProductos.Append("</div>");
                 strListaProductos.Append("</div>");
@@ -83,6 +87,23 @@ namespace ProyectoTravelNest.pages
         protected void AgregarFavorito_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void EliminarFavorito(string idInmueble, string idUsuario)
+        {
+            try
+            {
+                // Llamar a la función EliminarFavorito de la capa de negocios
+                Negocios.Neg_Favoritos.EliminarFavorito(idInmueble,idUsuario);
+
+                // Recargar la página para reflejar los cambios
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción aquí
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

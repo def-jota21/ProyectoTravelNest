@@ -115,10 +115,10 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3 mb-md-0">
-                                    <select class="custom-select px-4" style="height: 47px;">
+                                    <select id="ddlCategorias" runat="server" class="custom-select px-4" style="height: 47px;">
                                         <option selected>Tipo de Alojamiento</option>
-
                                     </select>
+
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -168,7 +168,7 @@
                             <div class="d-flex justify-content-between mb-3">
                                 <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>
                                     <asp:Label ID="lblUbicacion" runat="server" Text="Thailand"></asp:Label></small>
-                                <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server" OnClick="AgregarFavorito_Click" data-idinmueble="1">
+                                <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server" OnClick="AgregarFavorito_Click" data-idinmueble="1111111111111">
                                                 <i class="fa fa-heart text-danger"></i>Favorito
                                 </asp:LinkButton>
                                 <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>
@@ -345,7 +345,7 @@
                         </div>
 
                         <div class="col-sm-12 mt-4">
-                            <button ID="btnCrearCuenta" class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;" OnClick="btnCrearCuenta_Click">
+                            <button id="btnCrearCuenta" class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;" onclick="btnCrearCuenta_Click">
                                 Crear
                                 Cuenta</button>
                         </div>

@@ -214,7 +214,7 @@ namespace ProyectoTravelNest
                 if (args.Length == 2)
                 {
                     string IdUsuario = args[0].Trim();
-                    string IdInmueble = args[2].Trim();
+                    string IdInmueble = args[1].Trim();
 
                     // Redirige a la página de destino con los parámetros
                     Response.Redirect($"pages/verinformacion.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");

@@ -16,10 +16,19 @@ namespace ProyectoTravelNest
     public partial class _Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
+
         {
             if (!IsPostBack)
             {
+
+                Negocios.Negocio_Inmuebles iInmueble = new Negocio_Inmuebles();
+                DataTable dtInmbuebles = new DataTable();
+                dtInmbuebles = iInmueble.ListarInmueblesPrincipal();
+
+                rptInmuebles.DataSource = dtInmbuebles;
+                rptInmuebles.DataBind();
                 CargarCategorias();
+
             }
         }
 
@@ -160,7 +169,59 @@ namespace ProyectoTravelNest
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
+            char tRol = 'a';
+            String Nombre = txtNombre.Text;
+            String Rol = ddlRol.SelectedValue.ToString();
+            String Apellidos = txtApellidos.Text;
+            String Telefono = txtTelefono.Text;
+            String CorreoElectronico = txtCorreoElectronico.Text;
+            String Identificacion = txtIdentificacion.Text;
+            String Contrasena = txtcontrasenaCrear.Text;
+            int Tamanio = fileImagen.PostedFile.ContentLength;
+            byte[] ImagenOriginal = new byte[Tamanio];
 
+            Entidades.Usuarios iUsuario = new Entidades.Usuarios();
+
+            iUsuario.Nombre = Nombre;
+            if(Rol.Equals("Anfitrión"))
+            {
+                tRol = 'A';
+            }
+            if (Rol.Equals("Huésped"))
+            {
+               tRol = 'B';
+            }
+
+            iUsuario.T_Rol = tRol;
+            iUsuario.Apellidos = Apellidos;
+            iUsuario.Telefono = int.Parse(Telefono);
+            iUsuario.Correo = CorreoElectronico;
+            iUsuario.IdUsuarioRegistro = Identificacion;
+            iUsuario.Contrasena = Contrasena;
+            iUsuario.ImagenPerfil = ImagenOriginal;
+
+            Negocios.Neg_Usuarios iUsuariosNeg = new Neg_Usuarios();
+
+            iUsuariosNeg.AgregarUsuario(iUsuario, 1);
         }
+
+        protected void btnVerInformacion_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "VerInformacion")
+            {
+                string[] args = e.CommandArgument.ToString().Split(',');
+
+                if (args.Length == 2)
+                {
+                    string IdUsuario = args[0].Trim();
+                    string IdInmueble = args[2].Trim();
+
+                    // Redirige a la página de destino con los parámetros
+                    Response.Redirect($"pages/verinformacion.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");
+                }
+            }
+        }
+
+
     }
 }  

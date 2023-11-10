@@ -15,6 +15,7 @@ namespace ProyectoTravelNest
 {
     public partial class _Default : Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
 
         {
@@ -33,25 +34,40 @@ namespace ProyectoTravelNest
         }
 
         private void CargarCategorias()
+        {
+            // Crea una instancia de la clase de negocio
+            Neg_filtrarcategorias negocio = new Neg_filtrarcategorias();
+
+            // Obtén los datos de la base de datos
+            DataTable dt = negocio.ObtenerTodasLasCategorias();
+
+            ddlCategorias.Items.Clear();
+            ddlCantidadPersonas.Items.Clear();
+            ddlCalificacion.Items.Clear();
+
+            // Agrega elementos predeterminados a los controles select
+            ddlCategorias.Items.Add(new ListItem("Tipo de Alojamiento", ""));
+            ddlCantidadPersonas.Items.Add(new ListItem("Cantidad de Personas", ""));
+            ddlCalificacion.Items.Add(new ListItem("Calificación", ""));
+
+            // Agrega los datos a los controles select
+            foreach (DataRow row in dt.Rows)
             {
-                // Crea una instancia de la clase de negocio
-                Neg_filtrarcategorias negocio = new Neg_filtrarcategorias();
+                // Obtén la información de la fila
+                string nombreCategoria = row["Nombre"].ToString();
+                string idCategoria = row["IdCategoria"].ToString();
+                string cantidadHuesped = row["Cantidad_Huesped"].ToString();
+                string calificacion = row["Calificacion"].ToString();
 
-                // Obtén los datos de la base de datos
-                DataTable dt = negocio.ObtenerTodasLasCategorias();
-
-                // Asegúrate de que tu control select esté vacío
-                ddlCategorias.Items.Clear();
-
-                // Agrega los datos al control select
-                foreach (DataRow row in dt.Rows)
-                {
-                    ListItem item = new ListItem(row["Nombre"].ToString(), row["IdCategoria"].ToString());
-                    ddlCategorias.Items.Add(item);
-                }
+                // Agrega la información a los controles select
+                ddlCategorias.Items.Add(new ListItem(nombreCategoria, idCategoria));
+                ddlCantidadPersonas.Items.Add(new ListItem(cantidadHuesped, cantidadHuesped));
+                ddlCalificacion.Items.Add(new ListItem(calificacion, calificacion));
             }
+        }
 
-        
+
+
 
 
 
@@ -205,6 +221,8 @@ namespace ProyectoTravelNest
             iUsuariosNeg.AgregarUsuario(iUsuario, 1);
         }
 
+
+
         protected void btnVerInformacion_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "VerInformacion")
@@ -221,6 +239,7 @@ namespace ProyectoTravelNest
                 }
             }
         }
+
 
 
     }

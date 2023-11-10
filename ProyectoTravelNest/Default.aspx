@@ -111,51 +111,44 @@
     <!-- Carousel End -->
 
 
-    <!-- Booking Start -->
-    <div class="container-fluid booking mt-5">
-        <div class="container ">
-            <div class="bg-light shadow" style="padding: 30px;">
-                <div class="row align-items-center" style="min-height: 60px;">
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="mb-3 mb-md-0">
-                                    <select id="ddlCategorias" runat="server" class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Tipo de Alojamiento</option>
-                                    </select>
-
-                                </div>
+<!-- Booking Start -->
+<div class="container-fluid booking mt-5">
+    <div class="container">
+        <div class="bg-light shadow" style="padding: 30px;">
+            <div class="row align-items-center" style="min-height: 60px;">
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3 mb-md-0">
+                                <select id="ddlCategorias" runat="server" class="custom-select px-4" style="height: 47px;">
+                                    <option selected>Tipo de Alojamiento</option>
+                                </select>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3 mb-md-0">
-                                    <div class="date" id="date1" data-target-input="nearest">
-                                        <input type="date" class="form-control p-4 datetimepicker-input"
-                                            placeholder="Fecha de Ingreso" data-target="#date1"
-                                            data-toggle="datetimepicker" />
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3 mb-md-0">
+                                <select id="ddlCantidadPersonas" runat="server" class="custom-select px-4" style="height: 47px;">
+                                    <option selected>Selecione catidad de personas</option>
+                                </select>
                             </div>
-                            <div class="col-md-4">
-                                <div class="mb-3 mb-md-0">
-                                    <div class="date" id="date2" data-target-input="nearest">
-                                        <input type="date" class="form-control p-4 datetimepicker-input"
-                                            placeholder="Fecha de Salida" data-target="#date2"
-                                            data-toggle="datetimepicker" />
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3 mb-md-0">
+                                <select id="ddlCalificacion" runat="server" class="custom-select px-4" style="height: 47px;">
+                                    <option selected>Selecione calificacion</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary btn-block" type="submit"
-                            style="height: 47px; margin-top: -2px;">
-                            Filtrar</button>
-                    </div>
+                </div>
+                <div class="col-md-2">
+                <asp:LinkButton ID="Filtrar" runat="server" CssClass="btn btn-primary btn-block add-more-button" style="height: 47px; margin-top: -2px;" OnClick="FiltrarIn">Filtrar</asp:LinkButton>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Booking End -->
+</div>
+<!-- Booking End -->
 
 
     <!-- Cartas -->
@@ -483,5 +476,4 @@
         }
 
     </script>
-
 </asp:Content>

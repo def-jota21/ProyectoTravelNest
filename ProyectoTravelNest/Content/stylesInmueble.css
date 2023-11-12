@@ -7,6 +7,9 @@ div img {
 #user-info {
     float: left;
 }
+.full-width {
+    max-width: 100%;
+}
 
 /* ! Calificacion estrellas */
 
@@ -78,19 +81,32 @@ svg {
 }
 
 /* Reglas */
-#agregar-regla {
+.agregar_regla {
     color: transparent;
     background-color: #F9F9F9;
     border: 1px solid #A4A4A4;
 }
 
-    #agregar-regla:hover {
+    .agregar_regla:hover {
         background-color: #ececec;
     }
 
-    #agregar-regla:active {
+    .agregar_regla:active {
         background-color: #e7e7e7;
     }
+
+.btnGuardar, .btnModificar, .btnEliminar {
+    color: transparent;
+    background-color: transparent;
+    border: none;
+    height: 0;
+    margin: 0;
+}
+
+#txtRegla {
+    border: none !important;
+    background-color: transparent !important;
+}
 
 
 /* Promociones */

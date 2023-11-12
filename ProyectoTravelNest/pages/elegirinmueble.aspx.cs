@@ -45,7 +45,7 @@ namespace ProyectoTravelNest.pages
                     LiteralControl htmlSnippet = new LiteralControl();
                     htmlSnippet.Text = $@"
                                     <div class='col-lg-3 col-md-5 p-0 mb-5 me-4 bg-white rounded'>
-                                        <a href='#' class='text-decoration-none' style='color: initial;'>
+                                        <a href='/pages/reglas.aspx?IdInmueble={image.Key}' class='text-decoration-none' style='color: initial;'>
                                             <div class='package-item bg-white mb-2'>
                                                 <img class='img-fluid' src='data:image/jpeg;base64,{image.Value}' style='border-radius: 7px;'>
                                                 <div style='clear: both;'>

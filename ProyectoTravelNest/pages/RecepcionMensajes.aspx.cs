@@ -18,8 +18,8 @@ namespace ProyectoTravelNest.pages
             {
                 if (!IsPostBack)
                 {
-                    Session["idUsuario"] = "123456789";
-                    Session["NombreUsuario"] = "Juan";
+                    Session["idUsuario"] = "234567890";
+                    Session["NombreUsuario"] = "Prueba";
                     Session["UserRol"] = "H";
 
                     string instruccion = "";

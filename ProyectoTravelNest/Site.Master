@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-    
+
 </head>
 <body>
     <form runat="server">
@@ -48,7 +48,7 @@
         <nav class="navbar navbar-expand-lg p-3">
             <div class="container-fluid">
                 <div class="logo">
-                    <a class="nav-link active" aria-current="page" href="Inicio.aspx">
+                    <a class="nav-link active" aria-current="page" href="Default.aspx">
                         <img src="../img/logo2.png" class="logoo" alt="Logo de la marca" /></a>
                 </div>
                 <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,14 +64,17 @@
                                 <i class="fas fa-user-circle" style="font-size: 20px;"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
+
+
                                 <li>
-                                    <a class="dropdown-item" href="#">Registrarse</a>
+                                    <button id="showModalButtonCrearCuenta" class="btn btn-link">Crear Cuenta</button>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Iniciar Sesión</a>
+                                    <button id="btnAbrirModalIniciarSesion" class="btn btn-link">Iniciar Sesion</button>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="pages/favoritos.aspx">Lista de Favoritos</a>
+                                   <asp:HyperLink runat="server" NavigateUrl="~/pages/favoritos.aspx" Text="Lista de Favoritos"  CssClass="dropdown-item" />
+
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">Notificaciones</a>
@@ -79,8 +82,12 @@
                                 <li>
                                     <a class="dropdown-item" href="#">Cuenta</a>
                                 </li>
+                                 <li>
+                                   <asp:HyperLink runat="server" NavigateUrl="~/pages/reservas.aspx" Text="Reservas"  CssClass ="dropdown-item" />
+
+                                </li>
                                 <li>
-                                    <a class="dropdown-item" href="pages/recepcionmensajes.aspx">Mensajes</a>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/pages/recepcionmensajes.aspx" Text="Mensajes" CssClass="dropdown-item" />
                                 </li>
                             </ul>
                         </li>
@@ -123,7 +130,16 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
+    <script>
+        document.getElementById("btnAbrirModalIniciarSesion").addEventListener("click", function () {
+            $('#iniciarsesionmodal').modal("show");
+        });
+        document.getElementById("showModalButtonCrearCuenta").addEventListener("click", function () {
+            $('#crearcuentamodal').modal("show");
+        });
 
+
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 </body>

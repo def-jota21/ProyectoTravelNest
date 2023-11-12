@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <div class="label-group">
                         <label for="estadiaMinima">Estadía Mínima:</label>
-                        <asp:TextBox ID="estadiaMinima" runat="server" CssClass="input-text" placeholder="Ingresar estadía mínima" OnTextChanged="estadiaMinima_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="estadiaMinima" runat="server" CssClass="input-text" placeholder="Ingresar estadía mínima"></asp:TextBox>
                     </div>
                     <div class="label-group">
                         <label for="estadiaMaxima">Estadía Máxima:</label>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <div class="label-group">
                         <label for="reservaMinima">Reserva Mínima:</label>
-                        <asp:DropDownList ID="reservaMinima" runat="server" CssClass="input-text" OnSelectedIndexChanged="reservaMinima_SelectedIndexChanged">
+                        <asp:DropDownList ID="reservaMinima" runat="server" CssClass="input-text">
                              <asp:ListItem Text="Seleciona Opcion" Value="0" />
                             <asp:ListItem Text="1 día" Value="1" />
                             <asp:ListItem Text="2 días" Value="2" />
@@ -53,9 +53,13 @@
                             <asp:ListItem Text="1 mes" Value="30" />
                         </asp:DropDownList>
                     </div>
+
+                    <div style="margin-top:1rem;">
+                    <asp:Button ID="btn_saveTiempo" runat="server" Text="Guardar" CssClass="btn btn-success btn-lg" OnClick="btn_saveTiempo_Click" />
+                    </div>
+
                 </div>
             </div>
-        </div>
 
         <div class="container">
             <h1 class="title">Configura datos calendario de tu Inmueble</h1>
@@ -64,22 +68,20 @@
             <div class="form-group">
                 <div class="label-group">
                     <label for="PrecioporNoche">Precio por Noche:</label>
-                    <asp:TextBox ID="PrecioporNoche" runat="server" CssClass="input-text" placeholder="Precio por Noche" OnTextChanged="PrecioporNoche_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="PrecioporNoche" runat="server" CssClass="input-text" placeholder="Precio por Noche"></asp:TextBox>
                 </div>
                 <div class="label-group">
                     <label for="Descuento">Descuento:</label>
-                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="input-text" OnSelectedIndexChanged="Descuento_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlDescuentos" runat="server" CssClass="input-text">
                         <asp:ListItem Text="Seleciona Opcion" Value="0" />
-                        <asp:ListItem Text="15%" Value="1" />
-                        <asp:ListItem Text="25%" Value="2" />
-                        <asp:ListItem Text="50%" Value="3" />
+                        <asp:ListItem Text="15%" Value="15" />
+                        <asp:ListItem Text="25%" Value="25" />
+                        <asp:ListItem Text="50%" Value="50" />
                     </asp:DropDownList>
                 </div>
                 <div class="text-center">
-
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-success btn-lg" OnClick="btnGuardar_Click" />
                      <img src="../img/gestionUsuarios.jpg" alt="Imagen" class="right-image" />
-
                 </div>
                 <div class="message">
                     <asp:Label ID="lblMessage" runat="server" CssClass="success-message" Visible="false" />
@@ -88,7 +90,9 @@
         </div>
     </body>
 </html>
+    </div>
 </asp:Content>
+
 
 
 

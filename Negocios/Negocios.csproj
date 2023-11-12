@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,6 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Neg_Reglas.cs" />
+
+    <Compile Include="Email.cs" />
+    <Compile Include="Mensajeria.cs" />
+
+
+    <Compile Include="Negocio_Comentarios.cs" />
+    <Compile Include="Negocio_Inmuebles.cs" />
+
+    <Compile Include="Neg_Reservaciones.cs" />
+    <Compile Include="Neg_filtrarcategorias.cs" />
     <Compile Include="Neg_Usuarios.cs" />
     <Compile Include="Neg_Favoritos.cs" />
     <Compile Include="Neg_AjustarReserva.cs" />

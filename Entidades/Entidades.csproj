@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AjustarReserva.cs" />
+    <Compile Include="Reservaciones.cs" />
     <Compile Include="Reglas.cs" />
     <Compile Include="Usuarios.cs" />
     <Compile Include="Favoritos.cs" />

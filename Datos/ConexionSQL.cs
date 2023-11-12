@@ -15,7 +15,7 @@ namespace Datos
     {
         private static StringBuilder strConexion;
         private static SqlConnection sqlCon;
-        private static void CadenaConexion()
+        public static void CadenaConexion()
         {
             strConexion = new StringBuilder();
             strConexion.Append("Data Source=");
@@ -28,6 +28,15 @@ namespace Datos
             strConexion.Append("Proyecto#12345"); 
 
             sqlCon = new SqlConnection(strConexion.ToString());
+
+            try
+            {
+                sqlCon.Open();
+            }catch (Exception ex)
+            {
+                String Mensaje = ex.Message;
+            }
+            sqlCon.Close();
         }//fin de cadena de conexion
 
         public SqlConnection sqlConn;
@@ -243,6 +252,54 @@ namespace Datos
             }//fin del catch
         }//fin de ExecuteQuery
 
+        public static DataTable ExecuteQueryTableGeneral(String NombreProcedimiento)
+        {
+            DataTable dtDatos = new DataTable();
+            try
+
+            {
+
+                //Inicializa la conexion
+                CadenaConexion();
+
+
+
+                //Crea el objeto SQL
+                SqlCommand cmd = new SqlCommand
+                {
+                    CommandText = NombreProcedimiento,
+                    CommandType = CommandType.StoredProcedure,
+                    Connection = sqlCon
+                };
+
+
+
+
+                //Abre la Conexion
+                sqlCon.Open();
+
+                //Ejecuta la Consulta
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+
+                dataAdapter.Fill(dtDatos);
+
+
+                //Cierra la conexion
+                sqlCon.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                if (sqlCon.State != ConnectionState.Closed)
+                    sqlCon.Close();
+                throw ex;
+            }//fin del catch
+            return dtDatos;
+        }//fin de ExecuteQuery
+
         public static DataTable ExecuteQueryTable(String NombreProcedimiento, List<SqlParameter> ListaParametros)
         {
             DataTable dtDatos = new DataTable();
@@ -293,7 +350,7 @@ namespace Datos
       }//fin de ExecuteQuery
 
 
-        // METODOS DE JAIRO ------------------------------------------------------------------------
+     // METODOS DE JAIRO ------------------------------------------------------------------------
         public DataTable ExecuteSPWithDT(string SPName, List<SqlParameter> ListaParametros)
         {
             try

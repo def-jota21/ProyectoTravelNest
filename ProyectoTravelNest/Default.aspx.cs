@@ -3,6 +3,7 @@ using Negocios;
 using ProyectoTravelNest.pages;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -14,11 +15,61 @@ namespace ProyectoTravelNest
 {
     public partial class _Default : Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
-        {
-            
 
+        {
+            if (!IsPostBack)
+            {
+
+                Negocios.Negocio_Inmuebles iInmueble = new Negocio_Inmuebles();
+                DataTable dtInmbuebles = new DataTable();
+                dtInmbuebles = iInmueble.ListarInmueblesPrincipal();
+
+                rptInmuebles.DataSource = dtInmbuebles;
+                rptInmuebles.DataBind();
+                CargarCategorias();
+
+            }
         }
+
+        private void CargarCategorias()
+        {
+            // Crea una instancia de la clase de negocio
+            Neg_filtrarcategorias negocio = new Neg_filtrarcategorias();
+
+            // Obtén los datos de la base de datos
+            DataTable dt = negocio.ObtenerTodasLasCategorias();
+
+            ddlCategorias.Items.Clear();
+            ddlCantidadPersonas.Items.Clear();
+            ddlCalificacion.Items.Clear();
+
+            // Agrega elementos predeterminados a los controles select
+            ddlCategorias.Items.Add(new ListItem("Tipo de Alojamiento", ""));
+            ddlCantidadPersonas.Items.Add(new ListItem("Cantidad de Personas", ""));
+            ddlCalificacion.Items.Add(new ListItem("Calificación", ""));
+
+            // Agrega los datos a los controles select
+            foreach (DataRow row in dt.Rows)
+            {
+                // Obtén la información de la fila
+                string nombreCategoria = row["Nombre"].ToString();
+                string idCategoria = row["IdCategoria"].ToString();
+                string cantidadHuesped = row["Cantidad_Huesped"].ToString();
+                string calificacion = row["Calificacion"].ToString();
+
+                // Agrega la información a los controles select
+                ddlCategorias.Items.Add(new ListItem(nombreCategoria, idCategoria));
+                ddlCantidadPersonas.Items.Add(new ListItem(cantidadHuesped, cantidadHuesped));
+                ddlCalificacion.Items.Add(new ListItem(calificacion, calificacion));
+            }
+        }
+
+
+
+
+
 
         protected void AgregarFavorito_Click(object sender, EventArgs e)
         {
@@ -28,7 +79,7 @@ namespace ProyectoTravelNest
             string idInmueble = lnkFavorito.Attributes["data-idinmueble"];
 
             // Asignar un valor fijo para idUsuario (esto debe ser reemplazado por autenticación)
-            string IdUsuario = "1";
+            string IdUsuario = "2222222222";
 
             // Obtener los valores de los controles en tu página
 
@@ -39,6 +90,7 @@ namespace ProyectoTravelNest
             // Llamar a la función AgregarFavorito
             Neg_Favoritos.AgregarFavorito(IdUsuario, idInmueble);
 
+          
 
             // Puedes redirigir al usuario a la página de resultados u otra página
             Response.Redirect("Default.aspx");
@@ -133,7 +185,62 @@ namespace ProyectoTravelNest
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
+            char tRol = 'a';
+            String Nombre = txtNombre.Text;
+            String Rol = ddlRol.SelectedValue.ToString();
+            String Apellidos = txtApellidos.Text;
+            String Telefono = txtTelefono.Text;
+            String CorreoElectronico = txtCorreoElectronico.Text;
+            String Identificacion = txtIdentificacion.Text;
+            String Contrasena = txtcontrasenaCrear.Text;
+            int Tamanio = fileImagen.PostedFile.ContentLength;
+            byte[] ImagenOriginal = new byte[Tamanio];
 
+            Entidades.Usuarios iUsuario = new Entidades.Usuarios();
+
+            iUsuario.Nombre = Nombre;
+            if(Rol.Equals("Anfitrión"))
+            {
+                tRol = 'A';
+            }
+            if (Rol.Equals("Huésped"))
+            {
+               tRol = 'B';
+            }
+
+            iUsuario.T_Rol = tRol;
+            iUsuario.Apellidos = Apellidos;
+            iUsuario.Telefono = int.Parse(Telefono);
+            iUsuario.Correo = CorreoElectronico;
+            iUsuario.IdUsuarioRegistro = Identificacion;
+            iUsuario.Contrasena = Contrasena;
+            iUsuario.ImagenPerfil = ImagenOriginal;
+
+            Negocios.Neg_Usuarios iUsuariosNeg = new Neg_Usuarios();
+
+            iUsuariosNeg.AgregarUsuario(iUsuario, 1);
         }
+
+
+
+        protected void btnVerInformacion_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "VerInformacion")
+            {
+                string[] args = e.CommandArgument.ToString().Split(',');
+
+                if (args.Length == 2)
+                {
+                    string IdUsuario = args[0].Trim();
+                    string IdInmueble = args[1].Trim();
+
+                    // Redirige a la página de destino con los parámetros
+                    Response.Redirect($"pages/verinformacion.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");
+                }
+            }
+        }
+
+
+
     }
 }  

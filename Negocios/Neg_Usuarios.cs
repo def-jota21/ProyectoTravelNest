@@ -38,16 +38,19 @@ namespace Negocios
             try
             {
                 string strNombreSP = "CRUDUsuarios";
+                SqlParameter parametroImagen = new SqlParameter("@FotoPerfil", SqlDbType.Image);
+                parametroImagen.Value = Usuario.ImagenPerfil;
                 List<SqlParameter> lstParametros = new List<SqlParameter>();
                 lstParametros.Add(new SqlParameter("@Opcion", Accion));
                 lstParametros.Add(new SqlParameter("@Identificacion", Usuario.IdUsuarioRegistro));
                 lstParametros.Add(new SqlParameter("@Nombre", Usuario.Nombre));
                 lstParametros.Add(new SqlParameter("@Apellidos", Usuario.Apellidos));
                 lstParametros.Add(new SqlParameter("@Rol", Usuario.T_Rol));
-                lstParametros.Add(new SqlParameter("@Telefono",Usuario.TelefonoRegistro));
+                lstParametros.Add(new SqlParameter("@Telefono",Usuario.Telefono));
                 lstParametros.Add(new SqlParameter("@CorreoElectronico", Usuario.Correo));
                 lstParametros.Add(new SqlParameter("@Contrasena", Usuario.Contrasena));
-                lstParametros.Add(new SqlParameter("@FotoPerfil", Usuario.ÏmagenPerfil));
+                lstParametros.Add(parametroImagen);
+                lstParametros.Add(new SqlParameter("@Estado", "Activo"));
 
                 Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
 
@@ -58,5 +61,93 @@ namespace Negocios
             }
 
         }//fin de agregar usuario
+
+        public void EditarUsuario(Entidades.Usuarios Usuario, int Accion)
+        {
+            try
+            {
+                string strNombreSP = "CRUDUsuarios";
+        
+                List<SqlParameter> lstParametros = new List<SqlParameter>();
+                lstParametros.Add(new SqlParameter("@Opcion", Accion));
+                lstParametros.Add(new SqlParameter("@Identificacion", Usuario.IdUsuarioRegistro));
+                lstParametros.Add(new SqlParameter("@Nombre", Usuario.Nombre));
+                lstParametros.Add(new SqlParameter("@Apellidos", Usuario.Apellidos));
+                lstParametros.Add(new SqlParameter("@Telefono", Usuario.Telefono));
+                lstParametros.Add(new SqlParameter("@CorreoElectronico", Usuario.Correo));
+                lstParametros.Add(new SqlParameter("@Estado", Usuario.Estado));
+
+                Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }//fin de agregar usuario
+
+        public static void VerificarConexion()
+        {
+            try
+            {
+                Datos.ConexionSQL.CadenaConexion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }//fin de agregar usuario
+        public DataTable ListarUsuarios(int Accion)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                
+                string strNombreSP = "CRUDUsuarios";
+                List<SqlParameter> lstParametros = new List<SqlParameter>();
+                lstParametros.Add(new SqlParameter("@Opcion", Accion));
+
+                dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            
+
+        }
+
+        public DataTable ListarUsuarioSeleccionado(int Accion, string idUsuario)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                string strNombreSP = "CRUDUsuarios";
+                List<SqlParameter> lstParametros = new List<SqlParameter>();
+                lstParametros.Add(new SqlParameter("@Opcion", Accion));
+                lstParametros.Add(new SqlParameter("@Identificacion",idUsuario));
+
+                dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }//fin de agregar usuario
+
     }
 }

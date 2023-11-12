@@ -1,14 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="modificarcalendarioreserva.aspx.cs" Inherits="ProyectoTravelNest.pages.ModificarCalendarioReserva" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../Content/ModificarCalendarioReserva.css" rel="stylesheet" />
-    </head>
-    <body>
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../Content/ModificarCalendarioReserva.css" rel="stylesheet" />
+    <!-- Agregar scripts de Bootstrap y jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
         <div class="container">
             <h1 class="title">Configura calendario de tu Inmueble</h1>
         </div>
@@ -72,7 +76,10 @@
                     </asp:DropDownList>
                 </div>
                 <div class="text-center">
+
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-success btn-lg" OnClick="btnGuardar_Click" />
+                     <img src="../img/gestionUsuarios.jpg" alt="Imagen" class="right-image" />
+
                 </div>
                 <div class="message">
                     <asp:Label ID="lblMessage" runat="server" CssClass="success-message" Visible="false" />

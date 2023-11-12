@@ -43,14 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Neg_Reglas.cs" />
-
     <Compile Include="Email.cs" />
     <Compile Include="Mensajeria.cs" />
-
-
     <Compile Include="Negocio_Comentarios.cs" />
     <Compile Include="Negocio_Inmuebles.cs" />
-
     <Compile Include="Neg_Reservaciones.cs" />
     <Compile Include="Neg_filtrarcategorias.cs" />
     <Compile Include="Neg_Usuarios.cs" />

@@ -3,13 +3,15 @@
     margin-top: 100%;
 }
 
+/* Estilo general */
 .container {
-    margin-top: 5%;
+    padding-top: 2rem; /* Espacio superior en la contenedor */
 }
+/* Estilo para el botón de selección de categorías */
 /* Estilo para el botón de selección de categorías */
 .category-button {
     background-color: #4CAF50;
-    color: #000;
+    color: white; /* Cambiado de #000 a white para mejor contraste */
 }
 
 /* Estilo para la sección de chat */
@@ -17,25 +19,22 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    height: 400px;
-    overflow-y: auto;
+    height: 400px; /* Altura de la sección de chat */
+    overflow-y: auto; /* Permite scroll en el eje Y */
 }
 
 /* Estilo para los mensajes */
 .message {
-    background-color: #d8caca;
+    background-color: #f7f7f7; /* Color de fondo más claro para los mensajes */
     padding: 10px;
-    margin: 10px 0;
+    margin-bottom: 10px; /* Margen solo abajo para evitar doble espacio */
     border-radius: 5px;
 }
 
+/* Estilo para los botones de usuarios */
 .user-button {
-    width: 200px;
-    height: 50px;
-    background-color: #808080;
-    color: #808080;
-    border: none;
-    margin-top: 6%;
+    width: 100%; /* Ocupar todo el ancho disponible */
+    margin-top: 1rem; /* Espacio superior uniforme */
 }
 
 .divider {
@@ -44,26 +43,17 @@
     margin-top: 20px;
 }
 
+/* Estilo para la columna de categorías */
 .col-md-4 {
-    position: absolute;
-    left: 5.06%;
-    right: 73.31%;
-    top: 12.53%;
-    bottom: 83.52%;
-    font-family: 'Comfortaa';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 100px;
+    padding-bottom: 1rem; /* Espacio inferior para separar de otros elementos */
 }
 
 
 
+/* Estilo para la columna de chat */
 .col-md-8 {
-    bottom: 83.52%;
-    font-family: 'Comfortaa';
-    border-radius: 8px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-    height: 550px; /* Ajusta el valor de "300px" según tu preferencia */
-    top: 50%; /* Ajusta el valor de "12.53%" según tu preferencia */
+    padding: 1rem; /* Padding alrededor del contenido */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5); /* Sombra para la elevación */
+    margin-bottom: 1rem; /* Espacio inferior */
 }

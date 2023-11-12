@@ -13,12 +13,12 @@ namespace Negocios
     {
         public Entidades.Usuarios VerificarCredenciales(string Correo, string Contrasena)
         {
-            string spName = "ObtenerCredenciales";
+            string spName = "SP_VerificarCredenciales";
             var lstParametros = new List<SqlParameter>()
-            {
-                new SqlParameter("@Correo", Correo),
-                new SqlParameter("@Contrasena",Contrasena)
-            };
+    {
+        new SqlParameter("@Correo", Correo),
+        new SqlParameter("@Contrasena", Contrasena) // Asegúrate de que estás haciendo hash y comparando el hash si es necesario
+    };
             Datos.ConexionSQL iConexion = new Datos.ConexionSQL();
             DataTable dtDatos = iConexion.ExecuteSPWithDT(spName, lstParametros);
             Entidades.Usuarios iUsuarios = null;
@@ -27,11 +27,13 @@ namespace Negocios
                 iUsuarios = new Entidades.Usuarios()
                 {
                     IdUsuario = Convert.ToInt32(dtDatos.Rows[0]["idUsuario"]),
+                    T_Rol = Convert.ToChar(dtDatos.Rows[0]["T_Rol"]) // Añade esta línea para obtener el rol del usuario
+                                                                     // Asegúrate de que el índice de la columna es correcto y que el campo existe en el DataTable
                 };
             }
             return iUsuarios;
-
         }
+
 
         public void AgregarUsuario(Entidades.Usuarios Usuario, int Accion)
         {

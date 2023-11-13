@@ -54,13 +54,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-                    <div class="col-lg-8 col-md-12 col-sm-12 my-2">
+                    <div class="col-lg-7 col-md-12 col-sm-12 my-2">
+                    <div class="row">
                         <h3>Comentario público para el anfitrión</h3>
                         <p>Se publicará un comentario en el perfil a tu anfitrión</p>
                         <asp:TextBox runat="server" CssClass="form-control" ID="txtcomentarioPublico" TextMode="MultiLine" Rows="7"></asp:TextBox>
                         <div id="contadorPalabrasPublico">*100 palabras restantes</div>
                     </div>
-
+                        </div>
                     <div class="col-lg-8 col-md-12 col-sm-12 my-2">
                         <h3>Comunicación</h3>
                         <p>¿El anfitrión ha mantenido el contacto en todo momento necesario?</p>
@@ -134,7 +135,7 @@
     <script src="js/main.js"></script>
     <script>
         function contarPalabrasPublico() {
-            var comentario = document.getElementById("txtcomentarioPublico").value;
+            var comentario = document.getElementById('<%= txtcomentarioPublico.ClientID %>').value;
             var palabras = comentario.trim().split(/\s+/);
             var numPalabras = palabras.length;
             var palabrasRestantes = 100 - numPalabras;
@@ -142,27 +143,13 @@
             if (palabrasRestantes >= 0) {
                 document.getElementById("contadorPalabrasPublico").innerHTML = "*" + palabrasRestantes + " palabras restantes";
             } else {
-                document.getElementById("contadorPalabrasPublico").innerHTML = "Límite de palabras alcanzado";
-                document.getElementById("txtcomentarioPublico").value = comentario.split(/\s+/).slice(0, 100).join(" ");
-            }
-        }
-
-        function contarPalabrasPrivado() {
-            var comentario = document.getElementById("txtcomentarioPrivado").value;
-            var palabras = comentario.trim().split(/\s+/);
-            var numPalabras = palabras.length;
-            var palabrasRestantes = 100 - numPalabras;
-
-            if (palabrasRestantes >= 0) {
-                document.getElementById("contadorPalabrasPrivado").innerHTML = "*" + palabrasRestantes + " palabras restantes";
-            } else {
-                document.getElementById("contadorPalabrasPrivado").innerHTML = "Límite de palabras alcanzado";
-                document.getElementById("txtcomentarioPrivado").value = comentario.split(/\s+/).slice(0, 100).join(" ");
+                document.getElementById("contadorPalabrasPublico.ClientID %>").innerHTML = "Límite de palabras alcanzado";
+                document.getElementById('<%= txtcomentarioPublico.ClientID %>').value = comentario.split(/\s+/).slice(0, 100).join(" ");
             }
         }
 
         // Asociar las funciones a eventos de escritura en los campos de texto
-        document.getElementById("txtcomentarioPublico").addEventListener("input", contarPalabrasPublico);
-        document.getElementById("txtcomentarioPrivado").addEventListener("input", contarPalabrasPrivado);
+        document.getElementById('<%= txtcomentarioPublico.ClientID %>').addEventListener("input", contarPalabrasPublico);
+        
     </script>
 </asp:Content>

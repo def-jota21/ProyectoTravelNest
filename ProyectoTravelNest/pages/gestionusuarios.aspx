@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -27,13 +27,10 @@
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="../Content/styleComentariosPendientes.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -68,8 +65,19 @@
             height: auto;
             color: black;
         }
+
+        #seccionEdicion {
+            display: none;
+            color: black;
+            border: 2px dotted #7AB730; /* Color del borde */
+            padding: 20px; /* Espacio interior para que no esté pegado el contenido al borde */
+            margin-top: 20px; /* Espacio exterior superior */
+            border-radius: 10px; /* Bordes redondeados */
+            background-color: #f9f9f9; /* Color de fondo */
+        }
     </style>
     <div class="container">
+        <h1 style="color: #7AB730;">Gestion de Usuarios</h1>
         <img src="../img/covergestionusuarios.jpg" alt="" class="img-fluid">
         <div class="container">
             <div class="row">
@@ -86,22 +94,80 @@
                         <tbody>
                             <asp:Repeater ID="rptDatosUsuarios" runat="server">
                                 <ItemTemplate>
-                                    <td><%# Eval("IdUsuario") %></td>
-                                    <td><%# Eval("Nombre") %></td>
-                                    <td><%# Eval("Estado") %></td>
-                                    <td>
-                                        <div style="text-align: center">
-                                            <asp:LinkButton runat="server" ID="btnAbrirModalEditar" CssClass="btn" OnClientClick='<%# Eval("IdUsuario", "return mostrarModalEditar(\"{0}\"); return false;") %>'>
-                                                <i class="fa-solid fa-pen-to-square" style="color: #7AB730;"></i>
-                                            </asp:LinkButton>
-
-
-                                        </div>
-                                    </td>
+                                    <!-- Agrega esta línea para iniciar una nueva fila por cada elemento -->
+                                    <tr>
+                                        <td><%# Eval("IdUsuario") %></td>
+                                        <td><%# Eval("Nombre") %></td>
+                                        <td><%# Eval("Estado") %></td>
+                                        <td>
+                                            <div style="text-align: center">
+                                                <button onclick="prepararEdicion('<%# Eval("IdUsuario") %>'); return false;" class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="color: white;"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Cierra la fila aquí -->
                                 </ItemTemplate>
                             </asp:Repeater>
                         </tbody>
                     </table>
+                    <div class="col-lg-8 col-md-12 col-sm-12 my-2">
+                        <div id="seccionEdicion" style="display: none; color: black">
+                            <!-- Formulario de Edición -->
+
+                            <!-- Agrega más campos según sea necesario -->
+                            <div class="row justify-content-center">
+                                <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label">Nombre</asp:Label>
+                                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Nombre"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre"
+                                    ErrorMessage="El campo Nombre es requerido." Display="Dynamic" CssClass="text-danger" />
+                            </div>
+
+                            <div class="row">
+                                <asp:Label ID="lblCorreoElectronico" runat="server" AssociatedControlID="txtCorreoElectronico" CssClass="form-label">Correo Electrónico</asp:Label>
+                                <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" AutoComplete="off" placeholder="alguien@ejemplo.com"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreoElectronico"
+                                    ErrorMessage="El campo Correo Electrónico es requerido." Display="Dynamic" CssClass="text-danger" />
+                            </div>
+
+                            <div class="row">
+                                <asp:HiddenField ID="hiddenFieldIdentificacion" runat="server" />
+
+                                <asp:Label ID="lblIdentificacion" runat="server" AssociatedControlID="txtIdentificacion" CssClass="form-label">Identificación</asp:Label>
+                                <asp:TextBox ID="txtIdentificacion" runat="server" CssClass="form-control" MaxLength="11" aria-describedby="idHelp"
+                                    placeholder="1-1111-1111" ReadOnly="true"></asp:TextBox>
+                                
+                                <small id="idHelpIdentificacion" class="form-text text-muted">El formato debe ser #-####-####</small>
+                            </div>
+
+                            <div class="row">
+                                <asp:Label ID="lblApellidos" runat="server" AssociatedControlID="txtApellidos" CssClass="form-label">Apellidos</asp:Label>
+                                <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Apellidos"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ControlToValidate="txtApellidos"
+                                    ErrorMessage="El campo Apellidos es requerido." Display="Dynamic" CssClass="text-danger" />
+                            </div>
+
+                            <div class="row">
+                                <asp:Label ID="lblTelefono" runat="server" AssociatedControlID="txtTelefono" CssClass="form-label">Teléfono</asp:Label>
+                                <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" AutoComplete="off" placeholder="88888888"
+                                    pattern="[0-9]{4}[0-9]{4}"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono"
+                                    ErrorMessage="El campo Teléfono es requerido." Display="Dynamic" CssClass="text-danger" />
+                                <small id="idHelp" class="form-text text-muted">El formato debe ser ########</small>
+                            </div>
+                            <div class="row">
+                                <asp:Label ID="lblEstado" runat="server" AssociatedControlID="ddlEstado" CssClass="form-label">Estado</asp:Label>
+                                <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
+                                    <asp:ListItem Text="Activo" Value="Activo"></asp:ListItem>
+                                    <asp:ListItem Text="Inactivo" Value="Inactivo"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="row" style="margin-top: 5px; margin-bottom: 5px;">
+                                <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar Cambios" OnClick="btnGuardarCambios_Click" CssClass="btn btn-primary me-2" />
+                                <button type="button" onclick="ocultarSeccionEdicion()" class="btn btn-secondary">Cancelar</button>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-lg-4 col-md-12 col-sm-12 my-2 d-flex align-items-center">
@@ -111,92 +177,10 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
 
-    <!-- Modal Editar Datos-->
-    <div class="modal fade" id="editarDatosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-        data-bs-backdrop="static">
-        <div class="modal-dialog" style="z-index: 2000;">
-            <div class="modal-content ">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="ModalCrearCuenta">Editar Datos</h5>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-x"
-                            style="color: #000000;"></i>
-                    </button>
-                </div>
-                <div class="modal-body center-cont">
-                    <div class="row col-lg-12 col-sm-12 text-center">
-                        <div class="col-sm-12 col-lg-12">
-                            <img src="../img/logo2.png" alt="logo" class="img-fluid">
-                        </div>
-                        <asp:HiddenField runat="server" ID="hiddenFieldIdentificacion" />
-                        <div class="col-sm-12 col-lg-6 mt-2">
-                            <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label">Nombre</asp:Label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Nombre"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre"
-                                ErrorMessage="El campo Nombre es requerido." Display="Dynamic" CssClass="text-danger" />
-                        </div>
 
-                        <div class="col-sm-12 col-lg-6 mt-2">
-                            <asp:Label ID="lblCorreoElectronico" runat="server" AssociatedControlID="txtCorreoElectronico" CssClass="form-label">Correo Electrónico</asp:Label>
-                            <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" AutoComplete="off" placeholder="alguien@ejemplo.com"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreoElectronico"
-                                ErrorMessage="El campo Correo Electrónico es requerido." Display="Dynamic" CssClass="text-danger" />
-                        </div>
-
-                        <div class="col-sm-6 col-lg-6 mt-2">
-                            
-                      
-                            <asp:Label ID="lblIdentificacion" runat="server" AssociatedControlID="txtIdentificacion" CssClass="form-label">Identificación</asp:Label>
-                            <asp:TextBox ID="txtIdentificacion" runat="server" CssClass="form-control" MaxLength="11" aria-describedby="idHelp"
-                                placeholder="1-1111-1111"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvIdentificacion" runat="server" ControlToValidate="txtIdentificacion"
-                                ErrorMessage="El campo Identificación es requerido." Display="Dynamic" CssClass="text-danger" />
-                            <small id="idHelpIdentificacion" class="form-text text-muted">El formato debe ser #-####-####</small>
-                        </div>
-
-                        <div class="col-sm-6 col-lg-6 mt-2">
-                            <asp:Label ID="lblApellidos" runat="server" AssociatedControlID="txtApellidos" CssClass="form-label">Apellidos</asp:Label>
-                            <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Apellidos"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ControlToValidate="txtApellidos"
-                                ErrorMessage="El campo Apellidos es requerido." Display="Dynamic" CssClass="text-danger" />
-                        </div>
-
-                        <div class="col-sm-6 col-lg-6 mt-2">
-                            <asp:Label ID="lblTelefono" runat="server" AssociatedControlID="txtTelefono" CssClass="form-label">Teléfono</asp:Label>
-                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" AutoComplete="off" placeholder="88888888"
-                                pattern="[0-9]{4}[0-9]{4}"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono"
-                                ErrorMessage="El campo Teléfono es requerido." Display="Dynamic" CssClass="text-danger" />
-                            <small id="idHelp" class="form-text text-muted">El formato debe ser ########</small>
-                        </div>
-                        <div class="col-sm-12 col-lg-6 mt-2">
-                            <asp:Label ID="lblEstado" runat="server" AssociatedControlID="ddlEstado" CssClass="form-label">Estado</asp:Label>
-                            <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
-                                <asp:ListItem Text="Activo" Value="Activo"></asp:ListItem>
-                                <asp:ListItem Text="Inactivo" Value="Inactivo"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-
-                        <div class="col-sm-12 col-lg-12">
-                            <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-primary btn-block"
-                                Style="height: 47px; margin-top: -2px;" OnClick="btnEditar_Click" />
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -216,11 +200,10 @@
 
 
     <script type="text/javascript">
-        function mostrarModalEditar(idUsuario) {
-            // Asigna el valor de identificación al campo oculto del modal
-            document.getElementById('<%= hiddenFieldIdentificacion.ClientID %>').value = idUsuario;
 
-            // Llama al controlador genérico para obtener los datos del usuario
+        function prepararEdicion(idUsuario) {
+            document.getElementById('<%= hiddenFieldIdentificacion.ClientID %>').value = idUsuario;
+            mostrarSeccionEdicion();
             $.ajax({
                 type: "GET",
                 url: "../obtenerdatousuario.ashx?idUsuario=" + idUsuario,
@@ -249,8 +232,6 @@
                             }
                         }
 
-                        // Muestra el modal
-                        $('#editarDatosModal').modal("show");
                     } else {
                         console.log("No se encontraron datos para el usuario con ID " + idUsuario);
                     }
@@ -259,6 +240,15 @@
                     console.log(error);
                 }
             });
+        }
+
+
+        function mostrarSeccionEdicion() {
+            document.getElementById('seccionEdicion').style.display = 'block';
+        }
+
+        function ocultarSeccionEdicion() {
+            document.getElementById('seccionEdicion').style.display = 'none';
         }
     </script>
 

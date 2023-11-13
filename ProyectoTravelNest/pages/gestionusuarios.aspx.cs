@@ -19,14 +19,14 @@ namespace ProyectoTravelNest.pages
             rptDatosUsuarios.DataBind();
         }
 
-        protected void btnEditar_Click(object sender, EventArgs e)
+        protected void btnGuardarCambios_Click(object sender, EventArgs e)
         {
 
             string Nombre = txtNombre.Text;
             string Apellidos = txtApellidos.Text;
             string Telefono = txtTelefono.Text;
             string CorreoElectronico = txtCorreoElectronico.Text;
-            string Identificacion = txtIdentificacion.Text;
+            string Identificacion = hiddenFieldIdentificacion.Value;
             string Estado = ddlEstado.SelectedValue.ToString();
             Entidades.Usuarios iUsuario = new Entidades.Usuarios();
 
@@ -43,6 +43,12 @@ namespace ProyectoTravelNest.pages
 
             Negocios.Neg_Usuarios iNeUser = new Negocios.Neg_Usuarios();
 
+            txtNombre.Text = string.Empty;
+            txtApellidos.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            txtCorreoElectronico.Text = string.Empty;
+            txtIdentificacion.Text = string.Empty;
+            ddlEstado.SelectedIndex = 0;
             rptDatosUsuarios.DataSource = iNeUser.ListarUsuarios(3);
             rptDatosUsuarios.DataBind();
         }

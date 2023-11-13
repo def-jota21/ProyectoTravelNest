@@ -43,6 +43,10 @@
             max-width: 280px;
             display: flex;
         }
+
+        .calendar-inicio {
+            background-color: #f9f9f9; /* Puedes cambiar "#FFA500" al color que desees */
+        }
     </style>
 
 
@@ -175,18 +179,23 @@
                         Wifi
                     </p>
                     <hr />
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12 col-sm-12">
-                            <h4>Fechas de estadia</h4>
-                            <div class="container">
-                                Fecha de Ingreso:
-                                <input id="startDate" width="276" />
-                                Fecha de Salida:
-                                <input id="endDate" width="276" />
-                                
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <!-- Cambiado a col-lg-6 -->
+                                    <h4>Fecha de Entrada</h4>
+                                    <asp:Calendar ID="CalendarInicio" CssClass="calendar-inicio" SelectionMode="DayWeekMonth" runat="server" OnDayRender="CalendarInicio_DayRender" OnSelectionChanged="CalendarInicio_SelectionChanged" AutoPostBack="false" />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <!-- Cambiado a col-lg-6 -->
+                                    <h4>Fecha de Salida</h4>
+                                    <asp:Calendar ID="CalendarFinal" CssClass="calendar-inicio" SelectionMode="DayWeekMonth" runat="server" OnDayRender="CalendarFinal_DayRender" OnSelectionChanged="CalendarFinal_SelectionChanged" AutoPostBack="false" />
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
                     <hr />
                     <h4>Comentarios</h4>
                     <hr />
@@ -237,26 +246,32 @@
                         <div class="col-sm-12 mb-12 mb-sm-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <asp:Repeater ID="rptInmuebles" runat="server" OnItemDataBound="rptInmuebles_ItemDataBound">
-                                        <ItemTemplate>
+                                    <asp:UpdatePanel ID="UpdatePanelRepeater" runat="server">
+                                        <ContentTemplate>
+                                            <asp:Repeater ID="rptInmuebles" runat="server" OnItemDataBound="rptInmuebles_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <div>
+                                                        <div style="display: inline-block;">
+                                                            <h5 class="card-title" style="display: inline-block;">$<%# Math.Round(Convert.ToDecimal(Eval("Precio")), 2) %></h5>
+                                                            <h5 class="card-title" style="display: inline-block;">/ noche</h5>
+                                                        </div>
+                                                        <div>
+                                                            <asp:Label ID="lblCantidadHuespedes" runat="server" Text='<%# Eval("Cantidad_Huesped") %>' Visible="false"></asp:Label>
+                                                            <asp:Label ID="Label1" runat="server" Text="Huespedes"></asp:Label>
+                                                            <asp:DropDownList ID="ddlHuespedes" runat="server" CssClass="form-select" AppendDataBoundItems="true" AutoPostBack="false">
+                                                            </asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
                                             <div>
-                                                <div style="display: inline-block;">
-                                                    <h5 class="card-title" style="display: inline-block;">$<%# Math.Round(Convert.ToDecimal(Eval("Precio")), 2) %></h5>
-                                                    <h5 class="card-title" style="display: inline-block;">/ noche</h5>
-                                                </div>
-                                                <div>
-                                                    <asp:Label ID="lblCantidadHuespedes" runat="server" Text='<%# Eval("Cantidad_Huesped") %>' Visible="false"></asp:Label>
-                                                    <asp:Label ID="Label1" runat="server" Text="Huespedes"></asp:Label>
-                                                    <asp:DropDownList ID="ddlHuespedes" runat="server" CssClass="form-select" AppendDataBoundItems="true" AutoPostBack="false">
-                                                    </asp:DropDownList>
-                                                    <asp:Label ID="Label2" runat="server" Text="Fecha Entrada"></asp:Label>
-                                                    <asp:Label ID="lblFechaEntrada" runat="server" Text="Texto de ejemplo" CssClass="etiquetaPersonalizada"></asp:Label>
-                                                    <asp:Label ID="Label3" runat="server" Text="Fecha Salida"></asp:Label>
-                                                    <asp:Label ID="lblFechaSalida" runat="server" Text="Texto de ejemplo" CssClass="etiquetaPersonalizada"></asp:Label>
-                                                </div>
+                                                <asp:Label ID="Label2" runat="server" Text="Fecha Entrada"></asp:Label>
+                                                <asp:Label ID="lblFechaEntrada" runat="server" Text="" CssClass="etiquetaPersonalizada"></asp:Label>
+                                                <asp:Label ID="Label3" runat="server" Text="Fecha Salida"></asp:Label>
+                                                <asp:Label ID="lblFechaSalida" runat="server" Text="" CssClass="etiquetaPersonalizada"></asp:Label>
                                             </div>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
                                     <div class="mt-2">
                                         <asp:Button ID="btnReservar" runat="server" Text="Reservar" CssClass="btn btn-primary btn-block rounded"
                                             Style="height: 47px; margin-top: -2px;" />
@@ -318,22 +333,5 @@
 
     </script>
 
-    <script>
-        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-        $('#startDate').datepicker({
-            uiLibrary: 'bootstrap4',
-            iconsLibrary: 'fontawesome',
-            minDate: today,
-            maxDate: function () {
-                return $('#endDate').val();
-            }
-        });
-        $('#endDate').datepicker({
-            uiLibrary: 'bootstrap4',
-            iconsLibrary: 'fontawesome',
-            minDate: function () {
-                return $('#startDate').val();
-            }
-        });
-    </script>
+
 </asp:Content>

@@ -4,6 +4,7 @@ using ProyectoTravelNest.pages;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -135,8 +136,16 @@ namespace ProyectoTravelNest
             String CorreoElectronico = txtCorreoElectronico.Text;
             String Identificacion = txtIdentificacion.Text;
             String Contrasena = txtcontrasenaCrear.Text;
-            int Tamanio = fileImagen.PostedFile.ContentLength;
-            byte[] ImagenOriginal = new byte[Tamanio];
+            //int Tamanio = fileImagen.PostedFile.ContentLength;
+            byte[] ImagenOriginal;
+            ImagenOriginal = new byte[0];
+
+            if (fileImagen.HasFile)
+            {
+                Stream fs = fileImagen.PostedFile.InputStream;
+                BinaryReader br = new BinaryReader(fs);
+                ImagenOriginal = br.ReadBytes((Int32)fs.Length);
+            }
 
             Entidades.Usuarios iUsuario = new Entidades.Usuarios();
 
@@ -147,7 +156,7 @@ namespace ProyectoTravelNest
             }
             if (Rol.Equals("Huésped"))
             {
-               tRol = 'B';
+               tRol = 'H';
             }
 
             iUsuario.T_Rol = tRol;
@@ -181,6 +190,7 @@ namespace ProyectoTravelNest
                 }
             }
         }
+
 
         protected void FiltrarIn(object sender, EventArgs e)
         {

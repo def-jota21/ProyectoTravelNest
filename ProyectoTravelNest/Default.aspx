@@ -87,7 +87,6 @@
                             <h1 class="display-3 text-white mb-md-4">Vamos a Descubrir el Mundo Juntos</h1>
                         </div>
                     </div>
-                        </div>
                         <div class="carousel-item">
                             <img class="w-100" src="img/carousel-2.jpg" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -363,7 +362,6 @@
                                 <div class="col-sm-12 mt-12">
                                     <asp:Button disabled="true" ID="btnCrearCuenta" runat="server" Text="Crear Cuenta" CssClass="btn btn-primary btn-block"
                                         Style="height: 47px; margin-top: -2px" OnClick="btnCrearCuenta_Click" />
-
                                 </div>
 
                             </div>

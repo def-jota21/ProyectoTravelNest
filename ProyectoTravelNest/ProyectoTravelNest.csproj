@@ -153,6 +153,7 @@
     <Content Include="img\inmueble.jpg" />
     <Content Include="img\logo1.png" />
     <Content Include="img\logo2.png" />
+    <Content Include="img\noimage.jpg" />
     <Content Include="img\package-1.jpg" />
     <Content Include="img\package-5.jpg" />
     <Content Include="img\package-6.png" />

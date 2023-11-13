@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-    
+
 </head>
 <body>
     <form runat="server">
@@ -65,7 +65,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="#">Registrarse</a>
+                                    <button id="showModalButtonCrearCuenta" class="btn btn-link">Crear Cuenta</button>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">Iniciar Sesión</a>
@@ -124,6 +124,12 @@
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
 
+    <script>
+        document.getElementById("showModalButtonCrearCuenta").addEventListener("click", function () {
+            $('#crearcuentamodal').modal("show");
+        });
+
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 </body>

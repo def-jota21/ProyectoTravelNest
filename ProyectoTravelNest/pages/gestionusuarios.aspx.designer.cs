@@ -24,15 +24,6 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.Repeater rptDatosUsuarios;
 
         /// <summary>
-        /// Control hiddenFieldIdentificacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenFieldIdentificacion;
-
-        /// <summary>
         /// Control lblNombre.
         /// </summary>
         /// <remarks>
@@ -87,6 +78,15 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCorreoElectronico;
 
         /// <summary>
+        /// Control hiddenFieldIdentificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenFieldIdentificacion;
+
+        /// <summary>
         /// Control lblIdentificacion.
         /// </summary>
         /// <remarks>
@@ -103,15 +103,6 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIdentificacion;
-
-        /// <summary>
-        /// Control rfvIdentificacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIdentificacion;
 
         /// <summary>
         /// Control lblApellidos.
@@ -186,12 +177,12 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
 
         /// <summary>
-        /// Control btnEditar.
+        /// Control btnGuardarCambios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditar;
+        protected global::System.Web.UI.WebControls.Button btnGuardarCambios;
     }
 }

@@ -219,6 +219,7 @@
     <Content Include="ConsultarFechas.ashx" />
     <Content Include="obtenerdatousuario.ashx" />
     <Content Include="obtenerdatopolitica.ashx" />
+    <Content Include="politicasnoasociadas.ashx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -490,6 +491,9 @@
     </Compile>
     <Compile Include="pages\verinformacion.aspx.designer.cs">
       <DependentUpon>verinformacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="politicasnoasociadas.ashx.cs">
+      <DependentUpon>politicasnoasociadas.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

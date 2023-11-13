@@ -78,6 +78,7 @@ namespace ProyectoTravelNest.pages
                 lblMessage.Text = "Modificación de tiempos de estadia exitosa";
                 lblMessage.CssClass = "success-message"; // Puedes definir una clase CSS para el estilo
                 lblMessage.Visible = true;
+                Response.Write("Modificación de reserva exitosa");
             }
             catch (Exception ex)
             {

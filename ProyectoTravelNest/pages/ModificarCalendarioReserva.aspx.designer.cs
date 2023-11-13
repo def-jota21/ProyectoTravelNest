@@ -69,15 +69,6 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.TextBox PrecioporNoche;
 
         /// <summary>
-        /// Control ddlDescuentos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDescuentos;
-
-        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>

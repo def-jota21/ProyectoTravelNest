@@ -6,26 +6,10 @@
         <h5>Ingrese, modifique o elimine una regla según sea necesario.</h5>
 
         <div class="container-fluid mt-5">
-            <div class="row">
-                <!-- Carta -->
+            <div class="row" runat="server">
                 <div class="flex-row-reverse d-flex justify-content-around">
-                    <div class="col-lg-3 col-md-5 p-0 mb-5 me-4 bg-white rounded">
-                        <div class="bg-white mb-2">
-                            <img class="img-fluid" src="../img/inmueble.jpg" style="border-radius: 7px;">
-                            <div style="clear: both;">
-                                <h5 class="ms-1">Islas Canarias</h5>
-                                <label class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                                    quae ipsum quas accusantium eum, consectetur...</label>
-                                <div class="border-top mt-4 pt-4">
-                                    <div class="d-flex justify-content-around">
-                                        <h6 class="m-0"><i class="fa fa-star text-primary"></i>4.5 <small>(250)</small>
-                                        </h6>
-                                        <h5 class="m-0">$350</h5>
-                                        <p><b>por noche</b></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-lg-3 col-md-5 p-0 mb-5 me-4 bg-white rounded" runat="server" id="cartaInmueble">
+                        <!-- Inmueble -->
                     </div>
                     
                     <div class="col-md-5" id="ListaReglas" runat="server">

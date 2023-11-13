@@ -110,16 +110,16 @@ svg {
 
 
 /* Promociones */
-#agregar-promocion {
+.agregar_promocion {
     color: transparent;
     background-color: #F9F9F9;
     border: 1px solid #A4A4A4;
 }
 
-    #agregar-promocion:hover {
+    .agregar_promocion:hover {
         background-color: #ececec;
     }
 
-    #agregar-promocion:active {
+    .agregar_promocion:active {
         background-color: #e7e7e7;
     }

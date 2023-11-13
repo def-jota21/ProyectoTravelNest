@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Entidades;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Security.Policy;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -15,11 +17,48 @@ namespace ProyectoTravelNest.pages
     {
         Negocios.Neg_Reglas regla = new Negocios.Neg_Reglas();
         Entidades.Reglas eRegla = new Entidades.Reglas();
+        Negocios.Negocio_Inmuebles nInmueble = new Negocios.Negocio_Inmuebles();
         protected void Page_Load(object sender, EventArgs e)
         {
+            String IdUsuario = "2222222222   ";
+            ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
+            Control div_Inmueble = mainContent.FindControl("cartaInmueble");
+
+            List<Inmueble> ListaInmuebles = nInmueble.ListaInmuebleIndividual(IdUsuario, Request.QueryString["IdInmueble"]);
+
+            foreach (Inmueble inmueble in ListaInmuebles)
+            {
+                string imagen = inmueble.Imagen != null ? Convert.ToBase64String(inmueble.Imagen) : null;
+                LiteralControl htmlSnippet = new LiteralControl();
+                if (imagen == null)
+                {
+                    imagen = $@"<img class='img-fluid' src='/img/noimage.jpg' style='border-radius: 7px;'>";
+                }
+                else
+                {
+                    imagen = $@"<img class='img-fluid' src='data:image/jpeg;base64,{imagen}' style='border-radius: 7px;'>";
+                }
+                htmlSnippet.Text = $@"
+                                    <div class='bg-white mb-2'>" +
+                                                            imagen +
+                                    $@"<div style='clear: both;'>
+                                            <h5 class='ms-1'>{inmueble.Nombre}</h5>
+                                            <label class='text-muted'>{inmueble.Descripcion}</label>
+                                            <div class='border-top mt-4 pt-4'>
+                                                <div class='d-flex justify-content-around'>
+                                                    <h6 class='m-0'><i class='fa fa-star text-primary'></i>4.5 <small>({inmueble.Calificacion})</small>
+                                                    </h6>
+                                                    <h5 class='m-0'>${Math.Round(inmueble.Precio, 2)}</h5>
+                                                    <p><b>por noche</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>";
+                div_Inmueble.Controls.Add(htmlSnippet);
+            }
             if (!IsPostBack)
             {
-                ReglasRepeater.DataSource = regla.getReglas();
+                ReglasRepeater.DataSource = regla.getReglas(Request.QueryString["IdInmueble"]);
                 ReglasRepeater.DataBind();
             }
         }
@@ -38,7 +77,6 @@ namespace ProyectoTravelNest.pages
             if (txtRegla.ReadOnly)
             {
                 actionButton("Modificar", txtRegla, txtExplicacion, divbtnModificar, divbtnGuardar, divbtnEliminar);
-
             }
         }
 
@@ -55,12 +93,19 @@ namespace ProyectoTravelNest.pages
             if (!txtRegla.ReadOnly)
             {
                 actionButton("Guardar", txtRegla, txtExplicacion, divbtnModificar, divbtnGuardar, divbtnEliminar);
+                eRegla.IdRegla = Convert.ToInt32(btn.CommandArgument);
+                eRegla.NombreRegla = txtRegla.Text;
+                eRegla.Explicacion = txtExplicacion.Text;
+                regla.crud(eRegla, "Modificar");
             }
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            LinkButton btn = (LinkButton)sender;
+            eRegla.IdRegla = Convert.ToInt32(btn.CommandArgument);
+            eRegla.IdInmueble = Request.QueryString["IdInmueble"];
+            regla.crud(eRegla, "Eliminar");
             actionButton("Eliminar");
         }
 

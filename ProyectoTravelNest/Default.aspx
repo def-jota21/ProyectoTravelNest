@@ -113,60 +113,51 @@
             <!-- Carousel End -->
 
 
-            <!-- Booking Start -->
-            <div class="container-fluid booking mt-5">
-                <div class="container">
-                    <div class="bg-light shadow" style="padding: 30px;">
-                        <div class="row align-items-center" style="min-height: 60px;">
-                            <div class="col-md-10">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="mb-3 mb-md-0">
-                                            <select id="ddlCategorias" runat="server" class="custom-select px-4" style="height: 47px;">
-                                                <option selected>Tipo de Alojamiento</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3 mb-md-0">
-                                            <asp:DropDownList ID="ddlCantidadPersonas" runat="server" CssClass="custom-select px-4" Style="height: 47px;">
-                                                <asp:ListItem Text="Cantidad de personas" Value="0" />
-                                                <asp:ListItem Text="1" Value="1" />
-                                                <asp:ListItem Text="2" Value="2" />
-                                                <asp:ListItem Text="3" Value="3" />
-                                                <asp:ListItem Text="4" Value="4" />
-                                                <asp:ListItem Text="5" Value="5" />
-                                                <asp:ListItem Text="6" Value="6" />
-                                                <asp:ListItem Text="7" Value="7" />
-                                                <asp:ListItem Text="8" Value="8" />
-                                                <asp:ListItem Text="9" Value="9" />
-                                            </asp:DropDownList>
+    <!-- Booking Start -->
+    <div class="container-fluid booking mt-5">
+        <div class="container ">
+            <div class="bg-light shadow" style="padding: 30px;">
+                <div class="row align-items-center" style="min-height: 60px;">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3 mb-md-0">
+                                    <select id="ddlCategorias" runat="server" class="custom-select px-4" style="height: 47px;">
+                                        <option selected>Tipo de Alojamiento</option>
+                                    </select>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3 mb-md-0">
-                                            <asp:DropDownList ID="ddlCalificacion" runat="server" CssClass="custom-select px-4" Style="height: 47px;">
-                                                <asp:ListItem Text="Seleccione calificación" Value="0" />
-                                                <asp:ListItem Text="1" Value="1" />
-                                                <asp:ListItem Text="2" Value="2" />
-                                                <asp:ListItem Text="3" Value="3" />
-                                                <asp:ListItem Text="4" Value="4" />
-                                                <asp:ListItem Text="5" Value="5" />
-                                            </asp:DropDownList>
-
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3 mb-md-0">
+                                    <div class="date" id="date1" data-target-input="nearest">
+                                        <input type="date" class="form-control p-4 datetimepicker-input"
+                                            placeholder="Fecha de Ingreso" data-target="#date1"
+                                            data-toggle="datetimepicker" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <asp:LinkButton ID="Filtrar" runat="server" CssClass="btn btn-primary btn-block add-more-button" Style="height: 47px; margin-top: -2px;">Filtrar</asp:LinkButton>
+                            <div class="col-md-4">
+                                <div class="mb-3 mb-md-0">
+                                    <div class="date" id="date2" data-target-input="nearest">
+                                        <input type="date" class="form-control p-4 datetimepicker-input"
+                                            placeholder="Fecha de Salida" data-target="#date2"
+                                            data-toggle="datetimepicker" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-block" type="submit"
+                            style="height: 47px; margin-top: -2px;">
+                            Filtrar</button>
+                    </div>
                 </div>
             </div>
-            <!-- Booking End -->
+        </div>
+    </div>
+    <!-- Booking End -->
 
 
             <!-- Cartas -->
@@ -185,15 +176,12 @@
                                             src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
                                             AlternateText="Imagen del mueble" />
 
-                                        <div class="p-4">
-                                            <div class="d-flex justify-content-between mb-3">
-                                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>
-                                                    <asp:Label ID="lblUbicacion" runat="server"
-                                                        Text='<%# Eval("Direccion").ToString().Length > 12 ? Eval("Direccion").ToString().Substring(0, 12) + "..." : Eval("Direccion") %>'>
-                                                    </asp:Label>
-                                                </small>
-                                                <small class="m-0"><i class="fa fa-heart text-danger"></i>
-                                                    <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server" data-idinmueble='<%# Eval("IdInmueble") %>' OnClick="AgregarFavorito_Click">
+                                  <div class="p-4">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>
+                                            <asp:Label ID="lblUbicacion" runat="server" Text='<%# Eval("Direccion") %>'></asp:Label></small>
+                                        <small class="m-0"><i class="fa fa-heart text-danger"></i>
+                                            <asp:LinkButton ID="lnkFavorito" CssClass="m-0" runat="server" OnClick="AgregarFavorito_Click" data-idinmueble="1">
                                                 &nbsp;Favorito
                                                     </asp:LinkButton>
                                                 </small>
@@ -498,7 +486,5 @@
                     window.location.href = 'favoritos.html';
                 }
 
-            </script>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+    </script>
 </asp:Content>

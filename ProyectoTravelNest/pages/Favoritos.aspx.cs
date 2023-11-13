@@ -79,5 +79,23 @@ namespace ProyectoTravelNest.pages
             EliminarFavorito(idInmueble);
             upd_Favoritos.Update();
         }
+
+        protected void btnVerInformacion_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "VerInformacion")
+            {
+                string[] args = e.CommandArgument.ToString().Split(',');
+
+                if (args.Length == 2)
+                {
+                    string IdUsuario = args[0].Trim();
+                    string IdInmueble = args[1].Trim();
+
+                    // Redirige a la página de destino con los parámetros
+                    Response.Redirect($"~/pages/verinformacion.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");
+
+                }
+            }
+        }
     }
 }

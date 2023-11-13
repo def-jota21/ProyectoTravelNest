@@ -57,3 +57,19 @@
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.5); /* Sombra para la elevación */
     margin-bottom: 1rem; /* Espacio inferior */
 }
+/* Ajuste en el estilo para el botón de enviar */
+.btnSend {
+    margin-right: 10px; /* Ajusta el valor según tus necesidades */
+}
+
+/* Estilos para la imagen a la derecha del botón */
+.left-image {
+    width: 300px; /* Ajusta el ancho según tus necesidades */
+    height: auto; /* Ajusta la altura de forma proporcional */
+    margin-left: 10px; /* Espacio entre el botón y la imagen */
+    margin-top: -300px; /* Ajusta el margen superior para mover la imagen arriba */
+}
+.btn-secondary {
+    background-color: #4CAF50; /* Color más profesional */
+    color: white;
+}

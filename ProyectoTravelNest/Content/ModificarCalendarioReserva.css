@@ -60,12 +60,17 @@ body {
 
 /* Mensaje de éxito */
 .success-message {
-    color: #28a745;
-    font-weight: bold;
+    display: block;
+    padding: 10px;
     margin-top: 10px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
 }
-/* Estilos para la imagen a la derecha del botón */
-.right-image {
+    /* Estilos para la imagen a la derecha del botón */
+    .right-image {
     width: 300px; /* Ajusta el ancho según tus necesidades */
     height: auto; /* Ajusta la altura de forma proporcional */
     margin-left: 10px; /* Espacio entre el botón y la imagen */

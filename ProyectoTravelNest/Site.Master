@@ -48,9 +48,11 @@
         <nav class="navbar navbar-expand-lg p-3">
             <div class="container-fluid">
                 <div class="logo">
-                    <a class="nav-link active" aria-current="page" href="Default.aspx">
-                        <img src="../img/logo2.png" class="logoo" alt="Logo de la marca" /></a>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" CssClass="nav-link active">
+        <img src="../img/logo2.png" class="logoo" alt="Logo de la marca" />
+                    </asp:HyperLink>
                 </div>
+
                 <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon custom-toggler-icon"></span>
                 </button>
@@ -73,7 +75,7 @@
                                     <button id="btnAbrirModalIniciarSesion" class="btn btn-link">Iniciar Sesion</button>
                                 </li>
                                 <li>
-                                   <asp:HyperLink runat="server" NavigateUrl="~/pages/favoritos.aspx" Text="Lista de Favoritos"  CssClass="dropdown-item" />
+                                    <asp:HyperLink runat="server" NavigateUrl="~/pages/favoritos.aspx" Text="Lista de Favoritos" CssClass="dropdown-item" />
 
                                 </li>
                                 <li>
@@ -82,8 +84,8 @@
                                 <li>
                                     <a class="dropdown-item" href="#">Cuenta</a>
                                 </li>
-                                 <li>
-                                   <asp:HyperLink runat="server" NavigateUrl="~/pages/reservas.aspx" Text="Reservas"  CssClass ="dropdown-item" />
+                                <li>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/pages/reservas.aspx" Text="Reservas" CssClass="dropdown-item" />
 
                                 </li>
                                 <li>
@@ -139,8 +141,11 @@
         });
 
 
+
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

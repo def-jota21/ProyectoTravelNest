@@ -32,31 +32,57 @@
     <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+    <style type="text/css">
+        .etiquetaPersonalizada {
+            border: 1px solid #ccc; /* Borde sólido de 1 píxel en color gris */
+            border-radius: 5px; /* Esquinas redondeadas de 5 píxeles */
+            padding: 5px; /* Espaciado interno de 5 píxeles */
+            display: inline-block; /* Permite establecer dimensiones y márgenes */
+            margin-top: 2px;
+            text-align: center;
+            max-width: 280px;
+            display: flex;
+        }
+
+        .calendar-inicio {
+            background-color: #f9f9f9; /* Puedes cambiar "#FFA500" al color que desees */
+        }
+    </style>
+
+
     <div class="container-fluid position-sticky ">
 
 
         <div class="container-fluid">
+            <asp:Repeater ID="rptDatosInmueble" runat="server">
+                <ItemTemplate>
+                    <asp:Label ID="lblNombreLugar" runat="server" Text='<%# Eval("Nombre") %>' CssClass="h1" />
 
-            <h1>Nombre del Lugar</h1>
-            <div class="d-flex mb-3">
-                <small class="mr-3"><i class="fa fa-star text-primary mr-1"></i>#</small>
-                <small class="mr-3"><a href="#">Comentarios</a></small>
-                <small class="mr-3">Tipo Anfitrion</small>
-                <small class="mr-3">Ubicacion</small>
-            </div>
-
+                    <div class="d-flex mb-3">
+                        <small class="mr-3"><i class="fa fa-star text-primary mr-1"></i><%# Eval("Calificacion") %></small>
+                        <small class="mr-3"><a href="#">Comentarios</a></small>
+                        <small class="mr-3"><%# Eval("TipoAnfitrion") %></small>
+                        <small class="mr-3"><%# Eval("Direccion") %></small>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
 
         <!-- Carousel Start -->
         <div id="carouselE1" class="carousel slide" data-bs-ride="carousel">
 
             <div class="carousel-inner">
-
-                <div class="carousel-item active">
-                    <img src="img/carousel-1.jpg" class="d-block w-100" alt="">
-                </div>
-
+                <asp:Repeater ID="RepeaterImagen" runat="server">
+                    <ItemTemplate>
+                        <div class='<%# Container.ItemIndex == 0 ? "carousel-item active" : "carousel-item" %>'>
+                            <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
+                                src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
+                                AlternateText="Imagen del mueble" />
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
+
 
 
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselE1" data-bs-slide="prev">
@@ -76,42 +102,39 @@
             <div class="row">
                 <!--Principal-->
                 <div class="col-lg-8 col-md-12 col-sm-12">
-                    <h4 style="display: inline-block;">Anfitrión: </h4>
-                    <h4 style="display: inline-block;">NOMBRE ANFITRIÓN</h4>
-                    <div class="d-flex mb-3">
-                        <small class="mr-3">
-                            <p style="display: inline;">
-                                <p style="display: inline;">#</p>
-                                huespedes
-                            </p>
-                        </small>
-                        <small class="mr-3">
-                            <p style="display: inline;">
-                                <p style="display: inline;">#</p>
-                                baño
-                            </p>
-                        </small>
-                        <small class="mr-3">
-                            <p style="display: inline;">
-                                <p style="display: inline;">#</p>
-                                cama
-                            </p>
-                        </small>
-                        <small class="mr-3">
-                            <p style="display: inline;">
-                                <p style="display: inline;">#</p>
-                                habitación
-                            </p>
-                        </small>
-                    </div>
-                    <hr class="hrinfo" />
-                    <div class="col-lg-8 col-md-12 col-sm-12 ">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error recusandae eius officiis fuga
-                            est, perspiciatis optio aliquam, enim modi atque maiores voluptatem vero velit, nesciunt
-                            minus possimus explicabo. Omnis, itaque.
-                        </p>
-                    </div>
+                    <asp:Repeater ID="RepeaterDatosSecundarios" runat="server">
+                        <ItemTemplate>
+                            <h4 style="display: inline-block;">Anfitrión: </h4>
+                            <h4 style="display: inline-block;"><%# Eval("Dueno") %></h4>
+                            <div class="d-flex ">
+                                <small class="mr-3">
+                                    <p style="display: inline;">
+                                        <p style="display: inline;"><%# Eval("Cantidad_Huesped") %></p>
+                                        Huéspedes
+                                    </p>
+                                </small>
+                                <small class="mr-3">
+                                    <p style="display: inline;">
+                                        <p style="display: inline;"><%# Eval("Banhos") %></p>
+                                        Baños
+                                    </p>
+                                </small>
+                                <small class="mr-3">
+                                    <p style="display: inline;">
+                                        <p style="display: inline;"><%# Eval("Habitaciones") %></p>
+                                        Habitaciones
+                                    </p>
+                                </small>
+                            </div>
+                            <hr />
+                            <div class="col-lg-8 col-md-12 col-sm-12 ">
+                                <p>
+                                    <%# Eval("Descripcion") %>
+                                </p>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <%--Fin del repeater--%>
                     <hr />
                     <h4>Servicios</h4>
                     <div class="row">
@@ -156,81 +179,59 @@
                         Wifi
                     </p>
                     <hr />
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12 col-sm-12">
-                            <h4>Fechas de estadia</h4>
-                            <div class="container">
-                                Fecha de Ingreso:
-                                <input id="startDate" width="276" />
-                                Fecha de Salida:
-                                <input id="endDate" width="276" />
-                                <div class="mt-2">
-                                    <button class="btn btn-primary btn-block rounded" type="submit"
-                                        style="height: 47px; margin-top: -2px; width: 276px;">
-                                        Consultar Fechas</button>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <!-- Cambiado a col-lg-6 -->
+                                    <h4>Fecha de Entrada</h4>
+                                    <asp:Calendar ID="CalendarInicio" CssClass="calendar-inicio" SelectionMode="DayWeekMonth" runat="server" OnDayRender="CalendarInicio_DayRender" OnSelectionChanged="CalendarInicio_SelectionChanged" AutoPostBack="false" />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <!-- Cambiado a col-lg-6 -->
+                                    <h4>Fecha de Salida</h4>
+                                    <asp:Calendar ID="CalendarFinal" CssClass="calendar-inicio" SelectionMode="DayWeekMonth" runat="server" OnDayRender="CalendarFinal_DayRender" OnSelectionChanged="CalendarFinal_SelectionChanged" AutoPostBack="false" />
                                 </div>
                             </div>
-                            <script>
-                                var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-                                $('#startDate').datepicker({
-                                    uiLibrary: 'bootstrap4',
-                                    iconsLibrary: 'fontawesome',
-                                    minDate: today,
-                                    maxDate: function () {
-                                        return $('#endDate').val();
-                                    }
-                                });
-                                $('#endDate').datepicker({
-                                    uiLibrary: 'bootstrap4',
-                                    iconsLibrary: 'fontawesome',
-                                    minDate: function () {
-                                        return $('#startDate').val();
-                                    }
-                                });
-                            </script>
-                        </div>
-                    </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
                     <hr />
                     <h4>Comentarios</h4>
                     <hr />
                     <h4>Lo que debes saber</h4>
                     <div class="row">
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-header" style="background-color: #7AB730; text-align: center; color: white; font-size: 20px;">
                                     Reglas del lugar
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        With supporting text below as a natural lead-in to additional
-                                        content.
-                                    </p>
+                                <div class="card-body" style="height: 100%; overflow-y: auto;">
+                                    <asp:Repeater ID="rptReglas" runat="server">
+                                        <ItemTemplate>
+                                            <p class="card-text">
+                                                <%# Eval("Explicacion") %>
+                                            </p>
+                                            <br />
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    Seguridad y propiedad
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="card" style="height: 100%;">
+                                <div class="card-header" style="background-color: #7AB730; text-align: center; color: white; font-size: 20px;">
+                                    Políticas del lugar
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        With supporting text below as a natural lead-in to additional
-                                        content.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    Política de cancelación
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        With supporting text below as a natural lead-in to additional
-                                        content.
-                                    </p>
+                                <div class="card-body" style="height: 100%; overflow-y: auto;">
+                                    <asp:Repeater ID="rptPoliticas" runat="server">
+                                        <ItemTemplate>
+                                            <p class="card-text">
+                                                <%# Eval("Comentario") %>
+                                            </p>
+                                            <br />
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                 </div>
                             </div>
                         </div>
@@ -239,25 +240,41 @@
 
                 </div>
 
-
                 <!--Cotización-->
                 <div class="col-lg-4 col-md-12 col-sm-12 sticky-lg-top" style="top: 20px;">
                     <div class="row">
                         <div class="col-sm-12 mb-12 mb-sm-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title" style="display: inline-block;">$$</h5>
-                                    <h5 class="card-title" style="display: inline-block;">/ noche</h5>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Huespedes</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                    <asp:UpdatePanel ID="UpdatePanelRepeater" runat="server">
+                                        <ContentTemplate>
+                                            <asp:Repeater ID="rptInmuebles" runat="server" OnItemDataBound="rptInmuebles_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <div>
+                                                        <div style="display: inline-block;">
+                                                            <h5 class="card-title" style="display: inline-block;">$<%# Math.Round(Convert.ToDecimal(Eval("Precio")), 2) %></h5>
+                                                            <h5 class="card-title" style="display: inline-block;">/ noche</h5>
+                                                        </div>
+                                                        <div>
+                                                            <asp:Label ID="lblCantidadHuespedes" runat="server" Text='<%# Eval("Cantidad_Huesped") %>' Visible="false"></asp:Label>
+                                                            <asp:Label ID="Label1" runat="server" Text="Huespedes"></asp:Label>
+                                                            <asp:DropDownList ID="ddlHuespedes" runat="server" CssClass="form-select" AppendDataBoundItems="true" AutoPostBack="false">
+                                                            </asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                            <div>
+                                                <asp:Label ID="Label2" runat="server" Text="Fecha Entrada"></asp:Label>
+                                                <asp:Label ID="lblFechaEntrada" runat="server" Text="" CssClass="etiquetaPersonalizada"></asp:Label>
+                                                <asp:Label ID="Label3" runat="server" Text="Fecha Salida"></asp:Label>
+                                                <asp:Label ID="lblFechaSalida" runat="server" Text="" CssClass="etiquetaPersonalizada"></asp:Label>
+                                            </div>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
                                     <div class="mt-2">
-                                        <button class="btn btn-primary btn-block rounded" type="submit"
-                                            style="height: 47px; margin-top: -2px;">
-                                            Reservar</button>
+                                        <asp:Button ID="btnReservar" runat="server" Text="Reservar" CssClass="btn btn-primary btn-block rounded"
+                                            Style="height: 47px; margin-top: -2px;" />
                                     </div>
                                 </div>
                             </div>
@@ -315,4 +332,6 @@
         });
 
     </script>
+
+
 </asp:Content>

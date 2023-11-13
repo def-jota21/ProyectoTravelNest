@@ -131,6 +131,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style.min.css" />
+    <Content Include="Content\styleComentariosPendientes.css" />
     <Content Include="Content\stylesInmueble.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -143,21 +144,29 @@
     <Content Include="img\comentarios.jpg" />
     <Content Include="img\Comentarios2.jpg" />
     <Content Include="img\comentarios3.jpg" />
+    <Content Include="img\comentariosPendientes.jpg" />
     <Content Include="img\covergestionusuarios.jpg" />
     <Content Include="img\destination-4.jpg" />
+    <Content Include="img\estrellas.JPG" />
     <Content Include="img\gestionUsuarios.jpg" />
+    <Content Include="img\inmublepoliticas.JPG" />
     <Content Include="img\inmueble.jpg" />
     <Content Include="img\logo1.png" />
     <Content Include="img\logo2.png" />
     <Content Include="img\package-1.jpg" />
     <Content Include="img\package-5.jpg" />
     <Content Include="img\package-6.png" />
+    <Content Include="img\politicas.jpg" />
+    <Content Include="img\politicasvector.JPG" />
     <Content Include="img\user.png" />
+    <Content Include="pages\alojamientospoliticas.aspx" />
     <Content Include="pages\anunciospublicados.aspx" />
     <Content Include="pages\centrodeayuda.aspx" />
     <Content Include="pages\comentariocalificacion.aspx" />
     <Content Include="pages\comentariohuesped.aspx" />
+    <Content Include="pages\comentariopendientesa.aspx" />
     <Content Include="pages\comentariosanfitrion.aspx" />
+    <Content Include="pages\comentariospendientesh.aspx" />
     <Content Include="pages\cotizacion.aspx" />
     <Content Include="pages\crearalojamiento.aspx" />
     <Content Include="pages\datospersonales.aspx" />
@@ -165,12 +174,14 @@
     <Content Include="pages\editaranuncio.aspx" />
     <Content Include="pages\elegirinmueble.aspx" />
     <Content Include="pages\favoritos.aspx" />
+    <Content Include="pages\gestionpoliticas.aspx" />
     <Content Include="pages\gestionusuarios.aspx" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\modificarcalendarioreserva.aspx" />
     <Content Include="pages\paneladministracionhuesped.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
     <Content Include="pages\promociones.aspx" />
+    <Content Include="pages\prueba.aspx" />
     <Content Include="pages\recepciondenuncias.aspx" />
     <Content Include="pages\recepcionmensajes.aspx" />
     <Content Include="pages\reglas.aspx" />
@@ -178,6 +189,7 @@
     <Content Include="pages\sesionyseguridad.aspx" />
     <Content Include="pages\verificaridentidad.aspx" />
     <Content Include="pages\verinformacion.aspx" />
+    <Content Include="Plantillas\Plantilla_Chat.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -206,6 +218,10 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="ConsultarFechas.ashx" />
+    <Content Include="obtenerdatousuario.ashx" />
+    <Content Include="obtenerdatopolitica.ashx" />
+    <Content Include="politicasnoasociadas.ashx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -249,6 +265,9 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ConsultarFechas.ashx.cs">
+      <DependentUpon>ConsultarFechas.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -265,6 +284,19 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="obtenerdatopolitica.ashx.cs">
+      <DependentUpon>obtenerdatopolitica.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="obtenerdatousuario.ashx.cs">
+      <DependentUpon>obtenerdatousuario.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\alojamientospoliticas.aspx.cs">
+      <DependentUpon>alojamientospoliticas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\alojamientospoliticas.aspx.designer.cs">
+      <DependentUpon>alojamientospoliticas.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\anunciospublicados.aspx.cs">
       <DependentUpon>anunciospublicados.aspx</DependentUpon>
@@ -294,12 +326,26 @@
     <Compile Include="pages\comentariohuesped.aspx.designer.cs">
       <DependentUpon>comentariohuesped.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\comentariopendientesa.aspx.cs">
+      <DependentUpon>comentariopendientesa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\comentariopendientesa.aspx.designer.cs">
+      <DependentUpon>comentariopendientesa.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\comentariosanfitrion.aspx.cs">
       <DependentUpon>comentariosanfitrion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\comentariosanfitrion.aspx.designer.cs">
       <DependentUpon>comentariosanfitrion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\comentariospendientesh.aspx.cs">
+      <DependentUpon>comentariospendientesh.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\comentariospendientesh.aspx.designer.cs">
+      <DependentUpon>comentariospendientesh.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\cotizacion.aspx.cs">
       <DependentUpon>cotizacion.aspx</DependentUpon>
@@ -350,6 +396,13 @@
     <Compile Include="pages\favoritos.aspx.designer.cs">
       <DependentUpon>favoritos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\gestionpoliticas.aspx.cs">
+      <DependentUpon>gestionpoliticas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\gestionpoliticas.aspx.designer.cs">
+      <DependentUpon>gestionpoliticas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\gestionusuarios.aspx.cs">
       <DependentUpon>gestionusuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -391,6 +444,13 @@
     </Compile>
     <Compile Include="pages\promociones.aspx.designer.cs">
       <DependentUpon>promociones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\prueba.aspx.cs">
+      <DependentUpon>prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\prueba.aspx.designer.cs">
+      <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\recepciondenuncias.aspx.cs">
       <DependentUpon>recepciondenuncias.aspx</DependentUpon>
@@ -440,6 +500,9 @@
     </Compile>
     <Compile Include="pages\verinformacion.aspx.designer.cs">
       <DependentUpon>verinformacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="politicasnoasociadas.ashx.cs">
+      <DependentUpon>politicasnoasociadas.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

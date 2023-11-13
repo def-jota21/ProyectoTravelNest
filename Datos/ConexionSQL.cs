@@ -15,7 +15,7 @@ namespace Datos
     {
         private static StringBuilder strConexion;
         private static SqlConnection sqlCon;
-        private static void CadenaConexion()
+        public static void CadenaConexion()
         {
             strConexion = new StringBuilder();
             strConexion.Append("Data Source=");
@@ -28,14 +28,31 @@ namespace Datos
             strConexion.Append("Proyecto#12345"); 
 
             sqlCon = new SqlConnection(strConexion.ToString());
+
+            try
+            {
+                sqlCon.Open();
+            }catch (Exception ex)
+            {
+                String Mensaje = ex.Message;
+            }
+            sqlCon.Close();
         }//fin de cadena de conexion
 
         public SqlConnection sqlConn;
+
+        //public ConexionSQL()
+        //{
+        //    sqlConn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionSQL"].ConnectionString);
+        //}
+
+        string connection_string = "Data Source=tiusr21pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=ProyectoG6;User ID=Proyecto;Password=Proyecto#12345";
 
         public ConexionSQL()
         {
             sqlConn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionSQL"].ConnectionString);
         }
+
 
         #region "Manejo de constultas SQL"
         public void QueryDB(string QuerySQL)
@@ -243,6 +260,54 @@ namespace Datos
             }//fin del catch
         }//fin de ExecuteQuery
 
+        public static DataTable ExecuteQueryTableGeneral(String NombreProcedimiento)
+        {
+            DataTable dtDatos = new DataTable();
+            try
+
+            {
+
+                //Inicializa la conexion
+                CadenaConexion();
+
+
+
+                //Crea el objeto SQL
+                SqlCommand cmd = new SqlCommand
+                {
+                    CommandText = NombreProcedimiento,
+                    CommandType = CommandType.StoredProcedure,
+                    Connection = sqlCon
+                };
+
+
+
+
+                //Abre la Conexion
+                sqlCon.Open();
+
+                //Ejecuta la Consulta
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+
+                dataAdapter.Fill(dtDatos);
+
+
+                //Cierra la conexion
+                sqlCon.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                if (sqlCon.State != ConnectionState.Closed)
+                    sqlCon.Close();
+                throw ex;
+            }//fin del catch
+            return dtDatos;
+        }//fin de ExecuteQuery
+
         public static DataTable ExecuteQueryTable(String NombreProcedimiento, List<SqlParameter> ListaParametros)
         {
             DataTable dtDatos = new DataTable();
@@ -293,7 +358,7 @@ namespace Datos
       }//fin de ExecuteQuery
 
 
-        // METODOS DE JAIRO ------------------------------------------------------------------------
+     // METODOS DE JAIRO ------------------------------------------------------------------------
         public DataTable ExecuteSPWithDT(string SPName, List<SqlParameter> ListaParametros)
         {
             try
@@ -326,6 +391,172 @@ namespace Datos
                 throw ex;
             }
         }
+        #region "METODOS CHARLIE"
+
+        public void EliminarFavorito(string idInmueble, string idUsuario, string instruccion)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("CRUDFavoritos", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@idInmueble", idInmueble);
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        cmd.Parameters.AddWithValue("@instruccion", instruccion);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar favorito: " + ex.Message);
+            }
+        }
+
+        public void AgregarFavorito(string idUsuario, string idInmueble, string instruccion)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("CRUDFavoritos", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        cmd.Parameters.AddWithValue("@idInmueble", idInmueble);
+                        cmd.Parameters.AddWithValue("@instruccion", instruccion);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al insertar favoritos: " + ex.Message);
+            }
+        }
+
+        public DataSet ObtenerFavoritosUsuario(string idUsuario, string instruccion)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("CRUDFavoritos", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        cmd.Parameters.AddWithValue("@instruccion", instruccion);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataSet dsFavoritos = new DataSet();
+                            adapter.Fill(dsFavoritos);
+
+                            return dsFavoritos;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los favoritos del usuario : " + ex.Message);
+            }
+        }
+
+        public void AjustarTiempoReservas(string IdInmueble, string Tiempo_EstadiaMinima, string Tiempo_EstadiaMaxima, string Tiempo_ReservaMinima, string Tiempo_ReservaMaxima)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("AjustarReservas", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@IdInmueble", IdInmueble);
+                        cmd.Parameters.AddWithValue("@Tiempo_EstadiaMinima", Tiempo_EstadiaMinima);
+                        cmd.Parameters.AddWithValue("@Tiempo_EstadiaMaxima", Tiempo_EstadiaMaxima);
+                        cmd.Parameters.AddWithValue("@Tiempo_ReservaMinima", Tiempo_ReservaMinima);
+                        cmd.Parameters.AddWithValue("@Tiempo_ReservaMaxima", Tiempo_ReservaMaxima);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ha ocurrido un error al intentar ajustar las reservas" + ex.Message);
+            }
+        }
+
+
+        public void AjustarDataInmueble(string idInmueble, decimal precioNoche)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("AjustarData", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@idInmueble", idInmueble);
+                        cmd.Parameters.AddWithValue("@precioNoche", precioNoche);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ajustar los datos de tu calendario" + ex.Message);
+            }
+        }
+
+        public string GetPrecio(string idInmueble)
+        {
+            string precio = "";
+            using (SqlConnection con = new SqlConnection(connection_string))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("GetPrecioNoche", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@idInmueble", idInmueble);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            precio = Convert.ToString(reader.GetDecimal(0));
+                        }
+                    }
+
+                    return precio;
+                }
+            }
+        }
+
+        #endregion
     }
 }
 #endregion

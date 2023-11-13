@@ -21,11 +21,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
+
 </head>
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
-             <Scripts>
+            <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
@@ -41,56 +42,66 @@
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
             </Scripts>
-           
+
         </asp:ScriptManager>
 
-    <nav class="navbar navbar-expand-lg p-3">
-    <div class="container-fluid">
-        <div class="logo">
-            <a class="nav-link active" aria-current="page" href="Inicio.aspx"><img src="../img/logo2.png" class="logoo" alt="Logo de la marca"/></a>
-        </div>
-        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon custom-toggler-icon"></span>
-        </button>
-       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-            <a class="nav-link mx-2 active" href="Anfitrion.aspx">Hazte anfitrión</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-user-circle" style="font-size: 20px;"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
-                <li>
-                    <a class="dropdown-item" href="#">Registrarse</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#">Iniciar Sesión</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="pages/favoritos.aspx">Lista de Favoritos</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#">Notificaciones</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#">Cuenta</a>
-                </li>
-                 <li>
-                    <a class="dropdown-item" href="pages/recepcionmensajes.aspx">Mensajes</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
-</div>
-</nav>
+        <nav class="navbar navbar-expand-lg p-3">
+            <div class="container-fluid">
+                <div class="logo">
+                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" CssClass="nav-link active">
+        <img src="../img/logo2.png" class="logoo" alt="Logo de la marca" />
+                    </asp:HyperLink>
+                </div>
+
+                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon custom-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 active" href="Anfitrion.aspx">Hazte anfitrión</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user-circle" style="font-size: 20px;"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
+
+
+                                <li>
+                                    <button id="showModalButtonCrearCuenta" class="btn btn-link">Crear Cuenta</button>
+                                </li>
+                                <li>
+                                    <button id="btnAbrirModalIniciarSesion" class="btn btn-link">Iniciar Sesion</button>
+                                </li>
+                                <li>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/pages/favoritos.aspx" Text="Lista de Favoritos" CssClass="dropdown-item" />
+
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Notificaciones</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Cuenta</a>
+                                </li>
+                                <li>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/pages/reservas.aspx" Text="Reservas" CssClass="dropdown-item" />
+
+                                </li>
+                                <li>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/pages/recepcionmensajes.aspx" Text="Mensajes" CssClass="dropdown-item" />
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-           <%-- <footer>
+            <%-- <footer>
                 <div class="container-fluid bg-dark text-white-50 py-6 px-sm-4 px-lg-5" style="margin-top: 350px;">
                     <div class="row pt-5">
                         <div class="col-lg-3 col-md-6 mb-5">
@@ -121,8 +132,26 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
+    <script>
+        document.getElementById("btnAbrirModalIniciarSesion").addEventListener("click", function () {
+            $('#iniciarsesionmodal').modal("show");
+        });
+        document.getElementById("showModalButtonCrearCuenta").addEventListener("click", function () {
+            $('#crearcuentamodal').modal("show");
+        });
 
+
+
+    <script>
+        document.getElementById("showModalButtonCrearCuenta").addEventListener("click", function () {
+            $('#crearcuentamodal').modal("show");
+        });
+
+
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

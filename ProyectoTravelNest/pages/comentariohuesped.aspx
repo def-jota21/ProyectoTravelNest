@@ -52,49 +52,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-                    <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-                        <h3>Comentario privado para el huésped</h3>
-                        <p>Se enviará un comentario privado a tu huésped</p>
-                        <textarea class="form-control" name="txtcomentarioPrivado" id="txtcomentarioPrivado"
-                            rows="7"></textarea>
-                        <div id="contadorPalabrasPrivado">*100 palabras restantes</div>
-                    </div>
 
-                    <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-                        <h3>Comentario para el huésped</h3>
-                        <p>Se enviará un público privado a tu huésped</p>
-                        <textarea class="form-control" name="txtcomentarioPublico" id="txtcomentarioPublico"
-                            rows="7"></textarea>
-                        <div id="contadorPalabrasPublico">*100 palabras restantes</div>
+                    <div class="col-lg-7 col-md-12 col-sm-12 my-2">
+                        <div class="row">
+                            <h3>Comentario para el huésped</h3>
+                            <p>Se enviará un público a tu huésped</p>
+                            <asp:TextBox runat="server" CssClass="form-control w-100" ID="txtcomentarioPublico" TextMode="MultiLine" Rows="7"></asp:TextBox>
+                            <div id="contadorPalabrasPublico">*100 palabras restantes</div>
+                        </div>
                     </div>
 
                     <div class="col-lg-8 col-md-12 col-sm-12 my-2">
                         <h3>Limpieza</h3>
                         <p>¿Dejó el huésped el alojamiento limpio?</p>
-                        <div class="col-lg-4 col-md-4">
-                            <select class="form-select" aria-label="Default select example">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                        <div class="col-md-4">
+                            <asp:DropDownList runat="server" CssClass="form-select" ID="ddlLimpieza" AppendDataBoundItems="true">
+                                <asp:ListItem Text="1" Value="1" />
+                                <asp:ListItem Text="2" Value="2" />
+                                <asp:ListItem Text="3" Value="3" />
+                                <asp:ListItem Text="4" Value="4" />
+                                <asp:ListItem Text="5" Value="5" />
+                            </asp:DropDownList>
                         </div>
                     </div>
 
                     <div class="col-lg-8 col-md-12 col-sm-12 my-2">
                         <h3>¿Qué calificación le da al huésped?</h3>
                         <p>Selecciona una calificación</p>
-                        <div class="col-lg-4 col-md-4">
-                            <select class="form-select" aria-label="Default select example">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                        <div class="col-md-4">
+                            <asp:DropDownList runat="server" CssClass="form-select" ID="ddlCalificacion" AppendDataBoundItems="true">
+                                <asp:ListItem Text="1" Value="1" />
+                                <asp:ListItem Text="2" Value="2" />
+                                <asp:ListItem Text="3" Value="3" />
+                                <asp:ListItem Text="4" Value="4" />
+                                <asp:ListItem Text="5" Value="5" />
+                            </asp:DropDownList>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="col-lg-4 col-md-12 col-sm-12 my-2 d-flex align-items-center">
@@ -109,9 +104,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 my-2 text-center">
                     <div class="col-lg-4 col-md-4 mx-auto">
-                        <button class="btn btn-primary btn-block rounded" type="submit" name="btnEnviarComentario"
-                            style="height: 47px; margin-top: -2px;">
-                            Enviar</button>
+                        <asp:Button class="btn btn-primary btn-block rounded" runat="server" name="btnEnviarComentario" OnClick="EnviarComentarioHuesped_Click" ID="btnEnviarComentario"
+                            Style="height: 47px; margin-top: -2px;" Text="Enviar" />
                     </div>
                 </div>
             </div>
@@ -139,35 +133,21 @@
     <script src="js/main.js"></script>
     <script>
         function contarPalabrasPublico() {
-            var comentario = document.getElementById("txtcomentarioPublico").value;
-            var palabras = comentario.trim().split(/\s+/);
-            var numPalabras = palabras.length;
-            var palabrasRestantes = 100 - numPalabras;
+            var comentario = document.getElementById('<%= txtcomentarioPublico.ClientID %>').value;
+        var palabras = comentario.trim().split(/\s+/);
+        var numPalabras = palabras.length;
+        var palabrasRestantes = 100 - numPalabras;
 
-            if (palabrasRestantes >= 0) {
-                document.getElementById("contadorPalabrasPublico").innerHTML = "*" + palabrasRestantes + " palabras restantes";
-            } else {
-                document.getElementById("contadorPalabrasPublico").innerHTML = "Límite de palabras alcanzado";
-                document.getElementById("txtcomentarioPublico").value = comentario.split(/\s+/).slice(0, 100).join(" ");
-            }
+        if (palabrasRestantes >= 0) {
+            document.getElementById("contadorPalabrasPublico").innerHTML = "*" + palabrasRestantes + " palabras restantes";
+        } else {
+            document.getElementById("contadorPalabrasPublico.ClientID %>").innerHTML = "Límite de palabras alcanzado";
+            document.getElementById('<%= txtcomentarioPublico.ClientID %>').value = comentario.split(/\s+/).slice(0, 100).join(" ");
         }
+    }
 
-        function contarPalabrasPrivado() {
-            var comentario = document.getElementById("txtcomentarioPrivado").value;
-            var palabras = comentario.trim().split(/\s+/);
-            var numPalabras = palabras.length;
-            var palabrasRestantes = 100 - numPalabras;
+    // Asociar las funciones a eventos de escritura en los campos de texto
+    document.getElementById('<%= txtcomentarioPublico.ClientID %>').addEventListener("input", contarPalabrasPublico);
 
-            if (palabrasRestantes >= 0) {
-                document.getElementById("contadorPalabrasPrivado").innerHTML = "*" + palabrasRestantes + " palabras restantes";
-            } else {
-                document.getElementById("contadorPalabrasPrivado").innerHTML = "Límite de palabras alcanzado";
-                document.getElementById("txtcomentarioPrivado").value = comentario.split(/\s+/).slice(0, 100).join(" ");
-            }
-        }
-
-        // Asociar las funciones a eventos de escritura en los campos de texto
-        document.getElementById("txtcomentarioPublico").addEventListener("input", contarPalabrasPublico);
-        document.getElementById("txtcomentarioPrivado").addEventListener("input", contarPalabrasPrivado);
     </script>
 </asp:Content>

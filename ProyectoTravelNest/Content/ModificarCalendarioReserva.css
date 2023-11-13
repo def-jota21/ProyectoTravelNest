@@ -1,59 +1,83 @@
-﻿
+﻿/* Estilos generales */
 body {
-    font-family: 'Comfortaa', sans-serif;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    color: #000000;
-    margin-top: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .title {
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 28px;
-    text-align:left;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
-
 
 .subtitle {
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 24px;
-    color: #000000;
-    margin-bottom: 28px;
-    text-align: left;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
-
 .form-group {
-    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.label-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .input-text {
+    width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border: 6px solid #ccc;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    width: 600%;
+    font-size: 16px;
 }
 
+/* Botón de Guardar */
 .btn-success {
-    background-color: #95CF48;
-    margin-top: 30px;
-    width: 60%;
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.p-link {
-    margin-top: 30px;
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 24px;
-    color: #000000;
-    margin-left: 700px;
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+/* Mensaje de éxito */
+.success-message {
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
 }
+    /* Estilos para la imagen a la derecha del botón */
+    .right-image {
+    width: 300px; /* Ajusta el ancho según tus necesidades */
+    height: auto; /* Ajusta la altura de forma proporcional */
+    margin-left: 10px; /* Espacio entre el botón y la imagen */
+    margin-top: -200px; /* Ajusta el margen superior para mover la imagen arriba */
+    float: right; /* Alinea la imagen a la derecha */
+}
+
 
 /* Personaliza tus estilos CSS aquí */
 /* Ejemplo de regla CSS para hacer la página responsive */

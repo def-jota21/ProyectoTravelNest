@@ -7,74 +7,29 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using Negocios;
 
 namespace ProyectoTravelNest.pages
 {
     public partial class Favoritos : System.Web.UI.Page
     {
+        Neg_Favoritos iFavoritos = new Neg_Favoritos();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Cargar los cards en la pantalla
-
-            Negocios.Neg_Favoritos iFavoritos = new Negocios.Neg_Favoritos();
-
-                
-
-
-            DataTable dtEtapas = iFavoritos.ObtenerFavoritosDeUsuario("1");
-
-            System.Text.StringBuilder strListaProductos = new System.Text.StringBuilder();
-
-            foreach (DataRow drEtapas in dtEtapas.Rows)
+            if (!IsPostBack)
             {
-
-                ////Convertir la imagen para que se muestre
-                //byte[] imageBytes = (byte[])drEtapas["Imagen"];
-                //string base64Image = Convert.ToBase64String(imageBytes);
-
-                // Comienza a construir un elemento de tarjeta
-                strListaProductos.Append("<div class=\"col-lg-4 col-md-6 mb-4\">");
-                strListaProductos.Append("<div class=\"package-item bg-white mb-2\">");
-
-                //// Agrega la imagen del producto (debes proporcionar la base64Image)
-                //strListaProductos.Append("<img class=\"img-fluid\" src=\"data:image/jpg;base64," + base64Image + "\" alt=\"Imagen del producto\" />");
-
-                strListaProductos.Append("<div class=\"p-4\">");
-                strListaProductos.Append("<div class=\"d-flex justify-content-between mb-3\">");
-
-                // Agrega la ubicación
-                strListaProductos.Append("<small class=\"m-0\"><i class=\"fa fa-map-marker-alt text-primary mr-2\"></i>" + drEtapas["Direccion"] + "</small>");
-
-                // Agrega el botón "Favorito"
-                strListaProductos.Append("<a class=\"m-0\" href=\"#\"><i class=\"fa fa-heart text-danger\"></i>Favorito</a>");
-
-                // Agrega el número de personas
-                strListaProductos.Append("<small class=\"m-0\"><i class=\"fa fa-user text-primary mr-2\"></i>" + drEtapas["Cantidad_Huesped"] + "</small>");
-
-                strListaProductos.Append("</div>");
-
-                // Agrega el enlace al detalle del producto
-                strListaProductos.Append("<a class=\"h5 text-decoration-none\" href=\"#\">" + drEtapas["Nombre"] + "</a>");
-
-                // Agrega la sección de calificación y precio
-                strListaProductos.Append("<div class=\"border-top mt-4 pt-4\">");
-                strListaProductos.Append("<div class=\"d-flex justify-content-between\">");
-                strListaProductos.Append("<h6 class=\"m-0\"><i class=\"fa fa-star text-primary mr-2\"></i>" + drEtapas["Calificacion"] + " <small>(" + drEtapas["Comentario"] + ")</small></h6>");
-                strListaProductos.Append("<h5 class=\"m-0\">" + drEtapas["PrecioBasexNoche"] + "</h5>");
-                strListaProductos.Append("<p><b>por noche</b></p>");
-                strListaProductos.Append("</div>");
-                strListaProductos.Append("</div>");
-
-                // Cierra el elemento de tarjeta
-                strListaProductos.Append("</div>");
-                strListaProductos.Append("</div>");
-                strListaProductos.Append("</div>");
+                CargarDatos();
             }
-
-            //Agrega el código HTML a la página web para mostrar las cartas
-            this.lstfrmMantenimiento.InnerHtml = strListaProductos.ToString();
-
         }
+
+        private void CargarDatos()
+        {
+            iFavoritos.Instruccion = "Read";
+
+            rptData.DataSource = iFavoritos.ObtenerFavoritosDeUsuario("2222222222");
+            rptData.DataBind();
+        }
+
         protected void btnAddMore_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
@@ -82,7 +37,65 @@ namespace ProyectoTravelNest.pages
 
         protected void AgregarFavorito_Click(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
+            string idInmueble = button.CommandArgument;
 
+            iFavoritos.Instruccion = "Insert";
+            string idUsuario = Session["idUsuario"].ToString();
+
+            iFavoritos.AgregarFavorito(idUsuario, idInmueble);
+        }
+
+
+        private void EliminarFavorito(string idInmueble)
+        {
+            try
+            {
+                string idUsuario = "2222222222";
+                //string idUsuario = Session["idUsuario"].ToString();
+
+                // Llamar a la función EliminarFavorito de la capa de negocios
+                iFavoritos.Instruccion = "Delete";
+                iFavoritos.EliminarFavorito(idInmueble, idUsuario);
+
+                // Recuperar nuevos datos y recargar la página para reflejar los cambios
+                CargarDatos();
+
+                upd_Favoritos.Update();
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción aquí
+                throw new Exception(ex.Message);
+            }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            LinkButton lnkButton = (LinkButton)sender;
+            string idInmueble = lnkButton.CommandArgument;
+
+            // Lógica para eliminar favorito usando el idInmueble
+            EliminarFavorito(idInmueble);
+            upd_Favoritos.Update();
+        }
+
+        protected void btnVerInformacion_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "VerInformacion")
+            {
+                string[] args = e.CommandArgument.ToString().Split(',');
+
+                if (args.Length == 2)
+                {
+                    string IdUsuario = args[0].Trim();
+                    string IdInmueble = args[1].Trim();
+
+                    // Redirige a la página de destino con los parámetros
+                    Response.Redirect($"~/pages/verinformacion.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");
+
+                }
+            }
         }
     }
 }

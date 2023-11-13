@@ -56,23 +56,25 @@ figcaption{
             
                 <div class="col">
                     <h2>Crear Alojamiento</h2>
-                    <label for="exampleFormControlInput1" class="form-label mt-4">Ubicacion</label>
-                    <input type="text" class="form-control" id="txtubicacion" autocomplete="off">
+                    <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtnombre" CssClass="form-label mt-4">Nombre</asp:Label>
+                    <asp:TextBox ID="txtnombre" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+
+                    <asp:Label ID="lblUbicacion" runat="server" AssociatedControlID="txtubicacion" CssClass="form-label mt-4">Ubicación</asp:Label>
+                    <asp:TextBox ID="txtubicacion" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+
                     <label for="exampleFormControlInput1" class="form-label mt-2">Categoria</label>
-                    <select name="opcion" class="form-control" id="categoria">
-                        <option value="opcion1">Opción 1</option>
-                        <option value="opcion2">Opción 2</option>
-                        <option value="opcion3">Opción 3</option>
-                    </select>
-                    <label for="exampleFormControlInput1" class="form-label mt-2">Precio/Noche</label>
-                    <input type="number" step="0.01" class="form-control" id="txtprecio" autocomplete="off">
-                    <label for="exampleFormControlInput1" class="form-label mt-2">Huespedes</label>
-                    <input type="number" class="form-control" id="txthuespedes" autocomplete="off">
-                    <label for="exampleFormControlInput1" class="form-label mt-2">Habitaciones</label>
-                    <input type="number" class="form-control" id="txthabitaciones" autocomplete="off">
-                    <label for="exampleFormControlInput1" class="form-label mt-2">Baños</label>
-                    <input type="number" class="form-control" id="txtbaños" autocomplete="off">
+                    <asp:DropDownList ID="categoria" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="IdCategoria">
+                    </asp:DropDownList>
+                    <asp:Label ID="lblPrecio" runat="server" CssClass="form-label mt-2" AssociatedControlID="txtprecio">Precio/Noche</asp:Label>
+                    <asp:TextBox ID="txtprecio" runat="server" type="number" step="0.01" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                    <asp:Label ID="lblHuespedes" runat="server" CssClass="form-label mt-2" AssociatedControlID="txthuespedes">Huespedes</asp:Label>
+                    <asp:TextBox ID="txthuespedes" runat="server" type="number" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                    <asp:Label ID="lblHabitaciones" runat="server" CssClass="form-label mt-2" AssociatedControlID="txthabitaciones">Habitaciones</asp:Label>
+                    <asp:TextBox ID="txthabitaciones" runat="server" type="number" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                    <asp:Label ID="lblBaños" runat="server" CssClass="form-label mt-2" AssociatedControlID="txtbaños">Baños</asp:Label>
+                    <asp:TextBox ID="txtbaños" runat="server" type="number" CssClass="form-control" autocomplete="off"></asp:TextBox>
                     <label for="exampleFormControlInput1" class="form-label mt-4">Servicios</label>
+
                     <a href="#" id="editarServicios" class="stretched-link text-danger " style="position: relative; margin-left: 25rem;" >Editar</a>
                     <br>
                     <label for="exampleFormControlInput1" class="form-label mt-4">Politicas</label>
@@ -82,21 +84,27 @@ figcaption{
                     <a href="#" id="editarAmenidades" class="stretched-link text-danger " style="position: relative;margin-left: 23.5rem;">Editar</a>
                     <br>
                     <label for="exampleFormControlInput1" class="form-label mt-4">Descuentos</label>
-                    <select name="opcion" class="form-control" id="descuentos">
-                        <option value="opcion1">Opción 1</option>
-                        <option value="opcion2">Opción 2</option>
-                        <option value="opcion3">Opción 3</option>
-                    </select>
+                    <asp:DropDownList ID="descuentos" runat="server" CssClass="form-control">
+                        <asp:ListItem Value="opcion1">Opción 1</asp:ListItem>
+                        <asp:ListItem Value="opcion2">Opción 2</asp:ListItem>
+                        <asp:ListItem Value="opcion3">Opción 3</asp:ListItem>
+                    </asp:DropDownList>
+
+                    <asp:Label ID="Label1" runat="server" CssClass="form-label mt-2" AssociatedControlID="txtbaños">Descripcion</asp:Label>
+                    <asp:TextBox ID="descripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" autocomplete="off"></asp:TextBox>
+                    <asp:Button ID="btnPublicar" runat="server" CssClass="btn btn-primary btn-lg mt-4" Text="Publicar Alojamiento" OnClick="btnPublicar_Click" />
+                    <br />
                     <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" onchange="preview()" multiple>
+
                     <label for="file-input">
-                        <i  type="button" class="btn btn-primary mt-4">Cargar imagenes</i>
+                        <i type="button" id="cargarImagenesButton" class="btn btn-primary mt-4">Cargar imágenes</i>
                     </label>
                     <div class="containerimg">
                         
                         <p id="num-of-files">Niguna Imagen Seleccionada</p>
                         <div id="images"></div>
                     </div>
-                    <button type="button" class="btn btn-primary lx mt-4" >Publicar Alojamiento</button>
+                    
                 </div>
                 <div class="col">
                     <img class="img-fluid" src="../img/about-1.jpg" alt="">
@@ -119,6 +127,8 @@ figcaption{
                                             </div>
                                             <div class="col-6">
                                                 <img class="img-fluid" src="../img/destination-2.jpg" alt="">
+                                                
+
                                             </div>
                                         </div>
                                         
@@ -144,25 +154,21 @@ figcaption{
                     <input id="txtid" type="hidden" value="0"/>
                     <div class="row  g-2">
                         <div class="col">
-                            <select id="selectElement" class="form-control">
-                                <option value="opcion1">Opción 1</option>
-                                <option value="opcion2">Opción 2</option>
-                                <option value="opcion3">Opción 3</option>
-                            </select>
                             
-                              
+                            <asp:DropDownList ID="selectElement" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="IdServicio">
+                            </asp:DropDownList>
                             <button type="button" class="btn btn-primary mt-4 mb-3" onclick="agregarElemento()">Agregar</button>
-                            
+                            <asp:HiddenField ID="hiddenElementos" runat="server" />
+
+
                             <!-- Lista para mostrar los elementos seleccionados -->
                             <ul id="listaElementos"style="max-height: 200px; overflow-y: auto;"></ul>
-
-
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" id="guardarServicios" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>
@@ -179,13 +185,8 @@ figcaption{
                     <input id="txtid" type="hidden" value="0"/>
                     <div class="row  g-2">
                         <div class="col">
-                            <select id="selectElementPoliticas" class="form-control">
-                                <option value="opcion1">Opción 1</option>
-                                <option value="opcion2">Opción 2</option>
-                                <option value="opcion3">Opción 3</option>
-                            </select>
-                            
-                              
+                            <asp:DropDownList ID="selectElementPoliticas" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="IdServicio">
+                            </asp:DropDownList>
                             <button type="button" class="btn btn-primary mt-4 mb-3" onclick="agregarElementoPoliticas()">Agregar</button>
                             
                             <!-- Lista para mostrar los elementos seleccionados -->
@@ -214,15 +215,13 @@ figcaption{
                     <input id="txtid" type="hidden" value="0"/>
                     <div class="row  g-2">
                         <div class="col">
-                            <select id="selectElementAmenidades" class="form-control">
-                                <option value="opcion1">Opción 1</option>
-                                <option value="opcion2">Opción 2</option>
-                                <option value="opcion3">Opción 3</option>
-                            </select>
+
+                            <asp:DropDownList ID="selectElementAmenidades" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="IdAmenidades">
+                            </asp:DropDownList>
                             
                               
                             <button type="button" class="btn btn-primary mt-4 mb-3" onclick="agregarElementoAmenidades()">Agregar</button>
-                            
+                             <asp:HiddenField ID="elementosAmenidades" runat="server" />
                             <!-- Lista para mostrar los elementos seleccionados -->
                             <ul id="listaElementosAmenidades"style="max-height: 200px; overflow-y: auto;"></ul>
 
@@ -232,7 +231,7 @@ figcaption{
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" id="guardarAmenidades" class="btn btn-primary" >Guardar</button>
                 </div>
             </div>
         </div>
@@ -258,131 +257,224 @@ figcaption{
         $('#amenidadesModal').modal("show");
 
     });
+    document.getElementById("guardarServicios").addEventListener("click", function () {
 
-    let fileInput = document.getElementById("file-input");
+        var listaElementos = document.getElementById("listaElementos").getElementsByTagName("li");
+
+        var datos = [];
+        for (var i = 0; i < listaElementos.length; i++) {
+            var texto = listaElementos[i].querySelector('div').textContent;
+            datos.push(texto);
+        }
+
+        // Convertir el array a una cadena separada por comas
+        var datosSeparadosPorComas = datos.join(',');
+
+        // Almacenar los datos en el HiddenField
+        var hiddenElementos = document.getElementById('<%= hiddenElementos.ClientID %>');
+        hiddenElementos.value = datosSeparadosPorComas;
+
+        var modal = document.getElementById('serviciosModal');
+
+        $('#serviciosModal').modal('hide');
+    });
+
+    document.getElementById("guardarAmenidades").addEventListener("click", function () {
+
+        var listaElementos = document.getElementById("listaElementosAmenidades").getElementsByTagName("li");
+
+        var datos = [];
+        for (var i = 0; i < listaElementos.length; i++) {
+            var texto = listaElementos[i].querySelector('div').textContent;
+            datos.push(texto);
+        }
+
+        // Convertir el array a una cadena separada por comas
+        var datosSeparadosPorComas = datos.join(',');
+
+        // Almacenar los datos en el HiddenField
+        var hiddenElementos = document.getElementById('<%= elementosAmenidades.ClientID %>');
+        hiddenElementos.value = datosSeparadosPorComas;
+        $('#amenidadesModal').modal('hide');
+    });
+
+    let fileInput = document.getElementById('file-input');
     let imageContainer = document.getElementById("images");
     let numOfFiles = document.getElementById("num-of-files");
 
-    function preview(){
-        imageContainer.innerHTML = "";
-        numOfFiles.textContent = `${fileInput.files.length} Imagenes Seleccionadas`;
+    fileInput.addEventListener("change", preview);
 
-        for(i of fileInput.files){
+    function preview() {
+        imageContainer.innerHTML = "";
+        numOfFiles.textContent = `${fileInput.files.length} Imágenes Seleccionadas`;
+
+        for (let i = 0; i < fileInput.files.length; i++) {
             let reader = new FileReader();
             let figure = document.createElement("figure");
             let figCap = document.createElement("figcaption");
-            figCap.innerText = i.name;
+            figCap.innerText = fileInput.files[i].name;
             figure.appendChild(figCap);
-            reader.onload=()=>{
+            reader.onload = () => {
                 let img = document.createElement("img");
-                img.setAttribute("src",reader.result);
-                figure.insertBefore(img,figCap);
-            }
+                img.setAttribute("src", reader.result);
+                figure.insertBefore(img, figCap);
+            };
             imageContainer.appendChild(figure);
-            reader.readAsDataURL(i);
+            reader.readAsDataURL(fileInput.files[i]);
         }
     }
+
+
+
+
 </script>
 
 <script>
     function agregarElemento() {
-      // Obtener el elemento select y la opción seleccionada
-      var select = document.getElementById("selectElement");
-      var opcionSeleccionada = select.options[select.selectedIndex];
-      
-      // Crear un nuevo elemento de lista
-      var nuevoElemento = document.createElement("li");
-      nuevoElemento.textContent = opcionSeleccionada.text;
-      
-      // Botón para eliminar el elemento
-      var botonEliminar = document.createElement("button");
-      botonEliminar.className = "btn btn-danger mt-2";
-      botonEliminar.style.fontSize = "12px";
-      botonEliminar.style.position = "relative";
-      botonEliminar.style.marginLeft = "3rem";
-      
-      var icono = document.createElement("i");
-      icono.className = "fa-solid fa-x";
-      icono.style.color = "#f5f5f5";
+        // Obtener el DropDownList y la opción seleccionada
+        var ddlSelectElement = document.getElementById("<%= selectElement.ClientID %>");
+        var opcionSeleccionada = ddlSelectElement.options[ddlSelectElement.selectedIndex];
 
-      botonEliminar.appendChild(icono);
+        // Crear un nuevo elemento de lista
+        var nuevoElemento = document.createElement("li");
+        nuevoElemento.style.display = "flex"; // Utilizar flexbox
+        
+        // Crear una columna para el texto
+        var columnaTexto = document.createElement("div");
+        columnaTexto.textContent = opcionSeleccionada.text;
+        columnaTexto.style.width = "200px"; // Ancho fijo para el texto
 
-      botonEliminar.onclick = function() {
-        nuevoElemento.remove(); // Eliminar el elemento de la lista al hacer clic en el botón
-      };
+        // Crear una columna para el botón eliminar
+        var columnaBoton = document.createElement("div");
+        columnaBoton.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
+        columnaBoton.style.marginTop = "-1rem";
+        // Botón para eliminar el elemento
+        var botonEliminar = document.createElement("button");
+        botonEliminar.className = "btn btn-danger my-3";
+        botonEliminar.style.fontSize = "12px";
+        
 
-      // Agregar el botón de eliminar al elemento de la lista
-      nuevoElemento.appendChild(botonEliminar);
-      
-      // Agregar el elemento a la lista
-      document.getElementById("listaElementos").appendChild(nuevoElemento);
+        var icono = document.createElement("i");
+        icono.className = "fa-solid fa-x";
+        icono.style.color = "#f5f5f5";
+
+        botonEliminar.appendChild(icono);
+
+        botonEliminar.onclick = function () {
+            nuevoElemento.remove(); // Eliminar el elemento de la lista al hacer clic en el botón
+        };
+
+        // Agregar el botón de eliminar a la columna de botón
+        columnaBoton.appendChild(botonEliminar);
+
+        // Agregar las columnas al elemento de lista
+        nuevoElemento.appendChild(columnaTexto);
+        nuevoElemento.appendChild(columnaBoton);
+
+        // Agregar el elemento a la lista
+        document.getElementById("listaElementos").appendChild(nuevoElemento);
+
+        // Agregar el elemento a la lista
+        var listaElementos = document.getElementById("listaElementos");
+        listaElementos.appendChild(nuevoElemento);
+
+        // Agregar el elemento a la lista
+        var listaElementos = document.getElementById("listaElementos");
+        listaElementos.appendChild(nuevoElemento);
+
+        
     }
 
+
     function agregarElementoPoliticas() {
-        // Obtener el elemento select y la opción seleccionada
-        var selectPoliticas = document.getElementById("selectElementPoliticas");
-        var opcionSeleccionadaPoliticas = selectPoliticas.options[selectPoliticas.selectedIndex];
-        
+        // Obtener el DropDownList y la opción seleccionada
+        var ddlSelectPoliticas = document.getElementById("<%= selectElementPoliticas.ClientID %>");
+        var opcionSeleccionadaPoliticas = ddlSelectPoliticas.options[ddlSelectPoliticas.selectedIndex];
+
         // Crear un nuevo elemento de lista para políticas
         var nuevoElementoPoliticas = document.createElement("li");
-        nuevoElementoPoliticas.textContent = opcionSeleccionadaPoliticas.text;
-        
+        nuevoElementoPoliticas.style.display = "flex"; // Utilizar flexbox
+
+        // Crear una columna para el texto
+        var columnaTextoPoliticas = document.createElement("div");
+        columnaTextoPoliticas.textContent = opcionSeleccionadaPoliticas.text;
+        columnaTextoPoliticas.style.width = "200px"; // Ancho fijo para el texto
+
+        // Crear una columna para el botón eliminar
+        var columnaBotonPoliticas = document.createElement("div");
+        columnaBotonPoliticas.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
+        columnaBotonPoliticas.style.marginTop = "-1rem"; // Ajuste para subir el botón
+
         // Botón para eliminar el elemento de políticas
         var botonEliminarPoliticas = document.createElement("button");
-        botonEliminarPoliticas.className = "btn btn-danger mt-2";
+        botonEliminarPoliticas.className = "btn btn-danger my-3";
         botonEliminarPoliticas.style.fontSize = "12px";
-        botonEliminarPoliticas.style.position = "relative";
-        botonEliminarPoliticas.style.marginLeft = "3rem";
-        
+
         var iconoPoliticas = document.createElement("i");
         iconoPoliticas.className = "fa-solid fa-x";
         iconoPoliticas.style.color = "#f5f5f5";
 
         botonEliminarPoliticas.appendChild(iconoPoliticas);
 
-        botonEliminarPoliticas.onclick = function() {
+        botonEliminarPoliticas.onclick = function () {
             nuevoElementoPoliticas.remove(); // Eliminar el elemento de políticas de la lista al hacer clic en el botón
         };
 
-        // Agregar el botón de eliminar al elemento de políticas
-        nuevoElementoPoliticas.appendChild(botonEliminarPoliticas);
-        
+        // Agregar el botón de eliminar a la columna de botón
+        columnaBotonPoliticas.appendChild(botonEliminarPoliticas);
+
+        // Agregar las columnas al elemento de lista
+        nuevoElementoPoliticas.appendChild(columnaTextoPoliticas);
+        nuevoElementoPoliticas.appendChild(columnaBotonPoliticas);
+
         // Agregar el elemento de políticas a la lista
         document.getElementById("listaElementosPoliticas").appendChild(nuevoElementoPoliticas);
     }
+
     function agregarElementoAmenidades() {
-        // Obtener el elemento select y la opción seleccionada
-        var selectAmenidades = document.getElementById("selectElementAmenidades");
-        var opcionSeleccionadaAmenidades = selectAmenidades.options[selectAmenidades.selectedIndex];
-        
+        // Obtener el DropDownList y la opción seleccionada
+        var ddlSelectAmenidades = document.getElementById("<%= selectElementAmenidades.ClientID %>");
+        var opcionSeleccionadaAmenidades = ddlSelectAmenidades.options[ddlSelectAmenidades.selectedIndex];
+
         // Crear un nuevo elemento de lista para amenidades
         var nuevoElementoAmenidades = document.createElement("li");
-        nuevoElementoAmenidades.textContent = opcionSeleccionadaAmenidades.text;
-        
+        nuevoElementoAmenidades.style.display = "flex"; // Utilizar flexbox
+
+        // Crear una columna para el texto
+        var columnaTextoAmenidades = document.createElement("div");
+        columnaTextoAmenidades.textContent = opcionSeleccionadaAmenidades.text;
+        columnaTextoAmenidades.style.width = "200px"; // Ancho fijo para el texto
+
+        // Crear una columna para el botón eliminar
+        var columnaBotonAmenidades = document.createElement("div");
+        columnaBotonAmenidades.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
+        columnaBotonAmenidades.style.marginTop = "-1rem"; // Ajuste para subir el botón
+
         // Botón para eliminar el elemento de amenidades
         var botonEliminarAmenidades = document.createElement("button");
-        botonEliminarAmenidades.className = "btn btn-danger mt-2";
+        botonEliminarAmenidades.className = "btn btn-danger my-3";
         botonEliminarAmenidades.style.fontSize = "12px";
-        botonEliminarAmenidades.style.position = "relative";
-        botonEliminarAmenidades.style.marginLeft = "3rem";
-        
+
         var iconoAmenidades = document.createElement("i");
         iconoAmenidades.className = "fa-solid fa-x";
         iconoAmenidades.style.color = "#f5f5f5";
 
         botonEliminarAmenidades.appendChild(iconoAmenidades);
 
-        botonEliminarAmenidades.onclick = function() {
+        botonEliminarAmenidades.onclick = function () {
             nuevoElementoAmenidades.remove(); // Eliminar el elemento de amenidades de la lista al hacer clic en el botón
         };
 
-        // Agregar el botón de eliminar al elemento de amenidades
-        nuevoElementoAmenidades.appendChild(botonEliminarAmenidades);
-        
+        // Agregar el botón de eliminar a la columna de botón
+        columnaBotonAmenidades.appendChild(botonEliminarAmenidades);
+
+        // Agregar las columnas al elemento de lista
+        nuevoElementoAmenidades.appendChild(columnaTextoAmenidades);
+        nuevoElementoAmenidades.appendChild(columnaBotonAmenidades);
+
         // Agregar el elemento de amenidades a la lista
         document.getElementById("listaElementosAmenidades").appendChild(nuevoElementoAmenidades);
-        }
-
+    }
 
 </script>
 </asp:Content>

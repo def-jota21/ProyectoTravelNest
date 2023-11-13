@@ -43,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
 
+    <Compile Include="Neg_Inmueble.cs" />
+
+
     <Compile Include="Email.cs" />
     <Compile Include="Mensajeria.cs" />
 

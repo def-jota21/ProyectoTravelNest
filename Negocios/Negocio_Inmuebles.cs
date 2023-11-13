@@ -219,7 +219,7 @@ namespace Negocios
                 inmueble.Nombre = dr["Nombre"].ToString();
                 inmueble.Descripcion = dr["Descripcion"].ToString();
                 inmueble.Calificacion = Convert.ToInt32(dr["Calificacion"]);
-                inmueble.Precio = Convert.ToDecimal(dr["Precio"]);
+                inmueble.Precio = float.Parse(dr["Precio"].ToString());
                 inmueble.Imagen = dr["Imagen"] != DBNull.Value ? (byte[])dr["Imagen"] : null;
 
 
@@ -247,7 +247,7 @@ namespace Negocios
                 inmueble.Nombre = dr["Nombre"].ToString();
                 inmueble.Descripcion = dr["Descripcion"].ToString();
                 inmueble.Calificacion = Convert.ToInt32(dr["Calificacion"]);
-                inmueble.Precio = Convert.ToDecimal(dr["Precio"]);
+                inmueble.Precio = float.Parse(dr["Precio"].ToString());
                 inmueble.Imagen = dr["Imagen"] != DBNull.Value ? (byte[])dr["Imagen"] : null;
 
 

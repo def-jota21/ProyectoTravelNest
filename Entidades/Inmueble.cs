@@ -20,7 +20,6 @@ namespace Entidades
         public string Habitaciones { get; set; }
         public string Banhos { get; set; }
         public int Calificacion { get; set; }
-        public decimal Precio { get; set; }
         public byte[] Imagen { get; set; }
     }
 }

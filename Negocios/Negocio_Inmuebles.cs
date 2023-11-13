@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Negocios
 {
@@ -197,6 +198,63 @@ namespace Negocios
 
             Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
 
+        }
+
+        public List<Inmueble> ListaInmueblesPagina(int pagina, String IdUsuario, String IdInmueble = null)
+        {
+            DataTable dt = new DataTable();
+            string strNombreSP = "ConsultarInmueblesPagina";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@pagina", pagina));
+            lstParametros.Add(new SqlParameter("@idUsuario", IdUsuario));
+            lstParametros.Add(new SqlParameter("@idInmueble", IdInmueble));
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            List<Inmueble> inmuebles = new List<Inmueble>();
+            foreach(DataRow dr in dt.Rows)
+            {
+                Inmueble inmueble = new Inmueble();
+                inmueble.IdInmueble = dr["IdInmueble"].ToString();
+                inmueble.Nombre = dr["Nombre"].ToString();
+                inmueble.Descripcion = dr["Descripcion"].ToString();
+                inmueble.Calificacion = Convert.ToInt32(dr["Calificacion"]);
+                inmueble.Precio = float.Parse(dr["Precio"].ToString());
+                inmueble.Imagen = dr["Imagen"] != DBNull.Value ? (byte[])dr["Imagen"] : null;
+
+
+                inmuebles.Add(inmueble);
+            }
+
+            return inmuebles;
+        }
+
+        public List<Inmueble> ListaInmuebleIndividual(String IdUsuario, String IdInmueble)
+        {
+            DataTable dt = new DataTable();
+            string strNombreSP = "ConsultarInmueblesIndividual";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@idUsuario", IdUsuario));
+            lstParametros.Add(new SqlParameter("@idInmueble", IdInmueble));
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            List<Inmueble> inmuebles = new List<Inmueble>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Inmueble inmueble = new Inmueble();
+                inmueble.IdInmueble = dr["IdInmueble"].ToString();
+                inmueble.Nombre = dr["Nombre"].ToString();
+                inmueble.Descripcion = dr["Descripcion"].ToString();
+                inmueble.Calificacion = Convert.ToInt32(dr["Calificacion"]);
+                inmueble.Precio = float.Parse(dr["Precio"].ToString());
+                inmueble.Imagen = dr["Imagen"] != DBNull.Value ? (byte[])dr["Imagen"] : null;
+
+
+                inmuebles.Add(inmueble);
+            }
+
+            return inmuebles;
         }
     }
 }

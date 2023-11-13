@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.7.300\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.Rekognition, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Rekognition.3.7.300\lib\net45\AWSSDK.Rekognition.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -42,19 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Neg_Descuentos.cs" />
+    <Compile Include="Neg_Promocion.cs" />
+    <Compile Include="Neg_Reglas.cs" />
+
+    <Compile Include="Neg_Inmueble.cs" />
+
 
     <Compile Include="Email.cs" />
     <Compile Include="Mensajeria.cs" />
-
-
     <Compile Include="Negocio_Comentarios.cs" />
     <Compile Include="Negocio_Inmuebles.cs" />
-
     <Compile Include="Neg_Reservaciones.cs" />
     <Compile Include="Neg_filtrarcategorias.cs" />
     <Compile Include="Neg_Usuarios.cs" />
     <Compile Include="Neg_Favoritos.cs" />
     <Compile Include="Neg_AjustarReserva.cs" />
+    <Compile Include="Neg_VerificarIdentidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +76,13 @@
       <Project>{b409b282-7308-4d68-817e-a6900acc3b64}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AWSSDK.Rekognition.3.7.300\analyzers\dotnet\cs\AWSSDK.Rekognition.CodeAnalysis.dll" />
+    <Analyzer Include="..\packages\AWSSDK.Rekognition.3.7.300\analyzers\dotnet\cs\SharedAnalysisCode.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

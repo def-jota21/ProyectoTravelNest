@@ -15,21 +15,21 @@ namespace ProyectoTravelNest.pages
     {
 
         /// <summary>
-        /// Control lstfrmMantenimiento.
+        /// Control upd_Favoritos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lstfrmMantenimiento;
+        protected global::System.Web.UI.UpdatePanel upd_Favoritos;
 
         /// <summary>
-        /// Control btnAddMore.
+        /// Control rptData.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddMore;
+        protected global::System.Web.UI.WebControls.Repeater rptData;
     }
 }

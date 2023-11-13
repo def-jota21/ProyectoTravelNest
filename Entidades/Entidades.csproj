@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AjustarReserva.cs" />
+    <Compile Include="Inmueble.cs" />
     <Compile Include="Usuarios.cs" />
     <Compile Include="Favoritos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

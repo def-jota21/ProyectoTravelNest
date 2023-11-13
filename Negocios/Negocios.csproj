@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Neg_Inmueble.cs" />
     <Compile Include="Neg_Usuarios.cs" />
     <Compile Include="Neg_Favoritos.cs" />
     <Compile Include="Neg_AjustarReserva.cs" />

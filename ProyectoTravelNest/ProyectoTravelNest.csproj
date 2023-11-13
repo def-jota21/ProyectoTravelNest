@@ -166,6 +166,7 @@
     <Content Include="pages\elegirinmueble.aspx" />
     <Content Include="pages\favoritos.aspx" />
     <Content Include="pages\gestionusuarios.aspx" />
+    <Content Include="pages\Login.aspx" />
     <Content Include="pages\modificarcalendarioreserva.aspx" />
     <Content Include="pages\paneladministracionhuesped.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
@@ -355,6 +356,13 @@
     </Compile>
     <Compile Include="pages\gestionusuarios.aspx.designer.cs">
       <DependentUpon>gestionusuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\modificarcalendarioreserva.aspx.cs">
       <DependentUpon>modificarcalendarioreserva.aspx</DependentUpon>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,7 +14,12 @@ namespace ProyectoTravelNest.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
+            if (eUsuarios != null)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
@@ -60,6 +66,12 @@ namespace ProyectoTravelNest.pages
             Negocios.Neg_Usuarios iUsuariosNeg = new Neg_Usuarios();
 
             iUsuariosNeg.AgregarUsuario(iUsuario, 1);
+
+            string script = "Swal.fire('¡GRACIAS!', 'Su cuenta se creo de manera satisfactoria.', 'success');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+
+            string redirectScript = "setTimeout(function(){window.location.href = 'Default.aspx';}, 5000);";
+            ScriptManager.RegisterStartupScript(this, GetType(), "Redirigir", redirectScript, true);
         }
 
         

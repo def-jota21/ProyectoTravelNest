@@ -183,8 +183,6 @@
     <Content Include="pages\paneladministracionhuesped.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
     <Content Include="pages\promociones.aspx" />
-    <Content Include="pages\prueba.aspx" />
-    <Content Include="pages\recepciondenuncias.aspx" />
     <Content Include="pages\recepcionmensajes.aspx" />
     <Content Include="pages\reglas.aspx" />
     <Content Include="pages\reservas.aspx" />
@@ -454,20 +452,6 @@
     </Compile>
     <Compile Include="pages\promociones.aspx.designer.cs">
       <DependentUpon>promociones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\prueba.aspx.cs">
-      <DependentUpon>prueba.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\prueba.aspx.designer.cs">
-      <DependentUpon>prueba.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\recepciondenuncias.aspx.cs">
-      <DependentUpon>recepciondenuncias.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\recepciondenuncias.aspx.designer.cs">
-      <DependentUpon>recepciondenuncias.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\recepcionmensajes.aspx.cs">
       <DependentUpon>recepcionmensajes.aspx</DependentUpon>

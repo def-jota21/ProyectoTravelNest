@@ -252,6 +252,7 @@
                                                 <ItemTemplate>
                                                     <div>
                                                         <div style="display: inline-block;">
+                                                            
                                                             <h5 class="card-title" style="display: inline-block;">$<%# Math.Round(Convert.ToDecimal(Eval("Precio")), 2) %></h5>
                                                             <h5 class="card-title" style="display: inline-block;">/ noche</h5>
                                                         </div>
@@ -269,6 +270,10 @@
                                                 <asp:Label ID="lblFechaEntrada" runat="server" Text="" CssClass="etiquetaPersonalizada"></asp:Label>
                                                 <asp:Label ID="Label3" runat="server" Text="Fecha Salida"></asp:Label>
                                                 <asp:Label ID="lblFechaSalida" runat="server" Text="" CssClass="etiquetaPersonalizada"></asp:Label>
+
+                                                <asp:Label ID="Label4" runat="server" Text="Total"></asp:Label>
+                                                <asp:Label ID="txtTotal" runat="server" Text="" CssClass="etiquetaPersonalizada"></asp:Label>
+
                                             </div>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
@@ -276,6 +281,7 @@
                                         <asp:Button ID="btnReservar" runat="server" Text="Reservar" CssClass="btn btn-primary btn-block rounded"
                                             Style="height: 47px; margin-top: -2px;" />
                                     </div>
+
                                 </div>
                             </div>
                         </div>

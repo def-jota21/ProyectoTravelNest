@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocios;
@@ -13,12 +14,20 @@ namespace ProyectoTravelNest.pages
         Neg_AjustarReserva iReserva = new Neg_AjustarReserva();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+            if (eUsuarios == null)
             {
-              
-                string IdInmueble = Session["idInmueble"].ToString();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                string IdInmueble = eUsuarios.IdUsuario.ToString();
                 ObtenerDatos(IdInmueble);
             }
+
+            
         }
 
         private void ObtenerDatos(string idInmueble)

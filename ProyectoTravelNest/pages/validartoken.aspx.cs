@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocios;
@@ -25,6 +26,13 @@ namespace ProyectoTravelNest.pages
             correo = parametros[0];
             contrasena = parametros[1];
             token = parametros[2];*/
+
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+            if (eUsuarios != null)
+            {
+                Response.Redirect("Default.aspx");
+            }
 
             correo = Request.QueryString["parametro1"];
             contrasena = Request.QueryString["parametro2"];
@@ -102,7 +110,7 @@ namespace ProyectoTravelNest.pages
                     if (usuario != null)
                     {
                         // Si el rol es A o H, inicia sesión
-                        if (usuario.T_Rol == 'A' || usuario.T_Rol == 'H')
+                        if (usuario.T_Rol == 'A' || usuario.T_Rol == 'H' || usuario.T_Rol == 'G')
                         {
                             token = "";
                             Session["IdUsuario"] = usuario;

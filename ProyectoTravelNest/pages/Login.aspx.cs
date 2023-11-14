@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web.Security;
 
 namespace ProyectoTravelNest.pages
 {
@@ -18,7 +19,12 @@ namespace ProyectoTravelNest.pages
         private static string token;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
+            if (eUsuarios != null)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
 
 

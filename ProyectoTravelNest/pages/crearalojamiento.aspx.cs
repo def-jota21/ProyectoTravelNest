@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocios;
@@ -14,18 +15,23 @@ namespace ProyectoTravelNest.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            if (!IsPostBack)
+            if (eUsuarios == null)
             {
-                
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
                 Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
                 DataTable tablaServicios = neg_Inmueble.ObtenerServicios();
 
                 if (tablaServicios.Rows.Count > 0)
                 {
                     selectElement.DataSource = tablaServicios;
-                    selectElement.DataTextField = "Nombre"; 
-                    selectElement.DataValueField = "IdServicio"; 
+                    selectElement.DataTextField = "Nombre";
+                    selectElement.DataValueField = "IdServicio";
                     selectElement.DataBind();
                 }
 
@@ -49,6 +55,8 @@ namespace ProyectoTravelNest.pages
                     selectElementAmenidades.DataBind();
                 }
             }
+
+            
 
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,14 +12,23 @@ namespace ProyectoTravelNest.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+            if (eUsuarios == null)
+            {
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
             {
                 Negocios.Negocio_Comentarios iNegComentario = new Negocios.Negocio_Comentarios();
 
                 //aca debe de optener el valor de la variable session de inicio de sesion para poder hacer la consulta PENDIENTE
-                rptComentariosPendientes.DataSource = iNegComentario.ListarComentarioPendientesHuesped("2222222222");
+                rptComentariosPendientes.DataSource = iNegComentario.ListarComentarioPendientesHuesped(eUsuarios.IdUsuario.ToString());
                 rptComentariosPendientes.DataBind();
             }
+
+            
         }
 
         protected void btnRealizarComentario_Command(object sender, CommandEventArgs e)

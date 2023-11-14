@@ -256,5 +256,19 @@ namespace Negocios
 
             return inmuebles;
         }
+
+        public DataTable ListarInformacionInmuebleServicios(string idInmueble)
+        {
+            DataTable dtInfoPoliticas = new DataTable();
+
+            string strNombreSP = "ListarInformacionServiciosInmueble";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@Opcion", 1));
+            lstParametros.Add(new SqlParameter("@IdInmuble", idInmueble));
+
+            dtInfoPoliticas = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dtInfoPoliticas;
+        }
     }
 }

@@ -66,7 +66,7 @@ namespace Datos
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar, 255)).Value = nombreServicio;
+                    command.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar, 255)).Value = nombreServicio;
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

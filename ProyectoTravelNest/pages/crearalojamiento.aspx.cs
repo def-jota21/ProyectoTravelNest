@@ -90,8 +90,14 @@ namespace ProyectoTravelNest.pages
 
 
             Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
-            neg_Inmueble.InsertarInmueble(inmueble,categoriaString,"", listaElementosServidor, listaElementosAmenidades);
+            //neg_Inmueble.InsertarInmueble(inmueble,categoriaString,"", listaElementosServidor, listaElementosAmenidades);
 
+            txtnombre.Text = string.Empty;
+            txtubicacion.Text = string.Empty;
+            txtprecio.Text = string.Empty;
+            txthuespedes.Text = string.Empty;
+            txthabitaciones.Text = string.Empty;
+            txtbaños.Text = string.Empty;
         }
     }
 }

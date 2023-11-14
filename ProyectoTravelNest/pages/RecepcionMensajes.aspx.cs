@@ -18,9 +18,9 @@ namespace ProyectoTravelNest.pages
             {
                 if (!IsPostBack)
                 {
-                    Session["idUsuario"] = "123456789";
-                    Session["NombreUsuario"] = "Prueba";
-                    Session["UserRol"] = "A";
+                    //Session["idUsuario"] = "123456789";
+                    //Session["NombreUsuario"] = "Prueba";
+                    //Session["UserRol"] = "A";
 
                     string instruccion = "";
                     string rol = Session["UserRol"].ToString();

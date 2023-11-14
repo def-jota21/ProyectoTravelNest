@@ -26,7 +26,7 @@ namespace ProyectoTravelNest.pages
         {
             iFavoritos.Instruccion = "Read";
 
-            rptData.DataSource = iFavoritos.ObtenerFavoritosDeUsuario("2222222222");
+            rptData.DataSource = iFavoritos.ObtenerFavoritosDeUsuario("idUsuario");
             rptData.DataBind();
         }
 
@@ -51,8 +51,8 @@ namespace ProyectoTravelNest.pages
         {
             try
             {
-                string idUsuario = "2222222222";
-                //string idUsuario = Session["idUsuario"].ToString();
+                
+                string idUsuario = Session["idUsuario"].ToString();
 
                 // Llamar a la función EliminarFavorito de la capa de negocios
                 iFavoritos.Instruccion = "Delete";

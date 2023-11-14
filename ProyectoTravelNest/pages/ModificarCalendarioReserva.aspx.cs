@@ -15,8 +15,8 @@ namespace ProyectoTravelNest.pages
         {
             if (!IsPostBack)
             {
-                string IdInmueble = "1111111111111";
-                //string IdInmueble = Session["idInmueble"].ToString();
+              
+                string IdInmueble = Session["idInmueble"].ToString();
                 ObtenerDatos(IdInmueble);
             }
         }
@@ -37,8 +37,8 @@ namespace ProyectoTravelNest.pages
         {
             try
             {
-                //string IdInmueble = Session["idInmueble"].ToString();
-                string IdInmueble = "1111111111111";
+                string IdInmueble = Session["idInmueble"].ToString();
+                
 
                 decimal precioNoche = Convert.ToDecimal(PrecioporNoche.Text);
 
@@ -63,8 +63,8 @@ namespace ProyectoTravelNest.pages
         {
             try
             {
-                //string IdInmueble = Session["idInmueble"].ToString();
-                string IdInmueble = "1111111111111";
+                string IdInmueble = Session["idInmueble"].ToString();
+                
 
                 string Tiempo_EstadiaMinima = estadiaMinima.Text;
                 string Tiempo_EstadiaMaxima = estadiaMaxima.Text;

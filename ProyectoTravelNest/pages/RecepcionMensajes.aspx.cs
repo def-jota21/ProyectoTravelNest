@@ -19,8 +19,8 @@ namespace ProyectoTravelNest.pages
                 if (!IsPostBack)
                 {
                     Session["idUsuario"] = "123456789";
-                    Session["NombreUsuario"] = "Juan";
-                    Session["UserRol"] = "H";
+                    Session["NombreUsuario"] = "Prueba";
+                    Session["UserRol"] = "A";
 
                     string instruccion = "";
                     string rol = Session["UserRol"].ToString();
@@ -38,6 +38,8 @@ namespace ProyectoTravelNest.pages
 
                     rptAnfitriones.DataSource = FunctionsMensajeria.GetDataReservasActivas(idUsuario, instruccion);
                     rptAnfitriones.DataBind();
+
+
                 }
             }
             catch (Exception)
@@ -77,7 +79,7 @@ namespace ProyectoTravelNest.pages
                 GetMessagesFromBD(idEmisor, idReceptor);
                 UpdPanel_Page.Update();
 
-                FunctionsEmail.EnviarEmail(idReceptor, asunto, nombreUsuario);
+                FunctionsEmail.EnviarEmail(idReceptor, asunto, nombreUsuario);//envia mensaje 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "scrollScript", "scrollToChatBottom();", true);
             }
             catch (Exception)
@@ -114,6 +116,9 @@ namespace ProyectoTravelNest.pages
             {
                 string mensaje = Request.Form["message_input"];
                 EnviarMensaje(mensaje);
+                UpdPanel_Page.Update();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "scrollScript", "scrollToChatBottom();", true);
+
             }
             catch (Exception)
             {

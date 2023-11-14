@@ -1,14 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="recepcionmensajes.aspx.cs" Inherits="ProyectoTravelNest.pages.RecepcionMensajes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
     <link href="../Content/RecepcionMensajes.css" rel="stylesheet" />
-    <form runat="server">
+   
        
         <asp:UpdatePanel runat="server" ID="UpdPanel_Page" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
-                            <h2>Seleccionar Categoría</h2>
+                            <h2>Mensajeria</h2>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-secondary category-button" id="category-messages">Bandeja de Mensajes</button>
                                 <%--<button class="btn btn-secondary category-button" id="category-reports">Denuncias</button>--%>
@@ -42,15 +43,14 @@
                                 <input type="text" id="messageinput" name="message_input" class="form-control" placeholder="Escribe un mensaje...">
                                 <div class="input-group-append">
                                     <asp:Button runat="server" ID="btnSend" class="btn btn-success" Text="Enviar Mensaje" OnClick="btnSend_Click"></asp:Button>
+                                     
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                </div> <img src="../img/covergestionusuarios.jpg" alt="Imagen" class="left-image" />
+                
+               
 
                 <script>
                     // Esta función desplaza la ventana del chat al final
@@ -62,5 +62,5 @@
 
             </ContentTemplate>
         </asp:UpdatePanel>
-    </form>
+   
 </asp:Content>

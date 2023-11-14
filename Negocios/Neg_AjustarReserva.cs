@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datos;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,21 +11,21 @@ namespace Negocios
 {
     public class Neg_AjustarReserva
     {
-        public static void InsertarAjustarReserva(int IdInmueble, string Tiempo_EstadiaMinima, string Tiempo_EstadiaMaxima, string Tiempo_ReservaMinima, string Tiempo_ReservaMaxima)
-        {
-            try
-            {
-                string insertQuery = "INSERT INTO AjustarReserva (Tiempo_EstadiaMinima, Tiempo_EstadiaMaxima, Tiempo_ReservaMinima, Tiempo_ReservaMaxima, IdInmueble) " +
-                                    $"VALUES ('{Tiempo_EstadiaMinima}', '{Tiempo_EstadiaMaxima}', '{Tiempo_ReservaMinima}', '{Tiempo_ReservaMaxima}', {IdInmueble})";
+        ConexionSQL conexionBD = new ConexionSQL();
 
-                Datos.ConexionSQL iConexion = new Datos.ConexionSQL();
-                iConexion.QueryDB(insertQuery);
-            }
-            catch (Exception ex)
-            {
-                // Manejar la excepción aquí
-                throw new Exception(ex.Message);
-            }
+        public void AjustarTimeReserva(string IdInmueble, string Tiempo_EstadiaMinima, string Tiempo_EstadiaMaxima, string Tiempo_ReservaMinima, string Tiempo_ReservaMaxima)
+        {
+            conexionBD.AjustarTiempoReservas(IdInmueble, Tiempo_EstadiaMinima, Tiempo_EstadiaMaxima, Tiempo_ReservaMinima, Tiempo_ReservaMaxima);
+        }
+
+        public void AjustarDataPrecio(string idInmueble, decimal precioNoche)
+        {
+            conexionBD.AjustarDataInmueble(idInmueble, precioNoche);
+        }
+
+        public string GetPrecioNoche(string idInmueble)
+        {
+            return conexionBD.GetPrecio(idInmueble);
         }
 
     }

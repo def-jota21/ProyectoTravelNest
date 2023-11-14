@@ -111,6 +111,14 @@
         color: #212529;
         transform: scale(1.1); /* this makes the button slightly larger when hovered over */
     }
+.h1 {
+    .h1
+
+{
+    margin-left: 0; /* Set margin-left to 0 to align to the left */
+    margin-top: 50px; /* Set margin-top to adjust the vertical position */
+
+}
 
 @media (max-width: 767px) {
     .add-more-button {
@@ -124,4 +132,18 @@
         width: 90px;
         height: 90px;
     }
+}
+/* Estilos para el título "Favoritos" */
+.h1 {
+    position: absolute;
+    left: 5.06%;
+    right: 73.31%;
+    top: 12.53%;
+    bottom: 83.52%;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    color: #000000;
+    line-height: 100px;
 }

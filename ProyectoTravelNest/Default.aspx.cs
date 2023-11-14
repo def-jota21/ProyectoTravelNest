@@ -16,22 +16,25 @@ namespace ProyectoTravelNest
 {
     public partial class _Default : Page
     {
-        
+        Neg_Favoritos iFavoritos = new Neg_Favoritos();
+        Negocio_Inmuebles iInmueble = new Negocio_Inmuebles();
         protected void Page_Load(object sender, EventArgs e)
 
         {
             if (!IsPostBack)
             {
-
-                Negocios.Negocio_Inmuebles iInmueble = new Negocio_Inmuebles();
-                DataTable dtInmbuebles = new DataTable();
-                dtInmbuebles = iInmueble.ListarInmueblesPrincipal();
-
-                rptInmuebles.DataSource = dtInmbuebles;
+                rptInmuebles.DataSource = CargarTarjetas();
                 rptInmuebles.DataBind();
                 CargarCategorias();
 
+
             }
+        }
+
+        private DataTable CargarTarjetas()
+        {
+            DataTable dtInmbuebles = iInmueble.ListarInmueblesPrincipal();
+            return dtInmbuebles;
         }
 
         private void CargarCategorias()
@@ -43,28 +46,28 @@ namespace ProyectoTravelNest
             DataTable dt = negocio.ObtenerTodasLasCategorias();
 
             ddlCategorias.Items.Clear();
-            ddlCantidadPersonas.Items.Clear();
-            ddlCalificacion.Items.Clear();
+            //ddlCantidadPersonas.Items.Clear();
+            //ddlCalificacion.Items.Clear();
 
             // Agrega elementos predeterminados a los controles select
             ddlCategorias.Items.Add(new ListItem("Tipo de Alojamiento", ""));
-            ddlCantidadPersonas.Items.Add(new ListItem("Cantidad de Personas", ""));
-            ddlCalificacion.Items.Add(new ListItem("Calificación", ""));
+            //ddlCantidadPersonas.Items.Add(new ListItem("Cantidad de Personas", ""));
+            //ddlCalificacion.Items.Add(new ListItem("Calificación", ""));
 
             // Agrega los datos a los controles select
             foreach (DataRow row in dt.Rows)
             {
                 // Obtén la información de la fila
                 string nombreCategoria = row["Nombre"].ToString();
-                string idCategoria = row["IdCategoria"].ToString();
-                string cantidadHuesped = row["Cantidad_Huesped"].ToString();
-                string calificacion = row["Calificacion"].ToString();
+               // string cantidadHuesped = row["Cantidad_Huesped"].ToString();
+                //string calificacion = row["Calificacion"].ToString();
 
                 // Agrega la información a los controles select
-                ddlCategorias.Items.Add(new ListItem(nombreCategoria, idCategoria));
-                ddlCantidadPersonas.Items.Add(new ListItem(cantidadHuesped, cantidadHuesped));
-                ddlCalificacion.Items.Add(new ListItem(calificacion, calificacion));
+                ddlCategorias.Items.Add(new ListItem(nombreCategoria, nombreCategoria));
+                //ddlCantidadPersonas.Items.Add(new ListItem(cantidadHuesped, cantidadHuesped));
+                //ddlCalificacion.Items.Add(new ListItem(calificacion, calificacion));
             }
+            upd_Panel.Update();
         }
 
 
@@ -89,100 +92,39 @@ namespace ProyectoTravelNest
 
 
             // Llamar a la función AgregarFavorito
-            Neg_Favoritos.AgregarFavorito(IdUsuario, idInmueble);
-
-          
+            iFavoritos.Instruccion = "Insert";
+            iFavoritos.AgregarFavorito(IdUsuario, idInmueble);
 
             // Puedes redirigir al usuario a la página de resultados u otra página
-            Response.Redirect("Default.aspx");
-
+            upd_Panel.Update();
         }
-    
 
-        
+
+
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            string script = null;
-            try
+            string correo = txtCorreo.Text;
+            string contrasena = txtcontrasena.Text;
+
+            // Instancia de la clase de negocios para verificar las credenciales
+            var negocioUsuarios = new Neg_Usuarios();
+            var usuario = negocioUsuarios.VerificarCredenciales(correo, contrasena);
+
+            if (usuario != null)
             {
-                string Correo = txtCorreo.Text;
-                string Contrasena = txtcontrasena.Text;
-                var warningss = new List<string>();
-                bool entrar = false;
-                string regexEmail = @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
-                Regex regex = new Regex(regexEmail);
-
-                if (string.IsNullOrWhiteSpace(Correo))
+                // Si el rol es A o H, inicia sesión
+                if (usuario.T_Rol == 'A' || usuario.T_Rol == 'H')
                 {
-                    warningss.Add("El correo es requerido");
-                    entrar = true;
-                }
-
-                if (!regex.IsMatch(Correo))
-                {
-                    warningss.Add("El email no es válido");
-                    entrar = true;
-                }
-
-                if (string.IsNullOrWhiteSpace(Contrasena))
-                {
-                    warningss.Add("La contraseña es necesaria");
-                    entrar = true;
-                }
-
-                if (entrar)
-                {
-                    // Muestra los mensajes de error en un control de la página o utiliza Toastr.
-                    script = "toastr.options.closeButton = true;" +
-                             "toastr.options.positionClass = 'toast-bottom-right';" +
-                             "toastr.error('" + string.Join("<br>", warningss) + "');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ToastrNotification", script, true);
+                    Session["IdUsuario"] = usuario;
+                    Response.Redirect("Default.aspx"); // Redirige a la página de inicio
                 }
                 else
                 {
-                    if (Page.IsValid)
-                    {
-                        // Llama a la capa de negocios para verificar las credenciales
-                        Negocios.Neg_Usuarios iUsuarios = new Negocios.Neg_Usuarios();
-                        Entidades.Usuarios iCredenciales = iUsuarios.VerificarCredenciales(Correo, Contrasena);
-
-                        if (iCredenciales != null)
-                        {
-                            Session["Credenciales"] = iCredenciales;
-
-                            //Variable session para el manejo de permisos de invitado
-                            //if (iCredenciales.Rol == "Invitado")
-                            //{
-                            //    Session["IsDropDownEventExecuted"] = true;
-                            //}
-
-                            // Aquí puedes enviar el token de verificación por correo si es necesario.
-
-                            // Redireccionar a la página de validación de token o a donde sea necesario.
-                            Response.Redirect("pages/SegundoFactorAuten.aspx");
-                            //Response.Redirect("pages/ControlPanel.aspx");
-                        }
-                        else
-                        {
-                            script = @"Swal.fire({
-                        title: '¡Error!',
-                        text: 'Correo/Contraseña incorrectos',
-                        icon: 'error'
-                    });";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", script, true);
-                            txtCorreo.Text = "";
-                            txtcontrasena.Text = "";
-                        }
-                    }
+                    // Manejar roles no autorizados o mostrar mensaje
                 }
-            }
-            catch (Exception ex)
-            {
-                script = "toastr.warning('Ha ocurrido un error, inténtelo más tarde');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "ToastrNotification", script, true);
-            }
-        }//fin de iniciar sesion
 
+            }
+        }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
@@ -249,6 +191,37 @@ namespace ProyectoTravelNest
             }
         }
 
-    }
 
-}  
+        protected void FiltrarIn(object sender, EventArgs e)
+        {
+            string categoriaSeleccionada = ddlCategorias.Value;
+            string cantidadPersonasSeleccionada = ddlCantidadPersonas.Text;
+            string calificacionSeleccionada = ddlCalificacion.Text;
+
+            DataTable todosLosInmuebles = CargarTarjetas();
+
+            if (todosLosInmuebles != null)
+            {
+                var inmueblesFiltrados = todosLosInmuebles.AsEnumerable()
+                    .Where(row => (categoriaSeleccionada == "" || row.Field<string>("Categoria") == categoriaSeleccionada)
+                               && (cantidadPersonasSeleccionada == "" || row.Field<int>("Cantidad_Huesped").ToString() == cantidadPersonasSeleccionada)
+                               && (calificacionSeleccionada == "" || row.Field<int>("Calificacion").ToString() == calificacionSeleccionada))
+                    .ToList();
+
+                if (inmueblesFiltrados.Any())
+                {
+                    DataTable dtFiltrados = inmueblesFiltrados.CopyToDataTable();
+                    rptInmuebles.DataSource = dtFiltrados;
+                    rptInmuebles.DataBind();
+                    upd_Panel.Update();
+                }
+                else
+                {
+                    rptInmuebles.DataSource = null;
+                    rptInmuebles.DataBind();
+                    upd_Panel.Update();
+                }
+            }
+        }
+    }
+}

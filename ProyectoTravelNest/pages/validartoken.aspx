@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="ProyectoTravelNest.pages.login" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="validartoken.aspx.cs" Inherits="ProyectoTravelNest.pages.validartoken" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    
     <link href="Content/style.css" rel="stylesheet" />
     <style>
         .con {
@@ -72,28 +71,15 @@
         </div>
 
         <div class="col-sm-12 col-lg-12 mt-2 form-group">
-
-            <asp:Label ID="lblCorreo" runat="server" AssociatedControlID="txtcorreo" CssClass="form-label">Correo Electrónico</asp:Label>
-            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+            <asp:Label ID="lbltoken" runat="server" AssociatedControlID="txtToken" CssClass="form-label">Token</asp:Label>
+            <asp:TextBox ID="txtToken" runat="server" CssClass="form-control" autocomplete="off" TextMode="Number"></asp:TextBox>
         </div>
 
         <div class="col-sm-12 col-lg-12 mt-2 form-group">
-
-            <asp:Label ID="lblContrasena" runat="server" AssociatedControlID="txtcontrasena" CssClass="form-label">Contraseña</asp:Label>
-            <asp:TextBox ID="txtcontrasena" runat="server" TextMode="Password" CssClass="form-control" autocomplete="off"></asp:TextBox>
-        </div>
-
-
-        <div class="col-sm-12 col-lg-12 mt-2 form-group">
-            <asp:Button ID="btnIniciarSesion" runat="server" Text="Iniciar Sesión" CssClass="btn btn-primary btn-block"
-                Style="height: 44px; margin-top: -2px; background: #7AB730; border-color: #7AB730;" OnClick="btnIniciarSesion_Click" OnClientClick="abrirModal();"/>
-        </div>
-
-        <div class="col-sm-12 col-lg-12 mt-2 form-group">
-            <a href="crearcuenta.aspx" class="btn btn-primary btn-block"
-                style="height: 44px; margin-top: -2px; background: #7AB730; border-color: #7AB730;">Crear Cuenta
-            </a>
+            <asp:Button ID="btnValidarToken" runat="server" Text="Validar Token" OnClick="btnValidarToken_Click" CssClass="btn btn-primary btn-block"
+                Style="height: 44px; margin-top: -2px; background: #7AB730; border-color: #7AB730;"/>
         </div>
     </div>
 
+   
 </asp:Content>

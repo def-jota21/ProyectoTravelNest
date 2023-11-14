@@ -189,6 +189,7 @@
     <Content Include="pages\reglas.aspx" />
     <Content Include="pages\reservas.aspx" />
     <Content Include="pages\sesionyseguridad.aspx" />
+    <Content Include="pages\validartoken.aspx" />
     <Content Include="pages\verificaridentidad.aspx" />
     <Content Include="pages\verinformacion.aspx" />
     <Content Include="Plantillas\Plantilla_Chat.html" />
@@ -495,6 +496,13 @@
     </Compile>
     <Compile Include="pages\sesionyseguridad.aspx.designer.cs">
       <DependentUpon>sesionyseguridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\validartoken.aspx.cs">
+      <DependentUpon>validartoken.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\validartoken.aspx.designer.cs">
+      <DependentUpon>validartoken.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\verificaridentidad.aspx.cs">
       <DependentUpon>verificaridentidad.aspx</DependentUpon>

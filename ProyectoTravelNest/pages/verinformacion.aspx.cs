@@ -38,6 +38,8 @@ namespace ProyectoTravelNest.pages
                 lblFechaEntrada.Text = "Seleccione una fecha";
 
                 Negocios.Negocio_Inmuebles iInmueble = new Negocio_Inmuebles();
+                
+
                 rptDatosInmueble.DataSource = iInmueble.ListarInformacionInmueble(idInmueble, IdUsuario);
                 rptDatosInmueble.DataBind();
 
@@ -55,6 +57,9 @@ namespace ProyectoTravelNest.pages
 
                 rptReglas.DataSource = iInmueble.ListarInformacionInmuebleReglas(idInmueble, IdUsuario);
                 rptReglas.DataBind();
+
+                RepeaterServicios.DataSource = iInmueble.ListarInformacionInmuebleServicios(idInmueble); 
+                RepeaterServicios.DataBind();
             }
         }
 

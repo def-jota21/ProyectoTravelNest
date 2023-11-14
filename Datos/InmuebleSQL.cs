@@ -66,9 +66,10 @@ namespace Datos
 
             return tablaServicios;
         }
-        public string InsertarInmueble(Entidades.Inmueble inmueble,string IdCategoria,string rutas)
+        public string InsertarInmueble(Entidades.Inmueble inmueble,string IdCategoria,string rutas, string IdUsuario)
         {
             string nuevoIdInmueble = string.Empty;
+
             CadenaConexion();
 
             try
@@ -83,7 +84,7 @@ namespace Datos
 
                         cmd.Parameters.Add("@opcion", SqlDbType.Int).Value = "1";
                         cmd.Parameters.Add("@IdInmueble", SqlDbType.NVarChar).Value = "";
-                        cmd.Parameters.Add("@IdUsuario", SqlDbType.NVarChar).Value = "2222222222";
+                        cmd.Parameters.Add("@IdUsuario", SqlDbType.NVarChar).Value = IdUsuario;
                         cmd.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = inmueble.Nombre;
                         cmd.Parameters.Add("@Direccion", SqlDbType.VarChar).Value = inmueble.Direccion;
                         cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = inmueble.Descripcion;
@@ -112,5 +113,60 @@ namespace Datos
                 throw new Exception($"Error: {ex.Message}", ex);
             }
         }
+
+        public void AsociarAmenidadAInmueble(string idInmueble, string idAmenidad)
+        {
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                using (SqlCommand command = new SqlCommand("AsociarAmenidadAInmueble", sqlCon))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Agrega los parámetros del procedimiento almacenado
+                    command.Parameters.Add(new SqlParameter("@IdInmueble", SqlDbType.NChar)).Value = idInmueble;
+                    command.Parameters.Add(new SqlParameter("@IdAmenidad", SqlDbType.NChar)).Value = idAmenidad;
+
+                    // Ejecuta el procedimiento almacenado
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public string ObtenerIdAmenidadPorNombre(string nombreAmenidad)
+        {
+            string idAmenidad = "-1"; // Valor predeterminado en caso de que no se encuentre la amenidad
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                string query = "SELECT IdAmenidades FROM Amenidades WHERE Nombre = @Nombre";
+
+                using (SqlCommand command = new SqlCommand(query, sqlCon))
+                {
+                    command.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar, 255)).Value = nombreAmenidad;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int idAmenidadInt;
+                            if (int.TryParse(reader[0].ToString(), out idAmenidadInt))
+                            {
+                                idAmenidad = idAmenidadInt.ToString();
+                            }
+                        }
+                    }
+                }
+            }
+
+            return idAmenidad;
+        }
+
     }
 }

@@ -36,10 +36,10 @@ namespace Negocios
             return tablaServicios;
         }
 
-        public void InsertarInmueble(Entidades.Inmueble inmueble, string categoria, string rutas, List<string> servicios, List<string> amenidades) 
+        public void InsertarInmueble(Entidades.Inmueble inmueble, string categoria, string rutas, List<string> servicios, List<string> amenidades, string IdUsuario) 
         {
             Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
-            string idInmueble = inmuebleSQL.InsertarInmueble(inmueble, categoria, "");
+            string idInmueble = inmuebleSQL.InsertarInmueble(inmueble, categoria, "", IdUsuario);
 
             ServiciosSQL ServiciosSQL = new ServiciosSQL();
             foreach (string servicio in servicios)
@@ -48,7 +48,14 @@ namespace Negocios
 
                 ServiciosSQL.EjecutarProcedureServicioxInmueble(idInmueble, Id);
             }
-            
+
+
+            foreach (string amenidad in amenidades)
+            {
+                string Id = inmuebleSQL.ObtenerIdAmenidadPorNombre(amenidad);
+
+                inmuebleSQL.AsociarAmenidadAInmueble(idInmueble,Id);
+            }
         }
     }
 }

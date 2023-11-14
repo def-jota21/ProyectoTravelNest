@@ -42,6 +42,15 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.Repeater RepeaterDatosSecundarios;
 
         /// <summary>
+        /// Control RepeaterServicios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterServicios;
+
+        /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
         /// <remarks>

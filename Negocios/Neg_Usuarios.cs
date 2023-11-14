@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
@@ -151,5 +153,40 @@ namespace Negocios
 
         }//fin de agregar usuario
 
+
+        // ENVIO DE CORREO Y VALIDACION
+        public string GenerarToken()
+        {
+            // Utilizar un generador de números aleatorios para crear un token de 6 dígitos
+            Random random = new Random();
+            int tokenValue = random.Next(100000, 999999);
+
+            // Convertir el valor a cadena y devolverlo
+            return tokenValue.ToString();
+        }
+
+        public void EnviarCorreoElectronico(string destinatario, string token)
+        {
+            // Configuración del cliente SMTP
+            using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com"))
+            {
+                smtpClient.Port = 587; // Puerto SMTP
+                smtpClient.Credentials = new NetworkCredential("josejulianrm8@gmail.com", "idmv fiaf tvgq lqqb"); // Autenticación del servidor SMTP
+                smtpClient.EnableSsl = true; // Habilitar SSL si es necesario
+
+                // Crear el mensaje de correo electrónico
+                using (MailMessage mailMessage = new MailMessage())
+                {
+                    mailMessage.From = new MailAddress("josejulianrm8@gmail.com"); // Dirección de correo electrónico del remitente
+                    mailMessage.To.Add(destinatario); // Dirección de correo electrónico del destinatario
+                    mailMessage.Subject = "Código de verificación"; // Asunto del correo electrónico
+                    mailMessage.Body = $"Tu código de verificación es: {token}"; // Cuerpo del correo electrónico
+
+                    // Enviar el correo electrónico
+                    smtpClient.Send(mailMessage);
+                }
+            }
+        }
+        //FIN ENVIO DE CORREO Y VALIDACION
     }
 }

@@ -149,6 +149,9 @@ namespace ProyectoTravelNest
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRol;
 
+        protected global::System.Web.UI.WebControls.DropDownList ddlCalificacion;
+
+        protected global::System.Web.UI.WebControls.DropDownList ddlCantidadPersonas;
         /// <summary>
         /// Control lblIdentificacion.
         /// </summary>

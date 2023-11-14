@@ -170,6 +170,7 @@
     <Content Include="pages\comentariospendientesh.aspx" />
     <Content Include="pages\cotizacion.aspx" />
     <Content Include="pages\crearalojamiento.aspx" />
+    <Content Include="pages\crearcuenta.aspx" />
     <Content Include="pages\datospersonales.aspx" />
     <Content Include="pages\descuentos.aspx" />
     <Content Include="pages\editaranuncio.aspx" />
@@ -177,7 +178,7 @@
     <Content Include="pages\favoritos.aspx" />
     <Content Include="pages\gestionpoliticas.aspx" />
     <Content Include="pages\gestionusuarios.aspx" />
-    <Content Include="pages\Login.aspx" />
+    <Content Include="pages\login.aspx" />
     <Content Include="pages\modificarcalendarioreserva.aspx" />
     <Content Include="pages\paneladministracionhuesped.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
@@ -362,6 +363,13 @@
     <Compile Include="pages\crearalojamiento.aspx.designer.cs">
       <DependentUpon>crearalojamiento.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\crearcuenta.aspx.cs">
+      <DependentUpon>crearcuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\crearcuenta.aspx.designer.cs">
+      <DependentUpon>crearcuenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\datospersonales.aspx.cs">
       <DependentUpon>datospersonales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -411,12 +419,12 @@
     <Compile Include="pages\gestionusuarios.aspx.designer.cs">
       <DependentUpon>gestionusuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="pages\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="pages\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\modificarcalendarioreserva.aspx.cs">
       <DependentUpon>modificarcalendarioreserva.aspx</DependentUpon>

@@ -49,7 +49,7 @@
             <div class="container-fluid">
                 <div class="logo">
                     <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" CssClass="nav-link active">
-        <img src="../img/logo2.png" class="logoo" alt="Logo de la marca" />
+        <img src="../img/logo2.png" class="logoo img-fluid" alt="Logo de la marca" />
                     </asp:HyperLink>
                 </div>
 
@@ -67,12 +67,19 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
 
+                               <%-- Así es como hay que pone todos --%>
+                                <li><a runat="server" id="Login" href="pages/login.aspx" style="margin-left: 20px;" visible="true">Iniciar Sesion</a></li>
+
+
 
                                 <li>
                                     <button id="showModalButtonCrearCuenta" class="btn btn-link">Crear Cuenta</button>
                                 </li>
+
+
                                 <li>
-                                    <button id="btnAbrirModalIniciarSesion" class="btn btn-link">Iniciar Sesion</button>
+                                    <asp:HyperLink runat="server" NavigateUrl="~/pages/login.aspx" Text="Iniciar Sesion" CssClass="dropdown-item" />
+
                                 </li>
                                 <li>
                                     <asp:HyperLink runat="server" NavigateUrl="~/pages/favoritos.aspx" Text="Lista de Favoritos" CssClass="dropdown-item" />
@@ -141,7 +148,7 @@
         });
 
 
-
+    </script>
     <script>
         document.getElementById("showModalButtonCrearCuenta").addEventListener("click", function () {
             $('#crearcuentamodal').modal("show");

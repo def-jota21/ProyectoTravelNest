@@ -77,7 +77,7 @@
 
         <div class="container">
             <h1 style="color: #7AB730;">Administrar Políticas</h1>
-            <p style="color: dimgrey;">En la tabla se le muestran las polítcas de su alojamiento, podrá editarlas.</p>
+            <p style="color: dimgrey;">En la tabla se le muestran las políticas de su alojamiento, podrá editarlas.</p>
             <p style="color: dimgrey;">Podrá presionar el botón agregar si desea agregar una nueva política.</p>
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">

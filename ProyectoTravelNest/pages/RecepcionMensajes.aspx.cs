@@ -24,7 +24,7 @@ namespace ProyectoTravelNest.pages
 
                     string instruccion = "";
                     string rol = Session["UserRol"].ToString();
-                    string idUsuario = Session["idUsuario"].ToString();
+                    string idUsuario = Session["IdUsuario"].ToString();
 
                     if (rol == "H")
                     {

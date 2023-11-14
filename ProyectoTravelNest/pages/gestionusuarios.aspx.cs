@@ -51,6 +51,9 @@ namespace ProyectoTravelNest.pages
             ddlEstado.SelectedIndex = 0;
             rptDatosUsuarios.DataSource = iNeUser.ListarUsuarios(3);
             rptDatosUsuarios.DataBind();
+
+            string script = "Swal.fire('¡Éxito!', 'Los cambios se almacenaron correctamente.', 'success');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
         }
 
     }

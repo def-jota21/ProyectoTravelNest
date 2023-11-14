@@ -34,6 +34,8 @@ namespace ProyectoTravelNest.pages
 
                     // Redirige a la página de destino con los parámetros
                     Response.Redirect($"comentariosanfitrion.aspx?idAnfitrion={idAnfitrion}&IdReservacion={IdReservacion}");
+
+                    
                 }
             }
         }

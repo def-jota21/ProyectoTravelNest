@@ -82,102 +82,105 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-                    <table class="table table-responsive-md table-bordered border-dark table-hover text-center">
-                        <thead>
-                            <tr class="table-dark table-active text-white">
-                                <th scope="col">Identificador</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <asp:Repeater ID="rptDatosUsuarios" runat="server">
-                                <ItemTemplate>
-                                    <!-- Agrega esta línea para iniciar una nueva fila por cada elemento -->
-                                    <tr>
-                                        <td><%# Eval("IdUsuario") %></td>
-                                        <td><%# Eval("Nombre") %></td>
-                                        <td><%# Eval("Estado") %></td>
-                                        <td>
-                                            <div style="text-align: center">
-                                                <button onclick="prepararEdicion('<%# Eval("IdUsuario") %>'); return false;" class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="color: white;"></i></button>
-                                            </div>
-                                        </td>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <table class="table table-responsive-md table-bordered border-dark table-hover text-center">
+                                <thead>
+                                    <tr class="table-dark table-active text-white">
+                                        <th scope="col">Identificador</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Acción</th>
                                     </tr>
-                                    <!-- Cierra la fila aquí -->
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </tbody>
-                    </table>
-                    <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-                        <div id="seccionEdicion" style="display: none; color: black">
-                            <!-- Formulario de Edición -->
+                                </thead>
+                                <tbody>
+                                    <asp:Repeater ID="rptDatosUsuarios" runat="server">
+                                        <ItemTemplate>
+                                            <!-- Agrega esta línea para iniciar una nueva fila por cada elemento -->
+                                            <tr>
+                                                <td><%# Eval("IdUsuario") %></td>
+                                                <td><%# Eval("Nombre") %></td>
+                                                <td><%# Eval("Estado") %></td>
+                                                <td>
+                                                    <div style="text-align: center">
+                                                        <button onclick="prepararEdicion('<%# Eval("IdUsuario") %>'); return false;" class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="color: white;"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- Cierra la fila aquí -->
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </tbody>
+                            </table>
+                            <div class="col-lg-8 col-md-12 col-sm-12 my-2">
+                                <div id="seccionEdicion" style="display: none; color: black">
+                                    <!-- Formulario de Edición -->
 
-                            <!-- Agrega más campos según sea necesario -->
-                            <div class="row justify-content-center">
-                                <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label">Nombre</asp:Label>
-                                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Nombre"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre"
-                                    ErrorMessage="El campo Nombre es requerido." Display="Dynamic" CssClass="text-danger" />
-                            </div>
+                                    <!-- Agrega más campos según sea necesario -->
+                                    <div class="row justify-content-center">
+                                        <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label">Nombre</asp:Label>
+                                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Nombre"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre"
+                                            ErrorMessage="El campo Nombre es requerido." Display="Dynamic" CssClass="text-danger" />
+                                    </div>
 
-                            <div class="row">
-                                <asp:Label ID="lblCorreoElectronico" runat="server" AssociatedControlID="txtCorreoElectronico" CssClass="form-label">Correo Electrónico</asp:Label>
-                                <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" AutoComplete="off" placeholder="alguien@ejemplo.com"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreoElectronico"
-                                    ErrorMessage="El campo Correo Electrónico es requerido." Display="Dynamic" CssClass="text-danger" />
-                            </div>
+                                    <div class="row">
+                                        <asp:Label ID="lblCorreoElectronico" runat="server" AssociatedControlID="txtCorreoElectronico" CssClass="form-label">Correo Electrónico</asp:Label>
+                                        <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" AutoComplete="off" placeholder="alguien@ejemplo.com"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ControlToValidate="txtCorreoElectronico"
+                                            ErrorMessage="El campo Correo Electrónico es requerido." Display="Dynamic" CssClass="text-danger" />
+                                    </div>
 
-                            <div class="row">
-                                <asp:HiddenField ID="hiddenFieldIdentificacion" runat="server" />
+                                    <div class="row">
+                                        <asp:HiddenField ID="hiddenFieldIdentificacion" runat="server" />
 
-                                <asp:Label ID="lblIdentificacion" runat="server" AssociatedControlID="txtIdentificacion" CssClass="form-label">Identificación</asp:Label>
-                                <asp:TextBox ID="txtIdentificacion" runat="server" CssClass="form-control" MaxLength="11" aria-describedby="idHelp"
-                                    placeholder="1-1111-1111" ReadOnly="true"></asp:TextBox>
-                                
-                                <small id="idHelpIdentificacion" class="form-text text-muted">El formato debe ser #-####-####</small>
-                            </div>
+                                        <asp:Label ID="lblIdentificacion" runat="server" AssociatedControlID="txtIdentificacion" CssClass="form-label">Identificación</asp:Label>
+                                        <asp:TextBox ID="txtIdentificacion" runat="server" CssClass="form-control" MaxLength="11" aria-describedby="idHelp"
+                                            placeholder="1-1111-1111" ReadOnly="true"></asp:TextBox>
 
-                            <div class="row">
-                                <asp:Label ID="lblApellidos" runat="server" AssociatedControlID="txtApellidos" CssClass="form-label">Apellidos</asp:Label>
-                                <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Apellidos"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ControlToValidate="txtApellidos"
-                                    ErrorMessage="El campo Apellidos es requerido." Display="Dynamic" CssClass="text-danger" />
-                            </div>
+                                        <small id="idHelpIdentificacion" class="form-text text-muted">El formato debe ser #-####-####</small>
+                                    </div>
 
-                            <div class="row">
-                                <asp:Label ID="lblTelefono" runat="server" AssociatedControlID="txtTelefono" CssClass="form-label">Teléfono</asp:Label>
-                                <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" AutoComplete="off" placeholder="88888888"
-                                    pattern="[0-9]{4}[0-9]{4}"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono"
-                                    ErrorMessage="El campo Teléfono es requerido." Display="Dynamic" CssClass="text-danger" />
-                                <small id="idHelp" class="form-text text-muted">El formato debe ser ########</small>
-                            </div>
-                            <div class="row">
-                                <asp:Label ID="lblEstado" runat="server" AssociatedControlID="ddlEstado" CssClass="form-label">Estado</asp:Label>
-                                <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Activo" Value="Activo"></asp:ListItem>
-                                    <asp:ListItem Text="Inactivo" Value="Inactivo"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div class="row" style="margin-top: 5px; margin-bottom: 5px;">
-                                <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar Cambios" OnClick="btnGuardarCambios_Click" CssClass="btn btn-primary me-2" />
-                                <button type="button" onclick="ocultarSeccionEdicion()" class="btn btn-secondary">Cancelar</button>
-                            </div>
+                                    <div class="row">
+                                        <asp:Label ID="lblApellidos" runat="server" AssociatedControlID="txtApellidos" CssClass="form-label">Apellidos</asp:Label>
+                                        <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Apellidos"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ControlToValidate="txtApellidos"
+                                            ErrorMessage="El campo Apellidos es requerido." Display="Dynamic" CssClass="text-danger" />
+                                    </div>
 
+                                    <div class="row">
+                                        <asp:Label ID="lblTelefono" runat="server" AssociatedControlID="txtTelefono" CssClass="form-label">Teléfono</asp:Label>
+                                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" AutoComplete="off" placeholder="88888888"
+                                            pattern="[0-9]{4}[0-9]{4}"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono"
+                                            ErrorMessage="El campo Teléfono es requerido." Display="Dynamic" CssClass="text-danger" />
+                                        <small id="idHelp" class="form-text text-muted">El formato debe ser ########</small>
+                                    </div>
+                                    <div class="row">
+                                        <asp:Label ID="lblEstado" runat="server" AssociatedControlID="ddlEstado" CssClass="form-label">Estado</asp:Label>
+                                        <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
+                                            <asp:ListItem Text="Activo" Value="Activo"></asp:ListItem>
+                                            <asp:ListItem Text="Inactivo" Value="Inactivo"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="row" style="margin-top: 5px; margin-bottom: 5px;">
+                                        <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar Cambios" AutoPostBack="false" OnClick="btnGuardarCambios_Click" CssClass="btn btn-primary me-2" />
+                                        <button type="button" onclick="ocultarSeccionEdicion()" class="btn btn-secondary">Cancelar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <div class="col-lg-4 col-md-12 col-sm-12 my-2 d-flex align-items-center">
+                        <div class="w-100">
+                            <img src="../img/gestionUsuarios.jpg" alt="" class="img-fluid">
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-12 col-sm-12 my-2 d-flex align-items-center">
-                    <div class="w-100">
-                        <img src="../img/gestionUsuarios.jpg" alt="" class="img-fluid">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
 

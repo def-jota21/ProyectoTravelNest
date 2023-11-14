@@ -41,6 +41,14 @@ namespace ProyectoTravelNest.pages
             Negocios.Negocio_Comentarios iNgcom = new Negocio_Comentarios();
 
             iNgcom.realizarComentarioaAnfitrion (IdAnfitrion, "2222222222", Comentario, comunicacion, calificacion, int.Parse(IdReservacion));
+
+            string script = "Swal.fire('¡GRACIAS!', 'Su comentario se envió correctamente.', 'success');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+
+            string redirectScript = "setTimeout(function(){window.location.href = 'comentariospendientesh.aspx';}, 5000);";
+            ScriptManager.RegisterStartupScript(this, GetType(), "Redirigir", redirectScript, true);
+
+
         }
     }
 }

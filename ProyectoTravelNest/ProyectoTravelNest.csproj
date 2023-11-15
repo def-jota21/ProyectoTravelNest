@@ -141,6 +141,7 @@
     <Content Include="img\blog-1.jpg" />
     <Content Include="img\carousel-1.jpg" />
     <Content Include="img\carousel-2.jpg" />
+    <Content Include="img\centroayuda-1.jpg" />
     <Content Include="img\comentarios.jpg" />
     <Content Include="img\Comentarios2.jpg" />
     <Content Include="img\comentarios3.jpg" />
@@ -160,8 +161,10 @@
     <Content Include="img\politicas.jpg" />
     <Content Include="img\politicasvector.JPG" />
     <Content Include="img\user.png" />
+    <Content Include="pages\agregarmibanco.aspx" />
     <Content Include="pages\alojamientospoliticas.aspx" />
     <Content Include="pages\anunciospublicados.aspx" />
+    <Content Include="pages\centroayuda.aspx" />
     <Content Include="pages\centrodeayuda.aspx" />
     <Content Include="pages\comentariocalificacion.aspx" />
     <Content Include="pages\comentariohuesped.aspx" />
@@ -175,9 +178,12 @@
     <Content Include="pages\descuentos.aspx" />
     <Content Include="pages\editaranuncio.aspx" />
     <Content Include="pages\elegirinmueble.aspx" />
+    <Content Include="pages\eliminarcuentamibanco.aspx" />
+    <Content Include="pages\estadiacentroayuda.aspx" />
     <Content Include="pages\favoritos.aspx" />
     <Content Include="pages\gestionpoliticas.aspx" />
     <Content Include="pages\gestionusuarios.aspx" />
+    <Content Include="pages\introduccioncentroayuda.aspx" />
     <Content Include="pages\login.aspx" />
     <Content Include="pages\modificarcalendarioreserva.aspx" />
     <Content Include="pages\paneladministracionhuesped.aspx" />
@@ -192,6 +198,7 @@
     <Content Include="pages\validartoken.aspx" />
     <Content Include="pages\verificaridentidad.aspx" />
     <Content Include="pages\verinformacion.aspx" />
+    <Content Include="pages\viajecentroayuda.aspx" />
     <Content Include="Plantillas\Plantilla_Chat.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -294,6 +301,13 @@
     <Compile Include="obtenerdatousuario.ashx.cs">
       <DependentUpon>obtenerdatousuario.ashx</DependentUpon>
     </Compile>
+    <Compile Include="pages\agregarmibanco.aspx.cs">
+      <DependentUpon>agregarmibanco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\agregarmibanco.aspx.designer.cs">
+      <DependentUpon>agregarmibanco.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\alojamientospoliticas.aspx.cs">
       <DependentUpon>alojamientospoliticas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,6 +321,13 @@
     </Compile>
     <Compile Include="pages\anunciospublicados.aspx.designer.cs">
       <DependentUpon>anunciospublicados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\centroayuda.aspx.cs">
+      <DependentUpon>centroayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\centroayuda.aspx.designer.cs">
+      <DependentUpon>centroayuda.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\centrodeayuda.aspx.cs">
       <DependentUpon>centrodeayuda.aspx</DependentUpon>
@@ -399,6 +420,20 @@
     <Compile Include="pages\elegirinmueble.aspx.designer.cs">
       <DependentUpon>elegirinmueble.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\eliminarcuentamibanco.aspx.cs">
+      <DependentUpon>eliminarcuentamibanco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\eliminarcuentamibanco.aspx.designer.cs">
+      <DependentUpon>eliminarcuentamibanco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\estadiacentroayuda.aspx.cs">
+      <DependentUpon>estadiacentroayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\estadiacentroayuda.aspx.designer.cs">
+      <DependentUpon>estadiacentroayuda.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\favoritos.aspx.cs">
       <DependentUpon>favoritos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -419,6 +454,13 @@
     </Compile>
     <Compile Include="pages\gestionusuarios.aspx.designer.cs">
       <DependentUpon>gestionusuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\introduccioncentroayuda.aspx.cs">
+      <DependentUpon>introduccioncentroayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\introduccioncentroayuda.aspx.designer.cs">
+      <DependentUpon>introduccioncentroayuda.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -517,6 +559,13 @@
     </Compile>
     <Compile Include="pages\verinformacion.aspx.designer.cs">
       <DependentUpon>verinformacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\viajecentroayuda.aspx.cs">
+      <DependentUpon>viajecentroayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\viajecentroayuda.aspx.designer.cs">
+      <DependentUpon>viajecentroayuda.aspx</DependentUpon>
     </Compile>
     <Compile Include="politicasnoasociadas.ashx.cs">
       <DependentUpon>politicasnoasociadas.ashx</DependentUpon>

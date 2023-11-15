@@ -188,5 +188,17 @@ namespace Negocios
             }
         }
         //FIN ENVIO DE CORREO Y VALIDACION
+
+
+
+        //Metodos obtener notificaciones
+        public int ObtenerNotificaciones(string idUsuario)
+        {
+            Datos.NotificacionesSQL notificacionesSQL = new NotificacionesSQL();
+            int mensajes = notificacionesSQL.ObtenerCantidadComentariosNotificacion(idUsuario);
+            return mensajes;
+        }
+
+        //Fin metodos obtener notificaciones
     }
 }

@@ -49,12 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Neg_Descuentos.cs" />
+    <Compile Include="Neg_MiBanco.cs" />
     <Compile Include="Neg_Promocion.cs" />
     <Compile Include="Neg_Reglas.cs" />
-
     <Compile Include="Neg_Inmueble.cs" />
-
-
     <Compile Include="Email.cs" />
     <Compile Include="Mensajeria.cs" />
     <Compile Include="Negocio_Comentarios.cs" />

@@ -12,17 +12,17 @@ namespace ProyectoTravelNest.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            //Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            if (eUsuarios == null)
-            {
-                FormsAuthentication.RedirectToLoginPage();
-            }
+            //if (eUsuarios == null)
+            //{
+            //    FormsAuthentication.RedirectToLoginPage();
+            //}
 
-            if (!IsPostBack & eUsuarios != null)
-            {
+            //if (!IsPostBack & eUsuarios != null)
+            //{
 
-            }
+            //}
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ProyectoTravelNest.pages
 {
     public partial class paneladministracionhuesped : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e) { 
             Negocios.Neg_Usuarios neg_Usuarios = new Neg_Usuarios();
 
             int cantidadNotificaciones = neg_Usuarios.ObtenerNotificaciones("2222222222");
@@ -18,7 +18,7 @@ namespace ProyectoTravelNest.pages
             Session["CantidadNotificaciones"] = cantidadNotificaciones;
 
 
-            }
+            
         }
 
        

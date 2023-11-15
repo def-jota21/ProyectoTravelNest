@@ -44,7 +44,7 @@ namespace ProyectoTravelNest.pages
                 BinaryReader br = new BinaryReader(fs);
                 imgRostro = br.ReadBytes((Int32)fs.Length);
             }
-            verificarIdentidad.compararImagenes("1111111111   ", imgRostro, imgDocumento);
+            verificarIdentidad.compararImagenes(Session["IdUsuario"].ToString(), imgRostro, imgDocumento);
         }
     }
 }

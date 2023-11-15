@@ -13,9 +13,10 @@ namespace ProyectoTravelNest.pages
 {
     public partial class crearalojamiento : System.Web.UI.Page
     {
+        Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+             eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
             if (eUsuarios == null)
             {
@@ -90,7 +91,7 @@ namespace ProyectoTravelNest.pages
 
 
             Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
-            //neg_Inmueble.InsertarInmueble(inmueble,categoriaString,"", listaElementosServidor, listaElementosAmenidades);
+            neg_Inmueble.InsertarInmueble(inmueble,categoriaString,"", listaElementosServidor, listaElementosAmenidades,eUsuarios.IdUsuario);
 
             txtnombre.Text = string.Empty;
             txtubicacion.Text = string.Empty;

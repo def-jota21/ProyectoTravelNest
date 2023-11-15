@@ -67,7 +67,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user-circle" style="font-size: 20px;"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end" style="min-width:250px;" aria-labelledby="avatarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-end" style="min-width: 250px;" aria-labelledby="avatarDropdown">
 
                                 <%-- Publicas --%>
 
@@ -75,38 +75,37 @@
 
                                 <li><a runat="server" id="Registrarse" href="pages/crearcuenta.aspx" style="margin-left: 20px;" visible="true">Crear Cuenta</a></li>
 
-                                <li><asp:LinkButton ID="CerrarSesion" runat="server" style="margin-left: 20px;" OnClick="CerrarSesion_Click" Visible="false">Cerrar Sesión</asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="CerrarSesion" runat="server" Style="margin-left: 20px;" OnClick="CerrarSesion_Click" Visible="false">Cerrar Sesión</asp:LinkButton></li>
                                 <%-- Publicas --%>
 
 
                                 <%-- Privadas Anfitrion --%>
 
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion1" href="pages/alojamientospoliticas.aspx" style="margin-left: 20px;" >Administrar Políticas</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion2" href="pages/comentariopendientesa.aspx" style="margin-left: 20px;" >Comentarios Pendientes</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion3" href="pages/crearalojamiento.aspx" style="margin-left: 20px;" >Crear Inmueble</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion4" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;" >Politicas del Servicio</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion5" href="pages/modificarcalendarioreserva.aspx" style="margin-left: 20px;" >Modificar Calendario</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion6" href="~/pages/recepcionmensajes.aspx" style="margin-left: 20px;" >Mensajes</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaAnfitrion1" href="pages/alojamientospoliticas.aspx" style="margin-left: 20px;">Administrar Políticas</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaAnfitrion2" href="pages/comentariopendientesa.aspx" style="margin-left: 20px;">Comentarios Pendientes</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaAnfitrion3" href="pages/crearalojamiento.aspx" style="margin-left: 20px;">Crear Inmueble</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaAnfitrion4" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;">Politicas del Servicio</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaAnfitrion5" href="pages/modificarcalendarioreserva.aspx" style="margin-left: 20px;">Modificar Calendario</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaAnfitrion6" href="~/pages/recepcionmensajes.aspx" style="margin-left: 20px;">Mensajes</a></li>
 
                                 <%-- Privadas Anfitrion --%>
 
 
                                 <%-- Privadas Huesped --%>
 
-                                <li><a runat="server" visible="false" id="PrivadaHuesped1" href="pages/comentariospendientesh.aspx" style="margin-left: 20px;" >Comentarios Pendientes</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaHuesped1" href="pages/comentariospendientesh.aspx" style="margin-left: 20px;">Comentarios Pendientes</a></li>
                                 <li><a runat="server" visible="false" id="PrivadaHuesped2" href="~/pages/recepcionmensajes.aspx" style="margin-left: 20px;">Mensajes</a></li>
                                 <li><a runat="server" visible="false" id="PrivadaHuesped3" href="pages/reservas.aspx" style="margin-left: 20px;">Reservas</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaHuesped4" href="pages/favoritos.aspx" style="margin-left: 20px;" >Favoritos</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaHuesped4" href="pages/favoritos.aspx" style="margin-left: 20px;">Favoritos</a></li>
 
                                 <%-- Privadas Huesped --%>
 
 
                                 <%-- Privadas Gestor --%>
-                                <li><a runat="server" visible="false" id="PrivadaGestor1" href="pages/gestionusuarios.aspx" style="margin-left: 20px;" >Administrar Usuarios</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaGestor1" href="pages/gestionusuarios.aspx" style="margin-left: 20px;">Administrar Usuarios</a></li>
 
                                 <%-- Privadas Gestor --%>
-                               
-                               
                             </ul>
                         </li>
                     </ul>
@@ -117,32 +116,31 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <%-- <footer>
-                <div class="container-fluid bg-dark text-white-50 py-6 px-sm-4 px-lg-5" style="margin-top: 350px;">
-                    <div class="row pt-5">
-                        <div class="col-lg-3 col-md-6 mb-5">
-                            <div class="logo">
-                                <a class="nav-link active" aria-current="page" href="Inicio.aspx"><img src="../img/logo1.png" class="logoo" alt="Logo de la marca"/></a>
-                            </div>
+            <div class="bg-dark text-white-50 py-6 px-sm-4 px-lg-5" >
+                <div class="row pt-5">
+                    <div class="col-lg-3 col-md-6 mb-5">
+                        <div class="logo">
+                            <a class="nav-link active" aria-current="page" href="Inicio.aspx">
+                                <img src="../img/logo1.png" class="logoo" alt="Logo de la marca" /></a>
                         </div>
-                        <div class="col-lg-3 col-md-6 mb-5">
-                            <!-- Espacio en blanco para la segunda columna -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 mb-5">
-                            <!-- Espacio en blanco para la tercera columna -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 mb-5">
-                            <!-- Columna de "Contact Us" -->
-                            <div class="text-right">
-                                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 15px;">Contactenos</h5>
-                                <p><i class="fa fa-map-marker-alt mr-2"></i> CUC, Cartago, Costa Rica</p>
-                                <p><i class="fa fa-phone-alt mr-2"></i> 24562353</p>
-                                <p><i class="fa fa-envelope mr-2"></i> info@example.com</p>
-                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5">
+                        <!-- Espacio en blanco para la segunda columna -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5">
+                        <!-- Espacio en blanco para la tercera columna -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5">
+                        <!-- Columna de "Contact Us" -->
+                        <div class="text-right">
+                            <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Contactenos</h5>
+                            <p><i class="fa fa-map-marker-alt mr-2"></i>CUC, Cartago, Costa Rica</p>
+                            <p><i class="fa fa-phone-alt mr-2"></i>24562353</p>
+                            <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
                         </div>
                     </div>
                 </div>
-            </footer>--%>
+            </div>
         </div>
     </form>
     <asp:PlaceHolder runat="server">

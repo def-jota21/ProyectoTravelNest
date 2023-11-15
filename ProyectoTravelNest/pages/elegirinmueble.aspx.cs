@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,8 +15,16 @@ namespace ProyectoTravelNest.pages
         Negocios.Negocio_Inmuebles nInmueble = new Negocios.Negocio_Inmuebles();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
             Session["pagina"] = "descuentos";
-            if (!IsPostBack)
+
+            if (eUsuarios == null)
+            {
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
             {
                 if (Session["pagina"].Equals("reglas"))
                 {
@@ -43,11 +52,11 @@ namespace ProyectoTravelNest.pages
 
                 List<Inmueble> ListaInmuebles = nInmueble.ListaInmueblesPagina(1, "2222222222   ", null);
 
-                foreach(Inmueble inmueble in ListaInmuebles)
+                foreach (Inmueble inmueble in ListaInmuebles)
                 {
                     string imagen = inmueble.Imagen != null ? Convert.ToBase64String(inmueble.Imagen) : null;
                     LiteralControl htmlSnippet = new LiteralControl();
-                    if(imagen == null)
+                    if (imagen == null)
                     {
                         imagen = $@"<img class='img-fluid' src='/img/noimage.jpg' style='border-radius: 7px;'>";
                     }
@@ -78,6 +87,7 @@ namespace ProyectoTravelNest.pages
                     div_row.Controls.Add(htmlSnippet);
                 }
             }
+
         }
     }
 }

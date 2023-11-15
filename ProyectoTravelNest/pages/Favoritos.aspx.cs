@@ -8,25 +8,37 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
 using Negocios;
+using System.Web.Security;
 
 namespace ProyectoTravelNest.pages
 {
     public partial class Favoritos : System.Web.UI.Page
     {
         Neg_Favoritos iFavoritos = new Neg_Favoritos();
+        Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+
+            eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+
+            if (eUsuarios == null)
             {
-                CargarDatos();
+                FormsAuthentication.RedirectToLoginPage();
             }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                CargarDatos(eUsuarios.IdUsuario.ToString());
+            }
+            
         }
 
-        private void CargarDatos()
+        private void CargarDatos(string idUsuario)
         {
             iFavoritos.Instruccion = "Read";
 
-            rptData.DataSource = iFavoritos.ObtenerFavoritosDeUsuario("idUsuario");
+            rptData.DataSource = iFavoritos.ObtenerFavoritosDeUsuario(idUsuario);
             rptData.DataBind();
         }
 
@@ -41,7 +53,7 @@ namespace ProyectoTravelNest.pages
             string idInmueble = button.CommandArgument;
 
             iFavoritos.Instruccion = "Insert";
-            string idUsuario = Session["idUsuario"].ToString();
+            string idUsuario = eUsuarios.IdUsuario.ToString();
 
             iFavoritos.AgregarFavorito(idUsuario, idInmueble);
         }
@@ -52,14 +64,14 @@ namespace ProyectoTravelNest.pages
             try
             {
                 
-                string idUsuario = Session["idUsuario"].ToString();
+                string idUsuario = eUsuarios.IdUsuario.ToString();
 
                 // Llamar a la función EliminarFavorito de la capa de negocios
                 iFavoritos.Instruccion = "Delete";
                 iFavoritos.EliminarFavorito(idInmueble, idUsuario);
 
                 // Recuperar nuevos datos y recargar la página para reflejar los cambios
-                CargarDatos();
+                CargarDatos(eUsuarios.IdUsuario.ToString());
 
                 upd_Favoritos.Update();
             }

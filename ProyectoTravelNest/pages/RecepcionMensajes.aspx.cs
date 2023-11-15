@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocios;
@@ -14,39 +15,46 @@ namespace ProyectoTravelNest.pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+            if (eUsuarios == null)
             {
-                if (!IsPostBack)
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                try
                 {
-                    //Session["idUsuario"] = "123456789";
-                    //Session["NombreUsuario"] = "Prueba";
-                    //Session["UserRol"] = "A";
+                
 
-                    string instruccion = "";
-                    string rol = Session["UserRol"].ToString();
-                    string idUsuario = Session["IdUsuario"].ToString();
+                        string instruccion = "";
+                    string rol = eUsuarios.T_Rol.ToString();
+                        string idUsuario = eUsuarios.IdUsuario.ToString();
 
-                    if (rol == "H")
-                    {
-                        instruccion = "H";
-                    }
+                        if (rol == "H")
+                        {
+                            instruccion = "H";
+                        }
 
-                    if (rol == "A")
-                    {
-                        instruccion = "A";
-                    }
+                        if (rol == "A")
+                        {
+                            instruccion = "A";
+                        }
 
-                    rptAnfitriones.DataSource = FunctionsMensajeria.GetDataReservasActivas(idUsuario, instruccion);
-                    rptAnfitriones.DataBind();
+                        rptAnfitriones.DataSource = FunctionsMensajeria.GetDataReservasActivas(idUsuario, instruccion);
+                        rptAnfitriones.DataBind();
 
-
+                    
+                }
+                catch (Exception)
+                {
+                    //Editar para mostrarle el mensaje de error al usuario
+                    throw;
                 }
             }
-            catch (Exception)
-            {
-                //Editar para mostrarle el mensaje de error al usuario
-                throw;
-            }
+
+           
         }
 
         private void GetMessagesFromBD(string idRecuperado, string idUsuario)

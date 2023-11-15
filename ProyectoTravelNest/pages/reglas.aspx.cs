@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -20,28 +21,38 @@ namespace ProyectoTravelNest.pages
         Negocios.Negocio_Inmuebles nInmueble = new Negocios.Negocio_Inmuebles();
         protected void Page_Load(object sender, EventArgs e)
         {
-            String IdUsuario = "2222222222   ";
-            ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
-            Control div_Inmueble = mainContent.FindControl("cartaInmueble");
 
-            List<Inmueble> ListaInmuebles = nInmueble.ListaInmuebleIndividual(IdUsuario, Request.QueryString["IdInmueble"]);
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            foreach (Inmueble inmueble in ListaInmuebles)
+            if (eUsuarios == null)
             {
-                string imagen = inmueble.Imagen != null ? Convert.ToBase64String(inmueble.Imagen) : null;
-                LiteralControl htmlSnippet = new LiteralControl();
-                if (imagen == null)
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                String IdUsuario = eUsuarios.IdUsuario.ToString();
+                ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
+                Control div_Inmueble = mainContent.FindControl("cartaInmueble");
+
+                List<Inmueble> ListaInmuebles = nInmueble.ListaInmuebleIndividual(IdUsuario, Request.QueryString["IdInmueble"]);
+
+                foreach (Inmueble inmueble in ListaInmuebles)
                 {
-                    imagen = $@"<img class='img-fluid' src='/img/noimage.jpg' style='border-radius: 7px;'>";
-                }
-                else
-                {
-                    imagen = $@"<img class='img-fluid' src='data:image/jpeg;base64,{imagen}' style='border-radius: 7px;'>";
-                }
-                htmlSnippet.Text = $@"
+                    string imagen = inmueble.Imagen != null ? Convert.ToBase64String(inmueble.Imagen) : null;
+                    LiteralControl htmlSnippet = new LiteralControl();
+                    if (imagen == null)
+                    {
+                        imagen = $@"<img class='img-fluid' src='/img/noimage.jpg' style='border-radius: 7px;'>";
+                    }
+                    else
+                    {
+                        imagen = $@"<img class='img-fluid' src='data:image/jpeg;base64,{imagen}' style='border-radius: 7px;'>";
+                    }
+                    htmlSnippet.Text = $@"
                                     <div class='bg-white mb-2'>" +
-                                                            imagen +
-                                    $@"<div style='clear: both;'>
+                                                                imagen +
+                                        $@"<div style='clear: both;'>
                                             <h5 class='ms-1'>{inmueble.Nombre}</h5>
                                             <label class='text-muted'>{inmueble.Descripcion}</label>
                                             <div class='border-top mt-4 pt-4'>
@@ -54,13 +65,16 @@ namespace ProyectoTravelNest.pages
                                             </div>
                                         </div>
                                     </div>";
-                div_Inmueble.Controls.Add(htmlSnippet);
+                    div_Inmueble.Controls.Add(htmlSnippet);
+                }
+                if (!IsPostBack)
+                {
+                    ReglasRepeater.DataSource = regla.getReglas(Request.QueryString["IdInmueble"]);
+                    ReglasRepeater.DataBind();
+                }
             }
-            if (!IsPostBack)
-            {
-                ReglasRepeater.DataSource = regla.getReglas(Request.QueryString["IdInmueble"]);
-                ReglasRepeater.DataBind();
-            }
+
+           
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)

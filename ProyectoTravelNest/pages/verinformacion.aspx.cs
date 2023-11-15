@@ -1,9 +1,11 @@
 ﻿using Negocios;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static System.Net.Mime.MediaTypeNames;
@@ -15,12 +17,15 @@ namespace ProyectoTravelNest.pages
        
         static string IdUsuario = "";
         static string idInmueble = "";
+        static float Precio = 0;
         static DateTime[] fechasOcupadas;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            
             
 
-            if (!IsPostBack)
+            if (!IsPostBack & eUsuarios == null)
             {
                 if (Request.QueryString["IdUsuario"] != null && Request.QueryString["IdInmueble"] != null)
                 {
@@ -31,8 +36,11 @@ namespace ProyectoTravelNest.pages
                 }
                 fechasOcupadas = ObtenerFechasOcupadasDesdeBD(idInmueble);
 
-                
-               
+                btnReservar.Enabled = false;
+
+                btnReservar.Text = "Debe Iniciar Sesíon";
+
+
                 lblFechaSalida.Text = "Seleccione una fecha";
 
                 lblFechaEntrada.Text = "Seleccione una fecha";
@@ -61,6 +69,47 @@ namespace ProyectoTravelNest.pages
                 RepeaterServicios.DataSource = iInmueble.ListarInformacionInmuebleServicios(idInmueble); 
                 RepeaterServicios.DataBind();
             }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                if (Request.QueryString["IdUsuario"] != null && Request.QueryString["IdInmueble"] != null)
+                {
+                    // Lee los valores de los parámetros
+                    IdUsuario = Request.QueryString["IdUsuario"];
+                    idInmueble = Request.QueryString["IdInmueble"];
+
+                }
+                fechasOcupadas = ObtenerFechasOcupadasDesdeBD(idInmueble);
+
+                btnReservar.Enabled = true;
+
+                btnReservar.Text = "Reservar";
+
+
+                lblFechaSalida.Text = "Seleccione una fecha";
+
+                lblFechaEntrada.Text = "Seleccione una fecha";
+
+                Negocios.Negocio_Inmuebles iInmueble = new Negocio_Inmuebles();
+                rptDatosInmueble.DataSource = iInmueble.ListarInformacionInmueble(idInmueble, IdUsuario);
+                rptDatosInmueble.DataBind();
+
+                RepeaterImagen.DataSource = iInmueble.ListarInformacionInmuebleImagenes(idInmueble, IdUsuario);
+                RepeaterImagen.DataBind();
+
+                RepeaterDatosSecundarios.DataSource = iInmueble.ListarInformacionInmueble(idInmueble, IdUsuario);
+                RepeaterDatosSecundarios.DataBind();
+
+                rptInmuebles.DataSource = iInmueble.ListarInformacionInmueble(idInmueble, IdUsuario);
+                rptInmuebles.DataBind();
+
+                rptPoliticas.DataSource = iInmueble.ListarInformacionInmueblePoliticas(idInmueble, IdUsuario);
+                rptPoliticas.DataBind();
+
+                rptReglas.DataSource = iInmueble.ListarInformacionInmuebleReglas(idInmueble, IdUsuario);
+                rptReglas.DataBind();
+            }
+
         }
 
         protected void rptInmuebles_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -72,6 +121,9 @@ namespace ProyectoTravelNest.pages
 
                 // Encuentra la etiqueta Cantidad_Huespedes en la fila actual del Repeater
                 Label lblCantidadHuespedes = (Label)e.Item.FindControl("lblCantidadHuespedes");
+
+                
+                Precio = (float)Math.Round(Convert.ToDecimal(DataBinder.Eval(e.Item.DataItem, "Precio")), 2);
 
                 if (ddlHuespedes != null && lblCantidadHuespedes != null)
                 {
@@ -156,8 +208,16 @@ namespace ProyectoTravelNest.pages
         protected void CalendarInicio_SelectionChanged(object sender, EventArgs e)
         {
             // Actualiza la fecha seleccionada en el CalendarFinal
-           
 
+            // Obtén las fechas seleccionadas de los DatePicker
+            DateTime fecha1 = CalendarInicio.SelectedDate;
+            DateTime fecha2 = CalendarFinal.SelectedDate;
+
+            // Calcula la diferencia de días
+            TimeSpan diferencia = fecha2 - fecha1;
+            int diferenciaDias = diferencia.Days;
+
+            txtTotal.Text = (Precio * diferenciaDias).ToString();
 
             lblFechaEntrada.Text = CalendarInicio.SelectedDate.ToString("d/MM/yyyy");
 
@@ -167,8 +227,16 @@ namespace ProyectoTravelNest.pages
         protected void CalendarFinal_SelectionChanged(object sender, EventArgs e)
         {
             // Actualiza la fecha seleccionada en el CalendarInicio
-           
 
+            // Obtén las fechas seleccionadas de los DatePicker
+            DateTime fecha1 = CalendarInicio.SelectedDate;
+            DateTime fecha2 = CalendarFinal.SelectedDate;
+
+            // Calcula la diferencia de días
+            TimeSpan diferencia = fecha2 - fecha1;
+            int diferenciaDias = diferencia.Days;
+
+            txtTotal.Text = (Precio * diferenciaDias).ToString();
 
             lblFechaSalida.Text = CalendarFinal.SelectedDate.ToString("d/MM/yyyy");
             

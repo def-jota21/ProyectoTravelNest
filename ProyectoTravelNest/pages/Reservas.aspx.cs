@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,9 +15,17 @@ namespace ProyectoTravelNest.pages
         Negocios.Neg_Reservaciones negocioReservaciones = new Negocios.Neg_Reservaciones();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+            if (eUsuarios == null)
             {
-                string idUsuario = "2222222222";
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                string idUsuario = eUsuarios.IdUsuario.ToString();
                 // Asumiendo que tienes una forma de obtener el ID del usuario logueado
                 //string idUsuario = Session["IdUsuario"] as string;
 
@@ -36,6 +45,7 @@ namespace ProyectoTravelNest.pages
                     // ... establecer el resto de los campos
                 }
             }
+
         }
 
 

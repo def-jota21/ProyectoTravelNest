@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,10 +14,23 @@ namespace ProyectoTravelNest.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Negocios.Neg_Usuarios iNeUser = new Negocios.Neg_Usuarios();
 
-            rptDatosUsuarios.DataSource = iNeUser.ListarUsuarios(3);
-            rptDatosUsuarios.DataBind();
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+            if (eUsuarios == null)
+            {
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                Negocios.Neg_Usuarios iNeUser = new Negocios.Neg_Usuarios();
+
+                rptDatosUsuarios.DataSource = iNeUser.ListarUsuarios(3);
+                rptDatosUsuarios.DataBind();
+            }
+
+           
         }
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)

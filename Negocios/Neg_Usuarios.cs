@@ -28,7 +28,7 @@ namespace Negocios
             {
                 iUsuarios = new Entidades.Usuarios()
                 {
-                    IdUsuario = Convert.ToInt32(dtDatos.Rows[0]["idUsuario"]),
+                    IdUsuario = dtDatos.Rows[0]["idUsuario"].ToString(),
                     T_Rol = Convert.ToChar(dtDatos.Rows[0]["T_Rol"]) // Añade esta línea para obtener el rol del usuario
                                                                      // Asegúrate de que el índice de la columna es correcto y que el campo existe en el DataTable
                 };

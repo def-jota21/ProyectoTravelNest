@@ -21,14 +21,30 @@ namespace ProyectoTravelNest
         protected void Page_Load(object sender, EventArgs e)
 
         {
-            if (!IsPostBack)
+
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+
+
+            if (!IsPostBack & eUsuarios == null)
             {
                 rptInmuebles.DataSource = CargarTarjetas();
                 rptInmuebles.DataBind();
                 CargarCategorias();
 
+                
 
             }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                rptInmuebles.DataSource = CargarTarjetas();
+                rptInmuebles.DataBind();
+                CargarCategorias();
+
+            }
+
+            
         }
 
         private DataTable CargarTarjetas()

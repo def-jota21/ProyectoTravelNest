@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 
 namespace ProyectoTravelNest.pages
@@ -11,11 +8,23 @@ namespace ProyectoTravelNest.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Negocios.Negocio_Inmuebles iInmueble = new Negocios.Negocio_Inmuebles();
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            //aca tambien se debe de obtener la variable session al inciciar sesion
-            rptAlojamientos.DataSource = iInmueble.ListarInmueblesAnfitrion("2222222222");
-            rptAlojamientos.DataBind();
+            if(eUsuarios == null)
+            {
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if(!IsPostBack & eUsuarios != null)
+            {
+                Negocios.Negocio_Inmuebles iInmueble = new Negocios.Negocio_Inmuebles();
+
+                //aca tambien se debe de obtener la variable session al inciciar sesion
+                rptAlojamientos.DataSource = iInmueble.ListarInmueblesAnfitrion(eUsuarios.IdUsuario.ToString());
+                rptAlojamientos.DataBind();
+            }
+
+            
         }
 
         protected void btnPoliticas_Command(object sender, CommandEventArgs e)

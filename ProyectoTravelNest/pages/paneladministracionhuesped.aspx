@@ -57,12 +57,55 @@
                         </a>
                     </div>
                     <div class="card">
-                        <a href="centroayuda.aspx" class="notification" style="text-decoration: none">
+                        <a href="centrodeayuda.aspx" class="notification" style="text-decoration: none">
                             <span>
                                 <h5 class="h5 mt-2">Centro de Ayuda</h5>
                                 <p class="h6 mt-4">Te ayudamos en lo que necesites</p>
                             </span>
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [Cartas anfitrion] -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card-deck">
+                    <!-- Reglas -->
+                    <div class="card">
+                        <asp:LinkButton runat="server" ID="lbtnReglas" style="text-decoration: none" OnClick="lbtnReglas_Click" CssClass="notification">
+                            <span>
+                                <h5 class="h5 mt-2">Reglas</h5>
+                                <p class="h6 mt-4">Establece reglas personalizadas para la gestión eficiente de tus alojamientos.</p>
+                            </span>
+                        </asp:LinkButton>
+                    </div>
+                    <!-- Promociones -->
+                    <div class="card">
+                        <asp:LinkButton runat="server" ID="lbtnPromociones" style="text-decoration: none" OnClick="lbtnPromociones_Click" CssClass="notification">
+                            <span>
+                                <h5 class="h5 mt-2">Promociones</h5>
+                                <p class="h6 mt-4">Agrega promociones para atrer mas huespedes.</p>
+                            </span>
+                        </asp:LinkButton>
+                    </div>
+                    <!-- Calendario -->
+                    <div class="card">
+                        <asp:LinkButton runat="server" ID="lbtnCalendario" style="text-decoration: none" OnClick="lbtnCalendario_Click" CssClass="notification">
+                            <span>
+                                <h5 class="h5 mt-2">Modificar calendario</h5>
+                                <p class="h6 mt-4">Configura el calendario de un alojamiento.</p>
+                            </span>
+                        </asp:LinkButton>
+                    </div>
+                    <!-- Descuentos -->
+                    <div class="card">
+                        <asp:LinkButton runat="server" ID="lbtnDescuentos" style="text-decoration: none" OnClick="lbtnDescuentos_Click" CssClass="notification">
+                            <span>
+                                <h5 class="h5 mt-2">Descuentos</h5>
+                                <p class="h6 mt-4">Agrega descuentos a tu alojamiento.</p>
+                            </span>
+                        </asp:LinkButton>
                     </div>
                 </div>
             </div>

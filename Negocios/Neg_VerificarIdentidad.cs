@@ -25,6 +25,17 @@ namespace Negocios
             return dt;
         }
 
+        public String getEstado(string IdUsuario)
+        {
+            DataTable dt = new DataTable();
+            string strNombreSP = "VerificarIdentidad";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@Opcion", "Estado"));
+            lstParametros.Add(new SqlParameter("@IdUsuario", IdUsuario));
+            dt = ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+            return dt.Rows[0]["Estado"].ToString();
+        }
+
         private void verificacion(String IdUsuario, byte[] Documento, byte[] Rostro, String Estado)
         {
             DataTable dt = new DataTable();

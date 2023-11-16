@@ -11,6 +11,11 @@ div img {
     max-width: 100%;
 }
 
+.comentario {
+    font-size: 15px;
+    margin-bottom: 60px;
+}
+
 /* ! Calificacion estrellas */
 
 .rate {

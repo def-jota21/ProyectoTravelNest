@@ -64,5 +64,29 @@ namespace Negocios
             Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
         }
 
+        // Pagina Comentarios y calificacion
+        public DataTable getInfoUsuario(string IdUsuario)
+        {
+            DataTable dt = new DataTable();
+            string strNombreSP = "ComentarioCalificacion";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@Opcion", "Info"));
+            lstParametros.Add(new SqlParameter("@IdUsuarioDestinado", IdUsuario));
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
+
+        public DataTable cargarComentarios(string IdUsuario)
+        {
+            DataTable dt = new DataTable();
+            string strNombreSP = "ComentarioCalificacion";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@Opcion", "Comentario"));
+            lstParametros.Add(new SqlParameter("@IdUsuarioDestinado", IdUsuario));
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
     }
 }

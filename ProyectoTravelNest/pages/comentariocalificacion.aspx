@@ -7,66 +7,50 @@
                 <div id="user-image">
                     <img src="../img/user.png" style="width: 6%;">
                 </div>
+
                 <div style="width: 90%;" id="user-info" class="ms-4">
-                    <h3>Luis Alejandro Mora Mata</h3>
-                    <label>
+                    <asp:Label runat="server" ID="lblNombreDestinatario" Text="Nombre Completo Destinatario" CssClass="h3"></asp:Label>
+                    <%--<label>
                         Como un viajero apasionado y ávido lector, siempre estoy buscando nuevas experiencias
                         y oportunidades para aprender. Me encanta sumergirme en la cultura local y descubrir los
                         secretos ocultos de cada lugar que visito.
-                    </label>
-                    <div class="rate r-1" style="margin-bottom: 40px;">
-                        <label id="colorStar">★</label>
+                    </label>--%>
+                    <br />
+                    <div class="rate r-1" style="margin-bottom: 40px;" id="divCalificacionDestinatario" runat="server">
+                        <%--<label id="colorStar">★</label>
                         <label id="colorStar">★</label>
                         <label id="halfStar">★</label>
                         <label>★</label>
                         <label>★</label>
-                        <label style="color: rgb(255, 204, 65); font-size: 35px;">(2,5)</label>
+                        <label style="color: rgb(255, 204, 65); font-size: 35px;">(2,5)</label>--%>
                     </div>
                 </div>
                 <hr style="clear: both;">
 
-                <!-- Comentario Persona #1 -->
-                <div class="my-5" style="clear: both;" id="comentario">
-                    <div id="user-image">
-                        <img src="../img/user.png" style="width: 3%;">
-                    </div>
-                    <div style="width: 60%;" id="user-info" class="ms-4">
-                        <h5>Jose Julian Soto Araya</h5>
-                        <div class="rate r-2" style="margin-top: -15px; margin-bottom: -8px;">
-                            <label id="colorStar">★</label>
-                            <label id="colorStar">★</label>
-                            <label id="colorStar">★</label>
-                            <label id="colorStar">★</label>
-                            <label id="colorStar">★</label>
-                        </div><br>
-                        <label style="font-size: 15px; margin-bottom: 60px;">
-                            El huésped fue respetuoso, pero hubo problemas de comunicación.
-                        </label>
-                    </div>
-                </div>
+                <asp:Repeater ID="RepeaterComentarios" runat="server">
+                    <ItemTemplate>
+                        <div class="my-5" style="clear: both;" id="comentario">
+                            <div id="user-image">
+                                <img src="../img/user.png" style="width: 3%;">
+                            </div>
+                            <div style="width: 60%;" id="user-info" class="ms-4">
+                                <a href="?IdUsuario=<%# Eval("Autor") %>" style="text-decoration: none; color: #212529;">
+                                    <asp:Label runat="server" Text='<%# Eval("NombreCompleto") %>' CssClass="h5"></asp:Label>
+                                </a>
+                                <br />
+                                <div class="rate r-2" style="margin-top: -15px; margin-bottom: -8px;">
+                                    <%# generarCalificacion(Convert.ToInt32(Eval("Calificacion"))) %>
+                                </div><br>
+                                <label style="font-size: 15px; margin-bottom: 60px;">
+                                    <%# Eval("Comentario") %>
+                                </label>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
 
-                <!-- Comentario Persona #2 -->
-                <div class="my-5" style="clear: both;" id="comentario">
-                    <div id="user-image">
-                        <img src="../img/user.png" style="width: 3%;">
-                    </div>
-                    <div style="width: 60%;" id="user-info" class="ms-4">
-                        <h5>Sergio Delgado García</h5>
-                        <div class="rate r-2" style="margin-top: -15px; margin-bottom: -8px;">
-                            <label id="colorStar">★</label>
-                            <label id="colorStar">★</label>
-                            <label id="colorStar">★</label>
-                            <label id="colorStar">★</label>
-                            <label id="colorStar">★</label>
-                        </div><br>
-
-                        <label style="font-size: 15px; margin-bottom: 60px;">
-                            El huésped fue puntual, pero hubo confusiones con las expectativas del alojamiento.
-                        </label>
-                    </div>
-                </div>
             </div>
-            <div class="col-md-4 my-5 detalles">
+            <%--<div class="col-md-4 my-5 detalles">
                 <div class="d-flex" style="height: 80%; padding-left: 6%;">
                     <div class="vr"></div>
                 </div>
@@ -116,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
         </div>
     </div>

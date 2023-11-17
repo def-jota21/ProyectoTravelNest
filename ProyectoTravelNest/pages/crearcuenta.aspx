@@ -92,9 +92,10 @@
             display: block;
             font-style: italic;
         }
-        body{
-            background-color: #f9f9f9; 
-            }
+
+        body {
+            background-color: #f9f9f9;
+        }
     </style>
 
 
@@ -148,13 +149,15 @@
                     pattern="[0-9]{4}[0-9]{4}"></asp:TextBox>
                 <small id="idHelp" class="form-text text-muted">El formato debe ser ########</small>
             </div>
-            <div class="col-sm-6 col-lg-6 mt-2 form-group">
+            <%--<div class="col-sm-6 col-lg-6 mt-2 form-group">
                 <asp:Label ID="lblImagen" runat="server" CssClass="form-label">Foto Perfil:</asp:Label>
                 <div class="custom-file-upload">
-                    <asp:FileUpload ID="fileImagen" runat="server" Style="margin: auto; max-width: 112px;" accept=".jpg" required="true"></asp:FileUpload>
-
+                
+                            <asp:FileUpload ID="fileImagen" runat="server" AutoPostBack="true" OnChange="fileImagen_Changed" Style="margin: auto; max-width: 112px;" accept=".jpg" required="true"></asp:FileUpload>
+                            
+ 
                 </div>
-            </div>
+            </div>--%>
 
 
             <div class="col-sm-12 mt-12">

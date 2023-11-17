@@ -41,17 +41,19 @@ namespace ProyectoTravelNest.pages
         protected void EnviarComentarioAnfitrion_Click(object sender, EventArgs e)
         {
             string Comentario = "";
-            int comunicacion = 0;
+            int CalificacionInmueble = 0;
             int calificacion = 0;
+            string ComentarioInmueble = "";
 
+            ComentarioInmueble = txtComentarioInmueble.Text;
             Comentario = txtcomentarioPublico.Text;
-            comunicacion = int.Parse(ddlComunicacion.SelectedValue.ToString());
+            CalificacionInmueble = int.Parse(ddlComunicacion.SelectedValue.ToString());
             calificacion = int.Parse(ddlCalificacionAnfitrion.SelectedValue.ToString());
-
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
             //aca se debe de ontener el id huesped desde la variable session PENDIENTE
             Negocios.Negocio_Comentarios iNgcom = new Negocio_Comentarios();
 
-            iNgcom.realizarComentarioaAnfitrion (IdAnfitrion, "2222222222", Comentario, comunicacion, calificacion, int.Parse(IdReservacion));
+            iNgcom.realizarComentarioaAnfitrion (IdAnfitrion, eUsuarios.IdUsuario, Comentario, ComentarioInmueble,CalificacionInmueble, calificacion, int.Parse(IdReservacion));
 
             string script = "Swal.fire('¡GRACIAS!', 'Su comentario se envió correctamente.', 'success');";
             ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);

@@ -60,7 +60,7 @@
         <img src="../img/estrellas.JPG" alt="" class="img-fluid">
         <div class="container">
             <div class="row">
-                <h5>Comentarios Pendientes</h5>
+                <h3>Comentarios y Evaluaciones Pendientes</h3>
                 <div class="col-lg-12 col-md-12 col-sm-12 my-2">
                     <div class="row">
                         <asp:Repeater ID="rptComentariosPendientes" runat="server">
@@ -87,7 +87,7 @@
                                                 </div>
                                                 <div class="border-top mt-4 pt-4">
                                                     <div class="d-flex justify-content-between">
-                                                        <asp:Button ID="btnRealizarComentario" runat="server" Text="Realizar Comentario" CssClass="btn btn-primary btn-block"
+                                                        <asp:Button ID="btnRealizarComentario" runat="server" Text="          Realizar Comentario" CssClass="btn btn-primary btn-block"
                                                             Style="height: 47px; margin-top: -2px; text-align: center;" CommandName="RealizarComentario"
                                                             CommandArgument='<%# $"{Eval("idAnfitrion")},{Eval("IdReservacion")}" %>' OnCommand="btnRealizarComentario_Command"
                                                             UseSubmitBehavior="false" />

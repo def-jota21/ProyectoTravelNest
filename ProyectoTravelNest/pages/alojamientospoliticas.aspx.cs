@@ -10,12 +10,12 @@ namespace ProyectoTravelNest.pages
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            if(eUsuarios == null)
+            if (eUsuarios == null)
             {
                 FormsAuthentication.RedirectToLoginPage();
             }
 
-            if(!IsPostBack & eUsuarios != null)
+            if (!IsPostBack & eUsuarios != null)
             {
                 Negocios.Negocio_Inmuebles iInmueble = new Negocios.Negocio_Inmuebles();
 

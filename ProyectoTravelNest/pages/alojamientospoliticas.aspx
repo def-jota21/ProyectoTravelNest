@@ -82,7 +82,7 @@
                                     <asp:Label ID="lnkDetalle" CssClass="h5 text-decoration-none" runat="server" NavigateUrl="#"><%# Eval("Nombre") %></asp:Label>
                                     <div class="border-top mt-4 pt-4">
                                         <div class="d-flex justify-content-between">
-                                            <asp:Button ID="btnPoliticas" runat="server" Text="Administrar Políticas" CssClass="btn btn-primary btn-block"
+                                            <asp:Button ID="btnPoliticas" runat="server" Text="           Administrar Políticas" CssClass="btn btn-primary btn-block"
                                                 Style="height: 47px; margin-top: -2px; text-align: center;" CommandName="AdmPoliticas"
                                                 CommandArgument='<%# $"{Eval("idUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnPoliticas_Command"
                                                 UseSubmitBehavior="false" />

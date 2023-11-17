@@ -114,7 +114,9 @@ namespace ProyectoTravelNest.pages
                         {
                             token = "";
                             Session["IdUsuario"] = usuario;
+                            FormsAuthentication.RedirectFromLoginPage(usuario.IdUsuario, false);
                             Response.Redirect("../Default.aspx"); // Redirige a la página de inicio
+
                         }
                         else
                         {

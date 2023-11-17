@@ -23,6 +23,8 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
+
+
     <!-- Customized Bootstrap Stylesheet -->
     <style>
         .center-content {
@@ -54,28 +56,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-                    <div class="col-lg-7 col-md-12 col-sm-12 my-2">
-                    <div class="row">
-                        <h3>Comentario público para el anfitrión</h3>
-                        <p>Se publicará un comentario en el perfil a tu anfitrión</p>
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtcomentarioPublico" TextMode="MultiLine" Rows="7"></asp:TextBox>
-                        <div id="contadorPalabrasPublico">*100 palabras restantes</div>
-                    </div>
-                        </div>
-                    <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-                        <h3>Comunicación</h3>
-                        <p>¿El anfitrión ha mantenido el contacto en todo momento necesario?</p>
-                        <div class="col-md-4">
-                            <asp:DropDownList runat="server" CssClass="form-select" ID="ddlComunicacion" AppendDataBoundItems="true">
-                                <asp:ListItem Text="1" Value="1" />
-                                <asp:ListItem Text="2" Value="2" />
-                                <asp:ListItem Text="3" Value="3" />
-                                <asp:ListItem Text="4" Value="4" />
-                                <asp:ListItem Text="5" Value="5" />
-                            </asp:DropDownList>
-                        </div>
-                    </div>
+                    <h3 class="mb-3">Comentario y Evaluación Anfitrión-Inmuble</h3>
 
+                    <div class="col-lg-7 col-md-12 col-sm-12 my-2">
+                        <div class="row">
+                            <h3>Comentario público para el anfitrión</h3>
+                            <p>Se publicará un comentario en el perfil a tu anfitrión *Requerido</p>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtcomentarioPublico" TextMode="MultiLine" Rows="7"></asp:TextBox>
+                            <div id="contadorPalabrasPublico">*100 palabras restantes</div>
+                        </div>
+                    </div>
                     <div class="col-lg-8 col-md-12 col-sm-12 my-2">
                         <h3>¿Qué calificación le da al anfitrión?</h3>
                         <p>Selecciona una calificación</p>
@@ -89,6 +79,29 @@
                             </asp:DropDownList>
                         </div>
                     </div>
+                    <div class="col-lg-7 col-md-12 col-sm-12 my-2">
+                        <div class="row">
+                            <h3>Comentario público para el inmueble</h3>
+                            <p>Se publicará un comentario para el inmueble *Requerido</p>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtComentarioInmueble" TextMode="MultiLine" Rows="7"></asp:TextBox>
+                            <div id="contadorPalabrasInmueble">*100 palabras restantes</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12 col-sm-12 my-2">
+                        <h3>¿Qué calificación le da al inmueble?</h3>
+                        <p>Selecciona una calificación</p>
+                        <div class="col-md-4">
+                            <asp:DropDownList runat="server" CssClass="form-select" ID="ddlComunicacion" AppendDataBoundItems="true">
+                                <asp:ListItem Text="1" Value="1" />
+                                <asp:ListItem Text="2" Value="2" />
+                                <asp:ListItem Text="3" Value="3" />
+                                <asp:ListItem Text="4" Value="4" />
+                                <asp:ListItem Text="5" Value="5" />
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+
+
                 </div>
 
 
@@ -107,13 +120,13 @@
             <div class="col-lg-12 col-md-12 col-sm-12 my-2 text-center">
                 <div class="col-lg-4 col-md-4 mx-auto">
                     <asp:Button class="btn btn-primary btn-block rounded" runat="server" name="btnEnviarComentario" OnClick="EnviarComentarioAnfitrion_Click" ID="btnEnviarComentario"
-                        Style="height: 47px; margin-top: -2px;" Text="Enviar" />
+                        Style="height: 47px; margin-top: -2px;" Text="Enviar" disabled="true" />
                 </div>
             </div>
         </div>
     </div>
 
-    </div>
+
 
 
 
@@ -136,20 +149,56 @@
     <script>
         function contarPalabrasPublico() {
             var comentario = document.getElementById('<%= txtcomentarioPublico.ClientID %>').value;
-            var palabras = comentario.trim().split(/\s+/);
-            var numPalabras = palabras.length;
-            var palabrasRestantes = 100 - numPalabras;
+                var palabras = comentario.trim().split(/\s+/);
+                var numPalabras = palabras.length;
+                var palabrasRestantes = 100 - numPalabras;
 
-            if (palabrasRestantes >= 0) {
-                document.getElementById("contadorPalabrasPublico").innerHTML = "*" + palabrasRestantes + " palabras restantes";
-            } else {
-                document.getElementById("contadorPalabrasPublico.ClientID %>").innerHTML = "Límite de palabras alcanzado";
-                document.getElementById('<%= txtcomentarioPublico.ClientID %>').value = comentario.split(/\s+/).slice(0, 100).join(" ");
+                if (palabrasRestantes >= 0) {
+                    document.getElementById("contadorPalabrasPublico").innerHTML = "*" + palabrasRestantes + " palabras restantes";
+                } else {
+                    document.getElementById("contadorPalabrasPublico.ClientID %>").innerHTML = "Límite de palabras alcanzado";
+                    document.getElementById('<%= txtcomentarioPublico.ClientID %>').value = comentario.split(/\s+/).slice(0, 100).join(" ");
             }
         }
 
         // Asociar las funciones a eventos de escritura en los campos de texto
         document.getElementById('<%= txtcomentarioPublico.ClientID %>').addEventListener("input", contarPalabrasPublico);
-        
+
+
+
+        function contarPalabrasInmueble() {
+            var comentario = document.getElementById('<%= txtComentarioInmueble.ClientID %>').value;
+                var palabras = comentario.trim().split(/\s+/);
+                var numPalabras = palabras.length;
+                var palabrasRestantes = 100 - numPalabras;
+
+                if (palabrasRestantes >= 0) {
+                    document.getElementById("contadorPalabrasInmueble").innerHTML = "*" + palabrasRestantes + " palabras restantes";
+                } else {
+                    document.getElementById("contadorPalabrasInmueble.ClientID %>").innerHTML = "Límite de palabras alcanzado";
+                    document.getElementById('<%= txtComentarioInmueble.ClientID %>').value = comentario.split(/\s+/).slice(0, 100).join(" ");
+            }
+        }
+
+        // Asociar las funciones a eventos de escritura en los campos de texto
+        document.getElementById('<%= txtComentarioInmueble.ClientID %>').addEventListener("input", contarPalabrasInmueble);
+
+
+        function habilitarBotonEnviar() {
+            var txtcomentarioPublico = document.getElementById('<%= txtcomentarioPublico.ClientID %>');
+                var txtComentarioInmueble = document.getElementById('<%= txtComentarioInmueble.ClientID %>');
+                var btnEnviarComentario = document.getElementById('<%= btnEnviarComentario.ClientID %>')
+
+            var comentarioPublico = txtcomentarioPublico.value.trim();
+            var comentarioInmueble = txtComentarioInmueble.value.trim();
+
+            if (comentarioPublico.length > 0 && comentarioInmueble.length > 0) {
+                btnEnviarComentario.disabled = false;
+            } else {
+                btnEnviarComentario.disabled = true;
+            }
+        }
+        document.getElementById('<%= txtcomentarioPublico.ClientID %>').addEventListener("input", habilitarBotonEnviar);
+        document.getElementById('<%= txtComentarioInmueble.ClientID %>').addEventListener("input", habilitarBotonEnviar);
     </script>
 </asp:Content>

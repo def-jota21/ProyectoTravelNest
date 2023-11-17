@@ -67,9 +67,6 @@ namespace ProyectoTravelNest.pages
                 Repeater.DataSource = descuento.getDescuentos(Request.QueryString["IdInmueble"]);
                 Repeater.DataBind();
             }
-
-           
-           
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -124,7 +121,6 @@ namespace ProyectoTravelNest.pages
             descuento.crud(eDescuento, "Agregar");
             actionButton("Agregar");
         }
-
 
         private void actionButton(String accion, TextBox txt = null,
                                   HtmlGenericControl modificar = null, HtmlGenericControl guardar = null, HtmlGenericControl eliminar = null)

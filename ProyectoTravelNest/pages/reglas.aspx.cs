@@ -133,7 +133,6 @@ namespace ProyectoTravelNest.pages
             actionButton("Agregar");
         }
 
-
         private void actionButton(String accion, TextBox txt = null, TextBox txt2 = null,
                                   HtmlGenericControl modificar = null, HtmlGenericControl guardar = null, HtmlGenericControl eliminar = null)
         {

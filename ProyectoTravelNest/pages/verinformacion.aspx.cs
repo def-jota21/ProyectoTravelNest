@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -25,6 +26,8 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios == null)
             {
+                txtTotal.Text = "$ 0";
+
                 if (Request.QueryString["IdUsuario"] != null && Request.QueryString["IdInmueble"] != null)
                 {
                     // Lee los valores de los parámetros
@@ -103,9 +106,20 @@ namespace ProyectoTravelNest.pages
                 }
                 fechasOcupadas = ObtenerFechasOcupadasDesdeBD(idInmueble);
 
-                btnReservar.Enabled = true;
+                if(eUsuarios.T_Rol != 'H')
+                {
+                    btnReservar.Enabled = false;
 
-                btnReservar.Text = "Reservar";
+                    btnReservar.Text = "Debe ser un huésped";
+                }
+                else
+                {
+                    btnReservar.Enabled = true;
+
+                    btnReservar.Text = "Continuar";
+                }
+
+               
 
 
                 lblFechaSalida.Text = "Seleccione una fecha";
@@ -205,7 +219,7 @@ namespace ProyectoTravelNest.pages
                 {
                     // Si la fecha actual coincide con una fecha ocupada, deshabilita la fecha en el calendario
                     e.Day.IsSelectable = false;
-                    e.Cell.ForeColor = System.Drawing.Color.Green; // Cambia el color del texto a gris u otro color de tu elección
+                    e.Cell.ForeColor = System.Drawing.Color.Red; // Cambia el color del texto a gris u otro color de tu elección
                     break; // Puedes salir del bucle si encuentras una coincidencia
                 }
             }
@@ -214,14 +228,14 @@ namespace ProyectoTravelNest.pages
             if (e.Day.Date < DateTime.Today)
             {
                 e.Day.IsSelectable = false;
-                e.Cell.ForeColor = System.Drawing.Color.Green;
+                e.Cell.ForeColor = System.Drawing.Color.Red;
             }
 
             // Deshabilita las fechas posteriores a la fecha seleccionada en el CalendarFinal
-            if (CalendarFinal.SelectedDate != DateTime.MinValue && e.Day.Date > CalendarFinal.SelectedDate)
+            if (CalendarFinal.SelectedDate != DateTime.MinValue && e.Day.Date >= CalendarFinal.SelectedDate)
             {
                 e.Day.IsSelectable = false;
-                e.Cell.ForeColor = System.Drawing.Color.Green;
+                e.Cell.ForeColor = System.Drawing.Color.Red;
             }
         }
 
@@ -231,14 +245,14 @@ namespace ProyectoTravelNest.pages
             if (e.Day.Date < DateTime.Today)
             {
                 e.Day.IsSelectable = false;
-                e.Cell.ForeColor = System.Drawing.Color.Green;
+                e.Cell.ForeColor = System.Drawing.Color.Red;
             }
 
             // Deshabilita las fechas anteriores a la fecha seleccionada en el CalendarInicio
-            if (CalendarInicio.SelectedDate != DateTime.MinValue && e.Day.Date < CalendarInicio.SelectedDate)
+            if (CalendarInicio.SelectedDate != DateTime.MinValue && e.Day.Date <= CalendarInicio.SelectedDate)
             {
                 e.Day.IsSelectable = false;
-                e.Cell.ForeColor = System.Drawing.Color.Green;
+                e.Cell.ForeColor = System.Drawing.Color.Red;
             }
 
             foreach (DateTime fechaOcupada in fechasOcupadas)
@@ -247,7 +261,7 @@ namespace ProyectoTravelNest.pages
                 {
                     // Si la fecha actual coincide con una fecha ocupada, deshabilita la fecha en el calendario
                     e.Day.IsSelectable = false;
-                    e.Cell.ForeColor = System.Drawing.Color.Green; // Cambia el color del texto a gris u otro color de tu elección
+                    e.Cell.ForeColor = System.Drawing.Color.Red; // Cambia el color del texto a gris u otro color de tu elección
                     break; // Puedes salir del bucle si encuentras una coincidencia
                 }
             }
@@ -262,12 +276,22 @@ namespace ProyectoTravelNest.pages
             // Obtén las fechas seleccionadas de los DatePicker
             DateTime fecha1 = CalendarInicio.SelectedDate;
             DateTime fecha2 = CalendarFinal.SelectedDate;
-
+            string fechaString = "1/1/0001 00:00:00";
+            DateTime fecha;
+            DateTime.TryParseExact(fechaString, "M/d/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha);
             // Calcula la diferencia de días
             TimeSpan diferencia = fecha2 - fecha1;
             int diferenciaDias = diferencia.Days;
 
-            txtTotal.Text = (Precio * diferenciaDias).ToString();
+            if (fecha2 == fecha)
+            {
+
+                txtTotal.Text = "$ 0";
+            }
+            else
+            {
+                txtTotal.Text = "$ "+(Precio * diferenciaDias).ToString();
+            }
 
             lblFechaEntrada.Text = CalendarInicio.SelectedDate.ToString("d/MM/yyyy");
 
@@ -281,12 +305,24 @@ namespace ProyectoTravelNest.pages
             // Obtén las fechas seleccionadas de los DatePicker
             DateTime fecha1 = CalendarInicio.SelectedDate;
             DateTime fecha2 = CalendarFinal.SelectedDate;
-
+            string fechaString = "1/1/0001 00:00:00";
+            DateTime fecha;
+            DateTime.TryParseExact(fechaString, "M/d/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha);
             // Calcula la diferencia de días
             TimeSpan diferencia = fecha2 - fecha1;
             int diferenciaDias = diferencia.Days;
 
-            txtTotal.Text = (Precio * diferenciaDias).ToString();
+            if(fecha1 == fecha)
+            {
+
+                txtTotal.Text = "$ 0";
+            }
+            else
+            {
+                txtTotal.Text = "$ " + (Precio * diferenciaDias).ToString();
+            }
+
+            
 
             lblFechaSalida.Text = CalendarFinal.SelectedDate.ToString("d/MM/yyyy");
             

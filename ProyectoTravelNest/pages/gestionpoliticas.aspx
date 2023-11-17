@@ -148,9 +148,7 @@
                                 <div class="row">
                                     <asp:Label ID="lblEstado" runat="server" AssociatedControlID="ddlPolitica" CssClass="form-label">Seleccione la política</asp:Label>
                                     <asp:DropDownList ID="ddlPolitica" runat="server" CssClass="form-control">
-                                        <asp:ListItem Text="Chek-In" Value="Chek-In"></asp:ListItem>
-                                        <asp:ListItem Text="Salida" Value="Salida"></asp:ListItem>
-                                        <asp:ListItem Text="CantidadMaximaHuespedes" Value="CantidadMaximaHuespedes"></asp:ListItem>
+                                        
                                     </asp:DropDownList>
                                 </div>
 

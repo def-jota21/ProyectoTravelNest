@@ -49,7 +49,7 @@ namespace ProyectoTravelNest.pages
                     cajaEstado.Attributes["class"] += " alert-success";
                     lblEstado.Text = "Estado: Aprobado";
                 }
-                lblIdentificacion.Text = Session["IdUsuario"].ToString();
+                lblIdentificacion.Text = "11111111111    ";
             }
 
         }

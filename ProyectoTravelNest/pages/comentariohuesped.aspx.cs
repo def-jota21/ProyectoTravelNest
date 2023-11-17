@@ -47,8 +47,8 @@ namespace ProyectoTravelNest.pages
 
             //aca se debe de ontener el id anfitrion desde la variable session PENDIENTE
             Negocios.Negocio_Comentarios iNgcom = new Negocio_Comentarios();
-
-            iNgcom.realizarComentarioaHuesped("2222222222", IdHuesped, Comentario, limpieza, calificacion, int.Parse(IdReservacion));
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            iNgcom.realizarComentarioaHuesped(eUsuarios.IdUsuario, IdHuesped, Comentario, limpieza, calificacion, int.Parse(IdReservacion));
 
             string script = "Swal.fire('¡GRACIAS!', 'Su comentario se envió correctamente.', 'success');";
             ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);

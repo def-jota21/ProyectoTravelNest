@@ -52,11 +52,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-
+                    <h3 class="mb-3">Comentario y Evaluación al Huésped</h3>
                     <div class="col-lg-7 col-md-12 col-sm-12 my-2">
                         <div class="row">
                             <h3>Comentario para el huésped</h3>
-                            <p>Se enviará un público a tu huésped</p>
+                            <p>Se enviará un público a tu huésped  *Requerido</p>
                             <asp:TextBox runat="server" CssClass="form-control w-100" ID="txtcomentarioPublico" TextMode="MultiLine" Rows="7"></asp:TextBox>
                             <div id="contadorPalabrasPublico">*100 palabras restantes</div>
                         </div>
@@ -104,8 +104,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 my-2 text-center">
                     <div class="col-lg-4 col-md-4 mx-auto">
-                        <asp:Button class="btn btn-primary btn-block rounded" runat="server" name="btnEnviarComentario" OnClick="EnviarComentarioHuesped_Click" ID="btnEnviarComentario"
-                            Style="height: 47px; margin-top: -2px;" Text="Enviar" />
+                        <asp:Button class="btn btn-primary btn-block rounded"  runat="server" name="btnEnviarComentario" OnClick="EnviarComentarioHuesped_Click" ID="btnEnviarComentario"
+                            Style="height: 47px; margin-top: -2px;" Text="Enviar" disabled="false"/>
                     </div>
                 </div>
             </div>
@@ -134,20 +134,35 @@
     <script>
         function contarPalabrasPublico() {
             var comentario = document.getElementById('<%= txtcomentarioPublico.ClientID %>').value;
-        var palabras = comentario.trim().split(/\s+/);
-        var numPalabras = palabras.length;
-        var palabrasRestantes = 100 - numPalabras;
+            var palabras = comentario.trim().split(/\s+/);
+            var numPalabras = palabras.length;
+            var palabrasRestantes = 100 - numPalabras;
 
-        if (palabrasRestantes >= 0) {
-            document.getElementById("contadorPalabrasPublico").innerHTML = "*" + palabrasRestantes + " palabras restantes";
-        } else {
-            document.getElementById("contadorPalabrasPublico.ClientID %>").innerHTML = "Límite de palabras alcanzado";
-            document.getElementById('<%= txtcomentarioPublico.ClientID %>').value = comentario.split(/\s+/).slice(0, 100).join(" ");
+            if (palabrasRestantes >= 0) {
+                document.getElementById("contadorPalabrasPublico").innerHTML = "*" + palabrasRestantes + " palabras restantes";
+            } else {
+                document.getElementById("contadorPalabrasPublico.ClientID %>").innerHTML = "Límite de palabras alcanzado";
+                document.getElementById('<%= txtcomentarioPublico.ClientID %>').value = comentario.split(/\s+/).slice(0, 100).join(" ");
+            }
         }
-    }
 
-    // Asociar las funciones a eventos de escritura en los campos de texto
-    document.getElementById('<%= txtcomentarioPublico.ClientID %>').addEventListener("input", contarPalabrasPublico);
+        // Asociar las funciones a eventos de escritura en los campos de texto
+        document.getElementById('<%= txtcomentarioPublico.ClientID %>').addEventListener("input", contarPalabrasPublico);
 
+
+        function habilitarBotonEnviar() {
+            var txtcomentarioPublico = document.getElementById('<%= txtcomentarioPublico.ClientID %>');
+            var btnEnviarComentario = document.getElementById('<%= btnEnviarComentario.ClientID %>')
+
+            var comentarioPublico = txtcomentarioPublico.value.trim();
+            
+
+            if (comentarioPublico.length > 0) {
+                btnEnviarComentario.disabled = false;
+            } else {
+                btnEnviarComentario.disabled = true;
+            }
+        }
+        document.getElementById('<%= txtcomentarioPublico.ClientID %>').addEventListener("input", habilitarBotonEnviar);
     </script>
 </asp:Content>

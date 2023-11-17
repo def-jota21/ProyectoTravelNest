@@ -59,11 +59,14 @@
                 <ItemTemplate>
                     <asp:Label ID="lblNombreLugar" runat="server" Text='<%# Eval("Nombre") %>' CssClass="h1" />
 
-                    <div class="d-flex mb-3">
+                    <div class="d-flex mb-3 mt-2">
+                        <small class="mr-3"><i class="fa fa-user text-primary mr-1"></i> El anfitrión: </small>
                         <small class="mr-3"><i class="fa fa-star text-primary mr-1"></i><%# Eval("Calificacion") %></small>
-                        <small class="mr-3"><a href="#" id="pagComentariosI">Comentarios</a></small>
-                        <small class="mr-3"><%# Eval("TipoAnfitrion") %></small>
-                        <small class="mr-3"><%# Eval("Direccion") %></small>
+
+                        <small class="mr-3"><a href="#">Comentarios</a></small>
+                        <small class="mr-3"><i class="fa fa-medal text-primary mr-1"></i><%# Eval("TipoAnfitrion") %></small>
+                        <small class="mr-3"><i class="fa fa-map-marker-alt text-primary mr-1"></i><%# Eval("Direccion") %></small>
+
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
@@ -109,19 +112,19 @@
                             <h4 style="display: inline-block;"><%# Eval("Dueno") %></h4>
                             <div class="d-flex ">
                                 <small class="mr-3">
-                                    <p style="display: inline;">
+                                    <p style="display: inline;"><i class="fa fa-user text-primary mr-1"></i> 
                                         <p style="display: inline;"><%# Eval("Cantidad_Huesped") %></p>
                                         Huéspedes
                                     </p>
                                 </small>
-                                <small class="mr-3">
+                                <small class="mr-3"><i class="fa fa-toilet text-primary mr-1"></i>
                                     <p style="display: inline;">
                                         <p style="display: inline;"><%# Eval("Banhos") %></p>
                                         Baños
                                     </p>
                                 </small>
                                 <small class="mr-3">
-                                    <p style="display: inline;">
+                                    <p style="display: inline;"><i class="fa fa-bed text-primary mr-1"></i> 
                                         <p style="display: inline;"><%# Eval("Habitaciones") %></p>
                                         Habitaciones
                                     </p>

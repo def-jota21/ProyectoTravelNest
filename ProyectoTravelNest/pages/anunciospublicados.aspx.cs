@@ -21,7 +21,46 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
+                Negocios.Negocio_Inmuebles iInmueble = new Negocios.Negocio_Inmuebles();
 
+                //aca tambien se debe de obtener la variable session al inciciar sesion
+                rptAlojamientos.DataSource = iInmueble.ListarInmueblesAnfitrion(eUsuarios.IdUsuario);
+                rptAlojamientos.DataBind();
+            }
+            
+        }
+
+        protected void btnVerInformacion_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "VerInformacion")
+            {
+                string[] args = e.CommandArgument.ToString().Split(',');
+
+                if (args.Length == 2)
+                {
+                    string IdUsuario = args[0].Trim();
+                    string IdInmueble = args[1].Trim();
+
+                    // Redirige a la página de destino con los parámetros
+                    Response.Redirect($"verinformacion.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");
+                }
+            }
+        }
+
+        protected void btnModificar_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "Modificar")
+            {
+                string[] args = e.CommandArgument.ToString().Split(',');
+
+                if (args.Length == 2)
+                {
+                    string IdUsuario = args[0].Trim();
+                    string IdInmueble = args[1].Trim();
+
+                    // Redirige a la página de destino con los parámetros
+                    Response.Redirect($"editaranuncio.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");
+                }
             }
         }
     }

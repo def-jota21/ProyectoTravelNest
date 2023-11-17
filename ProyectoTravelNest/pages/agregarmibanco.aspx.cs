@@ -1,8 +1,11 @@
-﻿using Negocios;
+﻿using Entidades;
+using Negocios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,13 +13,25 @@ namespace ProyectoTravelNest.pages
 {
     public partial class AgregarMiBanco : System.Web.UI.Page
     {
+        Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
+            eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
+            if (eUsuarios == null)
+            {
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            if (!IsPostBack & eUsuarios != null)
+            {
+                
+            }
         }
 
         protected void btnGuardarMiBanco_Click(object sender, EventArgs e)
         {
+            
             string numeroCuenta = txtNumeroCuenta.Text.Trim();
             string cvv = txtCVV.Text.Trim();
 
@@ -30,7 +45,7 @@ namespace ProyectoTravelNest.pages
             }
 
             // Validación: Verificar la longitud de número de cuenta y CVV
-            if (numeroCuenta.Length != 13)
+            if (numeroCuenta.Length != 16)
             {
                 lblMensaje.Text = "El número de cuenta debe tener 13 dígitos.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
@@ -48,7 +63,7 @@ namespace ProyectoTravelNest.pages
 
             // Si se pasa por todas las validaciones, procede a realizar la inserción
             Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
-            string mensaje = neg_MiBanco.InsertarCuentaMiBanco("2222222222", numeroCuenta, cvv);
+            string mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numeroCuenta, cvv);
 
             // Mostrar mensaje de éxito o error
             

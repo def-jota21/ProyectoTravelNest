@@ -16,7 +16,7 @@ namespace ProyectoTravelNest.pages
 
             if (eUsuarios == null)
             {
-                FormsAuthentication.RedirectToLoginPage();
+                //FormsAuthentication.RedirectToLoginPage();
             }
 
             if (!IsPostBack & eUsuarios != null)

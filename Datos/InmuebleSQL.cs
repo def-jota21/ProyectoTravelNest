@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -41,6 +42,30 @@ namespace Datos
             }
 
             return tablaServicios;
+        }
+
+        public DataTable ObtenerTablaPoliticas()
+        {
+            DataTable tablapoliticas = new DataTable();
+
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                string query = "SELECT idPolitica, Nombre FROM Politicas";
+
+                using (SqlCommand command = new SqlCommand(query, sqlCon))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(tablapoliticas);
+                    }
+                }
+            }
+
+            return tablapoliticas;
         }
 
         public DataTable ObtenerTablaAmenidades()
@@ -168,5 +193,53 @@ namespace Datos
             return idAmenidad;
         }
 
+        public bool InsertarImagenInmueble(string idInmueble, byte[] arregloByte)
+        {
+            try
+            {
+                CadenaConexion();
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+                    // Crear el comando SQL para insertar la imagen
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO [Proyecto].[ImagenesxInmueble] ([IdInmueble], [Imagen]) VALUES (@IdInmueble, @Imagen)", sqlCon))
+                    {
+                        // Asignar los parámetros
+                        cmd.Parameters.AddWithValue("@IdInmueble", idInmueble);
+                        cmd.Parameters.AddWithValue("@Imagen", arregloByte);
+
+                        cmd.ExecuteNonQuery();
+
+                        // Si la inserción fue exitosa, devolver true
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción (puedes registrarla o mostrarla según sea necesario)
+                // Devolver false en caso de error
+                return false;
+            }
+        }
+
+        public void InsertarPoliticas(string idInmueble, string idPolitica, string desPolitica)
+        {
+            CadenaConexion();
+            using (sqlCon)
+            {
+                sqlCon.Open();
+                // Crear el comando SQL para insertar la imagen
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO PoliticasxInmueble (IdInmueble, IdPolitica, Comentario) VALUES (@IdInmueble, @IdPolitica, @Comentario)", sqlCon))
+                {
+                    // Asignar los parámetros
+                    cmd.Parameters.AddWithValue("@IdInmueble", idInmueble);
+                    cmd.Parameters.AddWithValue("@IdPolitica", idPolitica);
+                    cmd.Parameters.AddWithValue("@Comentario", desPolitica);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

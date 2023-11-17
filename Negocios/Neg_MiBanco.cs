@@ -10,9 +10,21 @@ namespace Negocios
     {
         public string InsertarCuentaMiBanco(string IdUsuario, string NumeroCuenta, string cvv)
         {
+            string mensaje = "";
             Datos.MiBancoSQL miBancoSQL = new MiBancoSQL();
+            
+            mibanconeg.mibanco iBanco = new mibanconeg.mibanco();
 
-            string mensaje = miBancoSQL.InsertarUsuarioMiBanco(IdUsuario, NumeroCuenta, cvv);
+            if (iBanco.ValidarExistencia(NumeroCuenta, cvv))
+            {
+                mensaje = miBancoSQL.InsertarUsuarioMiBanco(IdUsuario, NumeroCuenta, cvv);
+            }
+            else
+            {
+                mensaje = "La cuenta digítada no existe, registrese en MiBanco";
+            }
+
+            
             return mensaje;
         }
 

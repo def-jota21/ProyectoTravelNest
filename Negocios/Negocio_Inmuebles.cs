@@ -19,6 +19,7 @@ namespace Negocios
             DataTable dtInmuebles = new DataTable();
 
             dtInmuebles = Datos.ConexionSQL.ExecuteQueryTableGeneral("ListarInmueblesPrincipal");
+            
 
             return dtInmuebles;
         

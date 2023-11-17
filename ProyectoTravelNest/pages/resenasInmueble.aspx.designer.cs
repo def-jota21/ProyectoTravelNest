@@ -11,43 +11,43 @@ namespace ProyectoTravelNest.pages
 {
 
 
-    public partial class paneladministracionhuesped
+    public partial class resenasInmueble
     {
 
         /// <summary>
-        /// lbtnReglas control.
+        /// rptDatosInmueble control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnReglas;
+        protected global::System.Web.UI.WebControls.Repeater rptDatosInmueble;
 
         /// <summary>
-        /// lbtnPromociones control.
+        /// RepeaterImagen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnPromociones;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterImagen;
 
         /// <summary>
-        /// lbtnCalendario control.
+        /// RepeaterDatosSecundarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnCalendario;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterDatosSecundarios;
 
         /// <summary>
-        /// lbtnDescuentos control.
+        /// RepeaterComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnDescuentos;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterComentarios;
     }
 }

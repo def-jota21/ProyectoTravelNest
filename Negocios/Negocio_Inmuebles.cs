@@ -271,5 +271,18 @@ namespace Negocios
 
             return dtInfoPoliticas;
         }
+
+        public DataTable comentariosInmueble(String IdInmueble)
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "comentariosInmueble";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@IdInmueble", IdInmueble));
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
     }
 }

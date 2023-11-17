@@ -61,7 +61,7 @@
 
                     <div class="d-flex mb-3">
                         <small class="mr-3"><i class="fa fa-star text-primary mr-1"></i><%# Eval("Calificacion") %></small>
-                        <small class="mr-3"><a href="#">Comentarios</a></small>
+                        <small class="mr-3"><a href="#" id="pagComentariosI">Comentarios</a></small>
                         <small class="mr-3"><%# Eval("TipoAnfitrion") %></small>
                         <small class="mr-3"><%# Eval("Direccion") %></small>
                     </div>
@@ -297,11 +297,17 @@
 
         window.addEventListener('DOMContentLoaded', event => {
 
-
             const datatablesSimple = document.getElementById('datatablesSimple');
             if (datatablesSimple) {
                 new simpleDatatables.DataTable(datatablesSimple);
             }
+
+            var parametrosURL = new URLSearchParams(window.location.search);
+            var IdUsuario = parametrosURL.get('IdUsuario');
+            var IdInmueble = parametrosURL.get('IdInmueble');
+
+            document.getElementById("pagComentariosI").href = "resenasInmueble.aspx?IdUsuario=" + IdUsuario + "&IdInmueble=" + IdInmueble;
+
         });
         document.getElementById("showModalButton").addEventListener("click", function () {
             $('#ModalInicioSesion').modal("show");

@@ -5,8 +5,16 @@
         <h1>Verificar Identidad</h1>
         <div class="my-5">
             <h4>Identificación</h4>
-            <label>x-xxxx-xxxx</label>
+            <asp:Label ID="lblIdentificacion" runat="server" Text="Error"></asp:Label>
         </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 alert alert-danger" runat="server" id="cajaEstado" role="alert">
+                <asp:Label ID="lblEstado" runat="server" Text="Estado: Error"></asp:Label>
+            </div>
+          </div>
+        </div>
+        
         <asp:UpdatePanel ID="updtPanel" runat="server">
             <ContentTemplate>
                 <div class="my-5" style="width: 60%;">

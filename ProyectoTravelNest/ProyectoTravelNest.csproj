@@ -226,6 +226,7 @@
     <Content Include="pages\promociones.aspx" />
     <Content Include="pages\recepcionmensajes.aspx" />
     <Content Include="pages\reglas.aspx" />
+    <Content Include="pages\resenasInmueble.aspx" />
     <Content Include="pages\reservas.aspx" />
     <Content Include="pages\sesionyseguridad.aspx" />
     <Content Include="pages\validartoken.aspx" />
@@ -543,6 +544,13 @@
     </Compile>
     <Compile Include="pages\reglas.aspx.designer.cs">
       <DependentUpon>reglas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\resenasInmueble.aspx.cs">
+      <DependentUpon>resenasInmueble.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\resenasInmueble.aspx.designer.cs">
+      <DependentUpon>resenasInmueble.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\reservas.aspx.cs">
       <DependentUpon>reservas.aspx</DependentUpon>

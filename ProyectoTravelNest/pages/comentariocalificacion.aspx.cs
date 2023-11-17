@@ -15,14 +15,14 @@ namespace ProyectoTravelNest.pages
         Negocios.Negocio_Comentarios comentarios = new Negocios.Negocio_Comentarios();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            //if (eUsuarios == null)
-            //{
-            //    FormsAuthentication.RedirectToLoginPage();
-            //}
+            if (eUsuarios == null)
+            {
+                FormsAuthentication.RedirectToLoginPage();
+            }
 
-            if (!IsPostBack /*& eUsuarios != null*/)
+            if (!IsPostBack & eUsuarios != null)
             {
                 DataTable dtDestinatario = comentarios.getInfoUsuario(Request.QueryString["IdUsuario"]);
                 int calificacionDestinatario = Convert.ToInt16(dtDestinatario.Rows[0]["Calificacion"]);
@@ -39,11 +39,7 @@ namespace ProyectoTravelNest.pages
                 lc.Text += $@"<label style='color: rgb(255, 204, 65); font-size: 35px;'>({calificacionDestinatario})</label>";
                 divCalificacionDestinatario.Controls.Add(lc);
 
-                DataTable com = comentarios.cargarComentarios(Request.QueryString["IdUsuario"]);
-                String a = com.Rows[0]["NombreCompleto"].ToString();
-                String b = com.Rows[0]["Calificacion"].ToString();
-                String c = com.Rows[0]["Comentario"].ToString();
-                RepeaterComentarios.DataSource = com;
+                RepeaterComentarios.DataSource = comentarios.cargarComentarios(Request.QueryString["IdUsuario"]);
                 RepeaterComentarios.DataBind();
             }
         }

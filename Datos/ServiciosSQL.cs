@@ -57,12 +57,12 @@ namespace Datos
         public string ObtenerIdServicioPorNombre(string nombreServicio)
         {
             string idServicio = "-1"; // Valor predeterminado en caso de que no se encuentre el servicio
-
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                string query = "SELECT IdServicio FROM Servicios WHERE Nombre = @Nombre";
+                string query = "SELECT IdServicio FROM Servicios WHERE TRIM(REPLACE(Nombre,' ', '')) = @Nombre";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -85,6 +85,29 @@ namespace Datos
             return idServicio;
         }
 
+        public DataTable ObtenerServiciosPorInmueble(string idInmueble)
+        {
+            DataTable tablaServicios = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT S.Nombre FROM ServicioxInmueble SI JOIN Servicios S ON SI.IdServicio = S.IdServicio WHERE SI.IdInmueble = @IdInmueble";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdInmueble", idInmueble);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(tablaServicios);
+                    }
+                }
+            }
+
+            return tablaServicios;
+        }
 
     }
 }

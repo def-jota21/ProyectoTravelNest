@@ -17,7 +17,6 @@ namespace ProyectoTravelNest.pages
         {
 
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
-            Session["pagina"] = "descuentos";
 
             if (eUsuarios == null)
             {
@@ -38,7 +37,7 @@ namespace ProyectoTravelNest.pages
                 {
                     h1_titulo.InnerText = "Agregar, modificar o eliminar un descuento";
                 }
-                else if (Session["pagina"].Equals("calendario"))
+                else if (Session["pagina"].Equals("modificarcalendarioreserva"))
                 {
                     h1_titulo.InnerText = "Seleccione el alojamiento que desee cambiar fecha disponible";
                 }
@@ -50,7 +49,7 @@ namespace ProyectoTravelNest.pages
                 ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
                 Control div_row = mainContent.FindControl("row");
 
-                List<Inmueble> ListaInmuebles = nInmueble.ListaInmueblesPagina(1, "2222222222   ", null);
+                List<Inmueble> ListaInmuebles = nInmueble.ListaInmueblesPagina(1, Session["IdUsuario"].ToString(), null);
 
                 foreach (Inmueble inmueble in ListaInmuebles)
                 {
@@ -87,7 +86,7 @@ namespace ProyectoTravelNest.pages
                     div_row.Controls.Add(htmlSnippet);
                 }
             }
-
+            Session["IdUsuario"] = Session["IdUsuario"].ToString();
         }
     }
 }

@@ -18,6 +18,15 @@ namespace Negocios
 
             return tablaServicios;
         }
+
+        public DataTable ObtenerPoliticas()
+        {
+            DataTable tablaPoliticas = new DataTable();
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            tablaPoliticas = inmuebleSQL.ObtenerTablaPoliticas();
+
+            return tablaPoliticas;
+        }
         public DataTable ObtenerCategorias()
         {
             DataTable tablaServicios = new DataTable();
@@ -35,27 +44,51 @@ namespace Negocios
 
             return tablaServicios;
         }
+        public DataTable ObtenerServicioxInmueble(string idInmueble)
+        {
+            DataTable tablaServicios = new DataTable();
+            Datos.ServiciosSQL serviciosSQL = new Datos.ServiciosSQL();
+            tablaServicios = serviciosSQL.ObtenerServiciosPorInmueble(idInmueble);
 
-        public void InsertarInmueble(Entidades.Inmueble inmueble, string categoria, string rutas, List<string> servicios, List<string> amenidades, string IdUsuario) 
+            return tablaServicios;
+        }
+
+        public string InsertarInmueble(Entidades.Inmueble inmueble, string categoria, string rutas, List<string> servicios, List<string> amenidades, string IdUsuario, List<string> politicas, List<string> despoliticas) 
         {
             Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
             string idInmueble = inmuebleSQL.InsertarInmueble(inmueble, categoria, "", IdUsuario);
-
+            
             ServiciosSQL ServiciosSQL = new ServiciosSQL();
-            foreach (string servicio in servicios)
+            foreach (string idservicio in servicios)
             {
-                string Id = ServiciosSQL.ObtenerIdServicioPorNombre(servicio);
-
-                ServiciosSQL.EjecutarProcedureServicioxInmueble(idInmueble, Id);
+                ServiciosSQL.EjecutarProcedureServicioxInmueble(idInmueble, idservicio);
             }
 
 
-            foreach (string amenidad in amenidades)
+            foreach (string idamenidad in amenidades)
             {
-                string Id = inmuebleSQL.ObtenerIdAmenidadPorNombre(amenidad);
 
-                inmuebleSQL.AsociarAmenidadAInmueble(idInmueble,Id);
+                inmuebleSQL.AsociarAmenidadAInmueble(idInmueble,idamenidad);
             }
+
+            for (int i = 0; i < politicas.Count; i++)
+            {
+                string idPolitica = politicas[i];
+                string descripcionPolitica = despoliticas[i];
+
+                inmuebleSQL.InsertarPoliticas(idInmueble, idPolitica, descripcionPolitica);
+            }
+
+            return idInmueble;
+        }
+
+        public bool InsertarImagenInmueble(string idInmueble, byte[] arregloImagen)
+        {
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+
+            bool inserto = inmuebleSQL.InsertarImagenInmueble(idInmueble, arregloImagen);
+
+            return inserto;
         }
     }
 }

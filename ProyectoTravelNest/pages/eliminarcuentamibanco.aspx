@@ -78,6 +78,14 @@
         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar Cuenta" CssClass="btn btn-danger btn-block"
             Style="height: 44px; margin-top: -2px; border-color: #7AB730;" OnClick="btnEliminarMiBanco_Click"/>
     </div>
+     <div class="col-sm-12 col-lg-12 mt-2 form-group text-right">
+         <a href="https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/" 
+   id="btnIrMiBanco" 
+   class="btn btn-light" 
+   style="height: 44px; margin-top: -2px; border-color: #7AB730;" 
+   target="_blank">Ir a Mi Banco</a>
 
+        
+    </div>
 </div>
 </asp:Content>

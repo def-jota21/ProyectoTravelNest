@@ -15,7 +15,7 @@ namespace ProyectoTravelNest.pages
 {
     public partial class verinformacion : System.Web.UI.Page
     {
-       
+        private string valorSeleccionadoDDL;
         static string IdUsuario = "";
         static string idInmueble = "";
         static float Precio = 0;
@@ -23,8 +23,6 @@ namespace ProyectoTravelNest.pages
         protected void Page_Load(object sender, EventArgs e)
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
-            
-            
 
             if (!IsPostBack & eUsuarios == null)
             {
@@ -69,8 +67,32 @@ namespace ProyectoTravelNest.pages
                 rptReglas.DataSource = iInmueble.ListarInformacionInmuebleReglas(idInmueble, IdUsuario);
                 rptReglas.DataBind();
 
-                RepeaterServicios.DataSource = iInmueble.ListarInformacionInmuebleServicios(idInmueble); 
-                RepeaterServicios.DataBind();
+                Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
+
+                // Obtén el DataTable completo desde tu origen de datos
+                DataTable dtServicios = neg_Inmueble.ObtenerServicioxInmueble(idInmueble);
+
+                // Separa los primeros 6 servicios
+                DataTable dtPrimerosServicios = dtServicios.Clone(); // Clona la estructura del DataTable original
+                for (int i = 0; i < 6 && i < dtServicios.Rows.Count; i++)
+                {
+                    dtPrimerosServicios.ImportRow(dtServicios.Rows[i]);
+                }
+
+                // Resto de servicios para mostrar en el modal
+                DataTable dtServiciosRestantes = dtServicios.Clone(); // Clona la estructura del DataTable original
+                for (int i = 6; i < dtServicios.Rows.Count; i++)
+                {
+                    dtServiciosRestantes.ImportRow(dtServicios.Rows[i]);
+                }
+
+                // Enlaza los primeros 6 servicios al rptServicios
+                rptServicios.DataSource = dtPrimerosServicios;
+                rptServicios.DataBind();
+
+                // Enlaza los servicios restantes al rptTodosServicios dentro del modal
+                rptTodosServicios.DataSource = dtServiciosRestantes;
+                rptTodosServicios.DataBind();
             }
 
             if (!IsPostBack & eUsuarios != null)
@@ -122,6 +144,33 @@ namespace ProyectoTravelNest.pages
 
                 rptReglas.DataSource = iInmueble.ListarInformacionInmuebleReglas(idInmueble, IdUsuario);
                 rptReglas.DataBind();
+
+                Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
+
+                // Obtén el DataTable completo desde tu origen de datos
+                DataTable dtServicios = neg_Inmueble.ObtenerServicioxInmueble(idInmueble);
+
+                // Separa los primeros 6 servicios
+                DataTable dtPrimerosServicios = dtServicios.Clone(); // Clona la estructura del DataTable original
+                for (int i = 0; i < 6 && i < dtServicios.Rows.Count; i++)
+                {
+                    dtPrimerosServicios.ImportRow(dtServicios.Rows[i]);
+                }
+
+                // Resto de servicios para mostrar en el modal
+                DataTable dtServiciosRestantes = dtServicios.Clone(); // Clona la estructura del DataTable original
+                for (int i = 6; i < dtServicios.Rows.Count; i++)
+                {
+                    dtServiciosRestantes.ImportRow(dtServicios.Rows[i]);
+                }
+
+                // Enlaza los primeros 6 servicios al rptServicios
+                rptServicios.DataSource = dtPrimerosServicios;
+                rptServicios.DataBind();
+
+                // Enlaza los servicios restantes al rptTodosServicios dentro del modal
+                rptTodosServicios.DataSource = dtServiciosRestantes;
+                rptTodosServicios.DataBind();
             }
 
         }
@@ -148,6 +197,7 @@ namespace ProyectoTravelNest.pages
                     for (int i = 1; i <= cantidadHuespedes; i++)
                     {
                         ddlHuespedes.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                        valorSeleccionadoDDL = ddlHuespedes.SelectedValue;
                     }
                 }
 
@@ -303,7 +353,66 @@ namespace ProyectoTravelNest.pages
             return arregloFechas;
         }
 
+        protected void btnReservar_Click(object sender, EventArgs e)
+        {
+            ObtenerValorDDLHuespedes(); // Llama al método para obtener el valor seleccionado del DropDownList
+            Response.Redirect("cotizacion.aspx?parametro1=" + lblFechaEntrada.Text + "&parametro2=" + lblFechaSalida.Text + "&parametro3=" + txtTotal.Text + "&parametro4=" + valorSeleccionadoDDL + "&parametro5="+IdUsuario+ "&parametro6="+idInmueble+"");
+        }
 
+        public void ObtenerValorDDLHuespedes()
+        {
+            foreach (RepeaterItem item in rptInmuebles.Items)
+            {
+                DropDownList ddlHuespedes = (DropDownList)item.FindControl("ddlHuespedes");
 
+                if (ddlHuespedes != null)
+                {
+                    valorSeleccionadoDDL = ddlHuespedes.SelectedValue;
+                    break; // Termina el bucle una vez que se encuentra un DropDownList válido
+                }
+            }
+        }
+
+        protected string ObtenerIconoServicio(string nombreServicio)
+        {
+            // Aquí defines tu diccionario de iconos y las correspondencias entre nombres y clases de iconos
+            Dictionary<string, string> diccionarioIconos = new Dictionary<string, string>
+            {
+                    {"Wifi", "fa-solid fa-wifi"},
+                    {"Sábanas", "fa-solid fa-bed"},
+                    {"Seguro", "fa-solid fa-shield-alt"},
+                    {"Conexión Ethernet", "fa-solid fa-network-wired"},
+                    {"Libros y material de lectura", "fa-solid fa-book"},
+                    {"Juegos de mesa", "fa-solid fa-chess"},
+                    {"Chimenea interna", "fa-solid fa-fire"},
+                    {"Detector de humo", "fa-solid fa-smog"},
+                    {"Microondas", "fa-solid fa-microwave"},
+                    {"Congelador", "fa-solid fa-snowflake"},
+                    {"Hervidor de agua", "fa-solid fa-mug-hot"},
+                    {"Cocina", "fa-solid fa-utensils"},
+                    {"Tostadora", "fa-solid fa-bread-slice"},
+                    {"Licuadora", "fa-solid fa-blender"},
+                    {"Café", "fa-solid fa-coffee"},
+                    {"Lavadora", "fa-solid fa-water"},
+                    {"Secadora", "fa-solid fa-wind"},
+                    {"Vista al valle", "fa-solid fa-mountain"},
+                    {"Vista a las montañas", "fa-mountain"},
+                    {"Tina", "fa-solid fa-bath"},
+                    {"Secadora de pelo", "fa-solid fa-hair-dryer"},
+                    {"Agua caliente", "fa-solid fa-hot-tub"},
+                    
+            };
+
+            // Verifica si el nombre del servicio existe en el diccionario y devuelve la clase de icono correspondiente
+            if (diccionarioIconos.ContainsKey(nombreServicio))
+            {
+                return diccionarioIconos[nombreServicio];
+            }
+            else
+            {
+                // Devuelve un icono por defecto o una clase de icono desconocida si el servicio no se encuentra en el diccionario
+                return "fa-question-circle";
+            }
+        }
     }
 }

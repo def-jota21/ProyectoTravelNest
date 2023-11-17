@@ -19,6 +19,7 @@ namespace Negocios
             DataTable dtInmuebles = new DataTable();
 
             dtInmuebles = Datos.ConexionSQL.ExecuteQueryTableGeneral("ListarInmueblesPrincipal");
+            
 
             return dtInmuebles;
         
@@ -269,6 +270,19 @@ namespace Negocios
             dtInfoPoliticas = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
 
             return dtInfoPoliticas;
+        }
+
+        public DataTable comentariosInmueble(String IdInmueble)
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "comentariosInmueble";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@IdInmueble", IdInmueble));
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
         }
     }
 }

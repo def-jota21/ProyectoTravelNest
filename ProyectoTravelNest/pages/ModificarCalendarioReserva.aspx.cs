@@ -23,7 +23,8 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
-                string IdInmueble = eUsuarios.IdUsuario.ToString();
+                String IdInmueble = Request.QueryString["IdInmueble"];
+                String IdUsuario = Session["IdUsuario"].ToString();
                 ObtenerDatos(IdInmueble);
             }
 

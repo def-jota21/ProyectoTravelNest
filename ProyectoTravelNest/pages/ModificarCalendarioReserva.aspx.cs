@@ -23,7 +23,14 @@ namespace ProyectoTravelNest.pages
                     // Obtener el usuario de la sesión
                     Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
+
                 string IdInmueble = Session["idInmueble"].ToString();
+=======
+            if (!IsPostBack & eUsuarios != null)
+            {
+                String IdInmueble = Request.QueryString["IdInmueble"];
+                String IdUsuario = Session["IdUsuario"].ToString();
+
                 ObtenerDatos(IdInmueble);
                 }
                 else

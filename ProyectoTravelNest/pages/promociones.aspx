@@ -55,7 +55,7 @@
                                         <asp:TextBox ID="txtDetalle" runat="server" Text='<%# Eval("Explicacion") %>' 
                                                     TextMode="MultiLine" Rows="3" CssClass="full-width" MaxLength="200" Columns="100"
                                                     style="border:none; background-color: transparent; overflow: auto;
-                                                        resize: none; outline: none;" ReadOnly="true"></asp:TextBox>
+                                                    resize: none; outline: none;" ReadOnly="true"></asp:TextBox>
                                     </div>
                                 </div>
                             </ItemTemplate>

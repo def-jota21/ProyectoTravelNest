@@ -24,15 +24,6 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.TextBox txtcomentarioPublico;
 
         /// <summary>
-        /// Control ddlComunicacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlComunicacion;
-
-        /// <summary>
         /// Control ddlCalificacionAnfitrion.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,24 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCalificacionAnfitrion;
+
+        /// <summary>
+        /// Control txtComentarioInmueble.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComentarioInmueble;
+
+        /// <summary>
+        /// Control ddlComunicacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlComunicacion;
 
         /// <summary>
         /// Control btnEnviarComentario.

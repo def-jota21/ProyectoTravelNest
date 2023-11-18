@@ -31,7 +31,7 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
-                String IdUsuario = eUsuarios.IdUsuario.ToString();
+                String IdUsuario = Session["IdUsuario"].ToString();
                 ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
                 Control div_Inmueble = mainContent.FindControl("cartaInmueble");
 
@@ -132,7 +132,6 @@ namespace ProyectoTravelNest.pages
             regla.crud(eRegla, "Agregar");
             actionButton("Agregar");
         }
-
 
         private void actionButton(String accion, TextBox txt = null, TextBox txt2 = null,
                                   HtmlGenericControl modificar = null, HtmlGenericControl guardar = null, HtmlGenericControl eliminar = null)

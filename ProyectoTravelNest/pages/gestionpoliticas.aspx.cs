@@ -1,6 +1,8 @@
-﻿using Negocios;
+﻿using Entidades;
+using Negocios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -35,6 +37,15 @@ namespace ProyectoTravelNest.pages
                     rptPoliticas.DataBind();
 
                 }
+
+                Negocios.Negocio_Inmuebles iNeUser = new Negocios.Negocio_Inmuebles();
+
+                DataTable datosUsuario = iNeUser.ListarPoliticaNoAsociada(IdInmueble);
+
+                ddlPolitica.DataSource = datosUsuario;
+                ddlPolitica.DataTextField = "Nombre";
+                ddlPolitica.DataValueField = "Nombre";
+                ddlPolitica.DataBind();
             }
 
             
@@ -59,6 +70,9 @@ namespace ProyectoTravelNest.pages
             rptPoliticas.DataSource = iNeg.ListarPoliticaAsociada(IdInmueble);
             rptPoliticas.DataBind();
 
+            txtComentario.Text = string.Empty;
+            txtNombre.Text= string.Empty;
+
             string script = "Swal.fire('¡Éxito!', 'Los cambios se almacenaron correctamente.', 'success');";
             ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
             // Response.Redirect("gestionpoliticas.aspx?idInmueble=" + IdInmueble);
@@ -80,6 +94,14 @@ namespace ProyectoTravelNest.pages
             rptPoliticas.DataSource = iNeg.ListarPoliticaAsociada(IdInmueble);
             rptPoliticas.DataBind();
             // Response.Redirect("gestionpoliticas.aspx?idInmueble=" + IdInmueble);
+            Negocios.Negocio_Inmuebles iNeUser = new Negocios.Negocio_Inmuebles();
+
+            DataTable datosUsuario = iNeUser.ListarPoliticaNoAsociada(IdInmueble);
+
+            ddlPolitica.DataSource = datosUsuario;
+            ddlPolitica.DataTextField = "Nombre";
+            ddlPolitica.DataValueField = "Nombre";
+            ddlPolitica.DataBind();
 
             string script = "Swal.fire('¡Éxito!', 'La política se eliminó correctamente.', 'success');";
             ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
@@ -101,6 +123,16 @@ namespace ProyectoTravelNest.pages
             hfIDinmueble.Value = IdInmueble;
             rptPoliticas.DataSource = iNeg.ListarPoliticaAsociada(IdInmueble);
             rptPoliticas.DataBind();
+            Negocios.Negocio_Inmuebles iNeUser = new Negocios.Negocio_Inmuebles();
+
+            DataTable datosUsuario = iNeUser.ListarPoliticaNoAsociada(IdInmueble);
+
+            ddlPolitica.DataSource = datosUsuario;
+            ddlPolitica.DataTextField = "Nombre";
+            ddlPolitica.DataValueField = "Nombre";
+            ddlPolitica.DataBind();
+
+            TextBox2.Text = string.Empty;
 
             string script = "Swal.fire('¡Éxito!', 'La ´política se almacenó correctamente.', 'success');";
             ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);

@@ -42,8 +42,8 @@ namespace Negocios
             try
             {
                 string strNombreSP = "CRUDUsuarios";
-                SqlParameter parametroImagen = new SqlParameter("@FotoPerfil", SqlDbType.Image);
-                parametroImagen.Value = Usuario.ImagenPerfil;
+                //SqlParameter parametroImagen = new SqlParameter("@FotoPerfil", SqlDbType.Image);
+                //parametroImagen.Value = Usuario.ImagenPerfil;
                 List<SqlParameter> lstParametros = new List<SqlParameter>();
                 lstParametros.Add(new SqlParameter("@Opcion", Accion));
                 lstParametros.Add(new SqlParameter("@Identificacion", Usuario.IdUsuarioRegistro));
@@ -53,7 +53,7 @@ namespace Negocios
                 lstParametros.Add(new SqlParameter("@Telefono",Usuario.Telefono));
                 lstParametros.Add(new SqlParameter("@CorreoElectronico", Usuario.Correo));
                 lstParametros.Add(new SqlParameter("@Contrasena", Usuario.Contrasena));
-                lstParametros.Add(parametroImagen);
+                //lstParametros.Add(parametroImagen);
                 lstParametros.Add(new SqlParameter("@Estado", "Activo"));
 
                 Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
@@ -188,5 +188,17 @@ namespace Negocios
             }
         }
         //FIN ENVIO DE CORREO Y VALIDACION
+
+
+
+        //Metodos obtener notificaciones
+        public int ObtenerNotificaciones(string idUsuario)
+        {
+            Datos.NotificacionesSQL notificacionesSQL = new NotificacionesSQL();
+            int mensajes = notificacionesSQL.ObtenerCantidadComentariosNotificacion(idUsuario);
+            return mensajes;
+        }
+
+        //Fin metodos obtener notificaciones
     }
 }

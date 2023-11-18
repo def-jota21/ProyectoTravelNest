@@ -11,6 +11,7 @@
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -58,11 +59,14 @@
                 <ItemTemplate>
                     <asp:Label ID="lblNombreLugar" runat="server" Text='<%# Eval("Nombre") %>' CssClass="h1" />
 
-                    <div class="d-flex mb-3">
+                    <div class="d-flex mb-3 mt-2">
+                        <small class="mr-3"><i class="fa fa-user text-primary mr-1"></i> El anfitrión: </small>
                         <small class="mr-3"><i class="fa fa-star text-primary mr-1"></i><%# Eval("Calificacion") %></small>
+
                         <small class="mr-3"><a href="#">Comentarios</a></small>
-                        <small class="mr-3"><%# Eval("TipoAnfitrion") %></small>
-                        <small class="mr-3"><%# Eval("Direccion") %></small>
+                        <small class="mr-3"><i class="fa fa-medal text-primary mr-1"></i><%# Eval("TipoAnfitrion") %></small>
+                        <small class="mr-3"><i class="fa fa-map-marker-alt text-primary mr-1"></i><%# Eval("Direccion") %></small>
+
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
@@ -108,19 +112,19 @@
                             <h4 style="display: inline-block;"><%# Eval("Dueno") %></h4>
                             <div class="d-flex ">
                                 <small class="mr-3">
-                                    <p style="display: inline;">
+                                    <p style="display: inline;"><i class="fa fa-user text-primary mr-1"></i> 
                                         <p style="display: inline;"><%# Eval("Cantidad_Huesped") %></p>
                                         Huéspedes
                                     </p>
                                 </small>
-                                <small class="mr-3">
+                                <small class="mr-3"><i class="fa fa-toilet text-primary mr-1"></i>
                                     <p style="display: inline;">
                                         <p style="display: inline;"><%# Eval("Banhos") %></p>
                                         Baños
                                     </p>
                                 </small>
                                 <small class="mr-3">
-                                    <p style="display: inline;">
+                                    <p style="display: inline;"><i class="fa fa-bed text-primary mr-1"></i> 
                                         <p style="display: inline;"><%# Eval("Habitaciones") %></p>
                                         Habitaciones
                                     </p>
@@ -138,20 +142,18 @@
                     <hr />
                     <h4>Servicios</h4>
                     <div class="row">
-                        <asp:Repeater ID="RepeaterServicios" runat="server">
+                        <asp:Repeater ID="rptServicios" runat="server">
                             <ItemTemplate>
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                                        <i class="fa fa-2x fa-route mx-auto mb-4"></i>
-                                        <h5 class="mb-2">Travel Guide</h5>
+                                <div class="col-lg-4 col-md-6 mt-3 mb-4">
+                                    <div class="service-item bg-white text-center mb-2 py-5 px-4" style=" height: 230px;">
+                                        <i class="fa fa-2x <%# ObtenerIconoServicio(Eval("Nombre").ToString()) %> mx-auto mb-4"></i>
+                                        <h5 class="mb-2"><%# Eval("Nombre") %></h5>
                                     </div>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>
-                        
-                        
                         <div class="text-center">
-                            <a href="#">Ver Más Servicios</a>
+                            <a href="#" data-toggle="modal" data-target="#serviciosModal">Ver Más Servicios</a>
                         </div>
                     </div>
                     <hr>
@@ -261,7 +263,7 @@
                                     </asp:UpdatePanel>
                                     <div class="mt-2">
                                         <asp:Button ID="btnReservar" runat="server" Text="Reservar" CssClass="btn btn-primary btn-block rounded"
-                                            Style="height: 47px; margin-top: -2px;" />
+                                            Style="height: 47px; margin-top: -2px;" OnClick="btnReservar_Click" />
                                     </div>
 
                                 </div>
@@ -298,11 +300,17 @@
 
         window.addEventListener('DOMContentLoaded', event => {
 
-
             const datatablesSimple = document.getElementById('datatablesSimple');
             if (datatablesSimple) {
                 new simpleDatatables.DataTable(datatablesSimple);
             }
+
+            var parametrosURL = new URLSearchParams(window.location.search);
+            var IdUsuario = parametrosURL.get('IdUsuario');
+            var IdInmueble = parametrosURL.get('IdInmueble');
+
+            document.getElementById("pagComentariosI").href = "resenasInmueble.aspx?IdUsuario=" + IdUsuario + "&IdInmueble=" + IdInmueble;
+
         });
         document.getElementById("showModalButton").addEventListener("click", function () {
             $('#ModalInicioSesion').modal("show");
@@ -320,6 +328,31 @@
         });
 
     </script>
-
+    <!-- Modal de servicios -->
+    <div class="modal fade" id="serviciosModal" tabindex="-1" role="dialog" aria-labelledby="serviciosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="serviciosModalLabel">Lista de Servicios</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <asp:Repeater ID="rptTodosServicios" runat="server">
+                        <ItemTemplate>
+                            <div class="service-item bg-white text-center mb-2 py-5 px-4" style="margin-bottom: 8px; display:flex;">
+                                <i class="fa fa-2x <%# ObtenerIconoServicio(Eval("Nombre").ToString()) %>"></i>
+                                <h3 class="mt-3 mx-5"><%# Eval("Nombre") %></h3>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>

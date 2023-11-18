@@ -7,15 +7,24 @@
             
                 <div class="col">
                     <h2>Confirma y Paga</h2>
-                    <label for="exampleFormControlInput1" class="form-label mt-4">Fecha Inicio</label>
-                    <input type="date" class="form-control" id="txtf_inicio" readonly autocomplete="off">
-                    <label for="exampleFormControlInput1" class="form-label mt-2">Fecha Fin</label>
-                    <input type="date" class="form-control" id="txtf_fin" readonly autocomplete="off">
-                    <label for="exampleFormControlInput1" class="form-label mt-2">Huespedes</label>
-                    <input type="number" class="form-control" id="txthuesped" autocomplete="off">
-                    <label for="exampleFormControlInput1" class="form-label mt-2">Cupon</label>
-                    <input type="text" class="form-control" id="txtcupon" autocomplete="off">
-                    <button type="button" class="btn btn-primary mt-4" >Pagar</button>
+                    <div class="form-group mt-4">
+                        <label for="txtf_inicio" class="form-label">Fecha Inicio</label>
+                        <asp:TextBox ID="txtf_inicio" runat="server" CssClass="form-control" ReadOnly="true" AutoComplete="off"></asp:TextBox>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="txtf_fin" class="form-label">Fecha Fin</label>
+                        <asp:TextBox ID="txtf_fin" runat="server" CssClass="form-control" ReadOnly="true" AutoComplete="off"></asp:TextBox>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="txthuesped" class="form-label">Huespedes</label>
+                        <asp:TextBox ID="txthuesped" runat="server" CssClass="form-control" ReadOnly="true" AutoComplete="off" TextMode="Number"></asp:TextBox>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="txtcupon" class="form-label">Cupon</label>
+                        <asp:TextBox ID="txtcupon" runat="server" CssClass="form-control" AutoComplete="off"></asp:TextBox>
+                    </div>
+                    <asp:Button ID="btnPagar" runat="server" Text="Pagar" CssClass="btn btn-primary mt-4" />
+
                 </div>
                 <div class="col">
                     <div class="card border-light mb-3" style="max-width: 30rem;">
@@ -23,12 +32,19 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-4">
-                                       
-                                        <img class="card-img-top" src="../img/destination-4.jpg" alt="Card image cap" style="border-radius:8px;">
+                                       <asp:Repeater ID="RepeaterImagen" runat="server" OnItemDataBound="RepeaterImagen_ItemDataBound">
+                                            <ItemTemplate>
+                                                    <asp:Image ID="imgMueble" CssClass="card-img-top" runat="server" style="border-radius:8px;" alt="Card image cap"
+                                                        ImageUrl='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
+                                                        AlternateText="Imagen del mueble" />
+                                            </ItemTemplate>
+                                        </asp:Repeater>
                                     </div>
                                     <div class="col-8">
-                                        <label for="exampleFormControlInput1" class="form-label mt-4"><small>Casa de campo entero</small></label>
-                                        <label for="exampleFormControlInput1" class="form-label mt-4">Le chaga(#CITQ 297627)</label>
+                                        <label for="exampleFormControlInput1" class="form-label mt-1"><asp:Label ID="lblCodigo" runat="server" /></label>
+                                       
+                                        <br />
+                                         <label for="exampleFormControlInput1" class="form-label mt-2"><small><asp:Label ID="lblNombreInmueble" runat="server" /></small></label>
                                     </div>
                                 </div>
                             </div>
@@ -36,12 +52,12 @@
                         </div>
                         <div class="card-body">
                           <h5 class="card-title">Informacion de Precio</h5>
-                          <p class="card-text">$217.98 x 3 noches</p>
-                          <p class="card-text">Tarifa de limpieza</p>
-                          <p class="card-text">Tarifa por servicio de TravelNest</p>
-                          <p class="card-text">Impuestos</p>
-                          <hr>
-                          <p><strong>Total(USD)</strong></p>
+                            <p class="card-text"><asp:Label ID="lblNoches" runat="server" /></p>
+                            <p class="card-text">Tarifa de limpieza: <asp:Label ID="lblLimpieza" runat="server" /></p>
+                            <p class="card-text">Tarifa por servicio de TravelNest: <asp:Label ID="lblServicio" runat="server" /></p>
+                            <p class="card-text">Impuestos: <asp:Label ID="lblImpuestos" runat="server" /></p>
+                            <hr />
+                            <p><strong>Total (USD): <asp:Label ID="lblTotal" runat="server" /></strong></p>
                         </div>
                       </div>
                 </div>

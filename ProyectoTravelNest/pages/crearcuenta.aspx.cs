@@ -15,10 +15,11 @@ namespace ProyectoTravelNest.pages
         protected void Page_Load(object sender, EventArgs e)
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
-
+           
             if (eUsuarios != null)
             {
                 Response.Redirect("Default.aspx");
+
             }
         }
 
@@ -33,15 +34,15 @@ namespace ProyectoTravelNest.pages
             String Identificacion = txtIdentificacion.Text;
             String Contrasena = txtcontrasenaCrear.Text;
             //int Tamanio = fileImagen.PostedFile.ContentLength;
-            byte[] ImagenOriginal;
-            ImagenOriginal = new byte[0];
+            //byte[] ImagenOriginal;
+            //ImagenOriginal = new byte[0];
 
-            if (fileImagen.HasFile)
-            {
-                Stream fs = fileImagen.PostedFile.InputStream;
-                BinaryReader br = new BinaryReader(fs);
-                ImagenOriginal = br.ReadBytes((Int32)fs.Length);
-            }
+            //if (fileImagen.HasFile)
+            //{
+            //    Stream fs = fileImagen.PostedFile.InputStream;
+            //    BinaryReader br = new BinaryReader(fs);
+            //    ImagenOriginal = br.ReadBytes((Int32)fs.Length);
+            //}
 
             Entidades.Usuarios iUsuario = new Entidades.Usuarios();
 
@@ -61,7 +62,7 @@ namespace ProyectoTravelNest.pages
             iUsuario.Correo = CorreoElectronico;
             iUsuario.IdUsuarioRegistro = Identificacion;
             iUsuario.Contrasena = Contrasena;
-            iUsuario.ImagenPerfil = ImagenOriginal;
+            //iUsuario.ImagenPerfil = ImagenOriginal;
 
             Negocios.Neg_Usuarios iUsuariosNeg = new Neg_Usuarios();
 
@@ -70,10 +71,10 @@ namespace ProyectoTravelNest.pages
             string script = "Swal.fire('¡GRACIAS!', 'Su cuenta se creo de manera satisfactoria.', 'success');";
             ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
 
-            string redirectScript = "setTimeout(function(){window.location.href = 'Default.aspx';}, 5000);";
+            string redirectScript = "setTimeout(function(){window.location.href = '../Default.aspx';}, 5000);";
             ScriptManager.RegisterStartupScript(this, GetType(), "Redirigir", redirectScript, true);
         }
 
-        
+       
     }
 }

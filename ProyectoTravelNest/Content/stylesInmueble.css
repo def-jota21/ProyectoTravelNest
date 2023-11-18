@@ -11,6 +11,11 @@ div img {
     max-width: 100%;
 }
 
+.comentario {
+    font-size: 15px;
+    margin-bottom: 60px;
+}
+
 /* ! Calificacion estrellas */
 
 .rate {
@@ -27,6 +32,9 @@ div img {
 
     .rate.r-2 label {
         font-size: 30px;
+    }
+    .rate.r-3 label {
+        font-size: 25px;
     }
 
 

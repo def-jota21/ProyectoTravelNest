@@ -50,13 +50,14 @@ namespace Negocios
             return dtComentarioPendientesHuesped;
         }
 
-        public void realizarComentarioaAnfitrion(string idAnfitrion, string idHuespedAutor, string Comentario, int comunicacion, int calificion, int idReservacion)
+        public void realizarComentarioaAnfitrion(string idAnfitrion,string idHuespedAutor, string Comentario, string ComentarioInmueble,int comunicacion, int calificion, int idReservacion)
         {
             string strNombreSP = "comentarioAAnfitrion";
             List<SqlParameter> lstParametros = new List<SqlParameter>();
             lstParametros.Add(new SqlParameter("@idAnfitrion", idAnfitrion));
             lstParametros.Add(new SqlParameter("@idHuesped", idHuespedAutor));
             lstParametros.Add(new SqlParameter("@Comentario", Comentario));
+            lstParametros.Add(new SqlParameter("@ComentarioInmueble", ComentarioInmueble));
             lstParametros.Add(new SqlParameter("@Comunicacion", comunicacion));
             lstParametros.Add(new SqlParameter("@Calificacion", calificion));
             lstParametros.Add(new SqlParameter("@idReservacion", idReservacion));
@@ -64,5 +65,29 @@ namespace Negocios
             Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
         }
 
+        // Pagina Comentarios y calificacion
+        public DataTable getInfoUsuario(string IdUsuario)
+        {
+            DataTable dt = new DataTable();
+            string strNombreSP = "ComentarioCalificacion";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@Opcion", "Info"));
+            lstParametros.Add(new SqlParameter("@IdUsuarioDestinado", IdUsuario));
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
+
+        public DataTable cargarComentarios(string IdUsuario)
+        {
+            DataTable dt = new DataTable();
+            string strNombreSP = "ComentarioCalificacion";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@Opcion", "Comentario"));
+            lstParametros.Add(new SqlParameter("@IdUsuarioDestinado", IdUsuario));
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
     }
 }

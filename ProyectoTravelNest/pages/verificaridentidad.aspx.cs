@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -25,7 +26,30 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
-
+                string[] clases = cajaEstado.Attributes["class"].Split(' ');
+                String estado = verificarIdentidad.getEstado("1111111111   ");
+                if (estado.Equals("P"))
+                {
+                    clases = clases.Where(clase => clase != "alert-danger").ToArray();
+                    cajaEstado.Attributes["class"] = String.Join(" ", clases);
+                    cajaEstado.Attributes["class"] += " alert-warning";
+                    lblEstado.Text = "Estado: Pendiente";
+                }
+                else if (estado.Equals("R"))
+                {
+                    clases = clases.Where(clase => clase != "alert-warning" && clase != "alert-success").ToArray();
+                    cajaEstado.Attributes["class"] = String.Join(" ", clases);
+                    cajaEstado.Attributes["class"] += " alert-danger";
+                    lblEstado.Text = "Estado: Rechazado";
+                }
+                else if (estado.Equals("A"))
+                {
+                    clases = clases.Where(clase => clase != "alert-warning" && clase != "alert-danger").ToArray();
+                    cajaEstado.Attributes["class"] = String.Join(" ", clases);
+                    cajaEstado.Attributes["class"] += " alert-success";
+                    lblEstado.Text = "Estado: Aprobado";
+                }
+                lblIdentificacion.Text = "11111111111    ";
             }
 
         }
@@ -44,7 +68,8 @@ namespace ProyectoTravelNest.pages
                 BinaryReader br = new BinaryReader(fs);
                 imgRostro = br.ReadBytes((Int32)fs.Length);
             }
-            verificarIdentidad.compararImagenes("1111111111   ", imgRostro, imgDocumento);
+            verificarIdentidad.compararImagenes(Session["IdUsuario"].ToString(), imgRostro, imgDocumento);
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

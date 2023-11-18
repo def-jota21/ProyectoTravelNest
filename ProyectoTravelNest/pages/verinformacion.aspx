@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="verinformacion.aspx.cs" Inherits="ProyectoTravelNest.pages.verinformacion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <link href="../Content/stylesInmueble.css" rel="stylesheet" />
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -63,7 +63,7 @@
                         <small class="mr-3"><i class="fa fa-user text-primary mr-1"></i> El anfitrión: </small>
                         <small class="mr-3"><i class="fa fa-star text-primary mr-1"></i><%# Eval("Calificacion") %></small>
 
-                        <small class="mr-3"><a href="#">Comentarios</a></small>
+                        <small class="mr-3"><a href="/pages/comentariocalificacion?IdUsuario=<%# Request.QueryString["IdUsuario"] %>">Comentarios</a></small>
                         <small class="mr-3"><i class="fa fa-medal text-primary mr-1"></i><%# Eval("TipoAnfitrion") %></small>
                         <small class="mr-3"><i class="fa fa-map-marker-alt text-primary mr-1"></i><%# Eval("Direccion") %></small>
 
@@ -182,6 +182,32 @@
 
                     <hr />
                     <h4>Comentarios</h4>
+                    <div class="row">
+                        <asp:Repeater ID="RepeaterComentarios" runat="server">
+                            <ItemTemplate>
+                                <div class="my-2" style="clear: both;" id="comentario">
+                                    <div id="user-image">
+                                        <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
+                                                   src='<%# Eval("Rostro") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Rostro")) : "../img/user.png" %>'
+                                                   style="width: 30px; height: 30px; object-fit: cover; border-radius: 100px;" />
+                                    </div>
+                                    <div style="width: 60%;" id="user-info" class="ms-4">
+                                        <a href="/pages/comentariocalificacion?IdUsuario=<%# Eval("Autor") %>" style="text-decoration: none; color: #212529;">
+                                            <asp:Label runat="server" Text='<%# Eval("NombreCompleto") %>' CssClass="h5"></asp:Label>
+                                        </a>
+                                        <br />
+                                        <div class="rate r-3" style="margin-top: -9px; margin-bottom: -15px;">
+                                            <%# generarCalificacion(Convert.ToInt32(Eval("Calificacion"))) %>
+                                        </div><br>
+                                        <label style="font-size: 15px; margin-bottom: 20px;">
+                                            <%# Eval("Comentario") %>
+                                        </label>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                     
                     <hr />
                     <h4>Lo que debes saber</h4>
                     <div class="row">

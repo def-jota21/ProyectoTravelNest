@@ -42,8 +42,7 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.Repeater RepeaterDatosSecundarios;
 
         /// <summary>
-        /// RepeaterServicios control.
-        /// Control rptServicios.
+        /// rptServicios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -77,6 +76,15 @@ namespace ProyectoTravelNest.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar CalendarFinal;
+
+        /// <summary>
+        /// RepeaterComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterComentarios;
 
         /// <summary>
         /// rptReglas control.
@@ -178,11 +186,11 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.Button btnReservar;
 
         /// <summary>
-        /// Control rptTodosServicios.
+        /// rptTodosServicios control.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptTodosServicios;
     }

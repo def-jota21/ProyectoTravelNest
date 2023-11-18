@@ -14,31 +14,17 @@ namespace ProyectoTravelNest.pages
         Neg_AjustarReserva iReserva = new Neg_AjustarReserva();
         protected void Page_Load(object sender, EventArgs e)
         {
-          
-
-            if (!IsPostBack)
-            {
-                if (Session["IdUsuario"] != null)
-                { 
-                    // Obtener el usuario de la sesión
-                    Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
-
-
-                string IdInmueble = Session["idInmueble"].ToString();
-=======
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            string IdInmueble = Session["idInmueble"].ToString();
             if (!IsPostBack & eUsuarios != null)
             {
-                String IdInmueble = Request.QueryString["IdInmueble"];
+                IdInmueble = Request.QueryString["IdInmueble"];
                 String IdUsuario = Session["IdUsuario"].ToString();
 
                 ObtenerDatos(IdInmueble);
-                }
-                else
-                {
-
-                }
             }
         }
+
         private void ObtenerDatos(string idInmueble)
         {
             try

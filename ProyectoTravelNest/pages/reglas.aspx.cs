@@ -21,7 +21,6 @@ namespace ProyectoTravelNest.pages
         Negocios.Negocio_Inmuebles nInmueble = new Negocios.Negocio_Inmuebles();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
             if (eUsuarios == null)
@@ -106,11 +105,20 @@ namespace ProyectoTravelNest.pages
             HtmlGenericControl divbtnEliminar = (HtmlGenericControl)item.FindControl("divbtnEliminar");
             if (!txtRegla.ReadOnly)
             {
-                actionButton("Guardar", txtRegla, txtExplicacion, divbtnModificar, divbtnGuardar, divbtnEliminar);
-                eRegla.IdRegla = Convert.ToInt32(btn.CommandArgument);
-                eRegla.NombreRegla = txtRegla.Text;
-                eRegla.Explicacion = txtExplicacion.Text;
-                regla.crud(eRegla, "Modificar");
+                if (txtRegla.Text.Equals("") || txtExplicacion.Text.Equals(""))
+                {
+                    error.Visible = true;
+                    lblEstado.Text = "No debes dejar espacios en blanco.";
+                }
+                else
+                {
+                    error.Visible = false;
+                    actionButton("Guardar", txtRegla, txtExplicacion, divbtnModificar, divbtnGuardar, divbtnEliminar);
+                    eRegla.IdRegla = Convert.ToInt32(btn.CommandArgument);
+                    eRegla.NombreRegla = txtRegla.Text;
+                    eRegla.Explicacion = txtExplicacion.Text;
+                    regla.crud(eRegla, "Modificar");
+                }
             }
         }
 

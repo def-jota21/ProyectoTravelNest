@@ -14,10 +14,12 @@ namespace ProyectoTravelNest.pages
     {
         byte[] imgDocumento;
         byte[] imgRostro;
+        String IdUsuario;
         Negocios.Neg_VerificarIdentidad verificarIdentidad = new Negocios.Neg_VerificarIdentidad();
         protected void Page_Load(object sender, EventArgs e)
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            IdUsuario = Session["IdUsuario"].ToString();
 
             if (eUsuarios == null)
             {
@@ -27,7 +29,7 @@ namespace ProyectoTravelNest.pages
             if (!IsPostBack & eUsuarios != null)
             {
                 string[] clases = cajaEstado.Attributes["class"].Split(' ');
-                String estado = verificarIdentidad.getEstado("1111111111   ");
+                String estado = verificarIdentidad.getEstado(IdUsuario);
                 if (estado.Equals("P"))
                 {
                     clases = clases.Where(clase => clase != "alert-danger").ToArray();
@@ -49,9 +51,8 @@ namespace ProyectoTravelNest.pages
                     cajaEstado.Attributes["class"] += " alert-success";
                     lblEstado.Text = "Estado: Aprobado";
                 }
-                lblIdentificacion.Text = "11111111111    ";
+                lblIdentificacion.Text = IdUsuario;
             }
-
         }
 
         protected void btnVerificar_Click(object sender, EventArgs e)
@@ -68,7 +69,7 @@ namespace ProyectoTravelNest.pages
                 BinaryReader br = new BinaryReader(fs);
                 imgRostro = br.ReadBytes((Int32)fs.Length);
             }
-            verificarIdentidad.compararImagenes(Session["IdUsuario"].ToString(), imgRostro, imgDocumento);
+            verificarIdentidad.compararImagenes(IdUsuario, imgRostro, imgDocumento);
             Response.Redirect(Request.RawUrl);
         }
     }

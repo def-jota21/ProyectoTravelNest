@@ -358,7 +358,6 @@ namespace Datos
             return dtDatos;
       }//fin de ExecuteQuery
 
-
      // METODOS DE JAIRO ------------------------------------------------------------------------
         public DataTable ExecuteSPWithDT(string SPName, List<SqlParameter> ListaParametros)
         {

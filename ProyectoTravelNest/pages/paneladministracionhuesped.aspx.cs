@@ -36,9 +36,6 @@ namespace ProyectoTravelNest.pages
 
                 Session["MiBancoUsuario"] = usuarioMiBanco;
             }
-
-            
-
         }
     }
 }

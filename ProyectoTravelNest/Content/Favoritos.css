@@ -1,6 +1,5 @@
 ﻿/* Estilos responsivos */
 @media (max-width: 767px) {
-    /* Modificar la barra de navegación para dispositivos móviles */
     .navbar-nav {
         flex-direction: column;
     }
@@ -9,7 +8,8 @@
         margin: 5px 0;
     }
 
-    .navbar-toggler {
+    .navbar-toggler,
+    .navbar-expand-lg .navbar-toggler {
         display: block;
     }
 
@@ -17,8 +17,12 @@
         display: none;
     }
 
-    .navbar-expand-lg .navbar-toggler {
-        display: block;
+    .titulo {
+        font-size: 24px;
+        line-height: 30px;
+        text-align: center;
+        position: static;
+        margin: 10px;
     }
 }
 
@@ -37,93 +41,64 @@
     line-height: 100px;
 }
 
-/* Estilos para el botón cuadrado */
-.add-button {
-    width: 100px; /* Tamaño del botón */
-    height: 100px; /* Tamaño del botón */
-    background-color: #808080; /* Color de fondo del botón */
-    color: white; /* Color del texto */
+/* Estilos para el botón cuadrado y el botón de añadir más */
+.add-button,
+.add-more-button {
+    width: 100px;
+    height: 100px;
+    background-color: #808080;
+    color: white;
     border: none;
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px; /* Tamaño del ícono */
+    font-size: 24px;
     cursor: pointer;
-}
-
-    .add-button i {
-        margin-right: 8px; /* Espacio entre el ícono y el texto (opcional) */
-    }
-
-/* Estilos para el texto "Añadir más a favoritos" */
-.add-text {
-    text-align: center;
-    font-size: 16px; /* Tamaño del texto */
-    color: #333; /* Color del texto */
-}
-
-/* Estilos para el contenedor del botón */
-.button-container {
-    text-align: center; /* Centra el contenido horizontalmente */
-    margin-top: 20px; /* Ajusta este valor para mover el botón hacia abajo */
-}
-
-@media (max-width: 767px) {
-    /* Estilos para el título en dispositivos móviles */
-    .titulo {
-        font-size: 24px; /* Tamaño de fuente para dispositivos móviles */
-        line-height: 30px; /* Altura de línea para dispositivos móviles */
-        text-align: center; /* Centrar el texto en dispositivos móviles */
-        position: static; /* Restablecer la posición a estática en dispositivos móviles */
-        margin: 10px; /* Ajustar el margen en dispositivos móviles */
-    }
-}
-
-@media (max-width: 767px) {
-    /* Modificar la barra de navegación para dispositivos móviles */
-    .navbar-nav {
-        flex-direction: column;
-    }
+    margin-top: 10px;
 }
 
 .add-more-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px; /* adjust this to make the button larger or smaller */
-    height: 150px; /* adjust this to make the button larger or smaller */
-    background-color: white;
-    border: 2px solid #000; /* adjust this to make the border thicker or thinner */
-    border-radius: 20px; /* adjust this to make the corners more or less rounded */
+    width: 150px;
+    height: 150px;
+    border: 2px solid #000;
+    border-radius: 20px;
     font-size: 16px;
     color: #212529;
-    margin-top: 100px;
-    transition: 0.3s; /* this adds a transition effect when the button state changes */
+    margin-top: 20px;
+    transition: 0.3s;
 }
 
+    .add-button i,
     .add-more-button i {
-        margin-right: 5px;
+        margin-right: 8px;
     }
 
     .add-more-button:hover {
         background-color: #f8f9fa;
         color: #212529;
-        transform: scale(1.1); /* this makes the button slightly larger when hovered over */
+        transform: scale(1.1);
     }
-.h1 {
-    .h1
 
-{
-    margin-left: 0; /* Set margin-left to 0 to align to the left */
-    margin-top: 50px; /* Set margin-top to adjust the vertical position */
-
+/* Estilos para el texto "Añadir más a favoritos" */
+.add-text {
+    text-align: center;
+    font-size: 16px;
+    color: #333;
 }
 
+/* Estilos para el contenedor del botón */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Ajustes para tamaños de pantalla más pequeños */
 @media (max-width: 767px) {
     .add-more-button {
         width: 120px;
         height: 120px;
+        margin-top: 15px;
     }
 }
 
@@ -131,19 +106,6 @@
     .add-more-button {
         width: 90px;
         height: 90px;
+        margin-top: 10px;
     }
-}
-/* Estilos para el título "Favoritos" */
-.h1 {
-    position: absolute;
-    left: 5.06%;
-    right: 73.31%;
-    top: 12.53%;
-    bottom: 83.52%;
-    font-family: 'Comfortaa';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34px;
-    color: #000000;
-    line-height: 100px;
 }

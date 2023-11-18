@@ -52,9 +52,12 @@ namespace ProyectoTravelNest.pages
                     //Editar para mostrarle el mensaje de error al usuario
                     throw;
                 }
+                //Esta line es de notificacion
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showNotification", "mostrarNotificacion();", true);
+
             }
 
-           
+
         }
 
         private void GetMessagesFromBD(string idRecuperado, string idUsuario)
@@ -89,6 +92,9 @@ namespace ProyectoTravelNest.pages
 
                 FunctionsEmail.EnviarEmail(idReceptor, asunto, nombreUsuario);//envia mensaje 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "scrollScript", "scrollToChatBottom();", true);
+
+                // Modificar la sesión para indicar que hay mensajes no leídos es para notificacion
+                Session["MensajesNoLeidos"] = true;
             }
             catch (Exception)
             {

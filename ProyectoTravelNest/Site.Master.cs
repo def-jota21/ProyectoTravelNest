@@ -76,6 +76,14 @@ namespace ProyectoTravelNest
 
                     Registrarse.Visible = false;
                 }
+                if (Session["MensajesNoLeidos"] != null && (bool)Session["MensajesNoLeidos"])
+                {
+                    // Mostrar la notificación de mensajes no leídos
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showNotification", "mostrarNotificacion();", true);
+
+                    // Restablecer el estado de mensajes no leídos
+                    Session["MensajesNoLeidos"] = false;
+                }
             }
         }
 

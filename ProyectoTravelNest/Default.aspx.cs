@@ -94,27 +94,36 @@ namespace ProyectoTravelNest
         protected void AgregarFavorito_Click(object sender, EventArgs e)
         {
 
-            // Obtener el idInmueble del botón "Favorito"
-            LinkButton lnkFavorito = (LinkButton)sender;
-            string idInmueble = lnkFavorito.Attributes["data-idinmueble"];
+            // Obtener el usuario actual de la sesión
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            // Asignar un valor fijo para idUsuario (esto debe ser reemplazado por autenticación)
-            string IdUsuario = "2222222222";
+            // Comprobar si hay un usuario logueado
+            if (eUsuarios != null)
+            {
+                // Obtener el idInmueble del botón "Favorito"
+                LinkButton lnkFavorito = (LinkButton)sender;
+                string idInmueble = lnkFavorito.Attributes["data-idinmueble"];
 
-            // Obtener los valores de los controles en tu página
+                // Obtener el ID del usuario desde la entidad eUsuarios
+                string IdUsuario = eUsuarios.IdUsuario; // Asume que 'Id' es la propiedad que contiene el ID del usuario
 
-            // Almacenar los valores en variables de sesión
-            Session["IdInmueble"] = idInmueble;
+                // Almacenar los valores en variables de sesión
+                Session["IdInmueble"] = idInmueble;
 
+                // Llamar a la función AgregarFavorito
+                iFavoritos.Instruccion = "Insert";
+                iFavoritos.AgregarFavorito(IdUsuario, idInmueble);
 
-            // Llamar a la función AgregarFavorito
-            iFavoritos.Instruccion = "Insert";
-            iFavoritos.AgregarFavorito(IdUsuario, idInmueble);
-
-            // Puedes redirigir al usuario a la página de resultados u otra página
-            upd_Panel.Update();
+                // Actualizar el panel o realizar otras acciones según sea necesario
+                upd_Panel.Update();
+            }
+            else
+            {
+                // Manejar el caso cuando el usuario no está logueado
+                // Por ejemplo, redirigir a la página de inicio de sesión
+                Response.Redirect("/pages/login.aspx");
+            }
         }
-
 
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
@@ -218,26 +227,28 @@ namespace ProyectoTravelNest
 
             if (todosLosInmuebles != null)
             {
-                var inmueblesFiltrados = todosLosInmuebles.AsEnumerable()
-                    .Where(row => (categoriaSeleccionada == "" || row.Field<string>("Categoria") == categoriaSeleccionada)
-                               && (cantidadPersonasSeleccionada == "" || row.Field<int>("Cantidad_Huesped").ToString() == cantidadPersonasSeleccionada)
-                               && (calificacionSeleccionada == "" || row.Field<int>("Calificacion").ToString() == calificacionSeleccionada))
-                    .ToList();
+                IEnumerable<DataRow> inmueblesFiltrados = todosLosInmuebles.AsEnumerable();
 
-                if (inmueblesFiltrados.Any())
+                if (!string.IsNullOrEmpty(categoriaSeleccionada))
                 {
-                    DataTable dtFiltrados = inmueblesFiltrados.CopyToDataTable();
-                    rptInmuebles.DataSource = dtFiltrados;
-                    rptInmuebles.DataBind();
-                    upd_Panel.Update();
+                    inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<string>("Categoria") == categoriaSeleccionada);
                 }
-                else
+
+                if (!string.IsNullOrEmpty(cantidadPersonasSeleccionada) && cantidadPersonasSeleccionada != "0")
                 {
-                    rptInmuebles.DataSource = null;
-                    rptInmuebles.DataBind();
-                    upd_Panel.Update();
+                    inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<int>("Cantidad_Huesped").ToString() == cantidadPersonasSeleccionada);
                 }
+
+                if (!string.IsNullOrEmpty(calificacionSeleccionada) && calificacionSeleccionada != "0")
+                {
+                    inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<int>("Calificacion").ToString() == calificacionSeleccionada);
+                }
+
+                DataTable dtFiltrados = inmueblesFiltrados.Any() ? inmueblesFiltrados.CopyToDataTable() : new DataTable();
+                rptInmuebles.DataSource = dtFiltrados;
+                rptInmuebles.DataBind();
+                upd_Panel.Update();
             }
         }
     }
-}
+    }

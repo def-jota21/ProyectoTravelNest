@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -26,6 +27,18 @@ namespace Negocios
         public string GetPrecioNoche(string idInmueble)
         {
             return conexionBD.GetPrecio(idInmueble);
+        }
+
+
+
+        public List<Inmueble> ObtenerInmueblesPorAnfitrion(string anfitrionId)
+        {
+            return conexionBD.GetInmueblesPorAnfitrion(anfitrionId);
+        }
+
+        public void AjustarPrecioInmueble(string idInmueble, decimal precioNoche)
+        {
+            conexionBD.AjustarDataInmueble(idInmueble, precioNoche);
         }
 
     }

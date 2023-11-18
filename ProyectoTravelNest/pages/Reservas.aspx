@@ -38,6 +38,24 @@
       <asp:TextBox ID="EstadoTextBox" runat="server" CssClass="form-control" placeholder="Estado Actual" Required="true" Enabled="false"></asp:TextBox>
 
       <asp:Button ID="VerHistorialButton" runat="server" Text="Ver Historial" CssClass="btn btn-primary btn-block" OnClick="VerHistorialButton_Click" />
+       <asp:Repeater ID="RepeaterReservaciones" runat="server">
+  <ItemTemplate>
+    <div class="card_reservacion"> <!-- Asegúrate de definir los estilos para esta clase -->
+      <h1>Datos De Tu Reservación</h1>
+      <h3>Aquí te mostramos los datos de una de tus reservaciones pasadas</h3>
+      <label>Nombre</label>
+      <input type="text" value='<%# Eval("NombreUsuario") %>' disabled="disabled" />
+      <label>Nombre Inmueble</label>
+      <input type="text" value='<%# Eval("NombreInmueble") %>' disabled="disabled" />
+      <label>Fecha Inicio la reservación</label>
+      <input type="text" value='<%# Eval("F_Inicio", "{0:yyyy-MM-dd}") %>' disabled="disabled" />
+      <label>Fecha Finaliza la reservación</label>
+      <input type="text" value='<%# Eval("F_Fin", "{0:yyyy-MM-dd}") %>' disabled="disabled" />
+      <label>Estado</label>
+      <input type="text" value='<%# Eval("Estado") %>' disabled="disabled" />
+    </div>
+  </ItemTemplate>
+</asp:Repeater>
 
     </div>  
   </div>

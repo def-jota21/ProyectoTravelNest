@@ -15,11 +15,17 @@ namespace Negocios
        
             Datos.ReservacionesBD datosReservaciones = new Datos.ReservacionesBD();
 
-            public Reservaciones ObtenerReservacionRecientePorUsuario(string idUsuario)
+            public Reservaciones ObtenerReservacionRecientePorUsuario(string IdUsuario)
             {
-                return datosReservaciones.ObtenerReservacionRecientePorUsuario(idUsuario);
+                return datosReservaciones.ObtenerReservacionRecientePorUsuario(IdUsuario);
+            }
+
+
+            public List<Reservaciones> ObtenerTodasLasReservacionesPorUsuario(string IdUsuario)
+            {
+                return datosReservaciones.ObtenerTodasLasReservacionesPorUsuario(IdUsuario);
             }
         }
-
     }
+         
 

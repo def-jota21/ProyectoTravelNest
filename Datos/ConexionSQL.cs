@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
 using System.Dynamic;
+using Entidades;
+
 namespace Datos
 {
     public class ConexionSQL
@@ -555,7 +557,42 @@ namespace Datos
             }
         }
 
-        #endregion
-    }
+        public List<Inmueble> GetInmueblesPorAnfitrion(string anfitrionId)
+            {
+                List<Inmueble> inmuebles = new List<Inmueble>();
+
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("[Proyecto].[SP.InmueblesYPrecioPorAnfitrion]", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@AnfitrionId", anfitrionId);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                inmuebles.Add(new Inmueble
+                                {
+                                    IdInmueble = reader.GetString(0),
+                                    Nombre = reader.GetString(1),
+                                    Precio = (float)reader.GetDecimal(0)
+
+                        });
+                            }
+                        }
+                    }
+                }
+
+                return inmuebles;
+            }
+
+
+
+        }
+
+    #endregion
 }
 #endregion

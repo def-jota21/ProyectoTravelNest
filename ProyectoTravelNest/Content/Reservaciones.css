@@ -5,7 +5,6 @@
 body {
     height: 100%;
     font-family: 'Comfortaa', sans-serif;
-    background: url('https://news.airbnb.com/wp-content/uploads/sites/4/2020/04/Airbnb_Ireland_Lakeside_House_Featured.jpg?w=2048') no-repeat center center fixed;
     background-size: cover;
     background-color: #fff; /* Color de fondo de respaldo si la imagen no se carga */
 }
@@ -15,7 +14,7 @@ body {
 .contact_form {
     width: 460px;
     height: auto;
-    margin: 80px auto;
+    margin: 80px ;
     border-radius: 10px;
     padding-top: 30px;
     padding-bottom: 20px;
@@ -88,7 +87,7 @@ button {
 
 
     button p {
-        color: #fff;
+        color: #97d848;
     }
 
 
@@ -104,10 +103,10 @@ span {
 
 
 h1 {
-    font-size: 39px;
+    font-size: 24px;
     text-align: letf;
     padding-bottom: 20px;
-    color: #ab4493;
+    color: #0e0e0e
 }
 
 
@@ -172,15 +171,60 @@ input[type="text"]:hover {
 button {
     border: none;
     padding: 10px 20px;
-      background-color: #95CF48;
-    color: #fff;
+      background-color: #97d848;
+   
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
     button:hover {
-        background-color: #0056b3;
+        background-color: #97d848;
     }
 
 
 
+.card_reservacion {
+    background-color: #e8f5e9; /* Color de fondo claro similar al de tu imagen */
+    border: 1px solid #c8e6c9; /* Un borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    margin-bottom: 20px; /* Espaciado entre cartas */
+}
+
+    .card_reservacion h1, .card_reservacion h3 {
+        color: #333; /* Color de texto oscuro */
+        text-align: left;
+    }
+
+    .card_reservacion label {
+        display: block; /* Asegura que cada etiqueta esté en su propia línea */
+        margin-top: 10px;
+        color: #4E4E4E; /* Color de texto para las etiquetas */
+        font-weight: bold;
+    }
+
+    .card_reservacion input[type="text"] {
+        width: 100%; /* Ocupar todo el ancho disponible */
+        padding: 10px;
+        margin: 5px 0 15px 0; /* Espaciado alrededor de los inputs */
+        border: 1px solid #ccc; /* Bordes de los inputs */
+        border-radius: 4px; /* Bordes redondeados para los inputs */
+        box-sizing: border-box; /* Para que el padding no afecte el ancho final */
+        background-color: #f9f9f9; /* Fondo ligeramente diferente para los inputs */
+    }
+
+        /* Omitir el borde en el último elemento de la tarjeta para seguir el diseño */
+        .card_reservacion input[type="text"]:last-child {
+            border: none;
+        }
+
+/* Podrías añadir media queries para hacerlo responsive si es necesario */
+@media (max-width: 768px) {
+    .card_reservacion {
+        padding: 10px;
+    }
+
+        .card_reservacion input[type="text"] {
+            padding: 5px;
+        }
+}

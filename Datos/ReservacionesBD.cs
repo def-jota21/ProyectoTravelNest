@@ -49,5 +49,42 @@ namespace Datos
 
             return reservacion;
         }
+
+        public List<Reservaciones> ObtenerTodasLasReservacionesPorUsuario(string idUsuario)
+        {
+            List<Reservaciones> listaReservaciones = new List<Reservaciones>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("[Proyecto].[SP_ObtenerReservasiones]", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                    cmd.Parameters.AddWithValue("@IncluirFinalizadas", 1);
+                    con.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            Reservaciones reservacion = new Reservaciones
+                            {
+                                IdReservacion = dr.GetInt32(dr.GetOrdinal("IdReservacion")),
+                                IdInmueble = dr.GetString(dr.GetOrdinal("IdInmueble")),
+                                NombreInmueble = dr.GetString(dr.GetOrdinal("NombreInmueble")),
+                                NombreUsuario = dr.GetString(dr.GetOrdinal("NombreUsuario")),
+                                F_Inicio = dr.GetDateTime(dr.GetOrdinal("F_Inicio")),
+                                F_Fin = dr.GetDateTime(dr.GetOrdinal("F_Fin")),
+                                Estado = dr.GetString(dr.GetOrdinal("Estado")),
+                            };
+                            listaReservaciones.Add(reservacion);
+                        }
+                    }
+                }
+            }
+
+            return listaReservaciones;
+        }
     }
 }
+    

@@ -28,6 +28,7 @@ namespace ProyectoTravelNest
                     PrivadaAnfitrion4.Visible = true;
                     PrivadaAnfitrion5.Visible = true;
                     PrivadaAnfitrion6.Visible = true;
+                    PrivadaAnfitrion7.Visible = true;
 
                     PrivadaHuesped1.Visible = false;
                     PrivadaHuesped2.Visible = false;
@@ -47,6 +48,7 @@ namespace ProyectoTravelNest
                     PrivadaAnfitrion4.Visible = false;
                     PrivadaAnfitrion5.Visible = false;
                     PrivadaAnfitrion6.Visible = false;
+                    PrivadaAnfitrion7.Visible = false;
 
                     PrivadaHuesped1.Visible = true;
                     PrivadaHuesped2.Visible = true;
@@ -66,6 +68,7 @@ namespace ProyectoTravelNest
                     PrivadaAnfitrion4.Visible = false;
                     PrivadaAnfitrion5.Visible = false;
                     PrivadaAnfitrion6.Visible = false;
+                    PrivadaAnfitrion7.Visible = false;
 
                     PrivadaHuesped1.Visible = false;
                     PrivadaHuesped2.Visible = false;
@@ -75,6 +78,14 @@ namespace ProyectoTravelNest
                     PrivadaGestor1.Visible = true;
 
                     Registrarse.Visible = false;
+                }
+                if (Session["MensajesNoLeidos"] != null && (bool)Session["MensajesNoLeidos"])
+                {
+                    // Mostrar la notificación de mensajes no leídos
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "showNotification", "mostrarNotificacion();", true);
+
+                    // Restablecer el estado de mensajes no leídos
+                    Session["MensajesNoLeidos"] = false;
                 }
             }
         }
@@ -95,6 +106,7 @@ namespace ProyectoTravelNest
             PrivadaAnfitrion4.Visible = false;
             PrivadaAnfitrion5.Visible = false;
             PrivadaAnfitrion6.Visible = false;
+            PrivadaAnfitrion7.Visible = false;
 
             PrivadaHuesped1.Visible = false;
             PrivadaHuesped2.Visible = false;

@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -49,14 +50,15 @@ namespace ProyectoTravelNest.pages
         }
 
 
-        protected void btnVerHistorial_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void VerHistorialButton_Click(object sender, EventArgs e)
         {
+            string IdUsuario = "IdUsuario"; // Obtén esto según tu lógica de autenticación
+            var reservaciones = new Neg_Reservaciones().ObtenerTodasLasReservacionesPorUsuario(IdUsuario);
+            RepeaterReservaciones.DataSource = reservaciones;
+            RepeaterReservaciones.DataBind();
 
+            // Ocultar el botón después de cargar los datos
+            VerHistorialButton.Visible = false;
         }
     }
 }

@@ -1,30 +1,121 @@
-﻿body {
-    height: 100%;
-    font-family: 'Comfortaa', sans-serif;
-    background: url('https://images.contentstack.io/v3/assets/bltec2ed8e3c4b1e16d/bltfd0c4aa52a78e466/618406a16676ac790d1b8f8f/policy-feature-page-banner-optimized.png') no-repeat center center fixed;
-    background-size: cover;
-    background-color: #fff; /* Color de fondo de respaldo si la imagen no se carga */
-    position: -webkit-sticky;
-    position: sticky;
+﻿/* Estilos generales y configuración de la página */
+body {
+    font-family: Comfortaa !important;
+    background-color: #f4f4f4;
+    padding-top: 10px;
 }
 
-.custom-card {
-    margin: 20px;
-    transition: transform 0.2s;
+.container {
+    width: 110%;
+    margin: auto;
 }
 
-.custom-card:hover {
-    transform: scale(1.05);
+    .container mt-4, h1 {
+        display: flex;
+        flex-flow: column;
+        justify-items: center;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+
+/* Configuraciones de tarjetas y elementos dentro de ellas */
+.card {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.center-content {
+/* Añadir margen a los botones */
+.card-body .btn {
+    margin-right: 20px; /* Ajusta este valor según necesites */
+    margin-bottom: 10px;
+}
+
+
+.card-title {
+    color: #333;
+}
+
+.card-text {
+    color: #555;
+}
+
+/* Estilos de formulario y controles de formulario */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+    .form-control,
+    .form-group textarea {
+        width: 100%;
+        resize: vertical;
+        height: 60px; /* Ajusta según tus necesidades */
+        border: 1px solid #ced4da;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+/* Estilos para la lista y los botones */
+.list-group-item {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
 }
 
+    .list-group-item .form-control {
+        flex-grow: 1;
+        margin-right: 0.5rem;
+    }
 
+    .list-group-item .btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
 
+/* Estilos de botones */
+.btn-primary,
+.btn-warning,
+.btn-danger,
+.btn-secondary {
+    margin-bottom: 10px;
+    background-color: #95CF48;
+}
+
+.btn-warning {
+    color: #95CF48;
+    background-color: #95CF48;
+    border-color: #95CF48;
+}
+
+    .btn-warning:hover {
+        background-color: #95CF48;
+        border-color: #d58512;
+    }
+
+.btn-danger {
+    color: #fff;
+    background-color: #95CF48;
+    border-color: #d43f3a;
+}
+
+    .btn-danger:hover {
+        background-color: #95CF48;
+        border-color: #ac2925;
+    }
+
+.btn-secondary {
+    margin-bottom: 10px;
+    background-color: #95CF48;
+}
+
+/* Estilos para divisores y bordes */
+.border-right {
+    border-right: 2px solid #dee2e6;
+}
+
+/* Responsividad y Media Queries */
+@media (max-width: 300px) {
+    .border-right {
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+}
 

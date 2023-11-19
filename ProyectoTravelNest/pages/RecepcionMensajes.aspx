@@ -2,7 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="../Content/RecepcionMensajes.css" rel="stylesheet" />
-   
        
         <asp:UpdatePanel runat="server" ID="UpdPanel_Page" UpdateMode="Conditional">
             <ContentTemplate>
@@ -35,7 +34,10 @@
                             <div class="chat-section" id="chat-box">
                                 <asp:Repeater runat="server" ID="rpt_Mensajes">
                                     <ItemTemplate>
-                                        <div class="message"><%# Eval("Descripcion") %></div>
+                                        <div class="message">
+                                            <%# Eval("FechaEnvio")%><br />
+                                            <%# Eval("Descripcion") %>
+                                        </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
@@ -43,14 +45,18 @@
                                 <input type="text" id="messageinput" name="message_input" class="form-control" placeholder="Escribe un mensaje...">
                                 <div class="input-group-append">
                                     <asp:Button runat="server" ID="btnSend" class="btn btn-success" Text="Enviar Mensaje" OnClick="btnSend_Click"></asp:Button>
-                                     
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> <img src="../img/covergestionusuarios.jpg" alt="Imagen" class="left-image" />
-                
-               
+                </div>
+
+
+             <%-- Notificacciones Toastr --%>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <link href="../Content/toastr.css" rel="stylesheet" />
+        <script src="../Scripts/toastr.js"></script>
+        <script src="../Scripts/WebForms/NotificacionesToastr.js"></script>
 
                 <script>
                     // Esta función desplaza la ventana del chat al final

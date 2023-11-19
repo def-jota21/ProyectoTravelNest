@@ -168,6 +168,8 @@
     <Content Include="Content\style.min.css" />
     <Content Include="Content\styleComentariosPendientes.css" />
     <Content Include="Content\stylesInmueble.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -222,6 +224,7 @@
     <Content Include="pages\login.aspx" />
     <Content Include="pages\modificarcalendarioreserva.aspx" />
     <Content Include="pages\paneladministracionhuesped.aspx" />
+    <Content Include="pages\panelanfitrion.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
     <Content Include="pages\promociones.aspx" />
     <Content Include="pages\recepcionmensajes.aspx" />
@@ -266,6 +269,8 @@
     <Content Include="obtenerdatousuario.ashx" />
     <Content Include="obtenerdatopolitica.ashx" />
     <Content Include="politicasnoasociadas.ashx" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -276,6 +281,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -292,6 +299,7 @@
     <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
     <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
     <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\NotificacionesToastr.js" />
     <Content Include="Scripts\WebForms\SmartNav.js" />
     <Content Include="Scripts\WebForms\TreeView.js" />
     <Content Include="Scripts\WebForms\WebForms.js" />
@@ -520,6 +528,13 @@
     </Compile>
     <Compile Include="pages\paneladministracionhuesped.aspx.designer.cs">
       <DependentUpon>paneladministracionhuesped.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\panelanfitrion.aspx.cs">
+      <DependentUpon>panelanfitrion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\panelanfitrion.aspx.designer.cs">
+      <DependentUpon>panelanfitrion.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\pantallapoliticas.aspx.cs">
       <DependentUpon>pantallapoliticas.aspx</DependentUpon>

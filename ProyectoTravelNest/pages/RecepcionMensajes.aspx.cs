@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Entidades;
 using Negocios;
 namespace ProyectoTravelNest.pages
 {
@@ -26,10 +27,8 @@ namespace ProyectoTravelNest.pages
             {
                 try
                 {
-                
-
                         string instruccion = "";
-                    string rol = eUsuarios.T_Rol.ToString();
+                        string rol = eUsuarios.T_Rol.ToString();
                         string idUsuario = eUsuarios.IdUsuario.ToString();
 
                         if (rol == "H")
@@ -47,14 +46,14 @@ namespace ProyectoTravelNest.pages
 
                     
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //Editar para mostrarle el mensaje de error al usuario
-                    throw;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacionError", $"mostrarNotificacionError('{ex.Message}');", true);
                 }
             }
 
-           
+
         }
 
         private void GetMessagesFromBD(string idRecuperado, string idUsuario)
@@ -65,10 +64,9 @@ namespace ProyectoTravelNest.pages
                 rpt_Mensajes.DataBind();
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "scrollScript", "scrollToChatBottom();", true);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Editar para mostrarle el mensaje de error al usuario
-                throw;
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacionError", $"mostrarNotificacionError('{ex.Message}');", true);
             }
         }
 
@@ -77,9 +75,10 @@ namespace ProyectoTravelNest.pages
         {
             try
             {
-                string idEmisor = Session["idUsuario"].ToString();
+                Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+                string idEmisor = eUsuarios.IdUsuario.ToString();
                 string idReceptor = Session["idReceptor"].ToString();
-                string nombreUsuario = Session["NombreUsuario"].ToString();
 
                 string asunto = "Nuevo mensaje recibido en tu bandeja de entrada";
 
@@ -87,13 +86,17 @@ namespace ProyectoTravelNest.pages
                 GetMessagesFromBD(idEmisor, idReceptor);
                 UpdPanel_Page.Update();
 
-                FunctionsEmail.EnviarEmail(idReceptor, asunto, nombreUsuario);//envia mensaje 
+                FunctionsEmail.EnviarEmail(idReceptor, asunto);//envia mensaje 
+
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "scrollScript", "scrollToChatBottom();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacionExito", $"mostrarNotificacionExito('Mensaje enviado con éxito');", true);
+
+                // Modificar la sesión para indicar que hay mensajes no leídos es para notificacion
+                //Session["MensajesNoLeidos"] = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Editar para mostrarle el mensaje de error al usuario
-                throw;
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacionError", $"mostrarNotificacionError('{ex.Message}');", true);
             }
         }
 
@@ -101,20 +104,22 @@ namespace ProyectoTravelNest.pages
         {
             try
             {
+                Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
                 // Obtener el IdAnfitrion del botón seleccionado
                 Button button = (Button)sender;
                 string idReceptor = button.CommandArgument;
-                string idEmisor = Session["idUsuario"].ToString();
+                string idEmisor = eUsuarios.IdUsuario.ToString();
 
                 Session["idReceptor"] = idReceptor;
+                ScriptManager.RegisterStartupScript(this, GetType(), "check", $"console.log('Session[\"idReceptor\"] creada');", true);
 
                 GetMessagesFromBD(idReceptor, idEmisor);
                 UpdPanel_Page.Update();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Editar para mostrarle el mensaje de error al usuario
-                throw;
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacionError", $"mostrarNotificacionError('{ex.Message}');", true);
             }
         }
 
@@ -128,10 +133,9 @@ namespace ProyectoTravelNest.pages
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "scrollScript", "scrollToChatBottom();", true);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Editar para mostrarle el mensaje de error al usuario
-                throw;
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarNotificacionError", $"mostrarNotificacionError('{ex.Message}');", true);
             }
         }
     }

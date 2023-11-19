@@ -91,7 +91,7 @@ namespace Datos
                             if (reader.Read())
                             {
                                 // Obtener el valor del identificador del chat desde el resultado de la consulta
-                                userEmail = reader["Email"].ToString();
+                                userEmail = reader["Correo"].ToString();
                             }
 
                         }

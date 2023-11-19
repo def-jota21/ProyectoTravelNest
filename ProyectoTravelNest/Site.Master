@@ -43,6 +43,7 @@
             text-decoration: underline; /* Agrega la subraya cuando se pasa el cursor por encima */
         }
     </style>
+
 </head>
 <body>
     <form runat="server">
@@ -107,6 +108,7 @@
                                 <li><a runat="server" visible="false" id="PrivadaAnfitrion4" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;" class="enlace-comun">Politicas del Servicio</a></li>
                                 <li><a runat="server" visible="false" id="PrivadaAnfitrion5" href="pages/modificarcalendarioreserva.aspx" style="margin-left: 20px;" class="enlace-comun">Modificar Calendario</a></li>
                                 <li><a runat="server" visible="false" id="PrivadaAnfitrion6" href="~/pages/recepcionmensajes.aspx" style="margin-left: 20px;" class="enlace-comun">Mensajes</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaAnfitrion7" href="~/pages/panelanfitrion.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Anfitrión</a></li>
 
                                 <%-- Privadas Anfitrion --%>
 
@@ -186,6 +188,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 
-
+    <script type="text/javascript">
+        function mostrarNotificacion() {
+            // Agregar aquí tu lógica para mostrar la notificación
+            alert('Tienes mensajes pendientes');
+        }
+    </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -66,6 +67,9 @@ namespace ProyectoTravelNest.pages
 
                 rptReglas.DataSource = iInmueble.ListarInformacionInmuebleReglas(idInmueble, IdUsuario);
                 rptReglas.DataBind();
+
+                RepeaterComentarios.DataSource = iInmueble.comentariosInmueble(idInmueble);
+                RepeaterComentarios.DataBind();
 
                 Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
 
@@ -413,6 +417,20 @@ namespace ProyectoTravelNest.pages
                 // Devuelve un icono por defecto o una clase de icono desconocida si el servicio no se encuentra en el diccionario
                 return "fa-question-circle";
             }
+        }
+
+        protected string generarCalificacion(int calificacion)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < calificacion; i++)
+            {
+                sb.Append("<label id='colorStar'>★</label>");
+            }
+            for (int i = 0; i < 5 - calificacion; i++)
+            {
+                sb.Append("<label>★</label>");
+            }
+            return sb.ToString();
         }
     }
 }

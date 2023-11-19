@@ -20,7 +20,9 @@
                     <ItemTemplate>
                         <div class="my-5" style="clear: both;" id="comentario">
                             <div id="user-image">
-                                <img src="../img/user.png" style="width: 3%;">
+                                <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
+                                           src='<%# Eval("Rostro") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Rostro")) : "../img/user.png" %>'
+                                           style="width: 30px; height: 30px; object-fit: cover; border-radius: 100px;" />
                             </div>
                             <div style="width: 60%;" id="user-info" class="ms-4">
                                 <a href="?IdUsuario=<%# Eval("Autor") %>" style="text-decoration: none; color: #212529;">
@@ -37,7 +39,6 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-
             </div>
         </div>
     </div>

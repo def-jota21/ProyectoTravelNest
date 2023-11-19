@@ -1,6 +1,6 @@
 ﻿/* Estilos generales y configuración de la página */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Comfortaa !important;
     background-color: #f4f4f4;
     padding-top: 10px;
 }
@@ -9,6 +9,15 @@ body {
     width: 110%;
     margin: auto;
 }
+
+    .container mt-4, h1 {
+        display: flex;
+        flex-flow: column;
+        justify-items: center;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
 
 /* Configuraciones de tarjetas y elementos dentro de ellas */
 .card {
@@ -67,32 +76,34 @@ body {
 .btn-danger,
 .btn-secondary {
     margin-bottom: 10px;
+    background-color: #95CF48;
 }
 
 .btn-warning {
-    color: #fff;
+    color: #95CF48;
     background-color: #95CF48;
-    border-color: #eea236;
+    border-color: #95CF48;
 }
 
     .btn-warning:hover {
-        background-color: #ec971f;
+        background-color: #95CF48;
         border-color: #d58512;
     }
 
 .btn-danger {
     color: #fff;
-    background-color: #d9534f;
+    background-color: #95CF48;
     border-color: #d43f3a;
 }
 
     .btn-danger:hover {
-        background-color: #c9302c;
+        background-color: #95CF48;
         border-color: #ac2925;
     }
 
 .btn-secondary {
     margin-bottom: 10px;
+    background-color: #95CF48;
 }
 
 /* Estilos para divisores y bordes */
@@ -107,3 +118,4 @@ body {
         border-bottom: 1px solid #dee2e6;
     }
 }
+

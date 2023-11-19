@@ -1,101 +1,81 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="pantallapoliticas.aspx.cs" Inherits="ProyectoTravelNest.pages.Pantalla_Politicas" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!DOCTYPE html>
-    <html lang="es">
+    <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+        <title>Prueba de Bootstrap 4</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="../Content/Politicas.css" rel="stylesheet" />
-        <script>
-            function mostrarFormulario() {
-                var formulario = document.getElementById('formulario-insertar');
-                formulario.style.display = 'block'; // Mostrar el formulario
-            }
+        <link href="../Content/style.css" rel="stylesheet" />
 
-            function insertar() {
-                var titulo = document.getElementById('titulo').value;
-                var contenido = document.getElementById('contenido').value;
-                var textoAdicional = document.getElementById('texto-adicional').value;
-
-                // Aquí deberías tener una lógica para añadir una nueva tarjeta con estos valores.
-                // Por simplicidad, se muestra una alerta con la información.
-                alert('Insertar: ' + titulo + ', ' + contenido + ', ' + textoAdicional);
-
-                // Limpiar campos
-                document.getElementById('titulo').value = '';
-                document.getElementById('contenido').value = '';
-                document.getElementById('texto-adicional').value = '';
-
-                // Ocultar formulario
-                document.getElementById('formulario-insertar').style.display = 'none';
-            }
-
-            function modificar(id) {
-                // Similar a insertar, pero obtiene y modifica la tarjeta existente.
-            }
-
-            function eliminar(id) {
-                // Elimina la tarjeta con el id dado.
-            }
-        </script>
     </head>
     <body>
         <div class="container mt-4">
-            <h1>Políticas de TravelNest</h1>
-            <button class="btn btn-primary" onclick="mostrarFormulario()">Insertar Nueva Política</button>
-            <div id="formulario-insertar" style="display: none;">
-                <input type="text" id="titulo" class="form-control mb-2" placeholder="Título">
-                <textarea id="contenido" class="form-control mb-2" placeholder="Contenido"></textarea>
-                <input type="text" id="texto-adicional" class="form-control mb-2" placeholder="Texto Adicional">
-                <button class="btn btn-success" onclick="insertar()">Confirmar Inserción</button>
-            </div>
 
-            <!-- Aquí irían las tarjetas existentes -->
-            <div id="tarjetas">
-                <!-- Ejemplo de una tarjeta -->
-                <div class="card mb-3" id="tarjeta1">
-                    <div class="card-body">
-                        <h5 class="card-title">Título de Ejemplo</h5>
-                        <p class="card-text">Contenido de ejemplo.</p>
-                        <p class="card-text">Texto adicional de ejemplo.</p>
-                        <button class="btn btn-warning mb-1" onclick="modificar('tarjeta1')">Modificar</button>
-                        <button class="btn btn-danger" onclick="eliminar('tarjeta1')">Eliminar</button>
+            <h1>Políticas de TravelNest</h1>
+            <asp:Button ID="btnInsert" runat="server" CssClass="btn btn-primary" Text="Insertar nueva politica" OnClick="btnInsertar_Click" />
+
+            <asp:UpdatePanel runat="server" ID="updPanel_Editar" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div id="divFormulario" runat="server" style="display: block;" visible="false">
+                        <asp:TextBox type="text" runat="server" ID="txtid" class="form-control mb-2" placeholder="ID" Visible="false"></asp:TextBox>
+                        <asp:TextBox type="text" runat="server" ID="txtTitulo" class="form-control mb-2" placeholder="Título"></asp:TextBox>
+                        <asp:TextBox ID="txtContenido" runat="server" class="form-control mb-2" placeholder="Contenido" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox type="text" runat="server" ID="txtTextoAdicional" class="form-control mb-2" placeholder="Texto Adicional" TextMode="MultiLine"></asp:TextBox>
+                        <asp:Button ID="btnGuardar" class="btn btn-success" runat="server" OnClick="btnGuardar_Click" Visible="false" Text="Confirmar Inserción" />
+                        <asp:Button ID="btnEditarInfo" runat="server" class="btn btn-warning mb-1" Text="Guardar" OnClick="btnEditarInfo_Click" />
+                        <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClientClick="ocultarFormulario()" OnClick="btnCancelar_Click" Visible="true" />
                     </div>
-                </div>
-                <div class="card mb-3" id="tarjeta2">
-                    <div class="row no-gutters">
-                        <!-- Columna a la izquierda con campos de texto -->
-                        <div class="col-md-8 border-right">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="titulo-tarjeta2">Título</label>
-                                    <input type="text" class="form-control" id="titulo-tarjeta2" placeholder="Título" value="Título de Ejemplo">
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+            <asp:UpdatePanel runat="server" ID="updPanel_Politicas" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div id="divTarjetas" runat="server" visible="true">
+                        <asp:Repeater ID="rptTarjetas" runat="server" OnItemDataBound="rptTarjetas_ItemDataBound" OnItemCommand="rptTarjetas_ItemCommand">
+                            <ItemTemplate>
+                                <div class="card mb-3" id="tarjeta1">
+                                    <div class="card-body">
+                                        <h5 id="Titulo" class="card-title"><%# Eval("Titulo") %></h5>
+                                        <p class="card-text"><%# Eval("Contenido") %></p>
+                                        <p class="card-text" id='<%# "texto-adicional-" + Container.ItemIndex %>' style="display: none;"><%# Eval("TextoAdicional") %></p>
+                                        <a href="#" class="btn btn-primary" onclick="toggleVerMas(<%# Container.ItemIndex %>); return false;">Ver más</a>
+                                        <asp:Button ID="btnEditar" runat="server" class="btn btn-warning mb-1" Text="Modificar" CommandName="Editar" AutoPostBack="true" CommandArgument='<%# Eval("ID") %>'></asp:Button>
+                                        <asp:Button ID="btnBorrar" runat="server" class="btn btn-danger" Text="Eliminar" CommandName="Borrar" CommandArgument='<%# Eval("ID") %>'></asp:Button>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="contenido-tarjeta2">Contenido</label>
-                                    <textarea class="form-control" id="contenido-tarjeta2" placeholder="Contenido">Contenido de ejemplo.</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="adicional-tarjeta2">Texto Adicional</label>
-                                    <textarea class="form-control" id="adicional-tarjeta2" placeholder="Texto Adicional">Texto adicional de ejemplo.</textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Columna a la derecha con botones -->
-                        <div class="col-md-4">
-                            <div class="card-body d-flex flex-column justify-content-around">
-                                <button class="btn btn-warning ml-3 mb-2" onclick="modificar('tarjeta2')">Modificar</button>
-                                <button class="btn btn-danger ml-3 mb-2" onclick="eliminar('tarjeta2')">Eliminar</button>
-                                <button class="btn btn-secondary ml-3" onclick="cancelar('tarjeta2')">Cancelar</button>
-                            </div>
-                        </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
-                </div>
-            </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
 
+        <%-- Notificacciones Toastr --%>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <link href="../Content/toastr.css" rel="stylesheet" />
+        <script src="../Scripts/toastr.js"></script>
+        <script src="../Scripts/WebForms/NotificacionesToastr.js"></script>
+
+        <script type="text/javascript">
+
+            function toggleVerMas(index) {
+                       var textoAdicional = document.getElementById('texto-adicional-' + index);
+                       if (textoAdicional.style.display === 'none' || textoAdicional.style.display === '') {
+                           textoAdicional.style.display = 'block';
+                       } else {
+                           textoAdicional.style.display = 'none';
+                       }
+                   }
+
+                   function ocultarFormulario() {
+                       // Ocultar formulario
+                       document.getElementById('formulario-insertar').style.display = 'none';
+                   }
+
+        </script>
     </body>
     </html>
 

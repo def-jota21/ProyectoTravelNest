@@ -40,5 +40,10 @@ namespace ProyectoTravelNest.pages
             
 
         }
+
+        protected void lbtnCalendario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pages/modificarcalendarioreserva.aspx");
+        }
     }
 }

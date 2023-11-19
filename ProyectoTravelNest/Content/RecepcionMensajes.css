@@ -69,6 +69,7 @@
     margin-left: 10px; /* Espacio entre el botón y la imagen */
     margin-top: -300px; /* Ajusta el margen superior para mover la imagen arriba */
 }
+
 .btn-secondary {
     background-color: #4CAF50; /* Color más profesional */
     color: white;

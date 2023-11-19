@@ -37,5 +37,10 @@ namespace ProyectoTravelNest.pages
                 Session["MiBancoUsuario"] = usuarioMiBanco;
             }
         }
+
+        protected void lbtnCalendario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pages/modificarcalendarioreserva.aspx");
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Negocios
             return DataMensajeria.GetReceiverEmail(idReceptor);
         }
 
-        public void EnviarEmail(string idReceptor, string asunto, string Emisor)
+        public void EnviarEmail(string idReceptor, string asunto)
         {
             try
             {
@@ -41,7 +41,6 @@ namespace Negocios
                 // Cargar la plantilla HTML y reemplazar las variables con los valores adecuados
                 string templatePath = Path.Combine(rootPath, "Plantillas", "Plantilla_Chat.html");
                 body = File.ReadAllText(templatePath);
-                body = body.Replace("{NombreEmisor}", Emisor);
 
                 var smtp = new SmtpClient
                 {

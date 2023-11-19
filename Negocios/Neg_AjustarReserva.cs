@@ -2,6 +2,7 @@
 using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -29,9 +30,7 @@ namespace Negocios
             return conexionBD.GetPrecio(idInmueble);
         }
 
-
-
-        public List<Inmueble> ObtenerInmueblesPorAnfitrion(string anfitrionId)
+        public DataSet ObtenerInmueblesPorAnfitrion(string anfitrionId)
         {
             return conexionBD.GetInmueblesPorAnfitrion(anfitrionId);
         }
@@ -40,6 +39,5 @@ namespace Negocios
         {
             conexionBD.AjustarDataInmueble(idInmueble, precioNoche);
         }
-
     }
 }

@@ -26,14 +26,14 @@ namespace Datos
             strConexion.Append(";User ID=");
             strConexion.Append("Proyecto");
             strConexion.Append(";Password=");
-            strConexion.Append("Proyecto#12345"); 
+            strConexion.Append("Proyecto#12345");
 
             sqlCon = new SqlConnection(strConexion.ToString());
 
             try
             {
                 sqlCon.Open();
-            }catch (Exception ex)
+            } catch (Exception ex)
             {
                 String Mensaje = ex.Message;
             }
@@ -356,9 +356,14 @@ namespace Datos
                 throw ex;
             }//fin del catch
             return dtDatos;
-      }//fin de ExecuteQuery
+        }//fin de ExecuteQuery
+
+
+
+        // METODOS DE JAIRO ------------------------------------------------------------------------
 
      // METODOS DE JAIRO ------------------------------------------------------------------------
+
         public DataTable ExecuteSPWithDT(string SPName, List<SqlParameter> ListaParametros)
         {
             try
@@ -504,7 +509,6 @@ namespace Datos
             }
         }
 
-
         public void AjustarDataInmueble(string idInmueble, decimal precioNoche)
         {
             try
@@ -530,68 +534,163 @@ namespace Datos
             }
         }
 
-        public string GetPrecio(string idInmueble)
+
+        public DataSet GetInmueblesPorAnfitrion(string anfitrionId)
         {
-            string precio = "";
-            using (SqlConnection con = new SqlConnection(connection_string))
+            DataSet dsInmuebles = new DataSet();
+
+            try
             {
-                con.Open();
-
-                using (SqlCommand cmd = new SqlCommand("GetPrecioNoche", con))
+                using (SqlConnection con = new SqlConnection(connection_string))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@idInmueble", idInmueble);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("GetInmueblePorAnfitrion", con))
                     {
-                        if (reader.Read())
-                        {
-                            precio = Convert.ToString(reader.GetDecimal(0));
-                        }
-                    }
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@AnfitrionId", SqlDbType.NVarChar).Value = anfitrionId;
 
-                    return precio;
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(dsInmuebles);
+                        }
+
+                        return dsInmuebles;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el id del inmueble: " + ex.Message);
             }
         }
 
-        public List<Inmueble> GetInmueblesPorAnfitrion(string anfitrionId)
-            {
-                List<Inmueble> inmuebles = new List<Inmueble>();
 
+        public string GetPrecio(string idInmueble)
+        {
+            try
+            {
+                string precio = "";
                 using (SqlConnection con = new SqlConnection(connection_string))
                 {
                     con.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("[Proyecto].[SP.InmueblesYPrecioPorAnfitrion]", con))
+                    using (SqlCommand cmd = new SqlCommand("GetPrecioNoche", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@AnfitrionId", anfitrionId);
+
+                        cmd.Parameters.AddWithValue("@idInmueble", idInmueble);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            while (reader.Read())
+                            if (reader.Read())
                             {
-                                inmuebles.Add(new Inmueble
-                                {
-                                    IdInmueble = reader.GetString(0),
-                                    Nombre = reader.GetString(1),
-                                    Precio = (float)reader.GetDecimal(0)
-
-                        });
+                                precio = Convert.ToString(reader.GetDecimal(0));
                             }
+                        }
+
+                        return precio;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el precio del inmueble: " + ex.Message);
+            }
+        }
+        // Politicas
+        public DataSet ObtenerPoliticas(string instruccion)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("CRUDPoliticas", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@instruccion", instruccion);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataSet dsPoliticas = new DataSet();
+                            adapter.Fill(dsPoliticas);
+
+                            return dsPoliticas;
                         }
                     }
                 }
-
-                return inmuebles;
             }
-
-
-
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la información de las politicas: " + ex.Message);
+            }
         }
 
-    #endregion
+        public DataSet ObtenerPoliticasPorID(string instruccion, int? idPolitica)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("CRUDPoliticas", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@idPolitica", idPolitica);
+                        cmd.Parameters.AddWithValue("@instruccion", instruccion);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataSet dsPoliticas = new DataSet();
+                            adapter.Fill(dsPoliticas);
+
+                            return dsPoliticas;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la información de las politicas: " + ex.Message);
+            }
+        }
+
+
+        public void CRUDPoliticas(int? IdPolitica = null, string Titulo = null, string Contenido = null, string TextoAdicional = null, string Instruccion = null)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection_string))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("CRUDPoliticas", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idPolitica", IdPolitica);
+                        cmd.Parameters.AddWithValue("@tituloPolitica", Titulo);
+                        cmd.Parameters.AddWithValue("@contenidoPolitica", Contenido);
+                        cmd.Parameters.AddWithValue("@textoAdicionalPolitica", TextoAdicional);
+                        cmd.Parameters.AddWithValue("@instruccion", Instruccion);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar la instruccion deseada: " + ex.Message);
+            }
+        }
+        #endregion
+
+
+
+
+    }
 }
 #endregion
+

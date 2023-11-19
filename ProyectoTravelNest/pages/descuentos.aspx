@@ -7,6 +7,13 @@
 
         <div class="container-fluid mt-5">
             <div class="row">
+                <div class="container" runat="server" id="error" visible="false">
+                    <div class="row">
+                    <div class="col-sm-3 alert alert-danger" runat="server" id="cajaEstado" role="alert">
+                        <asp:Label ID="lblEstado" runat="server" Text=""></asp:Label>
+                    </div>
+                    </div>
+                </div>
                 <div class="flex-row-reverse d-flex justify-content-around">
                     <div class="col-lg-3 col-md-5 p-0 mb-5 me-4 bg-white rounded" runat="server" id="cartaInmueble">
                         <!-- Inmueble -->
@@ -20,7 +27,8 @@
                                     <div class="d-flex justify-content-between">
                                     <asp:TextBox ID="txtPorcentaje" runat="server" Text='<%# Eval("Porcentaje") %>' 
                                                  AutoCompleteType ="Disabled" CssClass="h5" MaxLength="5" ReadOnly="true"
-                                                 style="border: none; background-color: transparent; outline: none;"></asp:TextBox>
+                                                 style="border: none; background-color: transparent; outline: none;"
+                                                 ></asp:TextBox>
                                         <!-- Botones -->
                                         <div style="right: 0; display: inline-flex; margin-top: -6px;">
                                             <div style="margin: 0px 5px" runat="server" id="divbtnModificar" visible="true">

@@ -20,6 +20,7 @@ namespace ProyectoTravelNest.pages
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
+
             if (eUsuarios == null)
             {
                 FormsAuthentication.RedirectToLoginPage();
@@ -65,6 +66,15 @@ namespace ProyectoTravelNest.pages
                     // Manejar el caso en que no se encuentren inmuebles
                     ddlInmuebles.Items.Add(new ListItem("No se encontraron inmuebles", ""));
                 }
+
+            string IdInmueble = Session["idInmueble"].ToString();
+            if (!IsPostBack & eUsuarios != null)
+            {
+                IdInmueble = Request.QueryString["IdInmueble"];
+                String IdUsuario = Session["IdUsuario"].ToString();
+
+                ObtenerDatos(IdInmueble);
+
             }
             catch (Exception ex)
             {
@@ -73,6 +83,8 @@ namespace ProyectoTravelNest.pages
                 ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlertaError", errorScript, true);
             }
         }
+
+
 
 
 

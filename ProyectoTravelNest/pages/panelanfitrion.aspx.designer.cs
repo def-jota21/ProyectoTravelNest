@@ -11,70 +11,52 @@ namespace ProyectoTravelNest.pages
 {
 
 
-    public partial class reglas
+    public partial class panelanfitrion
     {
 
         /// <summary>
-        /// error control.
+        /// lbtnReglas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl error;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnReglas;
 
         /// <summary>
-        /// cajaEstado control.
+        /// lbtnPromociones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cajaEstado;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnPromociones;
 
         /// <summary>
-        /// lblEstado control.
+        /// lbtnCalendario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEstado;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCalendario;
 
         /// <summary>
-        /// cartaInmueble control.
+        /// lbtnDescuentos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cartaInmueble;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnDescuentos;
 
         /// <summary>
-        /// ListaReglas control.
+        /// lbtnVId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ListaReglas;
-
-        /// <summary>
-        /// ReglasRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ReglasRepeater;
-
-        /// <summary>
-        /// btnAgregar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAgregar;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnVId;
     }
 }

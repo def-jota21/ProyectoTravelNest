@@ -224,6 +224,7 @@
     <Content Include="pages\login.aspx" />
     <Content Include="pages\modificarcalendarioreserva.aspx" />
     <Content Include="pages\paneladministracionhuesped.aspx" />
+    <Content Include="pages\panelanfitrion.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
     <Content Include="pages\promociones.aspx" />
     <Content Include="pages\recepcionmensajes.aspx" />
@@ -527,6 +528,13 @@
     </Compile>
     <Compile Include="pages\paneladministracionhuesped.aspx.designer.cs">
       <DependentUpon>paneladministracionhuesped.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\panelanfitrion.aspx.cs">
+      <DependentUpon>panelanfitrion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\panelanfitrion.aspx.designer.cs">
+      <DependentUpon>panelanfitrion.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\pantallapoliticas.aspx.cs">
       <DependentUpon>pantallapoliticas.aspx</DependentUpon>

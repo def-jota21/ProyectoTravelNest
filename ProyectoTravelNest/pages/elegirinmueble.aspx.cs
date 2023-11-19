@@ -15,7 +15,6 @@ namespace ProyectoTravelNest.pages
         Negocios.Negocio_Inmuebles nInmueble = new Negocios.Negocio_Inmuebles();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
             if (eUsuarios == null)

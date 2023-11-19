@@ -96,10 +96,25 @@ namespace ProyectoTravelNest.pages
             HtmlGenericControl divbtnEliminar = (HtmlGenericControl)item.FindControl("divbtnEliminar");
             if (!txtPorcentaje.ReadOnly)
             {
-                actionButton("Guardar", txtPorcentaje, divbtnModificar, divbtnGuardar, divbtnEliminar);
-                eDescuento.IdDescuento = btn.CommandArgument;
-                eDescuento.Porcentaje = float.Parse(txtPorcentaje.Text);
-                descuento.crud(eDescuento, "Modificar");
+                error.Visible = false;
+                if (int.TryParse(txtPorcentaje.Text, out int num))
+                {
+                    error.Visible = true;
+                    lblEstado.Text = "Por favor, asegúrese de ingresar solamente números.";
+                }
+                else if (Int32.Parse(txtPorcentaje.Text) > 99 && Int32.Parse(txtPorcentaje.Text) < 1)
+                {
+                    error.Visible = true;
+                    lblEstado.Text = "Por favor, ingrese un valor de descuento que esté en el rango del 1 al 99.";
+                }
+                else
+                {
+                    actionButton("Guardar", txtPorcentaje, divbtnModificar, divbtnGuardar, divbtnEliminar);
+                    eDescuento.IdDescuento = btn.CommandArgument;
+                    eDescuento.Porcentaje = float.Parse(txtPorcentaje.Text);
+                    eDescuento.IdInmueble = Request.QueryString["IdInmueble"];
+                    descuento.crud(eDescuento, "Modificar");
+                }
             }
         }
 
@@ -114,7 +129,7 @@ namespace ProyectoTravelNest.pages
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            eDescuento.Porcentaje = 1F;
+            eDescuento.Porcentaje = 0.50F;
             eDescuento.IdDescuento = generateID();
             eDescuento.IdInmueble = Request.QueryString["IdInmueble"];
 

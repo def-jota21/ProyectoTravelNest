@@ -359,7 +359,11 @@ namespace Datos
         }//fin de ExecuteQuery
 
 
+
         // METODOS DE JAIRO ------------------------------------------------------------------------
+
+     // METODOS DE JAIRO ------------------------------------------------------------------------
+
         public DataTable ExecuteSPWithDT(string SPName, List<SqlParameter> ListaParametros)
         {
             try

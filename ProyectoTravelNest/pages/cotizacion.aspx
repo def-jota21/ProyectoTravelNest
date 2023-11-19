@@ -23,7 +23,7 @@
                         <label for="txtcupon" class="form-label">Cupon</label>
                         <asp:TextBox ID="txtcupon" runat="server" CssClass="form-control" AutoComplete="off"></asp:TextBox>
                     </div>
-                    <asp:Button ID="btnPagar" runat="server" Text="Pagar" CssClass="btn btn-primary mt-4" />
+                    <asp:Button ID="btnPagar" runat="server" Text="Pagar" CssClass="btn btn-primary mt-4" OnClick="btnPagar_Click" />
 
                 </div>
                 <div class="col">

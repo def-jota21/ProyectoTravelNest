@@ -19,7 +19,27 @@ namespace Negocios
             {
                 return datosReservaciones.ObtenerReservacionRecientePorUsuario(idUsuario);
             }
+        public bool InsertarReservacion(string idInmueble, string idUsuario, string finicio, string ffin)
+        {
+            Datos.ReservacionesBD reservaciones = new Datos.ReservacionesBD();
+
+            try
+            {
+                DateTime fechaInicio = Convert.ToDateTime(finicio);
+                DateTime fechaFin = Convert.ToDateTime(ffin);
+
+                bool inserto = reservaciones.InsertarReservacion(idInmueble, idUsuario, fechaInicio, fechaFin);
+
+                return inserto;
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
         }
 
     }
+
+}
 

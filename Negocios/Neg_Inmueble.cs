@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
+using Entidades;
 
 namespace Negocios
 {
@@ -52,6 +53,46 @@ namespace Negocios
 
             return tablaServicios;
         }
+         
+        public List<Tuple<string, string>> ObtenerAmenidadDelInmueble(string idInmueble)
+        {
+
+            List<Tuple<string, string>> amenidadesInmueble = new List<Tuple<string, string>>();
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            amenidadesInmueble = inmuebleSQL.ObtenerAmenidadesDelInmueble(idInmueble);
+
+            return amenidadesInmueble;
+        }
+
+        public void InsertarServicioxInmueble(string idInmueble, string idservicio)
+        {
+            ServiciosSQL ServiciosSQL = new ServiciosSQL();
+            ServiciosSQL.EjecutarProcedureServicioxInmueble(idInmueble, idservicio);
+        }
+
+        public void EliminarServicioxInmueble(string idInmueble, string idservicio)
+        {
+            ServiciosSQL ServiciosSQL = new ServiciosSQL();
+            ServiciosSQL.EjecutarEliminarServicioxInmueble(idInmueble, idservicio);
+        }
+
+        public void InsertarAmeindadxInmueble(string idInmueble, string idamenidad)
+        {
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            inmuebleSQL.AsociarAmenidadAInmueble(idInmueble, idamenidad);
+        }
+
+        public void EliminarAmenidadAInmueble(string idInmueble, string idamenidad)
+        {
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            inmuebleSQL.EliminarAmenidadAInmueble(idInmueble,idamenidad);
+        }
+
+        public void EditarInmueble(Entidades.Inmueble inmueble, string categoria, string rutas, string IdUsuario)
+        {
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            inmuebleSQL.EditarInmueble(inmueble, categoria,IdUsuario);
+        }
 
         public string InsertarInmueble(Entidades.Inmueble inmueble, string categoria, string rutas, List<string> servicios, List<string> amenidades, string IdUsuario, List<string> politicas, List<string> despoliticas) 
         {
@@ -89,6 +130,17 @@ namespace Negocios
             bool inserto = inmuebleSQL.InsertarImagenInmueble(idInmueble, arregloImagen);
 
             return inserto;
+        }
+
+        public List<Tuple<string, string>> ObtenerServiciosDelInmueble(string idInmueble)
+        {
+            Datos.ServiciosSQL serviciosSQL = new Datos.ServiciosSQL();
+
+            List<Tuple<string, string>> serviciosInmueble = new List<Tuple<string, string>>();
+
+            serviciosInmueble = serviciosSQL.ObtenerServiciosDelInmueble(idInmueble);
+
+            return serviciosInmueble;
         }
     }
 }

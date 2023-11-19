@@ -33,6 +33,15 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.TextBox txtnombre;
 
         /// <summary>
+        /// Control lblErrorNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorNombre;
+
+        /// <summary>
         /// Control lblUbicacion.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtubicacion;
+
+        /// <summary>
+        /// Control lblErrorUbicacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorUbicacion;
 
         /// <summary>
         /// Control categoria.
@@ -78,6 +96,15 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.TextBox txtprecio;
 
         /// <summary>
+        /// Control lblErrorPrecio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorPrecio;
+
+        /// <summary>
         /// Control lblHuespedes.
         /// </summary>
         /// <remarks>
@@ -94,6 +121,15 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txthuespedes;
+
+        /// <summary>
+        /// Control lblErrorHuespedes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorHuespedes;
 
         /// <summary>
         /// Control lblHabitaciones.
@@ -114,6 +150,24 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.TextBox txthabitaciones;
 
         /// <summary>
+        /// Control lblErrorHabitaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorHabitaciones;
+
+        /// <summary>
+        /// Control DropDownList1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+
+        /// <summary>
         /// Control lblBaños.
         /// </summary>
         /// <remarks>
@@ -130,6 +184,15 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbaños;
+
+        /// <summary>
+        /// Control lblErrorBanhos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorBanhos;
 
         /// <summary>
         /// Control descuentos.
@@ -159,6 +222,15 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.TextBox descripcion;
 
         /// <summary>
+        /// Control lblErrorDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorDescripcion;
+
+        /// <summary>
         /// Control btnPublicar.
         /// </summary>
         /// <remarks>
@@ -166,6 +238,24 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPublicar;
+
+        /// <summary>
+        /// Control fileUpload.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload;
+
+        /// <summary>
+        /// Control lblErrorImagenes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorImagenes;
 
         /// <summary>
         /// Control selectElement.
@@ -186,6 +276,15 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.HiddenField hiddenElementos;
 
         /// <summary>
+        /// Control listaElementos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel listaElementos;
+
+        /// <summary>
         /// Control selectElementPoliticas.
         /// </summary>
         /// <remarks>
@@ -193,6 +292,33 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList selectElementPoliticas;
+
+        /// <summary>
+        /// Control descripcionPolitica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox descripcionPolitica;
+
+        /// <summary>
+        /// Control hiddenIdsPoliticas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenIdsPoliticas;
+
+        /// <summary>
+        /// Control hiddenDescripcionesPoliticas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenDescripcionesPoliticas;
 
         /// <summary>
         /// Control selectElementAmenidades.
@@ -211,5 +337,14 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField elementosAmenidades;
+
+        /// <summary>
+        /// Control listaElementosAmenidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel listaElementosAmenidades;
     }
 }

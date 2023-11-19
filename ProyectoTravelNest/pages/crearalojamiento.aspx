@@ -333,7 +333,8 @@ figcaption{
         hiddenElementos.value = idsSeparadosPorComas;
 
         var modal = document.getElementById('serviciosModal');
-        $('#serviciosModal').modal('hide');
+        $('#serviciosModal').modal('hide');erviciosModal').modal('hide');
+
     });
 
 
@@ -459,6 +460,16 @@ figcaption{
 
         // Almacenar el IdServicio como atributo personalizado en el elemento <li>
         nuevoElemento.setAttribute("data-idservicio", opcionSeleccionada.value);
+
+        // Verificar si el idServicio ya está en la lista
+        var existe = Array.from(listaElementos.children).some(function (elemento) {
+            return elemento.getAttribute("data-idservicio") === idServicioSeleccionado;
+        });
+
+        if (existe) {
+            alert("El elemento seleccionado ya está en la lista.");
+            return;
+        }
 
         // Crear una columna para el texto
         var columnaTexto = document.createElement("div");

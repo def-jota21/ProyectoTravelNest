@@ -34,6 +34,35 @@ namespace Datos
             return tablaServicios;
         }
 
+        public List<Tuple<string, string>> ObtenerServiciosDelInmueble(string idInmueble)
+        {
+            List<Tuple<string, string>> serviciosInmueble = new List<Tuple<string, string>>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("ObtenerServiciosInmueble", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IdInmueble", idInmueble);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string idServicio = reader["IdServicio"].ToString();
+                            string nombreServicio = reader["Nombre"].ToString();
+
+                            serviciosInmueble.Add(new Tuple<string, string>(idServicio, nombreServicio));
+                        }
+                    }
+                }
+            }
+
+            return serviciosInmueble;
+        }
+
         public void EjecutarProcedureServicioxInmueble(string IdInmueble, string IdServicio)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -41,6 +70,26 @@ namespace Datos
                 connection.Open();
 
                 using (SqlCommand command = new SqlCommand("ProcedureServicioxInmueble", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Agrega los parámetros del procedimiento almacenado
+                    command.Parameters.Add(new SqlParameter("@IdInmueble", SqlDbType.NChar)).Value = IdInmueble;
+                    command.Parameters.Add(new SqlParameter("@IdServicio", SqlDbType.NChar)).Value = IdServicio;
+
+                    // Ejecuta el procedimiento almacenado
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EjecutarEliminarServicioxInmueble(string IdInmueble, string IdServicio)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("EliminarServicioxInmueble", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 

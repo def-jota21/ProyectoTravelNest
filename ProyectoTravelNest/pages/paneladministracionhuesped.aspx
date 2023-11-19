@@ -114,10 +114,10 @@
             <div class="col-12">
                 <div class="card-deck">
                     <div class="card">
-                        <a href="#" class="notification" style="text-decoration: none">
-                            <span>
+                        <a href="comentariospendientesh.aspx" class="notification" style="text-decoration: none">
+                            
                                 <h5 class="h5 mt-2">Notificaciones</h5>
-                                <p class="h6 mt-4">Opinion de los anfitriones</p>
+                                <p class="h6 mt-4">Comentarios Pendientes</p>
                                 <% 
                                 int cantidadNotificaciones = (Session["CantidadNotificaciones"] != null) ? (int)Session["CantidadNotificaciones"] : 0;
                                 if (cantidadNotificaciones > 0)

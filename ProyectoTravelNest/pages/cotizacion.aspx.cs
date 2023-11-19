@@ -14,6 +14,12 @@ namespace ProyectoTravelNest.pages
     public partial class cotizacion : System.Web.UI.Page
     {
         DataTable dtInformacionInmueble = new DataTable();
+        string parametro1 = "";
+        string parametro2 = "";
+        string parametro3 = "";
+        string parametro4 = "";
+        string parametro5 = "";
+        string parametro6 = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
@@ -34,12 +40,12 @@ namespace ProyectoTravelNest.pages
                     Request.QueryString["parametro6"] != null)
                 {
                     // Obtiene los valores de los parámetros desde la URL
-                    string parametro1 = Request.QueryString["parametro1"];
-                    string parametro2 = Request.QueryString["parametro2"];
-                    string parametro3 = Request.QueryString["parametro3"];
-                    string parametro4 = Request.QueryString["parametro4"];
-                    string parametro5 = Request.QueryString["parametro5"];
-                    string parametro6 = Request.QueryString["parametro6"];
+                    parametro1 = Request.QueryString["parametro1"];
+                    parametro2 = Request.QueryString["parametro2"];
+                    parametro3 = Request.QueryString["parametro3"];
+                    parametro4 = Request.QueryString["parametro4"];
+                    parametro5 = Request.QueryString["parametro5"];
+                    parametro6 = Request.QueryString["parametro6"];
 
                     Negocios.Negocio_Inmuebles iInmueble = new Negocio_Inmuebles();
                     RepeaterImagen.DataSource = iInmueble.ListarInformacionInmuebleImagenes(parametro6, parametro5);
@@ -103,9 +109,25 @@ namespace ProyectoTravelNest.pages
                     
                 
         }
-
-        protected void RepeaterImagen_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void btnPagar_Click(object sender, EventArgs e)
         {
+            Negocios.Neg_Reservaciones reservaciones = new Neg_Reservaciones();
+
+            bool inserto = reservaciones.InsertarReservacion(parametro6, parametro5, parametro1, parametro2);
+
+            if (inserto)
+            {
+                string script = "Swal.fire('¡Éxito!', 'Se reservo con Exito', 'success');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+            }
+            else
+            {
+                string script = "Swal.fire('¡Error!', 'Ocurrio un error', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+            }
+        }
+            protected void RepeaterImagen_ItemDataBound(object sender, RepeaterItemEventArgs e)
+            {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 // Obtenemos el índice del elemento actual

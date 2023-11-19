@@ -139,6 +139,73 @@ namespace Datos
             }
         }
 
+        public bool EditarInmueble(Entidades.Inmueble inmueble, string IdCategoria, string IdUsuario)
+        {
+            CadenaConexion();
+
+            try
+            {
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("ManteInmueble", sqlCon))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@opcion", SqlDbType.Int).Value = 2;
+                        cmd.Parameters.Add("@IdInmueble", SqlDbType.NVarChar).Value = inmueble.IdInmueble;
+                        cmd.Parameters.Add("@IdUsuario", SqlDbType.NVarChar).Value = IdUsuario;
+                        cmd.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = inmueble.Nombre;
+                        cmd.Parameters.Add("@Direccion", SqlDbType.VarChar).Value = inmueble.Direccion;
+                        cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = inmueble.Descripcion;
+                        cmd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = inmueble.Estado;
+                        cmd.Parameters.Add("@IdCategoria", SqlDbType.Decimal).Value = IdCategoria;
+                        cmd.Parameters.Add("@Cant_Huesped", SqlDbType.VarChar).Value = inmueble.Cantidad_Huesped;
+                        cmd.Parameters.Add("@Precio", SqlDbType.VarChar).Value = inmueble.Precio;
+                        cmd.Parameters.Add("@Habitaciones", SqlDbType.Int).Value = inmueble.Habitaciones;
+                        cmd.Parameters.Add("@Banhos", SqlDbType.Int).Value = inmueble.Banhos;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                
+                return false;
+            }
+        }
+
+        public List<Tuple<string, string>> ObtenerAmenidadesDelInmueble(string idInmueble)
+        {
+            List<Tuple<string, string>> amenidadesInmueble = new List<Tuple<string, string>>();
+            CadenaConexion();
+            using (sqlCon)
+            {
+                using (SqlCommand command = new SqlCommand("ObtenerAmenidadesInmueble", sqlCon))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@IdInmueble", idInmueble);
+
+                    sqlCon.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string idAmenidades = reader["IdAmenidades"].ToString();
+                            string nombreAmenidades = reader["Nombre"].ToString();
+
+                            amenidadesInmueble.Add(new Tuple<string, string>(idAmenidades, nombreAmenidades));
+                        }
+                    }
+                }
+            }
+
+            return amenidadesInmueble;
+        }
         public void AsociarAmenidadAInmueble(string idInmueble, string idAmenidad)
         {
             CadenaConexion();
@@ -161,6 +228,27 @@ namespace Datos
             }
         }
 
+        public void EliminarAmenidadAInmueble(string idInmueble, string idAmenidad)
+        {
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                using (SqlCommand command = new SqlCommand("EliminarAmenidadAInmueble", sqlCon))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Agrega los parámetros del procedimiento almacenado
+                    command.Parameters.Add(new SqlParameter("@IdInmueble", SqlDbType.NChar)).Value = idInmueble;
+                    command.Parameters.Add(new SqlParameter("@IdAmenidad", SqlDbType.NChar)).Value = idAmenidad;
+
+                    // Ejecuta el procedimiento almacenado
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
         public string ObtenerIdAmenidadPorNombre(string nombreAmenidad)
         {
             string idAmenidad = "-1"; // Valor predeterminado en caso de que no se encuentre la amenidad

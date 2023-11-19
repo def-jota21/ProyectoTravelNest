@@ -49,5 +49,38 @@ namespace Datos
 
             return reservacion;
         }
+
+        public bool InsertarReservacion(string idInmueble, string idUsuario, DateTime fInicio, DateTime fFin)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("CRUDReservaciones", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@opcion", 1);
+                        cmd.Parameters.AddWithValue("@idInmueble", idInmueble);
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        cmd.Parameters.AddWithValue("@F_Inicio", fInicio);
+                        cmd.Parameters.AddWithValue("@F_Fin", fFin);
+
+                        con.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                Console.WriteLine("Error al insertar reservación: " + ex.Message);
+                return false;
+            }
+        }
+
     }
 }

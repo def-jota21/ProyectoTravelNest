@@ -46,9 +46,12 @@
                         <div class="p-4">
                             <div class="mt-4 mb-4">
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary btn-block" id="showModalButton"
+                                    <a href="crearalojamiento.aspx" class="btn btn-primary btn-block" id="showModalButton"
                                         style="height: 47px; margin-top: -2px;" data-bs-toggle="modal" data-bs-target="#InicioSesion">
-                                        Agregar Anuncio</button>
+                                        Agregar Anuncio</a>
+
+                                    <asp:Button ID="btnCrear" runat="server" Text="Agregar Anuncio" CssClass="btn btn-info btn-block"
+                                        Style="height: 47px; margin-top: -2px;" OnClick="btnCrear_Click" />
                                 </div>
                             </div>
                         </div>

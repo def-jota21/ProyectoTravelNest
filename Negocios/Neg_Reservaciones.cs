@@ -23,10 +23,7 @@ namespace Negocios
         }
 
 
-        public List<Reservaciones> ObtenerTodasLasReservacionesPorUsuario(string IdUsuario)
-        {
-            return datosReservaciones.ObtenerTodasLasReservacionesPorUsuario(IdUsuario);
-        }
+        
 
         private void enviarCorreo(string IdUsuario)
         {
@@ -99,9 +96,6 @@ namespace Negocios
                 }
             }
         }
-    }
-}
-         
 
         public bool InsertarReservacion(string idInmueble, string idUsuario, string finicio, string ffin)
         {
@@ -122,8 +116,6 @@ namespace Negocios
                 return false;
             }
         }
-
     }
-
 }
-
+         

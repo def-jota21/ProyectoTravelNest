@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="centrodeayuda.aspx.cs" Inherits="ProyectoTravelNest.pages.centrodeayuda" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/style.css" rel="stylesheet" />
     <div class="container-fluid">
@@ -9,85 +8,76 @@
             <div class="row">
                 </br>
                 <!-- Huesped -->
-                <!-- [Introduccion] -->
-                <div class="col-lg-4 col-md-4 col-sm-4 mt-4 mb-4 h-100 ca_huesped">
-                    <a href="introduccioncentroayuda.aspx">
-                        <div class="package-item bg-white mb-2">
-                            <img class="img-fluid" src="../img/blog-1.jpg" alt="">
-                            <div class="p-4">
-                                <a class="h5 text-decoration-none" href="introduccioncentroayuda.aspx">Introduccion</a>
+                    <!-- [Introduccion] -->
+                    <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_huesped">
+                        <a href="introduccioncentroayuda.aspx">
+                            <div class="package-item bg-white mb-2">
+                                <img class="img-fluid" src="../img/blog-1.jpg" alt="">
+                                <div class="p-4">
+                                    <a class="h5 text-decoration-none" href="">Introduccion</a>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 mt-4 mb-4 h-100 ca_huesped">
-                    <a href="estadiacentroayuda.aspx">
-                        <div class="package-item bg-white mb-2">
-                            <img class="img-fluid" src="../img/package-5.jpg" alt="">
-                            <div class="p-4">
-                                <a class="h5 text-decoration-none" href="estadiacentroayuda.aspx">Encuentra una estadia perfecta</a>
+                        </a>
+                    </div>
+                    <!-- [Encuentra una estadia perfecta] -->
+                    <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_huesped">
+                        <a href="estadiacentroayuda.aspx">
+                            <div class="package-item bg-white mb-2">
+                                <img class="img-fluid" src="../img/package-5.jpg" alt="">
+                                <div class="p-4">
+                                    <a class="h5 text-decoration-none" href="">Encuentra una estadia perfecta</a>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 mt-4 mb-4 h-100 ca_huesped">
-                    <a href="viajecentroayuda.aspx">
-                        <div class="package-item bg-white mb-2">
-                            <img class="img-fluid" src="../img/package-1.jpg" alt="">
-                            <div class="p-4">
-                                <a class="h5 text-decoration-none" href="viajecentroayuda.aspx">Para tu viaje</a>
+                        </a>
+                    </div>
+                    <!-- [Para tu viaje] -->
+                    <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_huesped">
+                        <a href="viajecentroayuda.aspx">
+                            <div class="package-item bg-white mb-2">
+                                <img class="img-fluid" src="../img/package-1.jpg" alt="">
+                                <div class="p-4">
+                                    <a class="h5 text-decoration-none" href="">Para tu viaje</a>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-
+                        </a>
+                    </div>
+                    
 
                 <!-- Anfitrión -->
-                <!-- [Cómo optimizar tu anuncio] -->
-                <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_anfitrion" style="display: none;">
-                    <a href="#">
-                        <div class="package-item bg-white mb-2">
-                            <img class="img-fluid" src="../img/package-6.png" alt="">
-                            <div class="p-4">
-                                <a class="h5 text-decoration-none" href="">Cómo optimizar tu anuncio</a>
+                    <!-- [Cómo optimizar tu anuncio] -->
+                    <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_anfitrion" style="display: none;">
+                        <a href="optimizarcentroayuda.aspx">
+                            <div class="package-item bg-white mb-2">
+                                <img class="img-fluid" src="../img/package-6.png" alt="">
+                                <div class="p-4">
+                                    <a class="h5 text-decoration-none" href="">Cómo optimizar tu anuncio</a>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- [Cómo cobrar] -->
-                <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_anfitrion" style="display: none;">
-                    <a href="#">
-                        <div class="package-item bg-white mb-2">
-                            <img class="img-fluid" src="../img/package-6.png" alt="">
-                            <div class="p-4">
-                                <a class="h5 text-decoration-none" href="">Cómo cobrar</a>
+                        </a>
+                    </div>
+                    <!-- [Cómo cobrar] -->
+                    <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_anfitrion" style="display: none;">
+                        <a href="comocobrarcentroayuda.aspx">
+                            <div class="package-item bg-white mb-2">
+                                <img class="img-fluid" src="../img/comocobrar.png" alt="">
+                                <div class="p-4">
+                                    <a class="h5 text-decoration-none" href="">Cómo cobrar</a>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- [Cómo alcanzar tus metas] -->
-                <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_anfitrion" style="display: none;">
-                    <a href="#">
-                        <div class="package-item bg-white mb-2">
-                            <img class="img-fluid" src="../img/package-6.png" alt="">
-                            <div class="p-4">
-                                <a class="h5 text-decoration-none" href="">Cómo alcanzar tus metas como
+                        </a>
+                    </div>
+                    <!-- [Cómo alcanzar tus metas] -->
+                    <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_anfitrion" style="display: none;" >
+                        <a href="metascentroayuda.aspx">
+                            <div class="package-item bg-white mb-2">
+                                <img class="img-fluid" src="../img/metas.png" alt="">
+                                <div class="p-4">
+                                    <a class="h5 text-decoration-none" href="">Cómo alcanzar tus metas como
                                         anfitrión</a>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- [Cambios, cancelaciones y reembolsos] -->
-                <div class="col-lg-4 col-md-6 mt-4 mb-4 ca_anfitrion" style="display: none;">
-                    <a href="#">
-                        <div class="package-item bg-white mb-2">
-                            <img class="img-fluid" src="../img/package-6.png" alt="">
-                            <div class="p-4">
-                                <a class="h5 text-decoration-none" href="">Cambios, cancelaciones y reembolsos</a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
             </div>
         </div>
     </div>

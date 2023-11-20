@@ -135,7 +135,7 @@
                 <div class="card-deck">
 
                     <div class="card">
-                        <a href="#" class="notification" style="text-decoration: none">
+                        <a href="recepcionmensajes.aspx" class="notification" style="text-decoration: none">
                             <span>
                                 <h5 class="h5 mt-2">Mensajes</h5>
                                 <p class="h6 mt-4">Conversa con los demas usuarios encargados de tu alojamiento.</p>

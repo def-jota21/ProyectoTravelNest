@@ -22,21 +22,8 @@ namespace ProyectoTravelNest
 
         {
 
-            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-
-
-            if (!IsPostBack & eUsuarios == null)
-            {
-                rptInmuebles.DataSource = CargarTarjetas();
-                rptInmuebles.DataBind();
-                CargarCategorias();
-
-                
-
-            }
-
-            if (!IsPostBack & eUsuarios != null)
+            if (!IsPostBack)
             {
                 rptInmuebles.DataSource = CargarTarjetas();
                 rptInmuebles.DataBind();
@@ -115,7 +102,7 @@ namespace ProyectoTravelNest
                 iFavoritos.AgregarFavorito(IdUsuario, idInmueble);
 
                 // Actualizar el panel o realizar otras acciones según sea necesario
-                upd_Panel.Update();
+                //upd_Panel.Update();
             }
             else
             {
@@ -124,79 +111,6 @@ namespace ProyectoTravelNest
                 Response.Redirect("/pages/login.aspx");
             }
         }
-
-
-        protected void btnIniciarSesion_Click(object sender, EventArgs e)
-        {
-            string correo = txtCorreo.Text;
-            string contrasena = txtcontrasena.Text;
-
-            // Instancia de la clase de negocios para verificar las credenciales
-            var negocioUsuarios = new Neg_Usuarios();
-            var usuario = negocioUsuarios.VerificarCredenciales(correo, contrasena);
-
-            if (usuario != null)
-            {
-                // Si el rol es A o H, inicia sesión
-                if (usuario.T_Rol == 'A' || usuario.T_Rol == 'H')
-                {
-                    Session["IdUsuario"] = usuario;
-                    Response.Redirect("Default.aspx"); // Redirige a la página de inicio
-                }
-                else
-                {
-                    // Manejar roles no autorizados o mostrar mensaje
-                }
-
-            }
-        }
-
-        protected void btnCrearCuenta_Click(object sender, EventArgs e)
-        {
-            char tRol = 'a';
-            String Nombre = txtNombre.Text;
-            String Rol = ddlRol.SelectedValue.ToString();
-            String Apellidos = txtApellidos.Text;
-            String Telefono = txtTelefono.Text;
-            String CorreoElectronico = txtCorreoElectronico.Text;
-            String Identificacion = txtIdentificacion.Text;
-            String Contrasena = txtcontrasenaCrear.Text;
-            //int Tamanio = fileImagen.PostedFile.ContentLength;
-            byte[] ImagenOriginal;
-            ImagenOriginal = new byte[0];
-
-            if (fileImagen.HasFile)
-            {
-                Stream fs = fileImagen.PostedFile.InputStream;
-                BinaryReader br = new BinaryReader(fs);
-                ImagenOriginal = br.ReadBytes((Int32)fs.Length);
-            }
-
-            Entidades.Usuarios iUsuario = new Entidades.Usuarios();
-
-            iUsuario.Nombre = Nombre;
-            if(Rol.Equals("Anfitrión"))
-            {
-                tRol = 'A';
-            }
-            if (Rol.Equals("Huésped"))
-            {
-               tRol = 'H';
-            }
-
-            iUsuario.T_Rol = tRol;
-            iUsuario.Apellidos = Apellidos;
-            iUsuario.Telefono = int.Parse(Telefono);
-            iUsuario.Correo = CorreoElectronico;
-            iUsuario.IdUsuarioRegistro = Identificacion;
-            iUsuario.Contrasena = Contrasena;
-            iUsuario.ImagenPerfil = ImagenOriginal;
-
-            Negocios.Neg_Usuarios iUsuariosNeg = new Neg_Usuarios();
-
-            iUsuariosNeg.AgregarUsuario(iUsuario, 1);
-        }
-
 
 
         protected void btnVerInformacion_Command(object sender, CommandEventArgs e)
@@ -251,4 +165,4 @@ namespace ProyectoTravelNest
             }
         }
     }
-    }
+}

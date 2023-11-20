@@ -1,8 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ProyectoTravelNest._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel runat="server" ID="upd_Panel" UpdateMode="Conditional">
-        <ContentTemplate>
+   
             <!-- Favicon -->
             <link href="img/favicon.ico" rel="icon">
 
@@ -51,44 +50,7 @@
                 }
             </style>
 
-            <script>
-                function validarContrasena() {
-                    const contrasenaInput = document.getElementById('<%= txtcontrasenaCrear.ClientID %>');
-                    if (contrasenaInput) {
-                        const contrasena = contrasenaInput.value;
-                        const longitudValida = contrasena.length >= 10;
-                        const contieneMayuscula = /[A-Z]/.test(contrasena);
-                        const contieneNumero = /\d/.test(contrasena);
-                        const noConsecutivos = !/(.)\1{1,}/.test(contrasena);
-                        const mensajes = document.getElementsByClassName("mensaje");
-                        const mensaje = mensajes.length > 0 ? mensajes[0] : null;
-                        if (longitudValida && contieneMayuscula && contieneNumero && noConsecutivos) {
-                            mensaje.innerHTML = "Contraseña válida";
-                            mensaje.style.color = "green";
-                        } else {
-                            mensaje.innerHTML = "La contraseña debe cumplir con los siguientes requisitos:<br>";
-                            if (!longitudValida) {
-                                mensaje.innerHTML += " - Debe tener al menos 10 caracteres<br>";
-                            }
-                            if (!contieneMayuscula) {
-                                mensaje.innerHTML += " - Debe contener al menos una letra mayúscula<br>";
-                            }
-                            if (!contieneNumero) {
-                                mensaje.innerHTML += " - Debe contener al menos un número<br>";
-                            }
-                            if (!noConsecutivos) {
-                                mensaje.innerHTML += " - No debe tener caracteres consecutivos<br>";
-                            }
-                            mensaje.style.color = "red";
-                        }
-
-
-                        // Habilitar o deshabilitar el botón de envío
-                        const botonEnvio = document.getElementById('<%= btnCrearCuenta.ClientID %>');
-                        botonEnvio.disabled = !(longitudValida && contieneMayuscula && contieneNumero && noConsecutivos);
-                    }
-                }
-            </script>
+            
 
             <!-- Carousel Start -->
             <div class="container-fluid p-0">
@@ -127,7 +89,8 @@
             </div>
 
             <!-- Carousel End -->
-
+     <asp:UpdatePanel runat="server" ID="upd_Panel" UpdateMode="Conditional">
+     <ContentTemplate>
 
             <!-- Booking Start -->
             <div class="container-fluid booking mt-5">
@@ -248,196 +211,9 @@
             </div>
             <!-- Cartas -->
 
-            <!-- Modal Iniciar Sesion -->
-            <div class="modal fade" id="iniciarsesionmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-                data-bs-backdrop="static">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary text-white">
-                            <h5 class="modal-title" id="modaliniciarsesion">Bienvenido</h5>
-                            <button type="button" class=" btn btn-primary" data-bs-dismiss="modal">
-                                <i class="fa-solid fa-x"
-                                    style="color: #000000;"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center center-cont">
-                            <div class="row  col-sm-12 text-center">
-                                <div class="col-sm-12">
-                                    <img src="img/logo2.png" alt="logo" class="img-fluid">
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="col-sm-12">
-                                        <asp:Label ID="lblCorreo" runat="server" AssociatedControlID="txtcorreo" CssClass="form-label">Correo Electrónico</asp:Label>
-                                        <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="col-sm-12">
-                                        <asp:Label ID="lblContrasena" runat="server" AssociatedControlID="txtcontrasena" CssClass="form-label">Contraseña</asp:Label>
-                                        <asp:TextBox ID="txtcontrasena" runat="server" TextMode="Password" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="col-sm-12 mt-4">
-                                    <asp:Button ID="btnIniciarSesion" runat="server" Text="Iniciar Sesión" CssClass="btn btn-primary btn-block" Style="height: 47px; margin-top: -2px" OnClick="btnIniciarSesion_Click" />
-                                </div>
-
-
-                                <div class="col-sm-12 mt-4">
-                                    <button class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;"
-                                        id="showModalButtonCrearCuenta" data-bs-toggle="modal"
-                                        data-bs-target="#crearcuentamodal" data-bs-dismiss="modal">
-                                        Crear
-                                Cuenta</button>
-                                </div>
-
-
-
-                            </div>
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal Crear Cuenta -->
-            <div class="modal fade" id="crearcuentamodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-                data-bs-backdrop="static">
-                <div class="modal-dialog" style="z-index: 2000;">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary text-white">
-                            <h5 class="modal-title" id="ModalCrearCuenta">Crear Cuenta</h5>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                                <i class="fa-solid fa-x"
-                                    style="color: #000000;"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body center-cont">
-                            <div class="row col-lg-12 col-sm-12 text-center">
-                                <div class="col-sm-12 col-lg-12">
-                                    <img src="img/logo2.png" alt="logo" class="img-fluid">
-                                </div>
-
-                                <div class="col-sm-12 col-lg-6 mt-2">
-                                    <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label">Nombre</asp:Label>
-                                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Nombre"></asp:TextBox>
-                                </div>
-
-                                <div class="col-sm-12 col-lg-6 mt-2">
-                                    <asp:Label ID="lblCorreoElectronico" runat="server" AssociatedControlID="txtCorreoElectronico" CssClass="form-label">Correo Electrónico</asp:Label>
-                                    <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" AutoComplete="off" placeholder="alguien@ejemplo.com"></asp:TextBox>
-                                </div>
-
-                                <div class="col-sm-6 col-lg-6 mt-2">
-                                    <asp:Label ID="lblRol" runat="server" AssociatedControlID="ddlRol" CssClass="form-label">Rol</asp:Label>
-                                    <asp:DropDownList ID="ddlRol" runat="server" CssClass="form-select" aria-label="Default select example">
-                                        <asp:ListItem Value="Anfitrión">Anfitrión</asp:ListItem>
-                                        <asp:ListItem Value="Huésped">Huésped</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-
-                                <div class="col-sm-6 col-lg-6 mt-2">
-                                    <asp:Label ID="lblIdentificacion" runat="server" AssociatedControlID="txtIdentificacion" CssClass="form-label">Identificación</asp:Label>
-                                    <asp:TextBox ID="txtIdentificacion" runat="server" CssClass="form-control" MaxLength="11" aria-describedby="idHelp"
-                                        pattern="[0-9]{1}-[0-9]{4}-[0-9]{4}" placeholder="1-1111-1111" required="true"></asp:TextBox>
-                                    <small id="idHelpIdentificacion" class="form-text text-muted">El formato debe ser #-####-####</small>
-                                </div>
-
-                                <div class="col-sm-6 col-lg-6 mt-2">
-                                    <asp:Label ID="lblApellidos" runat="server" AssociatedControlID="txtApellidos" CssClass="form-label">Apellidos</asp:Label>
-                                    <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" AutoComplete="off" placeholder="Apellidos"></asp:TextBox>
-                                </div>
-
-                                <div class="col-sm-6 col-lg-6 mt-2">
-                                    <asp:Label ID="lblContrasenaCrear" runat="server" AssociatedControlID="txtContrasena" CssClass="form-label">Contraseña</asp:Label>
-                                    <asp:TextBox ID="txtcontrasenaCrear" runat="server" TextMode="Password" CssClass="form-control" placeholder="Contraseña"
-                                        MinLength="10" OnKeyUp="validarContrasena()" required="true"></asp:TextBox>
-                                    <div>
-                                        <span class="mensaje" style="color: red;"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6 col-lg-6 mt-2">
-                                    <asp:Label ID="lblTelefono" runat="server" AssociatedControlID="txtTelefono" CssClass="form-label">Teléfono</asp:Label>
-                                    <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" AutoComplete="off" placeholder="88888888"
-                                        pattern="[0-9]{4}[0-9]{4}"></asp:TextBox>
-                                    <small id="idHelp" class="form-text text-muted">El formato debe ser ########</small>
-                                </div>
-
-                                <div class="col-sm-6 col-lg-6 mt-2">
-                                    <asp:Label ID="lblImagen" runat="server" AssociatedControlID="fileImagen" CssClass="form-label">Foto Perfil:</asp:Label>
-                                    <asp:FileUpload ID="fileImagen" runat="server" Style="margin: auto; max-width: 126px;" accept=".jpg" required="true"></asp:FileUpload>
-                                </div>
-
-                                <div class="col-sm-12 mt-12">
-                                    <asp:Button disabled="true" ID="btnCrearCuenta" runat="server" Text="Crear Cuenta" CssClass="btn btn-primary btn-block"
-                                        Style="height: 47px; margin-top: -2px" OnClick="btnCrearCuenta_Click" />
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Modal Valdiar Iniciar Sesion -->
-            <div class="modal fade" id="validariniciomodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-                data-bs-backdrop="static">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary text-white">
-                            <h5 class="modal-title" id="exampleModalLabel">Bienvenido</h5>
-                            <button type="button" class=" btn btn-primary" data-bs-dismiss="modal">
-                                <i class="fa-solid fa-x"
-                                    style="color: #000000;"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center center-cont">
-                            <input id="txtid" type="hidden" value="0" />
-                            <div class="row  col-sm-12 text-center">
-                                <p>El código de verificación fue enviado a su correo</p>
-                                <div class="col-sm-12">
-                                    <img src="img/logo2.png" alt="logo" class="img-fluid">
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="col-sm-12">
-                                        <label for="txtcorreo" class="form-label">Código</label>
-                                        <input type="text" class="form-control" id="txtcorreo" name="txtcorreo"
-                                            autocomplete="off">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 mt-4">
-                                    <button class="btn btn-primary btn-block"
-                                        style="height: 47px; margin-top: -2px;">
-                                        Validar</button>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+ 
+             </ContentTemplate>
+</asp:UpdatePanel>
 
             <!-- JavaScript Libraries -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -458,23 +234,7 @@
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
             <script>
-                document.getElementById("iniciarsesionmodal").addEventListener("click", function () {
-
-                    $('#iniciarsesionmodal').modal("show");
-
-                });
-
-                document.getElementById("showModalButtonCrearCuenta").addEventListener("click", function () {
-
-                    $('#crearcuentamodal').modal("show");
-
-                });
-
-                document.getElementById("showModalButtonvalidariniciomodal").addEventListener("click", function () {
-
-                    $('#validariniciomodal').modal("show");
-
-                });
+                
                 document.addEventListener("DOMContentLoaded", function () {
                     const enlaceFavorito = document.getElementById("enlace-favorito");
                     const corazon = document.getElementById("corazon");
@@ -532,8 +292,7 @@
                     cards.css("height", maxHeight + "px");
                 });
 </script>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+       
 
 
 

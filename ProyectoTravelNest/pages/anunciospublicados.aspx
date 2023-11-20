@@ -75,6 +75,6 @@
 
             // Establece la misma altura máxima para todas las tarjetas
             cards.css("height", maxHeight + "px");
-        });--%>
-</script>
+        });</script> --%>
+
 </asp:Content>

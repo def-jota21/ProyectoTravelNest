@@ -59,7 +59,7 @@ namespace ProyectoTravelNest.pages
         protected void lbtnDescuentos_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "descuentos";
-            Session["IdUsuario"] = Session["IdUsuario"].ToString();
+            //Session["IdUsuario"] = Session["IdUsuario"].ToString();
             Response.Redirect("/pages/elegirinmueble.aspx");
         }
 

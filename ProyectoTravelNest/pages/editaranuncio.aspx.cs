@@ -309,7 +309,7 @@ namespace ProyectoTravelNest.pages
                     }
                 }
 
-                neg_Inmueble.EditarInmueble()
+                //neg_Inmueble.EditarInmueble();
             }
             
 

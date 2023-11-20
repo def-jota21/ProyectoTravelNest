@@ -68,13 +68,13 @@ namespace ProyectoTravelNest.pages
                 }
 
             string IdInmueble = Session["idInmueble"].ToString();
-            if (!IsPostBack & eUsuarios != null)
-            {
-                IdInmueble = Request.QueryString["IdInmueble"];
-                String IdUsuario = Session["IdUsuario"].ToString();
+                if (!IsPostBack & eUsuarios != null)
+                {
+                    IdInmueble = Request.QueryString["IdInmueble"];
+                    String IdUsuario = Session["IdUsuario"].ToString();
 
-                ObtenerDatos(IdInmueble);
-
+                    ObtenerDatos(IdInmueble);
+                }
             }
             catch (Exception ex)
             {

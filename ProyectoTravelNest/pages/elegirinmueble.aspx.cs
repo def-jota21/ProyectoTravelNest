@@ -48,7 +48,7 @@ namespace ProyectoTravelNest.pages
                 ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
                 Control div_row = mainContent.FindControl("row");
 
-                List<Inmueble> ListaInmuebles = nInmueble.ListaInmueblesPagina(1, Session["IdUsuario"].ToString(), null);
+                List<Inmueble> ListaInmuebles = nInmueble.ListaInmueblesPagina(1, eUsuarios.IdUsuario, null);
 
                 foreach (Inmueble inmueble in ListaInmuebles)
                 {

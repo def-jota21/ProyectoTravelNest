@@ -52,13 +52,13 @@ namespace ProyectoTravelNest.pages
 
         protected void VerHistorialButton_Click(object sender, EventArgs e)
         {
-            string IdUsuario = "IdUsuario"; // Obtén esto según tu lógica de autenticación
-            var reservaciones = new Neg_Reservaciones().ObtenerTodasLasReservacionesPorUsuario(IdUsuario);
-            RepeaterReservaciones.DataSource = reservaciones;
-            RepeaterReservaciones.DataBind();
+            //string IdUsuario = "IdUsuario"; // Obtén esto según tu lógica de autenticación
+            //var reservaciones = new Neg_Reservaciones().ObtenerTodasLasReservacionesPorUsuario(IdUsuario);
+            //RepeaterReservaciones.DataSource = reservaciones;
+            //RepeaterReservaciones.DataBind();
 
-            // Ocultar el botón después de cargar los datos
-            VerHistorialButton.Visible = false;
+            //// Ocultar el botón después de cargar los datos
+            //VerHistorialButton.Visible = false;
         }
     }
 }

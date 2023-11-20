@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="panelanfitrion.aspx.cs" Inherits="ProyectoTravelNest.pages.panelanfitrion" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -39,7 +40,7 @@
                 <div class="card-deck">
                     <!-- Reglas -->
                     <div class="card">
-                        <asp:LinkButton runat="server" ID="lbtnReglas" style="text-decoration: none" OnClick="lbtnReglas_Click" CssClass="notification">
+                        <asp:LinkButton runat="server" ID="lbtnReglas" Style="text-decoration: none" OnClick="lbtnReglas_Click" CssClass="notification">
                             <span>
                                 <h5 class="h5 mt-2">Reglas</h5>
                                 <p class="h6 mt-4">Establece reglas personalizadas para la gestión eficiente de tus alojamientos.</p>
@@ -48,7 +49,7 @@
                     </div>
                     <!-- Promociones -->
                     <div class="card">
-                        <asp:LinkButton runat="server" ID="lbtnPromociones" style="text-decoration: none" OnClick="lbtnPromociones_Click" CssClass="notification">
+                        <asp:LinkButton runat="server" ID="lbtnPromociones" Style="text-decoration: none" OnClick="lbtnPromociones_Click" CssClass="notification">
                             <span>
                                 <h5 class="h5 mt-2">Promociones</h5>
                                 <p class="h6 mt-4">Agrega promociones para atrer mas huespedes.</p>
@@ -57,7 +58,7 @@
                     </div>
                     <!-- Calendario -->
                     <div class="card">
-                        <asp:LinkButton runat="server" ID="lbtnCalendario" style="text-decoration: none" OnClick="lbtnCalendario_Click" CssClass="notification">
+                        <asp:LinkButton runat="server" ID="lbtnCalendario" Style="text-decoration: none" OnClick="lbtnCalendario_Click" CssClass="notification">
                             <span>
                                 <h5 class="h5 mt-2">Modificar calendario</h5>
                                 <p class="h6 mt-4">Configura el calendario de un alojamiento.</p>
@@ -73,7 +74,7 @@
                 <div class="card-deck">
                     <!-- Descuentos -->
                     <div class="card">
-                        <asp:LinkButton runat="server" ID="lbtnDescuentos" style="text-decoration: none" OnClick="lbtnDescuentos_Click" CssClass="notification">
+                        <asp:LinkButton runat="server" ID="lbtnDescuentos" Style="text-decoration: none" OnClick="lbtnDescuentos_Click" CssClass="notification">
                             <span>
                                 <h5 class="h5 mt-2">Descuentos</h5>
                                 <p class="h6 mt-4">Agrega descuentos a tu alojamiento.</p>
@@ -91,7 +92,7 @@
                     </div>
                     <!-- Anuncios -->
                     <div class="card">
-                        <a href="#" class="notification" style="text-decoration: none">
+                        <a href="anunciospublicados.aspx" class="notification" style="text-decoration: none">
                             <span>
                                 <h5 class="h5 mt-2">Anuncios de alojamientos</h5>
                                 <p class="h6 mt-4">Puedes ver todos tus alojamientos anunciados.</p>
@@ -106,31 +107,31 @@
             <div class="col-12">
                 <div class="card-deck">
                     <div class="card">
-                        <a href="#" class="notification" style="text-decoration: none">
+                        <a href="comentariopendientesa.aspx" class="notification" style="text-decoration: none">
                             <span>
-                                <h5 class="h5 mt-2">Notificaciones</h5>
+                                <h5 class="h5 mt-2">Comentarios</h5>
                                 <p class="h6 mt-4">Te informan sobre nuevas reservas, mensajes de huéspedes o cancelaciones.</p>
                                 <% 
-                                int cantidadNotificaciones = (Session["CantidadNotificaciones"] != null) ? (int)Session["CantidadNotificaciones"] : 0;
-                                if (cantidadNotificaciones > 0)
-                                { 
+                                    int cantidadNotificaciones = (Session["CantidadNotificaciones"] != null) ? (int)Session["CantidadNotificaciones"] : 0;
+                                    if (cantidadNotificaciones > 0)
+                                    {
                                 %>
-                                    <span class="badgeCard"><%= cantidadNotificaciones %></span>
+                                <span class="badgeCard"><%= cantidadNotificaciones %></span>
                                 <% 
-                                } 
+                                    }
                                 %>
                         </a>
                     </div>
                     <div class="card">
-                        <a href="#" class="notification" style="text-decoration: none">
+                        <a href="recepcionmensajes.aspx" class="notification" style="text-decoration: none">
                             <span>
-                                <h5 class="h5 mt-2">Alojamientos reservados</h5>
+                                <h5 class="h5 mt-2">Mensajes</h5>
                                 <p class="h6 mt-4">Visualiza los alojamientos que ya han sido reservados.</p>
                             </span>
                         </a>
                     </div>
                     <div class="card">
-                        <asp:LinkButton runat="server" ID="lbtnVId" style="text-decoration: none" OnClick="lbtnVId_Click" CssClass="notification">
+                        <asp:LinkButton runat="server" ID="lbtnVId" Style="text-decoration: none" OnClick="lbtnVId_Click" CssClass="notification">
                             <span>
                                 <h5 class="h5 mt-2">Verificar identificación</h5>
                                 <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
@@ -141,6 +142,22 @@
             </div>
         </div>
 
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card-deck">
+
+
+                    <div class="card">
+                        <a href="alojamientospoliticas.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Administrar Políticas</h5>
+                                <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

@@ -47,7 +47,7 @@ namespace ProyectoTravelNest.pages
             // Validación: Verificar la longitud de número de cuenta y CVV
             if (numeroCuenta.Length != 16)
             {
-                lblMensaje.Text = "El número de cuenta debe tener 13 dígitos.";
+                lblMensaje.Text = "El número de cuenta debe tener 16 dígitos.";
                 lblMensaje.ForeColor = System.Drawing.Color.Red;
                 lblMensaje.Visible = true;
                 return; // Sale del evento si la longitud no es 13
@@ -63,7 +63,7 @@ namespace ProyectoTravelNest.pages
 
             // Si se pasa por todas las validaciones, procede a realizar la inserción
             Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
-            string mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numeroCuenta, cvv);
+            string mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numeroCuenta, cvv, eUsuarios.T_Rol.ToString());
 
             // Mostrar mensaje de éxito o error
             

@@ -15,7 +15,7 @@
                     <ItemTemplate>
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="package-item bg-white mb-2">
-                                <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
+                                <asp:Image ID="imgMueble" CssClass="img-fluid" style="min-height:240px !important;" runat="server"
                                 src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
                                 AlternateText="Imagen del mueble" />
                                 <div class="p-4">
@@ -46,11 +46,8 @@
                         <div class="p-4">
                             <div class="mt-4 mb-4">
                                 <div class="d-flex justify-content-between">
-                                    <a href="crearalojamiento.aspx" class="btn btn-primary btn-block" id="showModalButton"
-                                        style="height: 47px; margin-top: -2px;" data-bs-toggle="modal" data-bs-target="#InicioSesion">
-                                        Agregar Anuncio</a>
 
-                                    <asp:Button ID="btnCrear" runat="server" Text="Agregar Anuncio" CssClass="btn btn-info btn-block"
+                                    <asp:Button ID="btnCrear" runat="server" Text="Agregar Anuncio" CssClass="btn btn-primary btn-block"
                                         Style="height: 47px; margin-top: -2px;" OnClick="btnCrear_Click" />
                                 </div>
                             </div>
@@ -61,4 +58,23 @@
             </div>
         </div>
     </div>
+
+                <script>
+                $(document).ready(function () {
+                    // Encuentra todas las tarjetas en el repeater
+                    var cards = $(".package-item");
+
+                    // Encuentra la altura máxima entre todas las tarjetas
+                    var maxHeight = 0;
+                    cards.each(function () {
+                        var cardHeight = $(this).outerHeight();
+                        if (cardHeight > maxHeight) {
+                            maxHeight = cardHeight;
+                        }
+                    });
+
+                    // Establece la misma altura máxima para todas las tarjetas
+                    cards.css("height", maxHeight + "px");
+                });
+</script>
 </asp:Content>

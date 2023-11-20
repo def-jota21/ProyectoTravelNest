@@ -88,10 +88,27 @@ namespace Negocios
             inmuebleSQL.EliminarAmenidadAInmueble(idInmueble,idamenidad);
         }
 
-        public void EditarInmueble(Entidades.Inmueble inmueble, string categoria, string rutas, string IdUsuario)
+        public DataTable ObtenerDatosInmueble(string idInmueble)
+        {
+            DataTable inmueble = new DataTable();
+            InmuebleSQL inmuebleSQL = new InmuebleSQL();
+            inmueble = inmuebleSQL.ObtenerDatosInmueble(idInmueble);
+            return inmueble;
+        }
+
+        public string ObtenerNombreCategoriaPorId(string idCategoria)
+        {
+            String id = "";
+            InmuebleSQL inmuebleSQL = new InmuebleSQL();
+            id = inmuebleSQL.ObtenerNombreCategoriaPorId(idCategoria);
+            return id;
+        }
+
+        public bool EditarInmueble(Entidades.Inmueble inmueble, string categoria,string IdUsuario)
         {
             Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
-            inmuebleSQL.EditarInmueble(inmueble, categoria,IdUsuario);
+            bool valor = inmuebleSQL.EditarInmueble(inmueble, categoria,IdUsuario);
+            return valor;
         }
 
         public string InsertarInmueble(Entidades.Inmueble inmueble, string categoria, string rutas, List<string> servicios, List<string> amenidades, string IdUsuario, List<string> politicas, List<string> despoliticas) 

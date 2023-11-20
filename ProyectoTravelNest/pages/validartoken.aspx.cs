@@ -19,13 +19,13 @@ namespace ProyectoTravelNest.pages
         static string token;
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*string parametrosEncriptados = Request.QueryString["parametros"];
+            string parametrosEncriptados = Request.QueryString["parametros"];
             string parametrosDesencriptados = DesencriptarParametros(parametrosEncriptados);
 
             string[] parametros = parametrosDesencriptados.Split('|');
             correo = parametros[0];
             contrasena = parametros[1];
-            token = parametros[2];*/
+            token = parametros[2];
 
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
@@ -34,9 +34,9 @@ namespace ProyectoTravelNest.pages
                 Response.Redirect("Default.aspx");
             }
 
-            correo = Request.QueryString["parametro1"];
+           /* correo = Request.QueryString["parametro1"];
             contrasena = Request.QueryString["parametro2"];
-            token = Request.QueryString["parametro3"];
+            token = Request.QueryString["parametro3"];*/
         }
         private string DesencriptarParametros(string parametrosEncriptados)
         {

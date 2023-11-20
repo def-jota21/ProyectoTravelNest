@@ -8,21 +8,21 @@ namespace Negocios
 {
     public class Neg_MiBanco
     {
-        public string InsertarCuentaMiBanco(string IdUsuario, string NumeroCuenta, string cvv)
+        public string InsertarCuentaMiBanco(string IdUsuario, string NumeroCuenta, string cvv, string t_rol)
         {
             string mensaje = "";
             Datos.MiBancoSQL miBancoSQL = new MiBancoSQL();
             
             mibanconeg.mibanco iBanco = new mibanconeg.mibanco();
 
-            if (iBanco.ValidarExistencia(NumeroCuenta, cvv))
-            {
-                mensaje = miBancoSQL.InsertarUsuarioMiBanco(IdUsuario, NumeroCuenta, cvv);
-            }
-            else
-            {
-                mensaje = "La cuenta digítada no existe, registrese en MiBanco";
-            }
+            //if (iBanco.ValidarExistencia(NumeroCuenta, cvv, t_rol))
+            //{
+            //    mensaje = miBancoSQL.InsertarUsuarioMiBanco(IdUsuario, NumeroCuenta, cvv);
+            //}
+            //else
+            //{
+            //    mensaje = "La cuenta digítada no existe, registrese en MiBanco";
+            //}
 
             
             return mensaje;

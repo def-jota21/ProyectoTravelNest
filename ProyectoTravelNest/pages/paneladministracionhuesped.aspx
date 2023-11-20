@@ -72,57 +72,90 @@
                 <div class="card-deck">
                     <div class="card">
                         <a href="comentariospendientesh.aspx" class="notification" style="text-decoration: none">
-                            
-                                <h5 class="h5 mt-2">Notificaciones</h5>
-                                <p class="h6 mt-4">Comentarios Pendientes</p>
-                                <% 
+
+                            <h5 class="h5 mt-2">Comentarios</h5>
+                            <p class="h6 mt-4">Comentarios Pendientes</p>
+                            <% 
                                 int cantidadNotificaciones = (Session["CantidadNotificaciones"] != null) ? (int)Session["CantidadNotificaciones"] : 0;
                                 if (cantidadNotificaciones > 0)
-                                { 
-                                %>
-                                    <span class="badgeCard"><%= cantidadNotificaciones %></span>
-                                <% 
-                                } 
-                                %>
+                                {
+                            %>
+                            <span class="badgeCard"><%= cantidadNotificaciones %></span>
+                            <% 
+                                }
+                            %>
                         </a>
                     </div>
 
 
                     <div class="card">
                         <% 
-                        bool usuarioMiBanco = (Session["MiBancoUsuario"] != null) ? (bool)Session["MiBancoUsuario"] : false;
+                            bool usuarioMiBanco = (Session["MiBancoUsuario"] != null) ? (bool)Session["MiBancoUsuario"] : false;
 
-                        if (usuarioMiBanco)
-                        { 
+                            if (usuarioMiBanco)
+                            {
                         %>
-                            <a href="eliminarCuentaMiBanco.aspx" class="notification" style="text-decoration: none">
-                                <span>
-                                    <h5 class="h5 mt-2">Mi Banco</h5>
-                                    <p class="h6 mt-4">Proporciona tus datos de tu cuenta para poder hacer el pago.</p>
-                                </span>
-                            </a>
+                        <a href="eliminarCuentaMiBanco.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Mi Banco</h5>
+                                <p class="h6 mt-4">Proporciona tus datos de tu cuenta para poder hacer el pago.</p>
+                            </span>
+                        </a>
                         <% 
-                        }
-                        else
-                        {
+                            }
+                            else
+                            {
                         %>
-                            <a href="agregarmibanco.aspx" class="notification" style="text-decoration: none">
-                                <span>
-                                    <h5 class="h5 mt-2">Mi Banco</h5>
-                                    <p class="h6 mt-4">Proporciona tus datos de tu cuenta para poder hacer el pago.</p>
-                                </span>
-                                <span class="badgeCard">1</span>
-                            </a>
+                        <a href="agregarmibanco.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Mi Banco</h5>
+                                <p class="h6 mt-4">Proporciona tus datos de tu cuenta para poder hacer el pago.</p>
+                            </span>
+                            <span class="badgeCard">1</span>
+                        </a>
                         <% 
-                        } 
+                            }
                         %>
-
                     </div>
                     <div class="card">
                         <a href="#" class="notification" style="text-decoration: none">
                             <span>
                                 <h5 class="h5 mt-2">Lugares Visitados</h5>
                                 <p class="h6 mt-4">Mira los hermosos lugares que has visitado.</p>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+
+                <div class="card-deck">
+
+                    <div class="card">
+                        <a href="#" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Mensajes</h5>
+                                <p class="h6 mt-4">Conversa con los demas usuarios encargados de tu alojamiento.</p>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="card">
+                        <a href="pantallapoliticas.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Politicas Travel Nest</h5>
+                                <p class="h6 mt-4">Hecha un vistaso a las reglas y nomras de nuestra aplicacion.</p>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="card" style="visibility: hidden;">
+                        <a href="#" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Politicas Travel Nest</h5>
+                                <p class="h6 mt-4">Hecha un vistaso a las reglas y normas de nuestra aplicacion.</p>
                             </span>
                         </a>
                     </div>
@@ -143,4 +176,5 @@
 
         });
     </script>
-    </span></asp:Content>
+    </span>
+</asp:Content>

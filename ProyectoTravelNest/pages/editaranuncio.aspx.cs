@@ -1,4 +1,5 @@
-﻿using Negocios;
+﻿using Entidades;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Security;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -22,70 +24,71 @@ namespace ProyectoTravelNest.pages
             
             
             eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
-            //if (eUsuarios == null)
-            //{
-            //    FormsAuthentication.RedirectToLoginPage();
-            //}
-
-            //if (!IsPostBack & eUsuarios != null)
-            //{
-
-            //}
-            parametro = Request.QueryString["parametro"];
-            Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
-            DataTable tablaServicios = neg_Inmueble.ObtenerServicios();
-
-            if (tablaServicios.Rows.Count > 0)
+            if (eUsuarios == null)
             {
-                selectElement.DataSource = tablaServicios;
-                selectElement.DataTextField = "Nombre";
-                selectElement.DataValueField = "IdServicio";
-                selectElement.DataBind();
+                FormsAuthentication.RedirectToLoginPage();
             }
 
-            DataTable tablaCategoria = neg_Inmueble.ObtenerCategorias();
-
-            if (tablaCategoria.Rows.Count > 0)
+            if (!IsPostBack & eUsuarios != null)
             {
-                categoria.DataSource = tablaCategoria;
-                categoria.DataTextField = "Nombre";
-                categoria.DataValueField = "IdCategoria";
-                categoria.DataBind();
-            }
+                Negocio_Inmuebles negocio_Inmuebles = new Negocio_Inmuebles();
+                RepeaterImagen.DataSource = negocio_Inmuebles.ListarInformacionInmuebleImagenes(parametro, "");
+                RepeaterImagen.DataBind();
+                parametro = Request.QueryString["IdInmueble"];
+                Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
+                DataTable tablaServicios = neg_Inmueble.ObtenerServicios();
 
-            DataTable tablaAmenidades = neg_Inmueble.ObtenerAmenidades();
+                if (tablaServicios.Rows.Count > 0)
+                {
+                    selectElement.DataSource = tablaServicios;
+                    selectElement.DataTextField = "Nombre";
+                    selectElement.DataValueField = "IdServicio";
+                    selectElement.DataBind();
+                }
 
-            if (tablaAmenidades.Rows.Count > 0)
-            {
-                selectElementAmenidades.DataSource = tablaAmenidades;
-                selectElementAmenidades.DataTextField = "Nombre";
-                selectElementAmenidades.DataValueField = "IdAmenidades";
-                selectElementAmenidades.DataBind();
-            }
+                DataTable tablaCategoria = neg_Inmueble.ObtenerCategorias();
 
-            DataTable tablaPoliticas = neg_Inmueble.ObtenerPoliticas();
+                if (tablaCategoria.Rows.Count > 0)
+                {
+                    categoria.DataSource = tablaCategoria;
+                    categoria.DataTextField = "Nombre";
+                    categoria.DataValueField = "IdCategoria";
+                    categoria.DataBind();
+                }
 
-            if (tablaAmenidades.Rows.Count > 0)
-            {
-                selectElementPoliticas.DataSource = tablaPoliticas;
-                selectElementPoliticas.DataTextField = "Nombre";
-                selectElementPoliticas.DataValueField = "IdPolitica";
-                selectElementPoliticas.DataBind();
-            }
+                DataTable tablaAmenidades = neg_Inmueble.ObtenerAmenidades();
 
-            List<Tuple<string, string>> serviciosInmueble = new List<Tuple<string, string>>();
-            serviciosInmueble =  neg_Inmueble.ObtenerServiciosDelInmueble("IM00000000002");
-            List<Tuple<string, string>> amenidadesInmueble = new List<Tuple<string, string>>();
-            amenidadesInmueble = neg_Inmueble.ObtenerAmenidadDelInmueble("IM00000000002");
+                if (tablaAmenidades.Rows.Count > 0)
+                {
+                    selectElementAmenidades.DataSource = tablaAmenidades;
+                    selectElementAmenidades.DataTextField = "Nombre";
+                    selectElementAmenidades.DataValueField = "IdAmenidades";
+                    selectElementAmenidades.DataBind();
+                }
+
+                DataTable tablaPoliticas = neg_Inmueble.ObtenerPoliticas();
+
+                if (tablaAmenidades.Rows.Count > 0)
+                {
+                    selectElementPoliticas.DataSource = tablaPoliticas;
+                    selectElementPoliticas.DataTextField = "Nombre";
+                    selectElementPoliticas.DataValueField = "IdPolitica";
+                    selectElementPoliticas.DataBind();
+                }
+
+                List<Tuple<string, string>> serviciosInmueble = new List<Tuple<string, string>>();
+                serviciosInmueble = neg_Inmueble.ObtenerServiciosDelInmueble(parametro);
+                List<Tuple<string, string>> amenidadesInmueble = new List<Tuple<string, string>>();
+                amenidadesInmueble = neg_Inmueble.ObtenerAmenidadDelInmueble(parametro);
 
 
-            foreach (var servicio in serviciosInmueble)
-            {
-                string idServicio = servicio.Item1;
-                serviciosOriginales.Add(idServicio);
-                string nombreServicio = servicio.Item2;
+                foreach (var servicio in serviciosInmueble)
+                {
+                    string idServicio = servicio.Item1;
+                    serviciosOriginales.Add(idServicio);
+                    string nombreServicio = servicio.Item2;
 
-                string htmlServicio = $@"
+                    string htmlServicio = $@"
                 <li style='display: flex;' data-idservicio='{idServicio}'>
                     <div style='width: 200px;'>{nombreServicio}</div>
                     <div style='margin-left: 1rem; margin-top: -1rem;'>
@@ -95,17 +98,17 @@ namespace ProyectoTravelNest.pages
                     </div>
                 </li>";
 
-                LiteralControl literalControl = new LiteralControl(htmlServicio);
-                listaElementos.Controls.Add(literalControl);
-            }
+                    LiteralControl literalControl = new LiteralControl(htmlServicio);
+                    listaElementos.Controls.Add(literalControl);
+                }
 
-            foreach (var amenidad in amenidadesInmueble)
-            {
-                string idAmenidad = amenidad.Item1;
-                amenidadesOriginales.Add(idAmenidad);
-                string nombreAmenidad = amenidad.Item2;
+                foreach (var amenidad in amenidadesInmueble)
+                {
+                    string idAmenidad = amenidad.Item1;
+                    amenidadesOriginales.Add(idAmenidad);
+                    string nombreAmenidad = amenidad.Item2;
 
-                string htmlAmenidad = $@"
+                    string htmlAmenidad = $@"
                 <li style='display: flex;' data-idamenidad='{idAmenidad}'>
                     <div style='width: 200px;'>{nombreAmenidad}</div>
                     <div style='margin-left: 1rem; margin-top: -1rem;'>
@@ -115,9 +118,33 @@ namespace ProyectoTravelNest.pages
                     </div>
                 </li>";
 
-                LiteralControl literalControlAmenidad = new LiteralControl(htmlAmenidad);
-                listaElementosAmenidades.Controls.Add(literalControlAmenidad);
+                    LiteralControl literalControlAmenidad = new LiteralControl(htmlAmenidad);
+                    listaElementosAmenidades.Controls.Add(literalControlAmenidad);
+                }
+
+                DataTable tablaInmueble = new DataTable();
+                tablaInmueble = neg_Inmueble.ObtenerDatosInmueble(parametro);
+
+                txtnombre.Text = tablaInmueble.Rows[0][2].ToString();
+                txtubicacion.Text = tablaInmueble.Rows[0][3].ToString();
+                descripcion.Text = tablaInmueble.Rows[0][4].ToString();
+                ddlEstado.SelectedValue = tablaInmueble.Rows[0][5].ToString();
+
+                //string idCategoria = neg_Inmueble.ObtenerNombreCategoriaPorId();
+                categoria.SelectedValue = tablaInmueble.Rows[0][6].ToString();
+                txthuespedes.Text = tablaInmueble.Rows[0][7].ToString();
+
+                string valorRecuperado = tablaInmueble.Rows[0][8].ToString();
+
+
+                string[] partes = valorRecuperado.Split(',');
+
+
+                txtprecio.Text = partes[0];
+                txthabitaciones.Text = tablaInmueble.Rows[0][9].ToString();
+                txtbaños.Text = tablaInmueble.Rows[0][10].ToString();
             }
+            
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)
@@ -216,6 +243,7 @@ namespace ProyectoTravelNest.pages
                 List<string> amenidadesActuales = new List<string>();
 
                 string categoriaString = categoria.SelectedValue;
+                string estado = ddlEstado.SelectedValue;
                 Entidades.Inmueble inmueble = new Entidades.Inmueble();
 
                 inmueble.Nombre = txtnombre.Text;
@@ -225,7 +253,7 @@ namespace ProyectoTravelNest.pages
                 inmueble.Habitaciones = txthabitaciones.Text;
                 inmueble.Banhos = txtbaños.Text;
                 inmueble.Descripcion = descripcion.Text;
-                inmueble.Estado = "Activo";
+                inmueble.Estado = estado;
 
                 string elementos = hiddenElementos.Value;
                 if (!string.IsNullOrEmpty(elementos))
@@ -283,33 +311,47 @@ namespace ProyectoTravelNest.pages
 
 
                 //INSERTAR O ELIMINAR SERVICIOS
-                if (hiddenElementos.Controls.Count > 0)
+                if (serviciosActuales.Count > 0)
                 {
                     foreach (var idServicios in serviciosAgregados)
                     {
-                        neg_Inmueble.InsertarServicioxInmueble("IM00000000002", idServicios);
+                        neg_Inmueble.InsertarServicioxInmueble(parametro, idServicios);
                     }
 
                     foreach (var idServicios in serviciosEliminados)
                     {
-                        neg_Inmueble.EliminarServicioxInmueble("IM00000000002", idServicios);
+                        neg_Inmueble.EliminarServicioxInmueble(parametro, idServicios);
                     }
                 }
 
                 //INSERTAR O ELIMINAR AMENIDADES        
-                if (elementosAmenidades.Controls.Count > 0)
+                if (amenidadesActuales.Count > 0)
                 {
                     foreach (var idAmenidad in amenidadesAgregadas)
                     {
-                        neg_Inmueble.InsertarAmeindadxInmueble("IM00000000002", idAmenidad);
+                        neg_Inmueble.InsertarAmeindadxInmueble(parametro, idAmenidad);
                     }
                     foreach (var idAmenidad in amenidadesEliminados)
                     {
-                        neg_Inmueble.EliminarAmenidadAInmueble("IM00000000002", idAmenidad);
+                        neg_Inmueble.EliminarAmenidadAInmueble(parametro, idAmenidad);
                     }
                 }
 
-                //neg_Inmueble.EditarInmueble();
+                bool valor = neg_Inmueble.EditarInmueble(inmueble, categoriaString, parametro);
+
+
+                if (valor)
+                {
+                    string script = "Swal.fire('¡Éxito!', 'Los datos se editaron correctamente.', 'success');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                    Response.Redirect("editaranuncio.aspx");
+                }
+                else
+                {
+                    string script = "Swal.fire('ERROR', 'Ocurrio un error.', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                    Response.Redirect("editaranuncio.aspx");
+                }
             }
             
 

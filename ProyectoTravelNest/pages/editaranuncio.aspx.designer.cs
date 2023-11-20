@@ -159,13 +159,13 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.Label lblErrorHabitaciones;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control ddlEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
 
         /// <summary>
         /// Control lblBaños.
@@ -193,15 +193,6 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrorBanhos;
-
-        /// <summary>
-        /// Control descuentos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList descuentos;
 
         /// <summary>
         /// Control Label1.
@@ -256,6 +247,15 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrorImagenes;
+
+        /// <summary>
+        /// Control RepeaterImagen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterImagen;
 
         /// <summary>
         /// Control selectElement.

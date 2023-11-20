@@ -80,6 +80,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <asp:Label ID="lblNombreUsuario" visible="false" runat="server" CssClass=""></asp:Label>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle enlace-togg" href="#" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user-circle" style="font-size: 25px;"></i>

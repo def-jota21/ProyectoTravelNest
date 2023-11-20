@@ -133,13 +133,13 @@
                 <br />
                 <br />
                 <label for="exampleFormControlInput1" class="form-label mt-4">Estado</label>
-                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
-                    <asp:ListItem Value="opcion1">Activo</asp:ListItem>
-                    <asp:ListItem Value="opcion2">Inactivo</asp:ListItem>
+                <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="Activo">Activo</asp:ListItem>
+                    <asp:ListItem Value="Inactivo">Inactivo</asp:ListItem>
                 </asp:DropDownList>
                 <br />
                 <asp:Label ID="lblBaños" runat="server" CssClass="form-label" AssociatedControlID="txtbaños">Baños</asp:Label>
-                <asp:TextBox ID="txtbaños" runat="server" type="number" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                <asp:TextBox ID="txtbaños" step="0.01" runat="server" type="number" CssClass="form-control" autocomplete="off"></asp:TextBox>
                 <asp:Label ID="lblErrorBanhos" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                 <label for="exampleFormControlInput1" class="form-label mt-4">Servicios</label>
                 <a href="#" id="editarServicios" class="stretched-link text-danger " style="position: relative; margin-left: 25rem;">Editar</a>
@@ -147,12 +147,6 @@
                 <label for="exampleFormControlInput1" class="form-label mt-4">Amenidades</label>
                 <a href="#" id="editarAmenidades" class="stretched-link text-danger " style="position: relative; margin-left: 23.5rem;">Editar</a>
                 <br>
-                <label for="exampleFormControlInput1" class="form-label mt-4">Descuentos</label>
-                <asp:DropDownList ID="descuentos" runat="server" CssClass="form-control">
-                    <asp:ListItem Value="opcion1">Opción 1</asp:ListItem>
-                    <asp:ListItem Value="opcion2">Opción 2</asp:ListItem>
-                    <asp:ListItem Value="opcion3">Opción 3</asp:ListItem>
-                </asp:DropDownList>
 
                 <asp:Label ID="Label1" runat="server" CssClass="form-label mt-4" AssociatedControlID="txtbaños">Descripcion</asp:Label>
                 <asp:TextBox ID="descripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" autocomplete="off"></asp:TextBox>
@@ -166,18 +160,29 @@
         </div>
         <div class="row">
             <%--<input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" onchange="preview()" multiple>--%>
-
             <asp:FileUpload type="file" accept="image/png, image/jpeg, image/jpg" onchange="preview()" ID="fileUpload" runat="server" AllowMultiple="true" />
-
+            <asp:Label CssClass="text-center" ID="lblErrorImagenes" runat="server" ForeColor="Red" Visible="false"></asp:Label>
             <label for="fileUpload">
                 <i type="button" id="cargarImagenesButton" class="btn btn-primary mt-4">Cargar imágenes</i>
             </label>
-            <asp:Label CssClass="text-center" ID="lblErrorImagenes" runat="server" ForeColor="Red" Visible="false"></asp:Label>
             <div class="containerimg">
-
-                <p id="num-of-files">Ninguna Imagen Seleccionada</p>
-                <div id="images" class="text-center"></div>
+                <p id="num-of-files"><%# RepeaterImagen.Items.Count %> Imagenes Seleccionadas</p>
+                <div id="images" class="text-center">
+                    <asp:Repeater ID="RepeaterImagen" runat="server">
+                        <ItemTemplate>
+                            <div class="image-preview">
+                                <asp:Image ID="img" runat="server"
+                                    ImageUrl='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "../img/user.png" %>' />
+                                <!-- Botón para eliminar la imagen -->
+                                <i class="delete-icon fa-solid fa-trash"></i>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
             </div>
+
+
+
         </div>
     </div>
     <!--Modal Servicios-->
@@ -289,7 +294,7 @@
         });
 
         document.getElementById("editarAmenidades").addEventListener("click", function () {
-            alert("entro");
+
             $('#amenidadesModal').modal("show");
 
         });

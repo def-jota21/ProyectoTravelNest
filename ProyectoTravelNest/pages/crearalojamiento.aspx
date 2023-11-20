@@ -133,14 +133,7 @@
                 <br>
                 <label for="exampleFormControlInput1" class="form-label mt-4">Amenidades</label>
                 <a id="editarAmenidades" class="stretched-link text-danger " style="position: relative; margin-left: 23.5rem;">Editar</a>
-                <br>
-                <label for="exampleFormControlInput1" class="form-label mt-4">Descuentos</label>
-                <asp:DropDownList ID="descuentos" runat="server" CssClass="form-control">
-                    <asp:ListItem Value="opcion1">Opción 1</asp:ListItem>
-                    <asp:ListItem Value="opcion2">Opción 2</asp:ListItem>
-                    <asp:ListItem Value="opcion3">Opción 3</asp:ListItem>
-                </asp:DropDownList>
-
+            
                 <asp:Label ID="Label1" runat="server" CssClass="form-label mt-2" AssociatedControlID="txtbaños">Descripcion</asp:Label>
                 <asp:TextBox ID="descripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" autocomplete="off"></asp:TextBox>
                 <asp:Label ID="lblErrorDescripcion" runat="server" ForeColor="Red" Visible="false"></asp:Label>

@@ -44,6 +44,55 @@ namespace Datos
             return tablaServicios;
         }
 
+        public string ObtenerNombreCategoriaPorId(string idCategoria)
+        {
+            string nombreCategoria = string.Empty;
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+                string query = "SELECT Nombre FROM Categorias WHERE IdCategoria = @IdCategoria";
+
+                using (SqlCommand command = new SqlCommand(query, sqlCon))
+                {
+                    command.Parameters.AddWithValue("@IdCategoria", idCategoria);
+
+                    // Ejecutar la consulta y obtener el nombre de la categoría
+                    nombreCategoria = (string)command.ExecuteScalar();
+                }
+            }
+
+            return nombreCategoria;
+        }
+
+
+        public DataTable ObtenerDatosInmueble(string idInmueble)
+        {
+            DataTable tablaInmueble = new DataTable();
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+                string query = "SELECT * FROM Inmueble WHERE IdInmueble = @IdInmueble";
+
+                using (SqlCommand command = new SqlCommand(query, sqlCon))
+                {
+                    // Configurar el parámetro
+                    command.Parameters.AddWithValue("@IdInmueble", idInmueble);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(tablaInmueble);
+                    }
+                }
+            }
+
+            return tablaInmueble;
+        }
+
+
         public DataTable ObtenerTablaPoliticas()
         {
             DataTable tablapoliticas = new DataTable();
@@ -139,7 +188,7 @@ namespace Datos
             }
         }
 
-        public bool EditarInmueble(Entidades.Inmueble inmueble, string IdCategoria, string IdUsuario)
+        public bool EditarInmueble(Entidades.Inmueble inmueble, string IdCategoria, string IdInmueble)
         {
             CadenaConexion();
 
@@ -154,8 +203,8 @@ namespace Datos
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.Add("@opcion", SqlDbType.Int).Value = 2;
-                        cmd.Parameters.Add("@IdInmueble", SqlDbType.NVarChar).Value = inmueble.IdInmueble;
-                        cmd.Parameters.Add("@IdUsuario", SqlDbType.NVarChar).Value = IdUsuario;
+                        cmd.Parameters.Add("@IdInmueble", SqlDbType.NVarChar).Value = IdInmueble;
+                        cmd.Parameters.Add("@IdUsuario", SqlDbType.NVarChar).Value = "";
                         cmd.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = inmueble.Nombre;
                         cmd.Parameters.Add("@Direccion", SqlDbType.VarChar).Value = inmueble.Direccion;
                         cmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = inmueble.Descripcion;
@@ -165,8 +214,15 @@ namespace Datos
                         cmd.Parameters.Add("@Precio", SqlDbType.VarChar).Value = inmueble.Precio;
                         cmd.Parameters.Add("@Habitaciones", SqlDbType.Int).Value = inmueble.Habitaciones;
                         cmd.Parameters.Add("@Banhos", SqlDbType.Int).Value = inmueble.Banhos;
+                        
+
+                        SqlParameter outputParam = new SqlParameter("@NuevoIdInmueble", SqlDbType.NChar, 13);
+                        outputParam.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(outputParam);
 
                         cmd.ExecuteNonQuery();
+
+                        
                     }
                 }
                 return true;

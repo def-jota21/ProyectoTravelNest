@@ -25,7 +25,7 @@ namespace Negocios
 
         
 
-        private void enviarCorreo(string IdUsuario)
+        public void enviarCorreo(string IdUsuario, decimal PrecioTotal)
         {
             DataTable dt = new DataTable();
             DataTable dtReserva = new DataTable();
@@ -74,7 +74,7 @@ namespace Negocios
 
                                                     Le agradecemos por elegir nuestro servicio TravelNest para su reserva. Estamos encantados de confirmar que su reserva, {dtReserva.Rows[0]["Nombre"].ToString()}, está programada desde el {dtReserva.Rows[0]["FechaInicio"].ToString()} hasta el {dtReserva.Rows[0]["FechaFin"].ToString()}.
 
-                                                    El monto total a pagar por su reserva es {dtReserva.Rows[0]["Precio"].ToString()}. Nuestra meta es brindarle la mejor experiencia durante su alojamiento.
+                                                    El monto total a pagar por su reserva es {PrecioTotal.ToString("N2")}. Nuestra meta es brindarle la mejor experiencia durante su alojamiento.
 
                                                     Si requiere más información o asistencia adicional, puede contactar al anfitrión al siguiente número: {dtReserva.Rows[0]["Telefono"].ToString()}.
 

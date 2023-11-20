@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -20,9 +21,11 @@ namespace ProyectoTravelNest.pages
         string parametro4 = "";
         string parametro5 = "";
         string parametro6 = "";
+        decimal totalTarifas;
+        Entidades.Usuarios eUsuarios;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
             if (eUsuarios == null)
             {
@@ -89,7 +92,7 @@ namespace ProyectoTravelNest.pages
                         decimal totalPorNoche = tarifaPorNoche * numeroDeNoches;
 
                         // Calcula el total de todas las tarifas
-                        decimal totalTarifas = totalPorNoche + tarifaLimpieza + tarifaServicio + impuestos;
+                        totalTarifas = totalPorNoche + tarifaLimpieza + tarifaServicio + impuestos;
 
                         // Asigna los resultados a los controles
                         txtf_inicio.Text = fechaInicio.ToShortDateString();
@@ -119,6 +122,7 @@ namespace ProyectoTravelNest.pages
             {
                 string script = "Swal.fire('¡Éxito!', 'Se reservo con Exito', 'success');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                reservaciones.enviarCorreo(eUsuarios.IdUsuario, totalTarifas);
             }
             else
             {

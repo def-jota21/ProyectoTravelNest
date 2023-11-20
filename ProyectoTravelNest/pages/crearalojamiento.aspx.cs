@@ -219,6 +219,7 @@ namespace ProyectoTravelNest.pages
                 txthuespedes.Text = string.Empty;
                 txthabitaciones.Text = string.Empty;
                 txtbaños.Text = string.Empty;
+                descripcion.Text = string.Empty;
 
                 // Crear la carpeta Uploads si no existe
                 string uploadFolder = Server.MapPath("~/Uploads/");

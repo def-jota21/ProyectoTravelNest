@@ -15,9 +15,9 @@
                     <ItemTemplate>
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="package-item bg-white mb-2">
-                                <asp:Image ID="imgMueble" CssClass="img-fluid" style="min-height:240px !important;" runat="server"
-                                src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
-                                AlternateText="Imagen del mueble" />
+                                <asp:Image ID="imgMueble" CssClass="img-fluid" Style="min-height: 240px !important;" runat="server"
+                                    src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
+                                    AlternateText="Imagen del mueble" />
                                 <div class="p-4">
                                     <div class="d-flex justify-content-between mb-3">
                                         <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>
@@ -28,11 +28,11 @@
                                     <div class="border-top mt-4 pt-4">
                                         <div class="d-flex justify-content-between">
                                             <asp:Button ID="btnVerInformacion" runat="server" Text="Ver Información" CssClass="btn btn-primary btn-block"
-                                                Style="height: 47px; margin-top: -2px;" CommandName="VerInformacion" CommandArgument='<%# $"{Eval("IdUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnVerInformacion_Command"/>
+                                                Style="height: 47px; margin-top: -2px;" CommandName="VerInformacion" CommandArgument='<%# $"{Eval("IdUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnVerInformacion_Command" />
                                         </div>
                                         <div class="d-flex justify-content-between mt-2">
                                             <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-info btn-block"
-                                                Style="height: 47px; margin-top: -2px;" CommandName="Modificar" CommandArgument='<%# $"{Eval("idUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnModificar_Command"/>
+                                                Style="height: 47px; margin-top: -2px;" CommandName="Modificar" CommandArgument='<%# $"{Eval("idUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnModificar_Command" />
                                         </div>
                                     </div>
                                 </div>
@@ -59,22 +59,22 @@
         </div>
     </div>
 
-                <script>
-                $(document).ready(function () {
-                    // Encuentra todas las tarjetas en el repeater
-                    var cards = $(".package-item");
+    <%--<script>
+        $(document).ready(function () {
+            // Encuentra todas las tarjetas en el repeater
+            var cards = $(".package-item");
 
-                    // Encuentra la altura máxima entre todas las tarjetas
-                    var maxHeight = 0;
-                    cards.each(function () {
-                        var cardHeight = $(this).outerHeight();
-                        if (cardHeight > maxHeight) {
-                            maxHeight = cardHeight;
-                        }
-                    });
+            // Encuentra la altura máxima entre todas las tarjetas
+            var maxHeight = 0;
+            cards.each(function () {
+                var cardHeight = $(this).outerHeight();
+                if (cardHeight > maxHeight) {
+                    maxHeight = cardHeight;
+                }
+            });
 
-                    // Establece la misma altura máxima para todas las tarjetas
-                    cards.css("height", maxHeight + "px");
-                });
+            // Establece la misma altura máxima para todas las tarjetas
+            cards.css("height", maxHeight + "px");
+        });--%>
 </script>
 </asp:Content>

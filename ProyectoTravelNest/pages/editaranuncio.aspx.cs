@@ -16,7 +16,8 @@ namespace ProyectoTravelNest.pages
     public partial class editaranuncio : System.Web.UI.Page
     {
         Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
-        string parametro = "";
+        static string parametro = "";
+        static string parametro2 = "";
         List<string> serviciosOriginales = new List<string>();
         List<string> amenidadesOriginales = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
@@ -31,10 +32,12 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
-                Negocio_Inmuebles negocio_Inmuebles = new Negocio_Inmuebles();
-                RepeaterImagen.DataSource = negocio_Inmuebles.ListarInformacionInmuebleImagenes(parametro, "");
-                RepeaterImagen.DataBind();
                 parametro = Request.QueryString["IdInmueble"];
+                parametro2 = Request.QueryString["IdUsuario"];
+                Negocio_Inmuebles negocio_Inmuebles = new Negocio_Inmuebles();
+                RepeaterImagen.DataSource = negocio_Inmuebles.ListarInformacionInmuebleImagenes(parametro, parametro2);
+                RepeaterImagen.DataBind();
+               
                 Negocios.Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
                 DataTable tablaServicios = neg_Inmueble.ObtenerServicios();
 
@@ -206,36 +209,36 @@ namespace ProyectoTravelNest.pages
                 lblErrorBanhos.Visible = true;
             }
 
-            // Comprobar si el FileUpload tiene archivos
-            if (fileUpload.HasFiles)
-            {
-                // Obtener el número de archivos cargados
-                int fileCount = fileUpload.PostedFiles.Count;
+            //// Comprobar si el FileUpload tiene archivos
+            //if (fileUpload.HasFiles)
+            //{
+            //    // Obtener el número de archivos cargados
+            //    int fileCount = fileUpload.PostedFiles.Count;
 
-                // Validar la cantidad de archivos
-                if (fileCount < 5)
-                {
-                    mensajeImagenes = "Por favor, selecciona al menos 5 imágenes.";
-                    lblErrorImagenes.Visible = true;
-                    lblErrorImagenes.Text = mensajeImagenes;
-                    return; // Salir del método
-                }
-                else if (fileCount > 10)
-                {
-                    mensajeImagenes = "Por favor, selecciona no más de 10 imágenes.";
-                    lblErrorImagenes.Visible = true;
-                    lblErrorImagenes.Text = mensajeImagenes;
-                    return; // Salir del método
-                }
+            //    // Validar la cantidad de archivos
+            //    if (fileCount < 5)
+            //    {
+            //        mensajeImagenes = "Por favor, selecciona al menos 5 imágenes.";
+            //        lblErrorImagenes.Visible = true;
+            //        lblErrorImagenes.Text = mensajeImagenes;
+            //        return; // Salir del método
+            //    }
+            //    else if (fileCount > 10)
+            //    {
+            //        mensajeImagenes = "Por favor, selecciona no más de 10 imágenes.";
+            //        lblErrorImagenes.Visible = true;
+            //        lblErrorImagenes.Text = mensajeImagenes;
+            //        return; // Salir del método
+            //    }
 
-            }
-            else
-            {
-                mensajeImagenes = "No se seleccionaron archivos.";
-                lblErrorImagenes.Visible = true;
-                lblErrorImagenes.Text = mensajeImagenes;
-                return; // Salir del método
-            }
+            //}
+            //else
+            //{
+            //    mensajeImagenes = "No se seleccionaron archivos.";
+            //    lblErrorImagenes.Visible = true;
+            //    lblErrorImagenes.Text = mensajeImagenes;
+            //    return; // Salir del método
+            //}
 
             if (string.IsNullOrWhiteSpace(mensajeNombre) && string.IsNullOrWhiteSpace(mensajeUbicacion) && string.IsNullOrWhiteSpace(mensajePrecio) && string.IsNullOrWhiteSpace(mensajeHuespedes) && string.IsNullOrWhiteSpace(mensajeHabitaciones) && string.IsNullOrWhiteSpace(mensajeBanhos))
             {
@@ -344,13 +347,13 @@ namespace ProyectoTravelNest.pages
                 {
                     string script = "Swal.fire('¡Éxito!', 'Los datos se editaron correctamente.', 'success');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                    Response.Redirect("editaranuncio.aspx");
+                    //Response.Redirect("editaranuncio.aspx");
                 }
                 else
                 {
                     string script = "Swal.fire('ERROR', 'Ocurrio un error.', 'error');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                    Response.Redirect("editaranuncio.aspx");
+                    //Response.Redirect("editaranuncio.aspx");
                 }
             }
             

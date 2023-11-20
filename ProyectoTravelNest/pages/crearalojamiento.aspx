@@ -448,7 +448,20 @@
         // Obtener el DropDownList y la opción seleccionada
         var ddlSelectElement = document.getElementById("<%= selectElement.ClientID %>");
         var opcionSeleccionada = ddlSelectElement.options[ddlSelectElement.selectedIndex];
+        var idServicioSeleccionado = opcionSeleccionada.value;
 
+        // Agregar el elemento a la lista
+        var listaElementos = document.getElementById("listaElementos");
+
+        // Verificar si el idServicio ya está en la lista
+        var existe = Array.from(listaElementos.children).some(function (elemento) {
+            return elemento.getAttribute("data-idservicio") === idServicioSeleccionado;
+        });
+
+        if (existe) {
+            alert("El elemento seleccionado ya está en la lista.");
+            return;
+        }
         // Crear un nuevo elemento de lista
         var nuevoElemento = document.createElement("li");
         nuevoElemento.style.display = "flex"; // Utilizar flexbox
@@ -456,6 +469,7 @@
         // Almacenar el IdServicio como atributo personalizado en el elemento <li>
         nuevoElemento.setAttribute("data-idservicio", opcionSeleccionada.value);
 
+        
         // Crear una columna para el texto
         var columnaTexto = document.createElement("div");
         columnaTexto.textContent = opcionSeleccionada.text;
@@ -488,8 +502,7 @@
         nuevoElemento.appendChild(columnaTexto);
         nuevoElemento.appendChild(columnaBoton);
 
-        // Agregar el elemento a la lista
-        var listaElementos = document.getElementById("listaElementos");
+        
         listaElementos.appendChild(nuevoElemento);
     }
 

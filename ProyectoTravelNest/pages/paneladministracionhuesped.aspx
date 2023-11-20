@@ -162,6 +162,21 @@
                 </div>
             </div>
         </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card-deck">
+                    <!-- Verificar identificación -->
+                    <div class="card">
+                        <asp:LinkButton runat="server" ID="lbtnVId" Style="text-decoration: none" OnClick="lbtnVId_Click" CssClass="notification">
+                            <span>
+                                <h5 class="h5 mt-2">Verificar identificación</h5>
+                                <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
+                            </span>
+                        </asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 

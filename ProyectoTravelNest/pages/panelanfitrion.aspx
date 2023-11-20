@@ -72,7 +72,7 @@
                         <a href="alojamientospoliticas.aspx" class="notification" style="text-decoration: none">
                             <span>
                                 <h5 class="h5 mt-2">Administrar Políticas</h5>
-                                <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
+                                <p class="h6 mt-4">Supervisa y gestiona las políticas relacionadas con los inmuebles para garantizar un uso eficiente y efectivo de los mismos..</p>
                             </span>
                         </a>
                     </div>

@@ -97,12 +97,12 @@ namespace ProyectoTravelNest.pages
             if (!txtPorcentaje.ReadOnly)
             {
                 error.Visible = false;
-                if (int.TryParse(txtPorcentaje.Text, out int num))
+                if (!int.TryParse(txtPorcentaje.Text, out int num))
                 {
                     error.Visible = true;
                     lblEstado.Text = "Por favor, asegúrese de ingresar solamente números.";
                 }
-                else if (Int32.Parse(txtPorcentaje.Text) > 99 && Int32.Parse(txtPorcentaje.Text) < 1)
+                else if (Int32.Parse(txtPorcentaje.Text) > 99 || Int32.Parse(txtPorcentaje.Text) < 1)
                 {
                     error.Visible = true;
                     lblEstado.Text = "Por favor, ingrese un valor de descuento que esté en el rango del 1 al 99.";
@@ -114,8 +114,10 @@ namespace ProyectoTravelNest.pages
                     eDescuento.Porcentaje = float.Parse(txtPorcentaje.Text);
                     eDescuento.IdInmueble = Request.QueryString["IdInmueble"];
                     descuento.crud(eDescuento, "Modificar");
+                    Response.Redirect(Request.RawUrl);
                 }
             }
+            
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)

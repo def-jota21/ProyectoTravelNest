@@ -59,12 +59,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtPorcentaje" 
-                                                ValidationExpression="^100(\.0{1,2})?%?$|^\d{1,2}(\.\d{1,2})?%?$" 
-                                                ErrorMessage="Por favor, ingresa un porcentaje válido entre 1 y 100 con hasta 2 decimales."
-                                                CssClass="alert alert-danger" Display="Dynamic"></asp:RegularExpressionValidator>
-                                    </div>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>

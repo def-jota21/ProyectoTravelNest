@@ -56,11 +56,11 @@ namespace ProyectoTravelNest.pages
                     LiteralControl htmlSnippet = new LiteralControl();
                     if (imagen == null)
                     {
-                        imagen = $@"<img class='img-fluid' src='/img/noimage.jpg' style='border-radius: 7px;'>";
+                        imagen = $@"<img class='img-fluid' src='/img/noimage.jpg' style='border-radius: 7px; width: 100%; height: 130px; object-fit: cover;'>";
                     }
                     else
                     {
-                        imagen = $@"<img class='img-fluid' src='data:image/jpeg;base64,{imagen}' style='border-radius: 7px;'>";
+                        imagen = $@"<img class='img-fluid' src='data:image/jpeg;base64,{imagen}' style='border-radius: 7px; width: 100%; height: 130px; object-fit: cover;'>";
                     }
                     htmlSnippet.Text = $@"
                                     <div class='col-lg-3 col-md-5 p-0 mb-5 me-4 bg-white rounded'>
@@ -72,8 +72,8 @@ namespace ProyectoTravelNest.pages
                                                     <label class='text-muted'>{inmueble.Descripcion}</label>
                                                     <div class='border-top mt-4 pt-4'>
                                                         <div class='d-flex justify-content-around'>
-                                                            <h6 class='m-0'><i class='fa fa-star text-primary'></i>4.5
-                                                                <small>({inmueble.Calificacion})</small></h6>
+                                                            <h6 class='m-0'><i class='fa fa-star text-primary'></i>{inmueble.Calificacion}
+                                                                <small></small></h6>
                                                             <h5 class='m-0'>${Math.Round(inmueble.Precio, 2)}</h5>
                                                             <p><b>por noche</b></p>
                                                         </div>

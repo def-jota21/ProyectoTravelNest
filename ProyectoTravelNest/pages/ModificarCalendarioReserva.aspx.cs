@@ -67,13 +67,14 @@ namespace ProyectoTravelNest.pages
                     ddlInmuebles.Items.Add(new ListItem("No se encontraron inmuebles", ""));
                 }
 
-            string IdInmueble = Session["idInmueble"].ToString();
+                string IdInmueble = Session["idInmueble"].ToString();
                 if (!IsPostBack & eUsuarios != null)
                 {
                     IdInmueble = Request.QueryString["IdInmueble"];
-                    String IdUsuario = Session["IdUsuario"].ToString();
+                    String IdUsuario = eUsuarios.IdUsuario;
 
                     ObtenerDatos(IdInmueble);
+
                 }
             }
             catch (Exception ex)

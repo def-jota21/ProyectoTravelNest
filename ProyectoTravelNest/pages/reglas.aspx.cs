@@ -30,7 +30,7 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
-                String IdUsuario = Session["IdUsuario"].ToString();
+                String IdUsuario = eUsuarios.IdUsuario;
                 ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
                 Control div_Inmueble = mainContent.FindControl("cartaInmueble");
 

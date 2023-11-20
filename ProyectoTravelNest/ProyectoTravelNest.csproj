@@ -183,10 +183,12 @@
     <Content Include="img\Comentarios2.jpg" />
     <Content Include="img\comentarios3.jpg" />
     <Content Include="img\comentariosPendientes.jpg" />
+    <Content Include="img\comopagar-1.png" />
     <Content Include="img\covergestionusuarios.jpg" />
     <Content Include="img\destination-4.jpg" />
     <Content Include="img\estrellas.JPG" />
     <Content Include="img\gestionUsuarios.jpg" />
+    <Content Include="img\comocobrar.png" />
     <Content Include="img\inmublepoliticas.JPG" />
     <Content Include="img\inmueble.jpg" />
     <Content Include="img\logo1.png" />
@@ -208,6 +210,7 @@
     <Content Include="pages\comentariopendientesa.aspx" />
     <Content Include="pages\comentariosanfitrion.aspx" />
     <Content Include="pages\comentariospendientesh.aspx" />
+    <Content Include="pages\comocobrarcentroayuda.aspx" />
     <Content Include="pages\cotizacion.aspx" />
     <Content Include="pages\crearalojamiento.aspx" />
     <Content Include="pages\crearcuenta.aspx" />
@@ -222,7 +225,9 @@
     <Content Include="pages\gestionusuarios.aspx" />
     <Content Include="pages\introduccioncentroayuda.aspx" />
     <Content Include="pages\login.aspx" />
+    <Content Include="pages\metascentroayuda.aspx" />
     <Content Include="pages\modificarcalendarioreserva.aspx" />
+    <Content Include="pages\optimizarcentroayuda.aspx" />
     <Content Include="pages\paneladministracionhuesped.aspx" />
     <Content Include="pages\panelanfitrion.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
@@ -417,6 +422,13 @@
     <Compile Include="pages\comentariospendientesh.aspx.designer.cs">
       <DependentUpon>comentariospendientesh.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\comocobrarcentroayuda.aspx.cs">
+      <DependentUpon>comocobrarcentroayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\comocobrarcentroayuda.aspx.designer.cs">
+      <DependentUpon>comocobrarcentroayuda.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\cotizacion.aspx.cs">
       <DependentUpon>cotizacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -515,12 +527,26 @@
     <Compile Include="pages\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\metascentroayuda.aspx.cs">
+      <DependentUpon>metascentroayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\metascentroayuda.aspx.designer.cs">
+      <DependentUpon>metascentroayuda.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\modificarcalendarioreserva.aspx.cs">
       <DependentUpon>modificarcalendarioreserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\modificarcalendarioreserva.aspx.designer.cs">
       <DependentUpon>modificarcalendarioreserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\optimizarcentroayuda.aspx.cs">
+      <DependentUpon>optimizarcentroayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\optimizarcentroayuda.aspx.designer.cs">
+      <DependentUpon>optimizarcentroayuda.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\paneladministracionhuesped.aspx.cs">
       <DependentUpon>paneladministracionhuesped.aspx</DependentUpon>

@@ -19,7 +19,7 @@ namespace ProyectoTravelNest.pages
         protected void Page_Load(object sender, EventArgs e)
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
-            IdUsuario = Session["IdUsuario"].ToString();
+            IdUsuario = eUsuarios.IdUsuario;
 
             if (eUsuarios == null)
             {

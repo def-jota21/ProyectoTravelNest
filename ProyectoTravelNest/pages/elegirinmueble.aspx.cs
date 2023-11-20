@@ -85,7 +85,6 @@ namespace ProyectoTravelNest.pages
                     div_row.Controls.Add(htmlSnippet);
                 }
             }
-            Session["IdUsuario"] = Session["IdUsuario"].ToString();
         }
     }
 }

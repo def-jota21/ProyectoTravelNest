@@ -47,23 +47,34 @@
                             </span>
                         </asp:LinkButton>
                     </div>
-                    <!-- Promociones -->
-                    <div class="card">
-                        <asp:LinkButton runat="server" ID="lbtnPromociones" Style="text-decoration: none" OnClick="lbtnPromociones_Click" CssClass="notification">
-                            <span>
-                                <h5 class="h5 mt-2">Promociones</h5>
-                                <p class="h6 mt-4">Agrega promociones para atrer mas huespedes.</p>
-                            </span>
-                        </asp:LinkButton>
-                    </div>
                     <!-- Calendario -->
-                    <div class="card">
+                   <%-- <div class="card">
                         <asp:LinkButton runat="server" ID="lbtnCalendario" Style="text-decoration: none" OnClick="lbtnCalendario_Click" CssClass="notification">
                             <span>
                                 <h5 class="h5 mt-2">Modificar calendario</h5>
                                 <p class="h6 mt-4">Configura el calendario de un alojamiento.</p>
                             </span>
                         </asp:LinkButton>
+                    </div>--%>
+
+                    <!-- Verificar identificación -->
+                    <div class="card">
+                        <asp:LinkButton runat="server" ID="lbtnVId" Style="text-decoration: none" OnClick="lbtnVId_Click" CssClass="notification">
+                            <span>
+                                <h5 class="h5 mt-2">Verificar identificación</h5>
+                                <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
+                            </span>
+                        </asp:LinkButton>
+                    </div>
+
+                    <!-- Administrar Políticas -->
+                    <div class="card">
+                        <a href="alojamientospoliticas.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Administrar Políticas</h5>
+                                <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -130,14 +141,7 @@
                             </span>
                         </a>
                     </div>
-                    <div class="card">
-                        <asp:LinkButton runat="server" ID="lbtnVId" Style="text-decoration: none" OnClick="lbtnVId_Click" CssClass="notification">
-                            <span>
-                                <h5 class="h5 mt-2">Verificar identificación</h5>
-                                <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
-                            </span>
-                        </asp:LinkButton>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -145,16 +149,7 @@
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card-deck">
-
-
-                    <div class="card">
-                        <a href="alojamientospoliticas.aspx" class="notification" style="text-decoration: none">
-                            <span>
-                                <h5 class="h5 mt-2">Administrar Políticas</h5>
-                                <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
-                            </span>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </div>

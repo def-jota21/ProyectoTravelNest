@@ -25,12 +25,12 @@ namespace ProyectoTravelNest.pages
             {
                 Negocios.Neg_Usuarios neg_Usuarios = new Neg_Usuarios();
 
-                int cantidadNotificaciones = neg_Usuarios.ObtenerNotificaciones(Session["IdUsuario"].ToString());
+                int cantidadNotificaciones = neg_Usuarios.ObtenerNotificaciones(eUsuarios.IdUsuario);
 
                 Session["CantidadNotificaciones"] = cantidadNotificaciones;
 
                 Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
-                bool usuarioMiBanco = neg_MiBanco.VerificarMiBanco(Session["IdUsuario"].ToString());
+                bool usuarioMiBanco = neg_MiBanco.VerificarMiBanco(eUsuarios.IdUsuario);
 
                 Session["MiBancoUsuario"] = usuarioMiBanco;
             }
@@ -38,34 +38,29 @@ namespace ProyectoTravelNest.pages
         protected void lbtnReglas_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "reglas";
-            Session["IdUsuario"] = Session["IdUsuario"].ToString();
             Response.Redirect("/pages/elegirinmueble.aspx");
         }
 
         protected void lbtnPromociones_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "promociones";
-            Session["IdUsuario"] = Session["IdUsuario"].ToString();
             Response.Redirect("/pages/elegirinmueble.aspx");
         }
 
         protected void lbtnCalendario_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "modificarcalendarioreserva";
-            Session["IdUsuario"] = Session["IdUsuario"].ToString();
             Response.Redirect("/pages/elegirinmueble.aspx");
         }
 
         protected void lbtnDescuentos_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "descuentos";
-            //Session["IdUsuario"] = Session["IdUsuario"].ToString();
             Response.Redirect("/pages/elegirinmueble.aspx");
         }
 
         protected void lbtnVId_Click(object sender, EventArgs e)
         {
-            Session["IdUsuario"] = Session["IdUsuario"].ToString();
             Response.Redirect("/pages/verificaridentidad.aspx");
         }
     }

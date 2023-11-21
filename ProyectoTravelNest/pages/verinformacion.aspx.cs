@@ -1,4 +1,5 @@
-﻿using Negocios;
+﻿using Entidades;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,6 +22,7 @@ namespace ProyectoTravelNest.pages
         static string idInmueble = "";
         static float Precio = 0;
         static DateTime[] fechasOcupadas;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
@@ -109,19 +111,15 @@ namespace ProyectoTravelNest.pages
 
                 }
                 fechasOcupadas = ObtenerFechasOcupadasDesdeBD(idInmueble);
+               
 
-                if(eUsuarios.T_Rol != 'H')
+                if (eUsuarios.T_Rol != 'H')
                 {
                     btnReservar.Enabled = false;
 
                     btnReservar.Text = "Debe ser un huésped";
                 }
-                else
-                {
-                    btnReservar.Enabled = true;
-
-                    btnReservar.Text = "Continuar";
-                }
+                
 
                
 
@@ -289,12 +287,18 @@ namespace ProyectoTravelNest.pages
 
             if (fecha2 == fecha)
             {
+                btnReservar.Enabled = false;
 
+                btnReservar.Text = "Seleccione las Fechas";
                 txtTotal.Text = "$ 0";
             }
             else
             {
-                txtTotal.Text = "$ "+(Precio * diferenciaDias).ToString();
+                
+                    txtTotal.Text = "$ " + (Precio * diferenciaDias).ToString();
+                
+
+
             }
 
             lblFechaEntrada.Text = CalendarInicio.SelectedDate.ToString("d/MM/yyyy");
@@ -318,12 +322,17 @@ namespace ProyectoTravelNest.pages
 
             if(fecha1 == fecha)
             {
+                btnReservar.Enabled = false;
 
+                btnReservar.Text = "Seleccione las Fechas";
                 txtTotal.Text = "$ 0";
             }
             else
             {
-                txtTotal.Text = "$ " + (Precio * diferenciaDias).ToString();
+                
+                    txtTotal.Text = "$ " + (Precio * diferenciaDias).ToString();
+               
+                
             }
 
             
@@ -380,32 +389,32 @@ namespace ProyectoTravelNest.pages
         protected string ObtenerIconoServicio(string nombreServicio)
         {
             // Aquí defines tu diccionario de iconos y las correspondencias entre nombres y clases de iconos
+            // Aquí defines tu diccionario de iconos y las correspondencias entre nombres y clases de iconos
             Dictionary<string, string> diccionarioIconos = new Dictionary<string, string>
-            {
-                    {"Wifi", "fa-solid fa-wifi"},
-                    {"Sábanas", "fa-solid fa-bed"},
-                    {"Seguro", "fa-solid fa-shield-alt"},
-                    {"Conexión Ethernet", "fa-solid fa-network-wired"},
-                    {"Libros y material de lectura", "fa-solid fa-book"},
-                    {"Juegos de mesa", "fa-solid fa-chess"},
-                    {"Chimenea interna", "fa-solid fa-fire"},
-                    {"Detector de humo", "fa-solid fa-smog"},
-                    {"Microondas", "fa-solid fa-microwave"},
-                    {"Congelador", "fa-solid fa-snowflake"},
-                    {"Hervidor de agua", "fa-solid fa-mug-hot"},
-                    {"Cocina", "fa-solid fa-utensils"},
-                    {"Tostadora", "fa-solid fa-bread-slice"},
-                    {"Licuadora", "fa-solid fa-blender"},
-                    {"Café", "fa-solid fa-coffee"},
-                    {"Lavadora", "fa-solid fa-water"},
-                    {"Secadora", "fa-solid fa-wind"},
-                    {"Vista al valle", "fa-solid fa-mountain"},
-                    {"Vista a las montañas", "fa-mountain"},
-                    {"Tina", "fa-solid fa-bath"},
-                    {"Secadora de pelo", "fa-solid fa-hair-dryer"},
-                    {"Agua caliente", "fa-solid fa-hot-tub"},
-                    
-            };
+{
+        {"Wifi", "fa fa-wifi"},
+        {"Sábanas", "fa fa-bed"},
+        {"Seguro", "fa fa-shield-alt"},
+        {"Conexion Ethernet", "fa fa-globe"},
+        {"Libros y material de lectura", "fa fa-book"},
+        {"Juegos de mesa", "fa fa-chess"},
+        {"Chimenea interna", "fa fa-fire"},
+        {"Detector de humo", "fa fa-smog"},
+        {"Microondas", "fa fa-mug-hot"},
+        {"Congelador", "fa fa-snowflake"},
+        {"Hervidor de agua", "fa fa-mug-hot"},
+        {"Cocina", "fa fa-utensils"},
+        {"Tostadora", "fa fa-bread-slice"},
+        {"Licuadora", "fa fa-blender"},
+        {"Café", "fa fa-coffee"},
+        {"Lavadora", "fa fa-water"},
+        {"Secadora", "fa fa-wind"},
+        {"Vista al valle", "fa fa-mountain"},
+        {"Vista a las montañas", "fa fa-mountain"},
+        {"Tina", "fa fa-bath"},
+        {"Secadora de pelo", "fa fa-hair-dryer"},
+        {"Agua caliente", "fa fa-hot-tub"},
+};
 
             // Verifica si el nombre del servicio existe en el diccionario y devuelve la clase de icono correspondiente
             if (diccionarioIconos.ContainsKey(nombreServicio))

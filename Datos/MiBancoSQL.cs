@@ -36,12 +36,14 @@ namespace Datos
                         command.ExecuteNonQuery();
                     }
                 }
-                return "Exito"; // Devuelve un mensaje de éxito
+               // return "Exito"; // Devuelve un mensaje de éxito
             }
             catch (Exception ex)
             {
                 return "Error: " + ex.Message; // Devuelve un mensaje de error con detalles
             }
+
+            return "Exito";
         }
 
         public string InsertarUsuarioMiBanco(string idUsuario, string numeroCuenta, string cvv)
@@ -49,11 +51,14 @@ namespace Datos
             return EjecutarMantenimientoMiBanco(1, idUsuario, numeroCuenta, cvv);
         }
 
-        public string EliminarUsuarioMiBanco(string idUsuario)
+        public string EliminarUsuarioMiBanco(string idUsuario, string numeroCuenta)
         {
-            return EjecutarMantenimientoMiBanco(2, idUsuario, "", "");
+            return EjecutarMantenimientoMiBanco(4, idUsuario, numeroCuenta, "");
         }
-
+        public string EliminarUsuarioMiBanco2(string idUsuario, string numeroCuenta)
+        {
+            return EjecutarMantenimientoMiBanco(5, idUsuario, numeroCuenta, "");
+        }
 
         public bool ExisteUsuarioMiBanco(string idUsuario)
         {

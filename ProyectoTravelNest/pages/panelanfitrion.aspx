@@ -48,7 +48,7 @@
                         </asp:LinkButton>
                     </div>
                     <!-- Calendario -->
-                   <%-- <div class="card">
+                    <%-- <div class="card">
                         <asp:LinkButton runat="server" ID="lbtnCalendario" Style="text-decoration: none" OnClick="lbtnCalendario_Click" CssClass="notification">
                             <span>
                                 <h5 class="h5 mt-2">Modificar calendario</h5>
@@ -141,7 +141,35 @@
                             </span>
                         </a>
                     </div>
-                    
+                    <div class="card">
+                        <% 
+                            bool usuarioMiBanco = (Session["MiBancoUsuario"] != null) ? (bool)Session["MiBancoUsuario"] : false;
+
+                            if (usuarioMiBanco)
+                            {
+                        %>
+                        <a href="eliminarCuentaMiBanco.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Mi Banco</h5>
+                                <p class="h6 mt-4">Proporciona tus datos de tu cuenta para poder hacer el pago.</p>
+                            </span>
+                        </a>
+                        <% 
+                            }
+                            else
+                            {
+                        %>
+                        <a href="agregarmibanco.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Mi Banco</h5>
+                                <p class="h6 mt-4">Proporciona tus datos de tu cuenta para poder hacer el pago.</p>
+                            </span>
+                            <span class="badgeCard">1</span>
+                        </a>
+                        <% 
+                            }
+                        %>
+                    </div>
                 </div>
             </div>
         </div>
@@ -149,7 +177,6 @@
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card-deck">
-                    
                 </div>
             </div>
         </div>

@@ -42,17 +42,32 @@ namespace ProyectoTravelNest.pages
             }
             Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
 
-            string mensaje = neg_MiBanco.EliminarCuentaMiBanco(eUsuarios.IdUsuario);
+            string mensaje = neg_MiBanco.EliminarCuentaMiBanco(eUsuarios.IdUsuario, numeroCuenta);
 
             if (mensaje == "Exito")
             {
-                string script = "Swal.fire('¡Éxito!', 'Se elimino correctamente.', 'success');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                Response.Redirect("paneladministracionhuesped.aspx");
+                string mensaje2 = neg_MiBanco.EliminarCuentaMiBanco2(eUsuarios.IdUsuario, numeroCuenta);
+
+
+                if (mensaje2 == "Exito")
+                {
+                    string script = "Swal.fire('¡Éxito!', 'Se elimino correctamente.', 'success');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                    Response.Redirect("paneladministracionhuesped.aspx");
+                }
+                else
+                {
+                    lblMensaje.Text = "Error al eliminar la cuenta.";
+                    lblMensaje.ForeColor = mensaje2.Contains("éxito") ? System.Drawing.Color.Green : System.Drawing.Color.Red;
+                    lblMensaje.Visible = true;
+                }
+
+
+                    
             }
             else
             {
-                lblMensaje.Text = mensaje;
+                lblMensaje.Text = "La cuenta no es la enlazada.";
                 lblMensaje.ForeColor = mensaje.Contains("éxito") ? System.Drawing.Color.Green : System.Drawing.Color.Red;
                 lblMensaje.Visible = true;
             }

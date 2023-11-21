@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <title><%: Page.Title %> - TravelNest</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -41,6 +41,7 @@
 
         .enlace-comun:hover {
             text-decoration: underline; /* Agrega la subraya cuando se pasa el cursor por encima */
+            color: #7AB730 !important;
         }
     </style>
     <script src="Scripts/jquery-3.7.0.js"></script>
@@ -106,23 +107,16 @@
 
                                 <%-- Privadas Anfitrion --%>
 
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion1" href="pages/alojamientospoliticas.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Políticas</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion2" href="pages/comentariopendientesa.aspx" style="margin-left: 20px;" class="enlace-comun">Comentarios Pendientes</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion3" href="pages/crearalojamiento.aspx" style="margin-left: 20px;" class="enlace-comun">Crear Inmueble</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion4" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;" class="enlace-comun">Politicas del Servicio</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion5" href="pages/modificarcalendarioreserva.aspx" style="margin-left: 20px;" class="enlace-comun">Modificar Calendario</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion6" href="~/pages/recepcionmensajes.aspx" style="margin-left: 20px;" class="enlace-comun">Mensajes</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion7" href="~/pages/panelanfitrion.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Anfitrión</a></li>
+                            
+                                <li><a runat="server" visible="false" id="PrivadaAnfitrion1" href="~/pages/panelanfitrion.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
 
                                 <%-- Privadas Anfitrion --%>
 
 
                                 <%-- Privadas Huesped --%>
 
-                                <li><a runat="server" visible="false" id="PrivadaHuesped1" href="pages/comentariospendientesh.aspx" style="margin-left: 20px;" class="enlace-comun">Comentarios Pendientes</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaHuesped2" href="~/pages/recepcionmensajes.aspx" style="margin-left: 20px;" class="enlace-comun">Mensajes</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaHuesped3" href="pages/reservas.aspx" style="margin-left: 20px;" class="enlace-comun">Reservas</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaHuesped4" href="pages/favoritos.aspx" style="margin-left: 20px;" class="enlace-comun">Favoritos</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaHuesped1" href="pages/paneladministracionhuesped.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
+                                <li><a runat="server" visible="false" id="PrivadaHuesped2" href="pages/favoritos.aspx" style="margin-left: 20px;" class="enlace-comun">Favoritos</a></li>
 
                                 <%-- Privadas Huesped --%>
 

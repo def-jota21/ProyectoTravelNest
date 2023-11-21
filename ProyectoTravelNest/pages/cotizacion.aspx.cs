@@ -15,13 +15,13 @@ namespace ProyectoTravelNest.pages
     public partial class cotizacion : System.Web.UI.Page
     {
         DataTable dtInformacionInmueble = new DataTable();
-        string parametro1 = "";
-        string parametro2 = "";
-        string parametro3 = "";
-        string parametro4 = "";
-        string parametro5 = "";
-        string parametro6 = "";
-        decimal totalTarifas;
+        static string parametro1 = "";
+        static string parametro2 = "";
+        static string parametro3 = "";
+        static string parametro4 = "";
+        static string parametro5 = "";
+        static string parametro6 = "";
+        static decimal totalTarifas;
         Entidades.Usuarios eUsuarios;
         protected void Page_Load(object sender, EventArgs e)
         {

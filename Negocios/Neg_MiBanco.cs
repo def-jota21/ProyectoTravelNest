@@ -15,24 +15,32 @@ namespace Negocios
             
             mibanconeg.mibanco iBanco = new mibanconeg.mibanco();
 
-            //if (iBanco.ValidarExistencia(NumeroCuenta, cvv, t_rol))
-            //{
-            //    mensaje = miBancoSQL.InsertarUsuarioMiBanco(IdUsuario, NumeroCuenta, cvv);
-            //}
-            //else
-            //{
-            //    mensaje = "La cuenta digítada no existe, registrese en MiBanco";
-            //}
+            if (iBanco.ValidarExistencia(NumeroCuenta, cvv, t_rol))
+            {
+                mensaje = miBancoSQL.InsertarUsuarioMiBanco(IdUsuario, NumeroCuenta, cvv);
+            }
+            else
+            {
+                mensaje = "La cuenta digítada no existe, registrese en MiBanco";
+            }
 
-            
+
             return mensaje;
         }
 
-        public string EliminarCuentaMiBanco(string IdUsuario)
+        public string EliminarCuentaMiBanco(string IdUsuario, string idCuenta)
         {
             Datos.MiBancoSQL miBancoSQL = new MiBancoSQL();
 
-            string mensaje = miBancoSQL.EliminarUsuarioMiBanco(IdUsuario);
+            string mensaje = miBancoSQL.EliminarUsuarioMiBanco(IdUsuario, idCuenta);
+            return mensaje;
+        }
+
+        public string EliminarCuentaMiBanco2(string IdUsuario, string idCuenta)
+        {
+            Datos.MiBancoSQL miBancoSQL = new MiBancoSQL();
+
+            string mensaje = miBancoSQL.EliminarUsuarioMiBanco2(IdUsuario, idCuenta);
             return mensaje;
         }
 

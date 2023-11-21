@@ -1,4 +1,4 @@
-﻿<%@Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="alojamientospoliticas.aspx.cs" Inherits="ProyectoTravelNest.pages.alojamientospoliticas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="alojamientospoliticas.aspx.cs" Inherits="ProyectoTravelNest.pages.alojamientospoliticas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -48,6 +48,21 @@
             text-align: center !important;
         }
 
+        .package-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+            .package-item .p-4 {
+                flex: 1;
+            }
+
+            .package-item .btnVerInformacion {
+                align-self: flex-end;
+            }
+
         #txtcomentarioPrivado {
             resize: none;
         }
@@ -69,7 +84,7 @@
                     <ItemTemplate>
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="package-item bg-white mb-2">
-                                <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
+                                <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server" style="min-height:240px !important;"
                                     src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
                                     AlternateText="Imagen del mueble" />
 
@@ -98,9 +113,6 @@
     </div>
 
 
-    </div>
-        </div>
-    </div>
 
 
     <!-- JavaScript Libraries -->
@@ -119,5 +131,23 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            // Encuentra todas las tarjetas en el repeater
+            var cards = $(".package-item");
+
+            // Encuentra la altura máxima entre todas las tarjetas
+            var maxHeight = 0;
+            cards.each(function () {
+                var cardHeight = $(this).outerHeight();
+                if (cardHeight > maxHeight) {
+                    maxHeight = cardHeight;
+                }
+            });
+
+            // Establece la misma altura máxima para todas las tarjetas
+            cards.css("height", maxHeight + "px");
+        });
+    </script>
 
 </asp:Content>

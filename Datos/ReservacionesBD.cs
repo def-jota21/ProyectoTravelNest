@@ -70,7 +70,7 @@ namespace Datos
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         
-                        return rowsAffected > 0;
+                        return rowsAffected < 0;
                     }
                 }
             }

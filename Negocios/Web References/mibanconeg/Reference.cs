@@ -111,26 +111,28 @@ namespace Negocios.mibanconeg {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidarExistencia", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool ValidarExistencia(string numTarjeta, string cvv) {
+        public bool ValidarExistencia(string numTarjeta, string cvv, string t_rol) {
             object[] results = this.Invoke("ValidarExistencia", new object[] {
                         numTarjeta,
-                        cvv});
+                        cvv,
+                        t_rol});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void ValidarExistenciaAsync(string numTarjeta, string cvv) {
-            this.ValidarExistenciaAsync(numTarjeta, cvv, null);
+        public void ValidarExistenciaAsync(string numTarjeta, string cvv, string t_rol) {
+            this.ValidarExistenciaAsync(numTarjeta, cvv, t_rol, null);
         }
         
         /// <remarks/>
-        public void ValidarExistenciaAsync(string numTarjeta, string cvv, object userState) {
+        public void ValidarExistenciaAsync(string numTarjeta, string cvv, string t_rol, object userState) {
             if ((this.ValidarExistenciaOperationCompleted == null)) {
                 this.ValidarExistenciaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidarExistenciaOperationCompleted);
             }
             this.InvokeAsync("ValidarExistencia", new object[] {
                         numTarjeta,
-                        cvv}, this.ValidarExistenciaOperationCompleted, userState);
+                        cvv,
+                        t_rol}, this.ValidarExistenciaOperationCompleted, userState);
         }
         
         private void OnValidarExistenciaOperationCompleted(object arg) {

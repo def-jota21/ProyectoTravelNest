@@ -77,6 +77,7 @@ namespace ProyectoTravelNest.pages
             else
             {
                 lblMensaje.Text = mensaje;
+              
                 lblMensaje.ForeColor = mensaje.Contains("éxito") ? System.Drawing.Color.Green : System.Drawing.Color.Red;
                 lblMensaje.Visible = true;
             }

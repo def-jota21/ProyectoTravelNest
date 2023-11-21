@@ -40,13 +40,13 @@ namespace Negocios
                 destinatario = dt.Rows[0]["Correo"].ToString();
 
                 lstParametros.Clear();
-                strNombreSP = "CRUDUsuarios";
+                strNombreSP = "GetInfoReserva";
                 lstParametros.Add(new SqlParameter("@IdUsuario", IdUsuario));
                 dtReserva = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
             
             // Configuración del cliente SMTP

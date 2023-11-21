@@ -31,6 +31,21 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <style>
+        .package-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+            .package-item .p-4 {
+                flex: 1;
+            }
+
+            .package-item .btnVerInformacion {
+                align-self: flex-end;
+            }
+
         .center-content {
             display: flex;
             flex-direction: column;
@@ -44,7 +59,7 @@
             background-color: #7AB730;
             border-color: #7AB730;
             display: flex;
-            text-align: center !important; 
+            text-align: center !important;
         }
 
         #txtcomentarioPrivado {
@@ -67,7 +82,7 @@
                             <ItemTemplate>
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="package-item bg-white mb-2">
-                                        <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
+                                        <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server" Style="min-height: 240px !important;"
                                             src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
                                             AlternateText="Imagen del mueble" />
 
@@ -88,7 +103,7 @@
                                                 <div class="border-top mt-4 pt-4">
                                                     <div class="d-flex justify-content-between">
                                                         <asp:Button ID="btnRealizarComentario" runat="server" Text="          Realizar Comentario" CssClass="btn btn-primary btn-block"
-                                                            Style="height: 47px; margin-top: -2px; text-align:center;" CommandName="RealizarComentario"
+                                                            Style="height: 47px; margin-top: -2px; text-align: center;" CommandName="RealizarComentario"
                                                             CommandArgument='<%# $"{Eval("IdHuesped")},{Eval("IdReservacion")}" %>' OnCommand="btnRealizarComentario_Command"
                                                             UseSubmitBehavior="false" />
                                                     </div>
@@ -124,4 +139,23 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        // Encuentra todas las tarjetas en el repeater
+        var cards = $(".package-item");
+
+        // Encuentra la altura máxima entre todas las tarjetas
+        var maxHeight = 0;
+        cards.each(function () {
+            var cardHeight = $(this).outerHeight();
+            if (cardHeight > maxHeight) {
+                maxHeight = cardHeight;
+            }
+        });
+
+        // Establece la misma altura máxima para todas las tarjetas
+        cards.css("height", maxHeight + "px");
+    });
+    </script>
 </asp:Content>

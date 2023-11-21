@@ -53,7 +53,7 @@ namespace ProyectoTravelNest.pages
                                             <label class='text-muted'>{inmueble.Descripcion}</label>
                                             <div class='border-top mt-4 pt-4'>
                                                 <div class='d-flex justify-content-around'>
-                                                    <h6 class='m-0'><i class='fa fa-star text-primary'></i>{inmueble.Calificacion} <small></small>
+                                                    <h6 class='m-0'><i class='fa fa-star text-primary' style='color: #8cd56e !important></i>{inmueble.Calificacion} <small></small>
                                                     </h6>
                                                     <h5 class='m-0'>${Math.Round(inmueble.Precio, 2)}</h5>
                                                     <p><b>por noche</b></p>

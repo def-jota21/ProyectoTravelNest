@@ -201,7 +201,7 @@ namespace Negocios
 
         }
 
-        public List<Inmueble> ListaInmueblesPagina(int pagina, String IdUsuario, String IdInmueble = null)
+        public DataTable ListaInmueblesPagina(int pagina, String IdUsuario, String IdInmueble = null)
         {
             DataTable dt = new DataTable();
             string strNombreSP = "ConsultarInmueblesPagina";
@@ -212,22 +212,7 @@ namespace Negocios
 
             dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
 
-            List<Inmueble> inmuebles = new List<Inmueble>();
-            foreach(DataRow dr in dt.Rows)
-            {
-                Inmueble inmueble = new Inmueble();
-                inmueble.IdInmueble = dr["IdInmueble"].ToString();
-                inmueble.Nombre = dr["Nombre"].ToString();
-                inmueble.Descripcion = dr["Descripcion"].ToString();
-                inmueble.Calificacion = Convert.ToInt32(dr["Calificacion"]);
-                inmueble.Precio = float.Parse(dr["Precio"].ToString());
-                inmueble.Imagen = dr["Imagen"] != DBNull.Value ? (byte[])dr["Imagen"] : null;
-
-
-                inmuebles.Add(inmueble);
-            }
-
-            return inmuebles;
+            return dt;
         }
 
         public List<Inmueble> ListaInmuebleIndividual(String IdUsuario, String IdInmueble)

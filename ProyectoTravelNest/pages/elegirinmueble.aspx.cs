@@ -48,42 +48,44 @@ namespace ProyectoTravelNest.pages
                 ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
                 Control div_row = mainContent.FindControl("row");
 
-                List<Inmueble> ListaInmuebles = nInmueble.ListaInmueblesPagina(1, eUsuarios.IdUsuario, null);
+                rptAlojamientos.DataSource = nInmueble.ListaInmueblesPagina(1, eUsuarios.IdUsuario, null);
+                rptAlojamientos.DataBind();
+                //List<Inmueble> ListaInmuebles = nInmueble.ListaInmueblesPagina(1, eUsuarios.IdUsuario, null);
 
-                foreach (Inmueble inmueble in ListaInmuebles)
-                {
-                    string imagen = inmueble.Imagen != null ? Convert.ToBase64String(inmueble.Imagen) : null;
-                    LiteralControl htmlSnippet = new LiteralControl();
-                    if (imagen == null)
-                    {
-                        imagen = $@"<img class='img-fluid' src='/img/noimage.jpg' style='border-radius: 7px; width: 100%; height: 130px; object-fit: cover;'>";
-                    }
-                    else
-                    {
-                        imagen = $@"<img class='img-fluid' src='data:image/jpeg;base64,{imagen}' style='border-radius: 7px; width: 100%; height: 130px; object-fit: cover;'>";
-                    }
-                    htmlSnippet.Text = $@"
-                                    <div class='col-lg-3 col-md-5 p-0 mb-5 me-4 bg-white rounded'>
-                                        <a href='/pages/{Session["pagina"]}.aspx?IdInmueble={inmueble.IdInmueble}' class='text-decoration-none' style='color: initial;'>
-                                            <div class='package-item bg-white mb-2'>" +
-                                                imagen +
-                                                $@"<div style='clear: both;'>
-                                                    <h5 class='ms-1'>{inmueble.Nombre}</h5>
-                                                    <label class='text-muted'>{inmueble.Descripcion}</label>
-                                                    <div class='border-top mt-4 pt-4'>
-                                                        <div class='d-flex justify-content-around'>
-                                                            <h6 class='m-0'><i class='fa fa-star text-primary'></i>{inmueble.Calificacion}
-                                                                <small></small></h6>
-                                                            <h5 class='m-0'>${Math.Round(inmueble.Precio, 2)}</h5>
-                                                            <p><b>por noche</b></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>";
-                    div_row.Controls.Add(htmlSnippet);
-                }
+                //foreach (Inmueble inmueble in ListaInmuebles)
+                //{
+                //    string imagen = inmueble.Imagen != null ? Convert.ToBase64String(inmueble.Imagen) : null;
+                //    LiteralControl htmlSnippet = new LiteralControl();
+                //    if (imagen == null)
+                //    {
+                //        imagen = $@"<img class='img-fluid' src='/img/noimage.jpg' style='border-radius: 7px; width: 100%; height: 130px; object-fit: cover;'>";
+                //    }
+                //    else
+                //    {
+                //        imagen = $@"<img class='img-fluid' src='data:image/jpeg;base64,{imagen}' style='border-radius: 7px; width: 100%; height: 130px; object-fit: cover;'>";
+                //    }
+                //    htmlSnippet.Text = $@"
+                //                    <div class='col-lg-3 col-md-5 p-0 mb-5 me-4 bg-white rounded'>
+                //                        <a href='/pages/{Session["pagina"]}.aspx?IdInmueble={inmueble.IdInmueble}' class='text-decoration-none' style='color: initial;'>
+                //                            <div class='package-item bg-white mb-2'>" +
+                //                                imagen +
+                //                                $@"<div style='clear: both;'>
+                //                                    <h5 class='ms-1'>{inmueble.Nombre}</h5>
+                //                                    <label class='text-muted'>{inmueble.Descripcion}</label>
+                //                                    <div class='border-top mt-4 pt-4'>
+                //                                        <div class='d-flex justify-content-around'>
+                //                                            <h6 class='m-0'><i class='fa fa-star text-primary'></i>{inmueble.Calificacion}
+                //                                                <small></small></h6>
+                //                                            <h5 class='m-0'>${Math.Round(inmueble.Precio, 2)}</h5>
+                //                                            <p><b>por noche</b></p>
+                //                                        </div>
+                //                                    </div>
+                //                                </div>
+                //                            </div>
+                //                        </a>
+                //                    </div>";
+                //    div_row.Controls.Add(htmlSnippet);
+                //}
             }
         }
     }

@@ -3,6 +3,7 @@ using Negocios;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.DynamicData;
@@ -70,13 +71,21 @@ namespace ProyectoTravelNest.pages
                         txtf_fin.Text = parametro2;
                         txthuesped.Text = parametro4;
 
-                        // Supongamos que tienes las siguientes fechas y tarifas por noche
-                        DateTime fechaInicio = DateTime.Parse(parametro1);
-                        DateTime fechaFin = DateTime.Parse(parametro2);
+                       
                         decimal tarifaPorNoche = decimal.Parse(dtInformacionInmueble.Rows[0][7].ToString()); // Ajusta esto según tu estructura de datos
 
-                        // Calcula el número de noches
-                        int numeroDeNoches = (int)(fechaFin - fechaInicio).TotalDays;
+                        
+
+
+                        DateTime fechaUno;
+                        DateTime.TryParseExact(parametro2, "d/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaUno);
+
+                        DateTime fechaDos;
+                        DateTime.TryParseExact(parametro1, "d/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaDos);
+
+                        TimeSpan diferencia = fechaUno - fechaDos;
+
+                        int diferenciaDias = diferencia.Days;
 
                         // Porcentajes de las tarifas adicionales (en este caso, 10% para limpieza, 2% para servicio, 5% para impuestos)
                         decimal porcentajeLimpieza = 0.20m;
@@ -89,16 +98,15 @@ namespace ProyectoTravelNest.pages
                         decimal impuestos = tarifaPorNoche * porcentajeImpuestos;
 
                         // Calcula el total de la tarifa por noche
-                        decimal totalPorNoche = tarifaPorNoche * numeroDeNoches;
+                        decimal totalPorNoche = tarifaPorNoche * diferenciaDias;
 
                         // Calcula el total de todas las tarifas
                         totalTarifas = totalPorNoche + tarifaLimpieza + tarifaServicio + impuestos;
 
                         // Asigna los resultados a los controles
-                        txtf_inicio.Text = fechaInicio.ToShortDateString();
-                        txtf_fin.Text = fechaFin.ToShortDateString();
-                        txthuesped.Text = numeroDeNoches.ToString();
-                        lblNoches.Text = string.Format("${0:N2} x {1} noches", tarifaPorNoche, numeroDeNoches);
+                        txtf_inicio.Text = parametro1;
+                        txtf_fin.Text = parametro2;
+                        lblNoches.Text = string.Format("${0:N2} x {1} noches", tarifaPorNoche, diferenciaDias);
                         lblLimpieza.Text = string.Format("${0:N2}", tarifaLimpieza);
                         lblServicio.Text = string.Format("${0:N2}", tarifaServicio);
                         lblImpuestos.Text = string.Format("${0:N2}", impuestos);

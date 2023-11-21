@@ -51,6 +51,7 @@ namespace ProyectoTravelNest
                     
 
                     PrivadaGestor1.Visible = false;
+                    PrivadaGestor2.Visible = false;
 
                     Registrarse.Visible = false;
                 }
@@ -65,6 +66,7 @@ namespace ProyectoTravelNest
                     
 
                     PrivadaGestor1.Visible = false;
+                    PrivadaGestor2.Visible = false;
 
                     Registrarse.Visible = false;
                 }
@@ -79,6 +81,7 @@ namespace ProyectoTravelNest
                     
 
                     PrivadaGestor1.Visible = true;
+                    PrivadaGestor2.Visible = true;
 
                     Registrarse.Visible = false;
                 }
@@ -112,6 +115,7 @@ namespace ProyectoTravelNest
 
 
             PrivadaGestor1.Visible = false;
+            PrivadaGestor2.Visible = false;
         }
     }
 }

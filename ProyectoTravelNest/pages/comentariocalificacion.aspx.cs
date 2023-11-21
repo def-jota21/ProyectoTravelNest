@@ -46,8 +46,7 @@ namespace ProyectoTravelNest.pages
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
-                    Response.Redirect("Default.aspx");
+                    lblNombreDestinatario.Text = "/ No hay Comentarios"; 
                 }
             }
         }

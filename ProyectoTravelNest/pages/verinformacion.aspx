@@ -63,7 +63,7 @@
                         <small class="mr-3"><i class="fa fa-user text-primary mr-1"></i> El anfitrión: </small>
                         <small class="mr-3"><i class="fa fa-star text-primary mr-1"></i><%# Eval("Calificacion") %></small>
 
-                        <small class="mr-3"><a href="/pages/comentariocalificacion?IdUsuario=<%# Request.QueryString["IdUsuario"] %>">Comentarios</a></small>
+                        <small class="mr-3"><a href="comentariocalificacion?IdUsuario=<%# Request.QueryString["IdUsuario"] %>">Comentarios</a></small>
                         <small class="mr-3"><i class="fa fa-medal text-primary mr-1"></i><%# Eval("TipoAnfitrion") %></small>
                         <small class="mr-3"><i class="fa fa-map-marker-alt text-primary mr-1"></i><%# Eval("Direccion") %></small>
 

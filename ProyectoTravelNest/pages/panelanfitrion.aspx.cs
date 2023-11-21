@@ -38,30 +38,30 @@ namespace ProyectoTravelNest.pages
         protected void lbtnReglas_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "reglas";
-            Response.Redirect("/pages/elegirinmueble.aspx");
+            Response.Redirect("~/pages/elegirinmueble.aspx");
         }
 
         protected void lbtnPromociones_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "promociones";
-            Response.Redirect("/pages/elegirinmueble.aspx");
+            Response.Redirect("~/pages/elegirinmueble.aspx");
         }
 
         protected void lbtnCalendario_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "modificarcalendarioreserva";
-            Response.Redirect("/pages/elegirinmueble.aspx");
+            Response.Redirect("~/pages/elegirinmueble.aspx");
         }
 
         protected void lbtnDescuentos_Click(object sender, EventArgs e)
         {
             Session["pagina"] = "descuentos";
-            Response.Redirect("/pages/elegirinmueble.aspx");
+            Response.Redirect("~/pages/elegirinmueble.aspx");
         }
 
         protected void lbtnVId_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/pages/verificaridentidad.aspx");
+            Response.Redirect("verificaridentidad.aspx");
         }
     }
 }

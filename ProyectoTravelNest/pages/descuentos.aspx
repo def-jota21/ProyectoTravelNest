@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="descuentos.aspx.cs" Inherits="ProyectoTravelNest.pages.descuentos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/stylesInmueble.css" rel="stylesheet" />
+    <link href="../Content/styleComentariosPendientes.css" rel="stylesheet" />
     <div class="container" style="margin-top: 6vh;">
         <h1>Agregar descuento</h1>
         <h5>Ingrese, modifique o elimine un descuento según sea necesario.</h5>

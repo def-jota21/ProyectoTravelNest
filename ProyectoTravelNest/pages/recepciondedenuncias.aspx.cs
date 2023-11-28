@@ -13,5 +13,10 @@ namespace ProyectoTravelNest.pages
         {
 
         }
+
+        protected void btnEnviarDenuncia_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

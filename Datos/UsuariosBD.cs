@@ -2,45 +2,101 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections.Generic;
+using Datos;
 
 namespace Entidades
 {
     public class UsuariosBD
     {
-        //string connectionString = "Data Source=tiusr21pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=ProyectoG6;User ID=Proyecto;Password=Proyecto#12345";
+        string connectionString = "Data Source=tiusr21pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=ProyectoG6;User ID=Proyecto;Password=Proyecto#12345";
 
-        //public Usuarios VerificarCredenciales(string correo, string contrasena)
-        //{
-        //    Usuarios usuario = null;
+        public DataTable ObtenerDatosUsuario(string idUsuario)
+        {
+            DataTable dtUsuario = new DataTable();
 
-        //    using (SqlConnection con = new SqlConnection(connectionString))
-        //    {
-        //        using (SqlCommand cmd = new SqlCommand("SP_IniciarSesion", con))
-        //        {
-        //            cmd.CommandType = CommandType.StoredProcedure;
-        //            cmd.Parameters.Add(new SqlParameter("@correo", correo));
-        //            cmd.Parameters.Add(new SqlParameter("@contra", contrasena));
-        //            con.Open();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Proyecto.ObtenerDatosUsuario", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
 
-        //            using (SqlDataReader dr = cmd.ExecuteReader())
-        //            {
-        //                if (dr.Read())
-        //                {
-        //                    usuario = new Usuarios()
-        //                    {
-        //                        IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                    con.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dtUsuario);
+                }
+            }
 
-        //                        T_Rol = dr["T_Rol"].ToString()[0]
+            return dtUsuario;
+        }
 
-        //                        // Asignar el resto de las propiedades
-        //                    };
-        //                }
-        //            }
-        //        }
-        //    }
 
-        //    return usuario;
-        //}
+
+        public void ActualizarUsuario(string idUsuario, string nombre,string apellidos, string correo, int telefono)
+        {
+            try
+            {
+                string spName = "SP_ActualizarUsuario";
+
+                var parametros = new List<SqlParameter>();
+                parametros.Add(new SqlParameter("@IdUsuario", idUsuario));
+                parametros.Add(new SqlParameter("@Nombre", nombre));
+                parametros.Add(new SqlParameter("@Apellidos", apellidos));
+                parametros.Add(new SqlParameter("@Correo", correo));
+                parametros.Add(new SqlParameter("@Telefono", telefono));
+                
+
+                ConexionSQL conexion = new ConexionSQL();
+                conexion.ExecuteSP(spName, parametros);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        public DataTable ObtenerContraseñaUsuario(string idUsuario)
+        {
+            DataTable dtUsuario = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("ObtenerContrasenaUsuario", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+
+                    con.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dtUsuario);
+                }
+            }
+
+            return dtUsuario;
+        }
+        public void ActualizarContrasenaUsuario(string Contrasena)
+        {
+            try
+            {
+                string spName = "ActualizarContrasenaUsuario";
+
+                var parametros = new List<SqlParameter>();
+                parametros.Add(new SqlParameter("@Contrasena", Contrasena));
+                ConexionSQL conexion = new ConexionSQL();
+                conexion.ExecuteSP(spName, parametros);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
+
+
+
+
 

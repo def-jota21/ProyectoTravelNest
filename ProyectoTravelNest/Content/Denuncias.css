@@ -1,0 +1,88 @@
+﻿:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #7AB730;
+    --secondary: #f4faec;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #FFFFFF;
+    --dark: #212121;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: "Poppins", sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f4f4f4;
+    padding-top: 10px;
+}
+
+.container mt-4, h1 {
+    display: flex;
+    flex-flow: column;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+
+.btn {
+    background-color: #95CF48;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 550px; /* Puedes ajustar este valor según tus necesidades */
+}
+
+    .btn:hover {
+        background-color: #95CF48;
+    }
+
+@media (min-width: var(--breakpoint-sm)) {
+    .container, h1 {
+        margin-top: 20px; /* Ajuste del margen superior para pantallas pequeñas y más grandes */
+    }
+
+    .btn {
+        margin-left: 10px; /* Ajuste del margen izquierdo para pantallas pequeñas y más grandes */
+    }
+}

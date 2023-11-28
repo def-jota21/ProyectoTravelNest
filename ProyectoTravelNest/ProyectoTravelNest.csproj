@@ -157,6 +157,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\DatosPersonales.css" />
+    <Content Include="Content\Denuncias.css" />
     <Content Include="Content\estiloSite.css" />
     <Content Include="Content\Favoritos.css" />
     <Content Include="Content\ModificarCalendarioReserva.css" />

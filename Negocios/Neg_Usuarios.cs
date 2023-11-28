@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
+using Entidades;
 
 namespace Negocios
 {
@@ -200,5 +201,36 @@ namespace Negocios
         }
 
         //Fin metodos obtener notificaciones
+
+        public UsuariosBD UsuariosBD = new UsuariosBD();
+
+        public DataTable ObtenerDatosUsuario(string idUsuario)
+        {
+        
+            return UsuariosBD.ObtenerDatosUsuario(idUsuario);
+        }
+        public void ActualizarUsuario(Usuarios usuario)
+        {
+            UsuariosBD datos = new UsuariosBD();
+
+            datos.ActualizarUsuario(usuario.IdUsuario, usuario.Nombre,usuario.Apellidos, usuario.Correo, usuario.Telefono);
+
+
+        }
+        public DataTable ObtenerContraseñaUsuario(string idUsuario)
+        {
+
+            return UsuariosBD.ObtenerContraseñaUsuario(idUsuario);
+        }
+
+        public void ActualizarContrasenaUsuario(Usuarios usuario)
+        {
+            UsuariosBD datos = new UsuariosBD();
+
+            datos.ActualizarContrasenaUsuario(usuario.Contrasena);
+        }
     }
+
 }
+
+

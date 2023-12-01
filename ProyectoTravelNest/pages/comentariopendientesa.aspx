@@ -69,6 +69,31 @@
         #txtcomentarioPublico {
             resize: none;
         }
+
+        .btn-realizar-comentario {
+            font-size: 16px; /* o el tamaño que prefieras */
+        }
+
+        /* Estilo para pantallas medianas */
+        @media screen and (max-width: 768px) {
+            .btn-realizar-comentario {
+                font-size: 14px;
+            }
+        }
+
+        /* Estilo para pantallas pequeñas */
+        @media screen and (max-width: 576px) {
+            .btn-realizar-comentario {
+                font-size: 14px;
+            }
+        }
+
+        .btn-center-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 47px; /* Mantén la altura deseada */
+        }
     </style>
 
     <div class="container">
@@ -76,6 +101,7 @@
         <div class="container">
             <div class="row">
                 <h3>Comentarios y Evaluaciones Pendientes</h3>
+                <a style="margin-bottom:4px !important;" href="panelanfitrion.aspx"><i class="fa fa-arrow-left text-primary mr-2"></i>Regresar</a>
                 <div class="col-lg-12 col-md-12 col-sm-12 my-2">
                     <div class="row">
                         <asp:Repeater ID="rptComentariosPendientes" runat="server">
@@ -102,10 +128,14 @@
                                                 </div>
                                                 <div class="border-top mt-4 pt-4">
                                                     <div class="d-flex justify-content-between">
-                                                        <asp:Button ID="btnRealizarComentario" runat="server" Text="          Realizar Comentario" CssClass="btn btn-primary btn-block"
-                                                            Style="height: 47px; margin-top: -2px; text-align: center;" CommandName="RealizarComentario"
-                                                            CommandArgument='<%# $"{Eval("IdHuesped")},{Eval("IdReservacion")}" %>' OnCommand="btnRealizarComentario_Command"
+                                                        <asp:Button ID="btnRealizarComentario" runat="server" Text="Realizar Comentario"
+                                                            CssClass="btn btn-primary btn-block btn-realizar-comentario btn-center-text"
+                                                            Style="height: 47px; margin-top: -2px; text-align: center;"
+                                                            CommandName="RealizarComentario"
+                                                            CommandArgument='<%# $"{Eval("IdHuesped")},{Eval("IdReservacion")}" %>'
+                                                            OnCommand="btnRealizarComentario_Command"
                                                             UseSubmitBehavior="false" />
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,21 +171,21 @@
     <script src="js/main.js"></script>
 
     <script>
-    $(document).ready(function () {
-        // Encuentra todas las tarjetas en el repeater
-        var cards = $(".package-item");
+        $(document).ready(function () {
+            // Encuentra todas las tarjetas en el repeater
+            var cards = $(".package-item");
 
-        // Encuentra la altura máxima entre todas las tarjetas
-        var maxHeight = 0;
-        cards.each(function () {
-            var cardHeight = $(this).outerHeight();
-            if (cardHeight > maxHeight) {
-                maxHeight = cardHeight;
-            }
+            // Encuentra la altura máxima entre todas las tarjetas
+            var maxHeight = 0;
+            cards.each(function () {
+                var cardHeight = $(this).outerHeight();
+                if (cardHeight > maxHeight) {
+                    maxHeight = cardHeight;
+                }
+            });
+
+            // Establece la misma altura máxima para todas las tarjetas
+            cards.css("height", maxHeight + "px");
         });
-
-        // Establece la misma altura máxima para todas las tarjetas
-        cards.css("height", maxHeight + "px");
-    });
     </script>
 </asp:Content>

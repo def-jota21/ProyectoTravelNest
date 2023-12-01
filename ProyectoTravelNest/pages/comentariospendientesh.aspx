@@ -31,20 +31,21 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <style>
-         .package-item {
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-     height: 100%;
- }
+        .package-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
 
-     .package-item .p-4 {
-         flex: 1;
-     }
+            .package-item .p-4 {
+                flex: 1;
+            }
 
-     .package-item .btnVerInformacion {
-         align-self: flex-end;
-     }
+            .package-item .btnVerInformacion {
+                align-self: flex-end;
+            }
+
         .center-content {
             display: flex;
             flex-direction: column;
@@ -68,6 +69,32 @@
         #txtcomentarioPublico {
             resize: none;
         }
+
+        /* Estilo por defecto para pantallas grandes */
+        .btn-realizar-comentario {
+            font-size: 16px; /* o el tamaño que prefieras */
+        }
+
+        /* Estilo para pantallas medianas */
+        @media screen and (max-width: 768px) {
+            .btn-realizar-comentario {
+                font-size: 14px;
+            }
+        }
+
+        /* Estilo para pantallas pequeñas */
+        @media screen and (max-width: 576px) {
+            .btn-realizar-comentario {
+                font-size: 14px;
+            }
+        }
+
+        .btn-center-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 47px; /* Mantén la altura deseada */
+        }
     </style>
 
     <div class="container">
@@ -75,13 +102,14 @@
         <div class="container">
             <div class="row">
                 <h3>Comentarios y Evaluaciones Pendientes</h3>
+                <a style="margin-bottom:4px !important;" href="paneladministracionhuesped.aspx"><i class="fa fa-arrow-left text-primary mr-2"></i>Regresar</a>
                 <div class="col-lg-12 col-md-12 col-sm-12 my-2">
                     <div class="row">
                         <asp:Repeater ID="rptComentariosPendientes" runat="server">
                             <ItemTemplate>
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="package-item bg-white mb-2">
-                                        <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server" style="min-height:240px !important;"
+                                        <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server" Style="min-height: 240px !important;"
                                             src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "" %>'
                                             AlternateText="Imagen del mueble" />
 
@@ -101,10 +129,14 @@
                                                 </div>
                                                 <div class="border-top mt-4 pt-4">
                                                     <div class="d-flex justify-content-between">
-                                                        <asp:Button ID="btnRealizarComentario" runat="server" Text="          Realizar Comentario" CssClass="btn btn-primary btn-block"
-                                                            Style="height: 47px; margin-top: -2px; text-align: center;" CommandName="RealizarComentario"
-                                                            CommandArgument='<%# $"{Eval("idAnfitrion")},{Eval("IdReservacion")}" %>' OnCommand="btnRealizarComentario_Command"
+                                                        <asp:Button ID="btnRealizarComentario" runat="server" Text="Realizar Comentario"
+                                                            CssClass="btn btn-primary btn-block btn-center-text"
+                                                            CommandName="RealizarComentario"
+                                                            CommandArgument='<%# $"{Eval("idAnfitrion")},{Eval("IdReservacion")}" %>'
+                                                            OnCommand="btnRealizarComentario_Command"
                                                             UseSubmitBehavior="false" />
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,21 +173,21 @@
 
 
     <script>
-    $(document).ready(function () {
-        // Encuentra todas las tarjetas en el repeater
-        var cards = $(".package-item");
+        $(document).ready(function () {
+            // Encuentra todas las tarjetas en el repeater
+            var cards = $(".package-item");
 
-        // Encuentra la altura máxima entre todas las tarjetas
-        var maxHeight = 0;
-        cards.each(function () {
-            var cardHeight = $(this).outerHeight();
-            if (cardHeight > maxHeight) {
-                maxHeight = cardHeight;
-            }
+            // Encuentra la altura máxima entre todas las tarjetas
+            var maxHeight = 0;
+            cards.each(function () {
+                var cardHeight = $(this).outerHeight();
+                if (cardHeight > maxHeight) {
+                    maxHeight = cardHeight;
+                }
+            });
+
+            // Establece la misma altura máxima para todas las tarjetas
+            cards.css("height", maxHeight + "px");
         });
-
-        // Establece la misma altura máxima para todas las tarjetas
-        cards.css("height", maxHeight + "px");
-    });
     </script>
 </asp:Content>

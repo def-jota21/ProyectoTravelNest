@@ -269,5 +269,37 @@ namespace Negocios
 
             return dt;
         }
+
+        public DataTable ObtenerCategorias()
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "CRUDCategorias";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@Accion", 1));
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
+
+        public void agregarCategorias(String Categoria)
+        {
+
+            try
+            {
+                string strNombreSP = "CRUDCategorias";
+                List<SqlParameter> lstParametros = new List<SqlParameter>();
+                lstParametros.Add(new SqlParameter("@Accion", 2));
+                lstParametros.Add(new SqlParameter("@Categoria", Categoria));
+
+                Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }

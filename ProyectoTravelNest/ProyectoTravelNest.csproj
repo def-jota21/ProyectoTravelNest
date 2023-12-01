@@ -220,11 +220,8 @@
     <Content Include="pages\cotizacion.aspx" />
     <Content Include="pages\crearalojamiento.aspx" />
     <Content Include="pages\crearcuenta.aspx" />
-
     <Content Include="pages\dashbord.aspx" />
-
     <Content Include="pages\cuponeshuesped.aspx" />
-
     <Content Include="pages\datospersonales.aspx" />
     <Content Include="pages\descuentos.aspx" />
     <Content Include="pages\editaranuncio.aspx" />
@@ -252,9 +249,7 @@
     <Content Include="pages\tiposalojamiento.aspx" />
     <Content Include="pages\validartoken.aspx" />
     <Content Include="pages\validartokenmibanco.aspx" />
-
     <Content Include="pages\vergenerarcupon.aspx" />
-
     <Content Include="pages\verificaridentidad.aspx" />
     <Content Include="pages\verinformacion.aspx" />
     <Content Include="pages\viajecentroayuda.aspx" />
@@ -473,14 +468,13 @@
     <Compile Include="pages\crearcuenta.aspx.designer.cs">
       <DependentUpon>crearcuenta.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="pages\dashbord.aspx.cs">
       <DependentUpon>dashbord.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\dashbord.aspx.designer.cs">
       <DependentUpon>dashbord.aspx</DependentUpon>
-
+    </Compile>
     <Compile Include="pages\cuponeshuesped.aspx.cs">
       <DependentUpon>cuponeshuesped.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -670,21 +664,19 @@
     <Compile Include="pages\validartoken.aspx.designer.cs">
       <DependentUpon>validartoken.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="pages\validartokenmibanco.aspx.cs">
       <DependentUpon>validartokenmibanco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\validartokenmibanco.aspx.designer.cs">
       <DependentUpon>validartokenmibanco.aspx</DependentUpon>
-
+    </Compile>
     <Compile Include="pages\vergenerarcupon.aspx.cs">
       <DependentUpon>vergenerarcupon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\vergenerarcupon.aspx.designer.cs">
       <DependentUpon>vergenerarcupon.aspx</DependentUpon>
-
     </Compile>
     <Compile Include="pages\verificaridentidad.aspx.cs">
       <DependentUpon>verificaridentidad.aspx</DependentUpon>

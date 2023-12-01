@@ -113,6 +113,19 @@ namespace Negocios
 
             return dt;
         }
+        public DataTable ListarInmueblesInactivosAnfitrion(string idAnfitrion)
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "AlojamientosInactivoAnfitrion";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@IdAnfitrion", idAnfitrion));
+
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
 
         public DataTable ListarPolitica(int idPolitica)
         {

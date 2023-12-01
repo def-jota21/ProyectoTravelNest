@@ -3,7 +3,10 @@ using Negocios;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -13,6 +16,7 @@ namespace ProyectoTravelNest.pages
 {
     public partial class AgregarMiBanco : System.Web.UI.Page
     {
+        private static string token;
         Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -60,26 +64,72 @@ namespace ProyectoTravelNest.pages
                 lblMensaje.Visible = true;
                 return; // Sale del evento si la longitud no es 3
             }
+     
+            var negocioUsuarios = new Neg_Usuarios();
+            var negocioMiBanco = new Neg_MiBanco();
+            bool usuario = negocioMiBanco.VerificarMiBanco(numeroCuenta);
 
-            // Si se pasa por todas las validaciones, procede a realizar la inserción
-            Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
-            string mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numeroCuenta, cvv, eUsuarios.T_Rol.ToString());
-
-            // Mostrar mensaje de éxito o error
-            
-            
-            if (mensaje == "Exito")
+            if (usuario)
             {
-                string script = "Swal.fire('¡Éxito!', 'Los datos se almacenaron correctamente.', 'success');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                Response.Redirect("paneladministracionhuesped.aspx");
+                lblMensaje.Text = "La cuenta ya esta enlazada en otra cuenta.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Visible = true;
+                return;
             }
+            bool existe = negocioMiBanco.ValidarExistenciaEnMiBanco(eUsuarios.IdUsuario, numeroCuenta, cvv, "");
+            if (existe)
+            {
+
+                // Generar un token aleatorio de 6 dígitos
+                token = negocioUsuarios.GenerarToken();
+
+                // Correo electrónico del destinatario
+                string destinatario = eUsuarios.Correo;
+
+                // Enviar el correo electrónico con el token
+                negocioUsuarios.EnviarCorreoElectronico(destinatario, token);
+
+                //string parametrosEncriptados = EncriptarParametros(correo + "|" + contrasena + "|" + token);
+                //string parametrosEncriptadosUrl = HttpUtility.UrlEncode(parametrosEncriptados);
+
+                //Response.Redirect("validartoken.aspx?parametros=" + parametrosEncriptadosUrl);
+
+                Response.Redirect("validartoken.aspx?parametro1=" + numeroCuenta + "&parametro2=" + cvv + "&parametro3=" + token + "");
+            }
+
             else
             {
-                lblMensaje.Text = mensaje;
-              
-                lblMensaje.ForeColor = mensaje.Contains("éxito") ? System.Drawing.Color.Green : System.Drawing.Color.Red;
-                lblMensaje.Visible = true;
+                string script = "Swal.fire('¡Error!', 'Los datos no coinciden', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+            }
+        }
+
+        private string EncriptarParametros(string parametros)
+        {
+            string clave = "c0ntr4s3n14S3gUr4*";
+
+            // Asegúrate de que la clave tenga un tamaño válido para AES (128, 192 o 256 bits)
+            byte[] claveBytes = Encoding.UTF8.GetBytes(clave);
+            Array.Resize(ref claveBytes, 32); // Ajusta la longitud a 256 bits (32 bytes)
+
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = claveBytes;
+                aesAlg.IV = new byte[aesAlg.BlockSize / 8];
+
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            swEncrypt.Write(parametros);
+                        }
+                    }
+                    return Convert.ToBase64String(msEncrypt.ToArray());
+                }
             }
         }
     }

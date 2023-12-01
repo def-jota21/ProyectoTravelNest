@@ -18,6 +18,7 @@
 
     <div class="container-fluid">
         <div class="container pt-5 pb-3">
+            <h2 class="mb-5">Centro de Ayuda</h2>
             <a class="h3 mx-2">Huesped</a>
             <a class="h3">Anfitrión</a>
             <div class="row">

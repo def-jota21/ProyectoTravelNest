@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocios;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,34 +9,34 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocios;
 
 namespace ProyectoTravelNest.pages
 {
-    public partial class validartoken : System.Web.UI.Page
+    public partial class validartokenmibanco : System.Web.UI.Page
     {
-        static string correo;
-        static string contrasena;
+        static string numero_cuenta;
+        static string cvv;
         static string token;
+        Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
             //string parametrosEncriptados = Request.QueryString["parametros"];
             //string parametrosDesencriptados = DesencriptarParametros(parametrosEncriptados);
 
             //string[] parametros = parametrosDesencriptados.Split('|');
-            //correo = parametros[0];
-            //contrasena = parametros[1];
+            //numero_cuenta = parametros[0];
+            //cvv = parametros[1];
             //token = parametros[2];
 
-            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            eUsuarios = Session["IdUsuario"] as Entidades.Usuarios; ;
 
             if (eUsuarios != null)
             {
                 Response.Redirect("Default.aspx");
             }
 
-            correo = Request.QueryString["parametro1"];
-            contrasena = Request.QueryString["parametro2"];
+            numero_cuenta = Request.QueryString["parametro1"];
+            cvv = Request.QueryString["parametro2"];
             token = Request.QueryString["parametro3"];
         }
         private string DesencriptarParametros(string parametrosEncriptados)
@@ -97,35 +98,33 @@ namespace ProyectoTravelNest.pages
         protected void btnValidarToken_Click(object sender, EventArgs e)
         {
             string clave = txtToken.Text;
+            string mensaje = "";
+            if (clave != null)
+            {
 
-            if(clave != null) { 
-                
-                if (clave == token) {
+                if (clave == token)
+                {
                     
-
-                    // Instancia de la clase de negocios para verificar las credenciales
-                    var negocioUsuarios = new Neg_Usuarios();
-                    var usuario = negocioUsuarios.VerificarCredenciales(correo, contrasena);
-
-                    if (usuario != null)
-                    {
-                        // Si el rol es A o H, inicia sesión
-                        if (usuario.T_Rol == 'A' || usuario.T_Rol == 'H' || usuario.T_Rol == 'G')
+                        // Si el rol es A o H
+                        if (eUsuarios.T_Rol == 'A')
                         {
                             token = "";
-                            Session["IdUsuario"] = usuario;
-                            FormsAuthentication.RedirectFromLoginPage(usuario.IdUsuario, false);
-                            Response.Redirect("../Default.aspx"); // Redirige a la página de inicio
+                            Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
+                            mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numero_cuenta, cvv, eUsuarios.T_Rol.ToString());
+                            Response.Redirect("panelanfitrion.aspx");
 
                         }
-                        else
+                        if (eUsuarios.T_Rol == 'H' )
                         {
-                            // Manejar roles no autorizados o mostrar mensaje
+                            token = "";
+                            Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
+                            mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numero_cuenta, cvv, eUsuarios.T_Rol.ToString());
+                            Response.Redirect("paneladministracionhuesped.aspx"); 
+
                         }
-                    }
                 }
             }
-            
+
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Entidades;
-using Negocios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace ProyectoTravelNest.pages
 {
-    public partial class anunciospublicados : System.Web.UI.Page
+    public partial class anunciosguardados : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,10 +24,10 @@ namespace ProyectoTravelNest.pages
                 Negocios.Negocio_Inmuebles iInmueble = new Negocios.Negocio_Inmuebles();
 
                 //aca tambien se debe de obtener la variable session al inciciar sesion
-                rptAlojamientos.DataSource = iInmueble.ListarInmueblesAnfitrion(eUsuarios.IdUsuario);
+                rptAlojamientos.DataSource = iInmueble.ListarInmueblesInactivosAnfitrion(eUsuarios.IdUsuario);
                 rptAlojamientos.DataBind();
             }
-            
+
         }
 
         protected void btnVerInformacion_Command(object sender, CommandEventArgs e)
@@ -51,7 +49,6 @@ namespace ProyectoTravelNest.pages
 
         protected void btnModificar_Command(object sender, CommandEventArgs e)
         {
-            bool modifico = false;
             if (e.CommandName == "Modificar")
             {
                 string[] args = e.CommandArgument.ToString().Split(',');
@@ -62,21 +59,7 @@ namespace ProyectoTravelNest.pages
                     string IdInmueble = args[1].Trim();
 
                     // Redirige a la página de destino con los parámetros
-                    Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
-                    modifico = neg_Inmueble.CambiarEstadoInactivo(IdInmueble);
-                }
-
-                if (modifico)
-                {
-                    string script = "Swal.fire('¡Éxito!', 'Se agrego a lista de Guardados', 'success');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                    //Response.Redirect("editaranuncio.aspx");
-                }
-                else
-                {
-                    string script = "Swal.fire('ERROR', 'Ocurrio un error.', 'error');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                    //Response.Redirect("editaranuncio.aspx");
+                    Response.Redirect($"editaranuncio.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");
                 }
             }
         }
@@ -85,7 +68,5 @@ namespace ProyectoTravelNest.pages
         {
             Response.Redirect($"crearalojamiento.aspx");
         }
-
-
     }
 }

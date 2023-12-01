@@ -40,21 +40,6 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-
-                <div class="col-lg-4 col-md-6 ">
-                    <div class="package-item bg-white ">
-                        <div class="p-4">
-                            <div class="mt-4 mb-4">
-                                <div class="d-flex justify-content-between">
-
-                                    <asp:Button ID="btnCrear" runat="server" Text="Agregar Anuncio" CssClass="btn btn-primary btn-block"
-                                        Style="height: 47px; margin-top: -2px;" OnClick="btnCrear_Click" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

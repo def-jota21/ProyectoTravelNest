@@ -29,13 +29,13 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
-                
+
             }
         }
 
         protected void btnGuardarMiBanco_Click(object sender, EventArgs e)
         {
-            
+
             string numeroCuenta = txtNumeroCuenta.Text.Trim();
             string cvv = txtCVV.Text.Trim();
 
@@ -64,7 +64,7 @@ namespace ProyectoTravelNest.pages
                 lblMensaje.Visible = true;
                 return; // Sale del evento si la longitud no es 3
             }
-     
+
             var negocioUsuarios = new Neg_Usuarios();
             var negocioMiBanco = new Neg_MiBanco();
             bool usuario = negocioMiBanco.VerificarMiBanco(numeroCuenta);
@@ -82,9 +82,9 @@ namespace ProyectoTravelNest.pages
 
                 // Generar un token aleatorio de 6 dígitos
                 token = negocioUsuarios.GenerarToken();
-
+                Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
                 // Correo electrónico del destinatario
-                string destinatario = eUsuarios.Correo;
+                string destinatario = neg_Inmueble.ObtenerCorreo(eUsuarios.IdUsuario);
 
                 // Enviar el correo electrónico con el token
                 negocioUsuarios.EnviarCorreoElectronico(destinatario, token);
@@ -94,7 +94,7 @@ namespace ProyectoTravelNest.pages
 
                 //Response.Redirect("validartoken.aspx?parametros=" + parametrosEncriptadosUrl);
 
-                Response.Redirect("validartoken.aspx?parametro1=" + numeroCuenta + "&parametro2=" + cvv + "&parametro3=" + token + "");
+                Response.Redirect("validartokenmibanco.aspx?parametro1="+numeroCuenta+"&parametro2="+cvv+"&parametro3="+token+"");
             }
 
             else

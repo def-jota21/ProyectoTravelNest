@@ -15,7 +15,7 @@ namespace Negocios
             
             mibanconeg.mibanco iBanco = new mibanconeg.mibanco();
 
-            if (iBanco.ValidarExistencia(NumeroCuenta, cvv, t_rol))
+            if (iBanco.ValidarExistencia(NumeroCuenta, cvv, IdUsuario))
             {
                 mensaje = miBancoSQL.InsertarUsuarioMiBanco(IdUsuario, NumeroCuenta, cvv);
             }

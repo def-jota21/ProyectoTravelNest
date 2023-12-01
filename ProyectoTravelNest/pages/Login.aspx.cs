@@ -55,7 +55,7 @@ namespace ProyectoTravelNest.pages
 
                 //Response.Redirect("validartoken.aspx?parametros=" + parametrosEncriptadosUrl);
 
-                Response.Redirect("validartoken.aspx?parametro1=" + correo + "&parametro2=" + contrasena + "&parametro3=" + token + "");
+                Response.Redirect("validartoken.aspx?parametro1="+correo+"&parametro2="+contrasena+"&parametro3="+token+"");
             }
         }
 

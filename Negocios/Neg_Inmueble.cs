@@ -29,6 +29,56 @@ namespace Negocios
 
             return tablaPoliticas;
         }
+        public int ObtenerContadorInmuebleActivos()
+        {
+            
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            int count = inmuebleSQL.EjecutarContadorInmuebles(1);
+
+            return count;
+        }
+        public int ObtenerContadorInmuebleInactivos()
+        {
+
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            int count = inmuebleSQL.EjecutarContadorInmuebles(2);
+
+            return count;
+        }
+
+        public int ObtenerContadorUsuarioseActivos()
+        {
+
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            int count = inmuebleSQL.EjecutarContadorUsuario(1);
+
+            return count;
+        }
+        public int ObtenerContadorusuariosInactivos()
+        {
+
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            int count = inmuebleSQL.EjecutarContadorUsuario(2);
+
+            return count;
+        }
+
+        public int ObtenerContadorReserFinal()
+        {
+
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            int count = inmuebleSQL.EjecutarContadorReservaciones(1);
+
+            return count;
+        }
+        public int ObtenerContadorReserActivo()
+        {
+
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            int count = inmuebleSQL.EjecutarContadorReservaciones(2);
+
+            return count;
+        }
         public DataTable ObtenerCategorias()
         {
             DataTable tablaServicios = new DataTable();
@@ -54,7 +104,15 @@ namespace Negocios
 
             return tablaServicios;
         }
-         
+        public DataTable ObtenerContadorCategorias()
+        {
+            DataTable tabla = new DataTable();
+            Datos.InmuebleSQL SQL = new Datos.InmuebleSQL();
+            tabla = SQL.ObtenerContadoresCategoria();
+
+            return tabla;
+        }
+
         public List<Tuple<string, string>> ObtenerAmenidadDelInmueble(string idInmueble)
         {
 
@@ -105,6 +163,20 @@ namespace Negocios
             return id;
         }
 
+        public string ObtenerIdAnfitrion(string idInmueble)
+        {
+            String id = "";
+            InmuebleSQL inmuebleSQL = new InmuebleSQL();
+            id = inmuebleSQL.ObtenerIdAnfitrion(idInmueble);
+            return id;
+        }
+        public string ObtenerCorreo(string id)
+        {
+            String correo = "";
+            InmuebleSQL inmuebleSQL = new InmuebleSQL();
+            correo = inmuebleSQL.ObtenerCorreo(id);
+            return correo;
+        }
         public bool EditarInmueble(Entidades.Inmueble inmueble, string categoria,string IdUsuario)
         {
             Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();

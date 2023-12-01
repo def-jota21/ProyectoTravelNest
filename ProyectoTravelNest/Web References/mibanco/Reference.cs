@@ -35,6 +35,8 @@ namespace ProyectoTravelNest.mibanco {
         
         private System.Threading.SendOrPostCallback listarDatosOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ValidarPagoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -83,6 +85,9 @@ namespace ProyectoTravelNest.mibanco {
         public event listarDatosCompletedEventHandler listarDatosCompleted;
         
         /// <remarks/>
+        public event ValidarPagoCompletedEventHandler ValidarPagoCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -111,26 +116,28 @@ namespace ProyectoTravelNest.mibanco {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidarExistencia", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool ValidarExistencia(string numTarjeta, string cvv) {
+        public bool ValidarExistencia(string numTarjeta, string cvv, string identificacion) {
             object[] results = this.Invoke("ValidarExistencia", new object[] {
                         numTarjeta,
-                        cvv});
+                        cvv,
+                        identificacion});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void ValidarExistenciaAsync(string numTarjeta, string cvv) {
-            this.ValidarExistenciaAsync(numTarjeta, cvv, null);
+        public void ValidarExistenciaAsync(string numTarjeta, string cvv, string identificacion) {
+            this.ValidarExistenciaAsync(numTarjeta, cvv, identificacion, null);
         }
         
         /// <remarks/>
-        public void ValidarExistenciaAsync(string numTarjeta, string cvv, object userState) {
+        public void ValidarExistenciaAsync(string numTarjeta, string cvv, string identificacion, object userState) {
             if ((this.ValidarExistenciaOperationCompleted == null)) {
                 this.ValidarExistenciaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidarExistenciaOperationCompleted);
             }
             this.InvokeAsync("ValidarExistencia", new object[] {
                         numTarjeta,
-                        cvv}, this.ValidarExistenciaOperationCompleted, userState);
+                        cvv,
+                        identificacion}, this.ValidarExistenciaOperationCompleted, userState);
         }
         
         private void OnValidarExistenciaOperationCompleted(object arg) {
@@ -166,6 +173,45 @@ namespace ProyectoTravelNest.mibanco {
             if ((this.listarDatosCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.listarDatosCompleted(this, new listarDatosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidarPago", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool ValidarPago(int Opcion, float TotalRebajar, string IdHuesped, string IdAnfitrion, float SubTotal, float TotalTravelNest) {
+            object[] results = this.Invoke("ValidarPago", new object[] {
+                        Opcion,
+                        TotalRebajar,
+                        IdHuesped,
+                        IdAnfitrion,
+                        SubTotal,
+                        TotalTravelNest});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ValidarPagoAsync(int Opcion, float TotalRebajar, string IdHuesped, string IdAnfitrion, float SubTotal, float TotalTravelNest) {
+            this.ValidarPagoAsync(Opcion, TotalRebajar, IdHuesped, IdAnfitrion, SubTotal, TotalTravelNest, null);
+        }
+        
+        /// <remarks/>
+        public void ValidarPagoAsync(int Opcion, float TotalRebajar, string IdHuesped, string IdAnfitrion, float SubTotal, float TotalTravelNest, object userState) {
+            if ((this.ValidarPagoOperationCompleted == null)) {
+                this.ValidarPagoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidarPagoOperationCompleted);
+            }
+            this.InvokeAsync("ValidarPago", new object[] {
+                        Opcion,
+                        TotalRebajar,
+                        IdHuesped,
+                        IdAnfitrion,
+                        SubTotal,
+                        TotalTravelNest}, this.ValidarPagoOperationCompleted, userState);
+        }
+        
+        private void OnValidarPagoOperationCompleted(object arg) {
+            if ((this.ValidarPagoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ValidarPagoCompleted(this, new ValidarPagoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -262,6 +308,32 @@ namespace ProyectoTravelNest.mibanco {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ValidarPagoCompletedEventHandler(object sender, ValidarPagoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ValidarPagoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ValidarPagoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

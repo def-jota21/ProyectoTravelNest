@@ -28,16 +28,18 @@ namespace ProyectoTravelNest.pages
             //cvv = parametros[1];
             //token = parametros[2];
 
-            eUsuarios = Session["IdUsuario"] as Entidades.Usuarios; ;
+            eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            if (eUsuarios != null)
+            if (eUsuarios == null)
             {
-                Response.Redirect("Default.aspx");
+                FormsAuthentication.RedirectToLoginPage();
             }
-
-            numero_cuenta = Request.QueryString["parametro1"];
-            cvv = Request.QueryString["parametro2"];
-            token = Request.QueryString["parametro3"];
+            if (!IsPostBack & eUsuarios != null)
+            {
+                numero_cuenta = Request.QueryString["parametro1"];
+                cvv = Request.QueryString["parametro2"];
+                token = Request.QueryString["parametro3"];
+            }
         }
         private string DesencriptarParametros(string parametrosEncriptados)
         {
@@ -91,10 +93,6 @@ namespace ProyectoTravelNest.pages
             }
         }
 
-
-
-
-
         protected void btnValidarToken_Click(object sender, EventArgs e)
         {
             string clave = txtToken.Text;
@@ -104,24 +102,24 @@ namespace ProyectoTravelNest.pages
 
                 if (clave == token)
                 {
-                    
-                        // Si el rol es A o H
-                        if (eUsuarios.T_Rol == 'A')
-                        {
-                            token = "";
-                            Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
-                            mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numero_cuenta, cvv, eUsuarios.T_Rol.ToString());
-                            Response.Redirect("panelanfitrion.aspx");
 
-                        }
-                        if (eUsuarios.T_Rol == 'H' )
-                        {
-                            token = "";
-                            Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
-                            mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numero_cuenta, cvv, eUsuarios.T_Rol.ToString());
-                            Response.Redirect("paneladministracionhuesped.aspx"); 
+                    // Si el rol es A o H
+                    if (eUsuarios.T_Rol == 'A')
+                    {
+                        token = "";
+                        Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
+                        mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numero_cuenta, cvv, eUsuarios.T_Rol.ToString());
+                        Response.Redirect("panelanfitrion.aspx");
 
-                        }
+                    }
+                    if (eUsuarios.T_Rol == 'H')
+                    {
+                        token = "";
+                        Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
+                        mensaje = neg_MiBanco.InsertarCuentaMiBanco(eUsuarios.IdUsuario, numero_cuenta, cvv, eUsuarios.T_Rol.ToString());
+                        Response.Redirect("paneladministracionhuesped.aspx");
+
+                    }
                 }
             }
 

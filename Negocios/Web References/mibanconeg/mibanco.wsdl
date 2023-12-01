@@ -17,7 +17,7 @@
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="numTarjeta" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="cvv" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="t_rol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="identificacion" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -47,6 +47,25 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ValidarPago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Opcion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TotalRebajar" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdHuesped" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdAnfitrion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SubTotal" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="TotalTravelNest" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidarPagoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidarPagoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -67,6 +86,12 @@
   <wsdl:message name="listarDatosSoapOut">
     <wsdl:part name="parameters" element="tns:listarDatosResponse" />
   </wsdl:message>
+  <wsdl:message name="ValidarPagoSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidarPago" />
+  </wsdl:message>
+  <wsdl:message name="ValidarPagoSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidarPagoResponse" />
+  </wsdl:message>
   <wsdl:portType name="mibancoSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -79,6 +104,10 @@
     <wsdl:operation name="listarDatos">
       <wsdl:input message="tns:listarDatosSoapIn" />
       <wsdl:output message="tns:listarDatosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidarPago">
+      <wsdl:input message="tns:ValidarPagoSoapIn" />
+      <wsdl:output message="tns:ValidarPagoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="mibancoSoap" type="tns:mibancoSoap">
@@ -110,6 +139,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ValidarPago">
+      <soap:operation soapAction="http://tempuri.org/ValidarPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="mibancoSoap12" type="tns:mibancoSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -133,6 +171,15 @@
     </wsdl:operation>
     <wsdl:operation name="listarDatos">
       <soap12:operation soapAction="http://tempuri.org/listarDatos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarPago">
+      <soap12:operation soapAction="http://tempuri.org/ValidarPago" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

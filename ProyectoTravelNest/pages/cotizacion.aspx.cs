@@ -24,6 +24,8 @@ namespace ProyectoTravelNest.pages
         static string parametro5 = "";
         static string parametro6 = "";
         static decimal totalTarifas;
+        static decimal tarifaPorNoche;
+        static decimal tarifaServicio;
         static bool aplicoCupon = false;
         Entidades.Usuarios eUsuarios;
         protected void Page_Load(object sender, EventArgs e)
@@ -88,7 +90,7 @@ namespace ProyectoTravelNest.pages
                         txthuesped.Text = parametro4;
 
                        
-                        decimal tarifaPorNoche = decimal.Parse(dtInformacionInmueble.Rows[0][7].ToString()); // Ajusta esto según tu estructura de datos
+                        tarifaPorNoche = decimal.Parse(dtInformacionInmueble.Rows[0][7].ToString()); // Ajusta esto según tu estructura de datos
 
                         
 
@@ -110,7 +112,7 @@ namespace ProyectoTravelNest.pages
 
                         // Calcula las tarifas adicionales como porcentaje del costo por noche
                         decimal tarifaLimpieza = tarifaPorNoche * porcentajeLimpieza;
-                        decimal tarifaServicio = tarifaPorNoche * porcentajeServicio;
+                        tarifaServicio = tarifaPorNoche * porcentajeServicio;
                         decimal impuestos = tarifaPorNoche * porcentajeImpuestos;
 
                         // Calcula el total de la tarifa por noche
@@ -142,6 +144,7 @@ namespace ProyectoTravelNest.pages
             Negocios.Neg_Reservaciones reservaciones = new Neg_Reservaciones();
 
             Negocio_Cupon negocio_Cupon = new Negocio_Cupon();
+            Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
 
             try
             {
@@ -172,9 +175,11 @@ namespace ProyectoTravelNest.pages
                 //valida las fechas nuevamente, si da error se va para el catch e informa
                 negocio_Cupon.ValidarFechasReserva(eUsuarios.IdUsuario, parametro6, fechaEntradaFormateada, fechaSalidaFormateada);
 
+                string idAnfitrion = neg_Inmueble.ObtenerIdAnfitrion(parametro6);
 
-
+                mibanco.mibanco mibanco = new mibanco.mibanco();
                 //consumir un metodo en mi banco tipo string, si se paga "Se Pago"  y si no "No Pago"
+                bool pago = mibanco.ValidarPago(1, (float)totalTarifas, eUsuarios.IdUsuario, idAnfitrion, (float)tarifaPorNoche, (float)tarifaServicio);
 
                 //recuperar el numero de identificacion del usaurio
 
@@ -182,40 +187,42 @@ namespace ProyectoTravelNest.pages
                 //AQUI MISMO PONER UNA VALIDACION COMO LA ANTERIOR; QUE VALIDE LA TRANSACCION EN MIBANCO 
                 //EJEMPLO
 
-                /*if(RESULTADO = "SE PAGO"){
-                   //si no da error, continua
-                        bool inserto = reservaciones.InsertarReservacion(parametro6, parametro5, fechaEntradaFormateada, fechaSalidaFormateada);
+                if (pago)
+                {
+                    //si no da error, continua
+                    bool insertoReser = reservaciones.InsertarReservacion(parametro6, parametro5, fechaEntradaFormateada, fechaSalidaFormateada);
 
-                        if (inserto)
+                    if (insertoReser)
+                    {
+                        if (aplicoCupon)
                         {
-                            if (aplicoCupon)
-                            {
 
-                                //si se inserta cambiar el estado del cupon
-                                 negocio_Cupon = new Negocio_Cupon();
+                            //si se inserta cambiar el estado del cupon
+                            negocio_Cupon = new Negocio_Cupon();
 
-                                negocio_Cupon.UsarCupon(ddlCupones.SelectedItem.Text.Substring(0,6), eUsuarios.IdUsuario);
+                            negocio_Cupon.UsarCupon(ddlCupones.SelectedItem.Text.Substring(0, 6), eUsuarios.IdUsuario);
 
-                            }
-                            string script = "Swal.fire('¡Éxito!', 'Se reservo con Exito', 'success');";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                            reservaciones.enviarCorreo(eUsuarios.IdUsuario, totalTarifas);
                         }
-                        else
-                        {
-                            string script = "Swal.fire('¡Error!', 'Ocurrio un error', 'error');";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                        }
-                 
-                         
-                ]else{
-                    string mensajeError1 = RESULTADO.Replace("'", "\\'"); 
-                    string script = $"Swal.fire('¡Error!', '{mensajeError1}', 'error');";
+                        string script = "Swal.fire('¡Éxito!', 'Se reservo con Exito', 'success');";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                        reservaciones.enviarCorreo(eUsuarios.IdUsuario, totalTarifas);
+                    }
+                    else
+                    {
+                        string script = "Swal.fire('¡Error!', 'Ocurrio un error', 'error');";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                    }
+
+
+                }
+                else
+                {
+
                     string script = "Swal.fire('¡Error!', 'Ocurrio un error', 'error');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                        
-                
-                 }*/
+
+
+                }
 
 
                 //si no da error, continua

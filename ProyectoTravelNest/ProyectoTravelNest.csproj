@@ -207,6 +207,7 @@
     <Content Include="img\user.png" />
     <Content Include="pages\agregarmibanco.aspx" />
     <Content Include="pages\alojamientospoliticas.aspx" />
+    <Content Include="pages\alojamientosvisitados.aspx" />
     <Content Include="pages\anunciosguardados.aspx" />
     <Content Include="pages\anunciospublicados.aspx" />
     <Content Include="pages\centroayuda.aspx" />
@@ -376,6 +377,13 @@
     </Compile>
     <Compile Include="pages\alojamientospoliticas.aspx.designer.cs">
       <DependentUpon>alojamientospoliticas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\alojamientosvisitados.aspx.cs">
+      <DependentUpon>alojamientosvisitados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\alojamientosvisitados.aspx.designer.cs">
+      <DependentUpon>alojamientosvisitados.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\anunciosguardados.aspx.cs">
       <DependentUpon>anunciosguardados.aspx</DependentUpon>
@@ -736,10 +744,10 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Web References\mibanco\mibanco.wsdl" />
-    <None Include="Web References\mibanco\Reference.map">
+    <Content Include="Web References\mibanco\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

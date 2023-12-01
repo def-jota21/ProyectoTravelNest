@@ -34,7 +34,6 @@
             text-decoration: none; /* Quita la subraya predeterminada */
             font-size: 16px;
             font-family: "Poppins", sans-serif;
-            
         }
 
         .enlace-togg {
@@ -91,55 +90,61 @@
                     <img src="<%= ResolveUrl("~/img/logo2.png") %>" class="logoo img-fluid" alt="Logo de la marca" />
                     </asp:HyperLink>
                 </div>
-
-
-                <li class="nav-item d-none d-lg-block">
-                    <asp:Label ID="lblNombreUsuario" Visible="false" runat="server" CssClass=""></asp:Label>
-                </li>
-                <div class="ms-auto">
-                    <a class="nav-link dropdown-toggle" href="#" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user-circle"></i>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
-                        <%-- Publicas --%>
-                        <li class="d-lg-none">
-                            <asp:Label ID="lblNombreUsuarioMobile" Visible="false" runat="server" CssClass=""></asp:Label>
+                <div class="d-flex ms-auto">
+                    <div class="nav-item align-self-center">
+                        <li class="nav-item">
+                            <asp:Label ID="lblNombreUsuario" Visible="false" runat="server"></asp:Label>
                         </li>
-                        <%-- Publicas --%>
-
-                        <li><a runat="server" id="Login" href="pages/login.aspx" style="margin-left: 20px;" visible="true" class="enlace-comun">Iniciar Sesión</a></li>
-
-                        <li><a runat="server" id="Registrarse" href="pages/crearcuenta.aspx" style="margin-left: 20px;" visible="true" class="enlace-comun">Crear Cuenta</a></li>
-
-                        <li>
-                            <asp:LinkButton ID="CerrarSesion" runat="server" Style="margin-left: 20px;" OnClick="CerrarSesion_Click" Visible="false" CssClass="enlace-comun">Cerrar Sesión</asp:LinkButton>
-                        </li>
-                        <%-- Publicas --%>
-
-
-                        <%-- Privadas Anfitrion --%>
-
-
-                        <li><a runat="server" visible="false" id="PrivadaAnfitrion1" href="~/pages/panelanfitrion.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
-
-                        <%-- Privadas Anfitrion --%>
-
-
-                        <%-- Privadas Huesped --%>
-
-                        <li><a runat="server" visible="false" id="PrivadaHuesped1" href="pages/paneladministracionhuesped.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
-                        <li><a runat="server" visible="false" id="PrivadaHuesped2" href="pages/favoritos.aspx" style="margin-left: 20px;" class="enlace-comun">Favoritos</a></li>
-
-                        <%-- Privadas Huesped --%>
-
-
-                        <%-- Privadas Gestor --%>
-                        <li><a runat="server" visible="false" id="PrivadaGestor1" href="pages/gestionusuarios.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Usuarios</a></li>
-                        <li><a runat="server" visible="false" id="PrivadaGestor2" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Políticas</a></li>
-
-                        <%-- Privadas Gestor --%>
                     </div>
+
+                    <div class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="#" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
+                            <%-- Publicas --%>
+                            <li class="d-lg-none d-sm-block d-md-block">
+                                <asp:Label ID="lblNombreUsuarioMobile" Visible="false" runat="server" CssClass=""></asp:Label>
+                            </li>
+                            <%-- Publicas --%>
+
+                            <li><a runat="server" id="Login" href="pages/login.aspx" style="margin-left: 20px;" visible="true" class="enlace-comun">Iniciar Sesión</a></li>
+
+                            <li><a runat="server" id="Registrarse" href="pages/crearcuenta.aspx" style="margin-left: 20px;" visible="true" class="enlace-comun">Crear Cuenta</a></li>
+
+                            <li>
+                                <asp:LinkButton ID="CerrarSesion" runat="server" Style="margin-left: 20px;" OnClick="CerrarSesion_Click" Visible="false" CssClass="enlace-comun">Cerrar Sesión</asp:LinkButton>
+                            </li>
+                            <%-- Publicas --%>
+
+
+                            <%-- Privadas Anfitrion --%>
+
+
+                            <li><a runat="server" visible="false" id="PrivadaAnfitrion1" href="~/pages/panelanfitrion.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
+
+                            <%-- Privadas Anfitrion --%>
+
+
+                            <%-- Privadas Huesped --%>
+
+                            <li><a runat="server" visible="false" id="PrivadaHuesped1" href="pages/paneladministracionhuesped.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
+                            <li><a runat="server" visible="false" id="PrivadaHuesped2" href="pages/favoritos.aspx" style="margin-left: 20px;" class="enlace-comun">Favoritos</a></li>
+
+                            <%-- Privadas Huesped --%>
+
+
+                            <%-- Privadas Gestor --%>
+                            <li><a runat="server" visible="false" id="PrivadaGestor1" href="pages/gestionusuarios.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Usuarios</a></li>
+                            <li><a runat="server" visible="false" id="PrivadaGestor2" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Políticas</a></li>
+
+                            <%-- Privadas Gestor --%>
+                        </div>
+
+                    </div>
+
+
                 </div>
 
 

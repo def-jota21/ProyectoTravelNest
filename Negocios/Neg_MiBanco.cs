@@ -15,7 +15,7 @@ namespace Negocios
             
             mibanconeg.mibanco iBanco = new mibanconeg.mibanco();
 
-            if (iBanco.ValidarExistencia(NumeroCuenta, cvv, t_rol))
+            if (iBanco.ValidarExistencia(NumeroCuenta, cvv, IdUsuario))
             {
                 mensaje = miBancoSQL.InsertarUsuarioMiBanco(IdUsuario, NumeroCuenta, cvv);
             }
@@ -27,7 +27,19 @@ namespace Negocios
 
             return mensaje;
         }
+        public bool ValidarExistenciaEnMiBanco(string IdUsuario, string NumeroCuenta, string cvv, string t_rol)
+        {
+            bool mensaje = false;
+            Datos.MiBancoSQL miBancoSQL = new MiBancoSQL();
 
+            mibanconeg.mibanco iBanco = new mibanconeg.mibanco();
+
+            if (iBanco.ValidarExistencia(NumeroCuenta, cvv, IdUsuario))
+            {
+                mensaje = true;
+            }
+            return mensaje;
+        }
         public string EliminarCuentaMiBanco(string IdUsuario, string idCuenta)
         {
             Datos.MiBancoSQL miBancoSQL = new MiBancoSQL();

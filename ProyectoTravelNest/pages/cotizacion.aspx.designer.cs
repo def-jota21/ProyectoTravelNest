@@ -42,13 +42,13 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.TextBox txthuesped;
 
         /// <summary>
-        /// Control txtcupon.
+        /// Control ddlCupones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcupon;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCupones;
 
         /// <summary>
         /// Control btnPagar.
@@ -87,6 +87,15 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.Label lblNombreInmueble;
 
         /// <summary>
+        /// Control UpdatePanel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// Control lblNoches.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace ProyectoTravelNest.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblImpuestos;
+
+        /// <summary>
+        /// Control lblCupon.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCupon;
 
         /// <summary>
         /// Control lblTotal.

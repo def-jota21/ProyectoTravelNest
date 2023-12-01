@@ -113,6 +113,32 @@ namespace Negocios
 
             return dt;
         }
+        public DataTable ListarAlojamientosVisitados(string idUsuario)
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "AlojamientosVisitados";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@IdUsuario", idUsuario));
+
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
+        public DataTable ListarInmueblesInactivosAnfitrion(string idAnfitrion)
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "AlojamientosInactivoAnfitrion";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@IdAnfitrion", idAnfitrion));
+
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
 
         public DataTable ListarPolitica(int idPolitica)
         {
@@ -268,6 +294,38 @@ namespace Negocios
             dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
 
             return dt;
+        }
+
+        public DataTable ObtenerCategorias()
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "CRUDCategorias";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@Accion", 1));
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
+
+        public void agregarCategorias(String Categoria)
+        {
+
+            try
+            {
+                string strNombreSP = "CRUDCategorias";
+                List<SqlParameter> lstParametros = new List<SqlParameter>();
+                lstParametros.Add(new SqlParameter("@Accion", 2));
+                lstParametros.Add(new SqlParameter("@Categoria", Categoria));
+
+                Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

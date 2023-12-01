@@ -57,7 +57,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">
                     <h3 class="mb-3">Comentario y Evaluación Anfitrión-Inmuble</h3>
-
+                     <a class="enlace-comun" style="margin-bottom: 4px !important;" href="comentariospendientesh.aspx"><i class="fa fa-arrow-left mr-3" style="margin-right: 3px;"></i>Regresar</a>
                     <div class="col-lg-7 col-md-12 col-sm-12 my-2">
                         <div class="row">
                             <h3>Comentario público para el anfitrión</h3>

@@ -13,7 +13,7 @@
                 <asp:Repeater ID="rptAlojamientos" runat="server">
                     <ItemTemplate>
                         <div class="col-lg-4 col-md-6 mb-4">
-                            <a href='/pages/<%# Session["pagina"].ToString() %>.aspx?IdInmueble=<%# Eval("IdInmueble") %>' class='text-decoration-none' style='color: initial;'>
+                            <a href='<%# Session["pagina"].ToString() %>.aspx?IdInmueble=<%# Eval("IdInmueble") %>' class='text-decoration-none' style='color: initial;'>
                                 <div class="package-item bg-white mb-2">
                                     <asp:Image ID="imgMueble" CssClass="img-fluid" Style="min-height: 240px !important;" runat="server"
                                         src='<%# Eval("Imagen") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) : "/img/noimage.jpg" %>'

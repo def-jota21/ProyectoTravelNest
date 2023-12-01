@@ -1,17 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="pantallapoliticas.aspx.cs" Inherits="ProyectoTravelNest.pages.Pantalla_Politicas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Prueba de Bootstrap 4</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="../Content/Politicas.css" rel="stylesheet" />
+   
+       
+        
         <link href="../Content/style.css" rel="stylesheet" />
-
-    </head>
-    <body>
+       
+ 
         <div class="container mt-4">
 
             <h1>Políticas de TravelNest</h1>
@@ -62,22 +57,20 @@
         <script type="text/javascript">
 
             function toggleVerMas(index) {
-                       var textoAdicional = document.getElementById('texto-adicional-' + index);
-                       if (textoAdicional.style.display === 'none' || textoAdicional.style.display === '') {
-                           textoAdicional.style.display = 'block';
-                       } else {
-                           textoAdicional.style.display = 'none';
-                       }
-                   }
+                var textoAdicional = document.getElementById('texto-adicional-' + index);
+                if (textoAdicional.style.display === 'none' || textoAdicional.style.display === '') {
+                    textoAdicional.style.display = 'block';
+                } else {
+                    textoAdicional.style.display = 'none';
+                }
+            }
 
-                   function ocultarFormulario() {
-                       // Ocultar formulario
-                       document.getElementById('formulario-insertar').style.display = 'none';
-                   }
+            function ocultarFormulario() {
+                // Ocultar formulario
+                document.getElementById('formulario-insertar').style.display = 'none';
+            }
 
         </script>
-    </body>
-    </html>
-
+ 
 
 </asp:Content>

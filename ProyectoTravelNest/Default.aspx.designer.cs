@@ -60,12 +60,21 @@ namespace ProyectoTravelNest
         protected global::System.Web.UI.WebControls.LinkButton Filtrar;
 
         /// <summary>
-        /// Control rptInmuebles.
+        /// Control lvInmuebles.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptInmuebles;
+        protected global::System.Web.UI.WebControls.ListView lvInmuebles;
+
+        /// <summary>
+        /// Control DataPager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataPager DataPager1;
     }
 }

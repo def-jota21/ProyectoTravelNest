@@ -45,7 +45,7 @@ namespace ProyectoTravelNest.pages
 
         protected void lbtnVId_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/pages/verificaridentidad.aspx");
+            Response.Redirect("verificaridentidad.aspx");
         }
     }
 }

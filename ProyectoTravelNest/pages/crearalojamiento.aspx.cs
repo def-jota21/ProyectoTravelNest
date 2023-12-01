@@ -179,7 +179,7 @@ namespace ProyectoTravelNest.pages
                 inmueble.Habitaciones = txthabitaciones.Text;
                 inmueble.Banhos = txtbaños.Text;
                 inmueble.Descripcion = descripcion.Text;
-                inmueble.Estado = "Activo";
+                inmueble.Estado = "Inactivo";
 
                 List<string> listaElementosServidor = new List<string>(); ;
                 List<string> listaElementosAmenidades = new List<string>();

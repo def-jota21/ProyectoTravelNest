@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,7 @@ namespace ProyectoTravelNest.pages
 
         protected void btnModificar_Command(object sender, CommandEventArgs e)
         {
+            bool modifico = false;
             if (e.CommandName == "Modificar")
             {
                 string[] args = e.CommandArgument.ToString().Split(',');
@@ -60,7 +62,21 @@ namespace ProyectoTravelNest.pages
                     string IdInmueble = args[1].Trim();
 
                     // Redirige a la página de destino con los parámetros
-                    Response.Redirect($"editaranuncio.aspx?IdUsuario={IdUsuario}&IdInmueble={IdInmueble}");
+                    Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
+                    modifico = neg_Inmueble.CambiarEstadoInactivo(IdInmueble);
+                }
+
+                if (modifico)
+                {
+                    string script = "Swal.fire('¡Éxito!', 'Se agrego a lista de Guardados', 'success');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                    //Response.Redirect("editaranuncio.aspx");
+                }
+                else
+                {
+                    string script = "Swal.fire('ERROR', 'Ocurrio un error.', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                    //Response.Redirect("editaranuncio.aspx");
                 }
             }
         }

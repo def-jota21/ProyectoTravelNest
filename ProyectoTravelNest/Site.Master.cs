@@ -36,7 +36,9 @@ namespace ProyectoTravelNest
                 }
 
                 lblNombreUsuario.Text = dataTable.Rows[0][1].ToString() + " " + dataTable.Rows[0][2].ToString() + " - " + rol;
+                lblNombreUsuarioMobile.Text = dataTable.Rows[0][1].ToString() + " " + dataTable.Rows[0][2].ToString() + " - " + rol;
                 lblNombreUsuario.Visible = true;
+                lblNombreUsuarioMobile.Visible = true;
                 Login.Visible = false;
                 CerrarSesion.Visible = true;
                 Registrarse.Visible = false;
@@ -51,6 +53,7 @@ namespace ProyectoTravelNest
                     
 
                     PrivadaGestor1.Visible = false;
+                    PrivadaGestor2.Visible = false;
 
                     Registrarse.Visible = false;
                 }
@@ -65,6 +68,7 @@ namespace ProyectoTravelNest
                     
 
                     PrivadaGestor1.Visible = false;
+                    PrivadaGestor2.Visible = false;
 
                     Registrarse.Visible = false;
                 }
@@ -79,6 +83,7 @@ namespace ProyectoTravelNest
                     
 
                     PrivadaGestor1.Visible = true;
+                    PrivadaGestor2.Visible = true;
 
                     Registrarse.Visible = false;
                 }
@@ -112,6 +117,7 @@ namespace ProyectoTravelNest
 
 
             PrivadaGestor1.Visible = false;
+            PrivadaGestor2.Visible = false;
         }
     }
 }

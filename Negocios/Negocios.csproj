@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Negocio_Cupon.cs" />
     <Compile Include="Neg_Descuentos.cs" />
     <Compile Include="Politicas.cs" />
     <Compile Include="Neg_MiBanco.cs" />
@@ -130,10 +131,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/mibanco.asmx">
+    <WebReferenceUrl Include="https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/mibanco.asmx%3fWSDL">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\mibanconeg\</RelPath>
-      <UpdateFromURL>https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/mibanco.asmx</UpdateFromURL>
+      <UpdateFromURL>https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/mibanco.asmx%3fWSDL</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -141,9 +142,6 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Negocios_mibanconeg_mibanco</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Web References\mibanconeg\mibanco.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -85,11 +85,11 @@ namespace Negocios
                                         </body>
                                         </html>";
                     // Agregar la imagen como un recurso vinculado
-                    LinkedResource linkedResource = new LinkedResource("/pages/logo2.png", "image/jpeg");
-                    linkedResource.ContentId = "imagen";
-                    AlternateView htmlView = AlternateView.CreateAlternateViewFromString(mailMessage.Body, null, "text/html");
-                    htmlView.LinkedResources.Add(linkedResource);
-                    mailMessage.AlternateViews.Add(htmlView);
+                    //LinkedResource linkedResource = new LinkedResource("/pages/logo2.png", "image/jpeg");
+                    //linkedResource.ContentId = "imagen";
+                    //AlternateView htmlView = AlternateView.CreateAlternateViewFromString(mailMessage.Body, null, "text/html");
+                   // htmlView.LinkedResources.Add(linkedResource);
+                    //mailMessage.AlternateViews.Add(htmlView);
 
                     // Enviar el correo electrónico
                     smtpClient.Send(mailMessage);

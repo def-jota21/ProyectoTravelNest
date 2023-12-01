@@ -11,6 +11,7 @@ namespace Negocios
 {
     public class Neg_Inmueble
     {
+
         public DataTable ObtenerServicios()
         {
             DataTable tablaServicios = new DataTable();
@@ -158,6 +159,13 @@ namespace Negocios
             serviciosInmueble = serviciosSQL.ObtenerServiciosDelInmueble(idInmueble);
 
             return serviciosInmueble;
+        }
+
+        public bool CambiarEstadoInactivo(string IdInmueble)
+        {
+            InmuebleSQL inmuebleSQL = new InmuebleSQL();
+            bool modifico = inmuebleSQL.CambiarEstadoInactivo(IdInmueble.ToString());
+            return modifico;
         }
     }
 }

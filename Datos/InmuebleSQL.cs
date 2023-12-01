@@ -385,5 +385,33 @@ namespace Datos
                 }
             }
         }
+
+        public bool CambiarEstadoInactivo(string idInmueble)
+        {
+            try
+            {
+                CadenaConexion(); 
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+
+                    string query = "UPDATE Inmueble SET Estado = 'Inactivo' WHERE IdInmueble = @IdInmueble";
+                    using (SqlCommand cmd = new SqlCommand(query, sqlCon))
+                    {
+                        // Asignar los parámetros de forma segura
+                        cmd.Parameters.AddWithValue("@IdInmueble", idInmueble);
+
+                        
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0; 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

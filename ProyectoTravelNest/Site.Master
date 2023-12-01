@@ -32,16 +32,30 @@
         .enlace-comun {
             color: #7AB730; /* Cambia el color del texto según tus preferencias */
             text-decoration: none; /* Quita la subraya predeterminada */
+            font-size: 16px;
+            font-family: "Poppins", sans-serif;
+            
         }
 
         .enlace-togg {
             color: #7AB730 !important; /* Cambia el color del texto según tus preferencias */
-            
         }
 
         .enlace-comun:hover {
             text-decoration: underline; /* Agrega la subraya cuando se pasa el cursor por encima */
             color: #7AB730 !important;
+        }
+
+        .fas.fa-user-circle {
+            font-size: 25px; /* Ajusta el tamaño según necesites */
+            color: #7AB730 !important;
+            /* Otros estilos que necesites */
+        }
+
+        .dropdown-toggle::after {
+            content: "";
+            border-top-color: #7AB730 !important; /* Cambia esto al color que prefieras */
+            /* Asegúrate de ajustar las otras propiedades de borde si es necesario */
         }
     </style>
     <script src="Scripts/jquery-3.7.0.js"></script>
@@ -53,8 +67,8 @@
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
-                
-                
+
+
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
                 <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
@@ -71,66 +85,70 @@
 
         <nav class="navbar navbar-expand-lg p-3">
             <div class="container-fluid">
+                <!-- Logo -->
                 <div class="logo">
                     <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" CssClass="nav-link active">
-        <img src="<%= ResolveUrl("~/img/logo2.png") %>" class="logoo img-fluid" alt="Logo de la marca" />
+                    <img src="<%= ResolveUrl("~/img/logo2.png") %>" class="logoo img-fluid" alt="Logo de la marca" />
                     </asp:HyperLink>
                 </div>
 
-                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon custom-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <asp:Label ID="lblNombreUsuario" visible="false" runat="server" CssClass=""></asp:Label>
+
+                <li class="nav-item d-none d-lg-block">
+                    <asp:Label ID="lblNombreUsuario" Visible="false" runat="server" CssClass=""></asp:Label>
+                </li>
+                <div class="ms-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
+                        <%-- Publicas --%>
+                        <li class="d-lg-none">
+                            <asp:Label ID="lblNombreUsuarioMobile" Visible="false" runat="server" CssClass=""></asp:Label>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle enlace-togg" href="#" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user-circle" style="font-size: 25px;"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" style="min-width: 250px;" aria-labelledby="avatarDropdown">
+                        <%-- Publicas --%>
 
-                                <%-- Publicas --%>
+                        <li><a runat="server" id="Login" href="pages/login.aspx" style="margin-left: 20px;" visible="true" class="enlace-comun">Iniciar Sesión</a></li>
 
-                                <%-- Publicas --%>
+                        <li><a runat="server" id="Registrarse" href="pages/crearcuenta.aspx" style="margin-left: 20px;" visible="true" class="enlace-comun">Crear Cuenta</a></li>
 
-                                <li><a runat="server" id="Login" href="pages/login.aspx" style="margin-left: 20px;" visible="true" class="enlace-comun">Iniciar Sesión</a></li>
-
-                                <li><a runat="server" id="Registrarse" href="pages/crearcuenta.aspx" style="margin-left: 20px;" visible="true" class="enlace-comun">Crear Cuenta</a></li>
-
-                                <li>
-                                    <asp:LinkButton ID="CerrarSesion" runat="server" Style="margin-left: 20px;" OnClick="CerrarSesion_Click" Visible="false" CssClass="enlace-comun">Cerrar Sesión</asp:LinkButton>
-                                </li>
-                                <%-- Publicas --%>
-
-
-                                <%-- Privadas Anfitrion --%>
-
-                            
-                                <li><a runat="server" visible="false" id="PrivadaAnfitrion1" href="~/pages/panelanfitrion.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
-
-                                <%-- Privadas Anfitrion --%>
-
-
-                                <%-- Privadas Huesped --%>
-
-                                <li><a runat="server" visible="false" id="PrivadaHuesped1" href="pages/paneladministracionhuesped.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
-                                <li><a runat="server" visible="false" id="PrivadaHuesped2" href="pages/favoritos.aspx" style="margin-left: 20px;" class="enlace-comun">Favoritos</a></li>
-
-                                <%-- Privadas Huesped --%>
-
-
-                                <%-- Privadas Gestor --%>
-                                <li><a runat="server" visible="false" id="PrivadaGestor1" href="pages/gestionusuarios.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Usuarios</a></li>
-                                 <li><a runat="server" visible="false" id="PrivadaGestor2" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Políticas</a></li>
-
-                                <%-- Privadas Gestor --%>
-                            </ul>
+                        <li>
+                            <asp:LinkButton ID="CerrarSesion" runat="server" Style="margin-left: 20px;" OnClick="CerrarSesion_Click" Visible="false" CssClass="enlace-comun">Cerrar Sesión</asp:LinkButton>
                         </li>
-                    </ul>
+                        <%-- Publicas --%>
+
+
+                        <%-- Privadas Anfitrion --%>
+
+
+                        <li><a runat="server" visible="false" id="PrivadaAnfitrion1" href="~/pages/panelanfitrion.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
+
+                        <%-- Privadas Anfitrion --%>
+
+
+                        <%-- Privadas Huesped --%>
+
+                        <li><a runat="server" visible="false" id="PrivadaHuesped1" href="pages/paneladministracionhuesped.aspx" style="margin-left: 20px;" class="enlace-comun">Panel Administración</a></li>
+                        <li><a runat="server" visible="false" id="PrivadaHuesped2" href="pages/favoritos.aspx" style="margin-left: 20px;" class="enlace-comun">Favoritos</a></li>
+
+                        <%-- Privadas Huesped --%>
+
+
+                        <%-- Privadas Gestor --%>
+                        <li><a runat="server" visible="false" id="PrivadaGestor1" href="pages/gestionusuarios.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Usuarios</a></li>
+                        <li><a runat="server" visible="false" id="PrivadaGestor2" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Políticas</a></li>
+
+                        <%-- Privadas Gestor --%>
+                    </div>
                 </div>
+
+
+
+
+
+
             </div>
+
         </nav>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
@@ -138,10 +156,10 @@
             <hr />
             <div class="bg-dark text-white-50 py-6 px-sm-4 px-lg-5">
                 <div class="row pt-5">
-                    <div class="col-lg-3 col-md-6 mb-5">
+                    <div class="col-lg-3 col-md-12 mb-12">
                         <div class="logo">
                             <a class="nav-link active" aria-current="page" href="Inicio.aspx">
-                                <img src="../img/logo1.png" class="logoo " alt="Logo de la marca" /></a>
+                                <img src="../img/logo1.png" class="img-fluid logoo " alt="Logo de la marca" /></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 mb-5">
@@ -150,13 +168,13 @@
                     <div class="col-lg-3 col-md-6 mb-5">
                         <!-- Espacio en blanco para la tercera columna -->
                     </div>
-                    <div class="col-lg-3 col-md-6 mb-5">
+                    <div class="col-lg-3 col-md-12 mb-12">
                         <!-- Columna de "Contact Us" -->
-                        <div class="text-right">
+                        <div class="text-right mr-1">
                             <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Contactenos</h5>
-                            <p><i class="fa fa-map-marker-alt mr-2"></i> CUC, Cartago, Costa Rica</p>
-                            <p><i class="fa fa-phone-alt mr-2"></i> 24562353</p>
-                            <p><i class="fa fa-envelope mr-2"></i> info@example.com</p>
+                            <p><i class="fa fa-map-marker-alt mr-2"></i>CUC, Cartago, Costa Rica</p>
+                            <p><i class="fa fa-phone-alt mr-2"></i>24562353</p>
+                            <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
                         </div>
                     </div>
                 </div>
@@ -180,12 +198,20 @@
         document.getElementById("showModalButtonCrearCuenta").addEventListener("click", function () {
             $('#crearcuentamodal').modal("show");
         });
+        document.addEventListener('DOMContentLoaded', function () {
+            var dropdown = document.getElementById('avatarDropdown');
+            var dropdownMenu = document.querySelector('.dropdown-menu');
 
+            dropdown.addEventListener('click', function (event) {
+                event.preventDefault();
+                dropdownMenu.classList.toggle('show');
+            });
+        });
 
     </script>
-   
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 
-    
+
 </body>
 </html>

@@ -156,6 +156,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\cupones.css" />
     <Content Include="Content\DatosPersonales.css" />
     <Content Include="Content\estiloSite.css" />
     <Content Include="Content\Favoritos.css" />
@@ -186,6 +187,7 @@
     <Content Include="img\comentariosPendientes.jpg" />
     <Content Include="img\comopagar-1.png" />
     <Content Include="img\covergestionusuarios.jpg" />
+    <Content Include="img\cuponeshuesped.jpg" />
     <Content Include="img\destination-4.jpg" />
     <Content Include="img\estrellas.JPG" />
     <Content Include="img\gestionUsuarios.jpg" />
@@ -200,6 +202,7 @@
     <Content Include="img\package-6.png" />
     <Content Include="img\politicas.jpg" />
     <Content Include="img\politicasvector.JPG" />
+    <Content Include="img\porcentaje.png" />
     <Content Include="img\user.png" />
     <Content Include="pages\agregarmibanco.aspx" />
     <Content Include="pages\alojamientospoliticas.aspx" />
@@ -215,6 +218,7 @@
     <Content Include="pages\cotizacion.aspx" />
     <Content Include="pages\crearalojamiento.aspx" />
     <Content Include="pages\crearcuenta.aspx" />
+    <Content Include="pages\cuponeshuesped.aspx" />
     <Content Include="pages\datospersonales.aspx" />
     <Content Include="pages\descuentos.aspx" />
     <Content Include="pages\editaranuncio.aspx" />
@@ -238,7 +242,9 @@
     <Content Include="pages\resenasInmueble.aspx" />
     <Content Include="pages\reservas.aspx" />
     <Content Include="pages\sesionyseguridad.aspx" />
+    <Content Include="pages\tiposalojamiento.aspx" />
     <Content Include="pages\validartoken.aspx" />
+    <Content Include="pages\vergenerarcupon.aspx" />
     <Content Include="pages\verificaridentidad.aspx" />
     <Content Include="pages\verinformacion.aspx" />
     <Content Include="pages\viajecentroayuda.aspx" />
@@ -315,7 +321,6 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
-    <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -450,6 +455,13 @@
     </Compile>
     <Compile Include="pages\crearcuenta.aspx.designer.cs">
       <DependentUpon>crearcuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\cuponeshuesped.aspx.cs">
+      <DependentUpon>cuponeshuesped.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\cuponeshuesped.aspx.designer.cs">
+      <DependentUpon>cuponeshuesped.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\datospersonales.aspx.cs">
       <DependentUpon>datospersonales.aspx</DependentUpon>
@@ -612,12 +624,26 @@
     <Compile Include="pages\sesionyseguridad.aspx.designer.cs">
       <DependentUpon>sesionyseguridad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\tiposalojamiento.aspx.cs">
+      <DependentUpon>tiposalojamiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\tiposalojamiento.aspx.designer.cs">
+      <DependentUpon>tiposalojamiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\validartoken.aspx.cs">
       <DependentUpon>validartoken.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\validartoken.aspx.designer.cs">
       <DependentUpon>validartoken.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\vergenerarcupon.aspx.cs">
+      <DependentUpon>vergenerarcupon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\vergenerarcupon.aspx.designer.cs">
+      <DependentUpon>vergenerarcupon.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\verificaridentidad.aspx.cs">
       <DependentUpon>verificaridentidad.aspx</DependentUpon>
@@ -655,13 +681,6 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

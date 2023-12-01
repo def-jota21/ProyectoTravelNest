@@ -18,6 +18,15 @@ namespace ProyectoTravelNest
     {
         Neg_Favoritos iFavoritos = new Neg_Favoritos();
         Negocio_Inmuebles iInmueble = new Negocio_Inmuebles();
+        Neg_filtrarcategorias negocio = new Neg_filtrarcategorias();
+
+        private int CurrentPageIndex
+        {
+            get { return ViewState["CurrentPageIndex"] != null ? Convert.ToInt32(ViewState["CurrentPageIndex"]) : 0; }
+            set { ViewState["CurrentPageIndex"] = value; }
+        }
+
+        private int PageSize => 15; // Tamaño de página fijo
         protected void Page_Load(object sender, EventArgs e)
 
         {
@@ -25,50 +34,58 @@ namespace ProyectoTravelNest
 
             if (!IsPostBack)
             {
-                rptInmuebles.DataSource = CargarTarjetas();
-                rptInmuebles.DataBind();
                 CargarCategorias();
+                BindRepeater();
 
             }
 
             
         }
 
+        protected void lvInmuebles_OnPagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            CurrentPageIndex = e.StartRowIndex / e.MaximumRows;
+            BindRepeaterConFiltro((DataTable)Session["DatosFiltrados"]);
+        }
+
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+            DataPager1.Visible = DataPager1.PageSize < ((DataTable)Session["DatosFiltrados"]).Rows.Count;
+            DataPager1.DataBind();
+        }
+
+        private void BindRepeater()
+        {
+            DataTable datos = CargarTarjetas();
+            Session["DatosFiltrados"] = datos; // Guardar los datos en el estado de sesión
+            BindRepeaterConFiltro(datos);
+        }
+
+        private void BindRepeaterConFiltro(DataTable datos)
+        {
+            lvInmuebles.DataSource = datos;
+            lvInmuebles.DataBind();
+        }
+
+
         private DataTable CargarTarjetas()
         {
-            DataTable dtInmbuebles = iInmueble.ListarInmueblesPrincipal();
-            return dtInmbuebles;
+            return iInmueble.ListarInmueblesPrincipal();
         }
 
         private void CargarCategorias()
         {
-            // Crea una instancia de la clase de negocio
-            Neg_filtrarcategorias negocio = new Neg_filtrarcategorias();
-
-            // Obtén los datos de la base de datos
             DataTable dt = negocio.ObtenerTodasLasCategorias();
-
             ddlCategorias.Items.Clear();
-            //ddlCantidadPersonas.Items.Clear();
-            //ddlCalificacion.Items.Clear();
-
-            // Agrega elementos predeterminados a los controles select
             ddlCategorias.Items.Add(new ListItem("Tipo de Alojamiento", ""));
-            //ddlCantidadPersonas.Items.Add(new ListItem("Cantidad de Personas", ""));
-            //ddlCalificacion.Items.Add(new ListItem("Calificación", ""));
 
-            // Agrega los datos a los controles select
             foreach (DataRow row in dt.Rows)
             {
-                // Obtén la información de la fila
                 string nombreCategoria = row["Nombre"].ToString();
-               // string cantidadHuesped = row["Cantidad_Huesped"].ToString();
-                //string calificacion = row["Calificacion"].ToString();
-
-                // Agrega la información a los controles select
                 ddlCategorias.Items.Add(new ListItem(nombreCategoria, nombreCategoria));
-                //ddlCantidadPersonas.Items.Add(new ListItem(cantidadHuesped, cantidadHuesped));
-                //ddlCalificacion.Items.Add(new ListItem(calificacion, calificacion));
             }
             upd_Panel.Update();
         }
@@ -130,38 +147,63 @@ namespace ProyectoTravelNest
             }
         }
 
-
         protected void FiltrarIn(object sender, EventArgs e)
         {
             string categoriaSeleccionada = ddlCategorias.Value;
             string cantidadPersonasSeleccionada = ddlCantidadPersonas.Text;
             string calificacionSeleccionada = ddlCalificacion.Text;
 
-            DataTable todosLosInmuebles = CargarTarjetas();
+            DataTable datosFiltrados = FiltrarDatos(categoriaSeleccionada, cantidadPersonasSeleccionada, calificacionSeleccionada);
+            Session["DatosFiltrados"] = datosFiltrados; // Actualiza los datos filtrados en la sesión
+            CurrentPageIndex = 0;
+            BindRepeaterConFiltro(datosFiltrados);
+        }
 
-            if (todosLosInmuebles != null)
+        private DataTable FiltrarDatos(string categoria, string cantidadPersonas, string calificacion)
+        {
+            DataTable dtInmuebles = iInmueble.ListarInmueblesPrincipal();
+            var inmueblesFiltrados = dtInmuebles.AsEnumerable();
+
+            if (!string.IsNullOrEmpty(categoria) && categoria != "0")
             {
-                IEnumerable<DataRow> inmueblesFiltrados = todosLosInmuebles.AsEnumerable();
+                inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<string>("Categoria") == categoria);
+            }
 
-                if (!string.IsNullOrEmpty(categoriaSeleccionada))
-                {
-                    inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<string>("Categoria") == categoriaSeleccionada);
-                }
+            if (!string.IsNullOrEmpty(cantidadPersonas) && cantidadPersonas != "0")
+            {
+                int cantidad = Convert.ToInt32(cantidadPersonas);
+                inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<int>("Cantidad_Huesped") == cantidad);
+            }
 
-                if (!string.IsNullOrEmpty(cantidadPersonasSeleccionada) && cantidadPersonasSeleccionada != "0")
-                {
-                    inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<int>("Cantidad_Huesped").ToString() == cantidadPersonasSeleccionada);
-                }
+            if (!string.IsNullOrEmpty(calificacion) && calificacion != "0")
+            {
+                int calif = Convert.ToInt32(calificacion);
+                inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<int>("Calificacion") == calif);
+            }
 
-                if (!string.IsNullOrEmpty(calificacionSeleccionada) && calificacionSeleccionada != "0")
-                {
-                    inmueblesFiltrados = inmueblesFiltrados.Where(row => row.Field<int>("Calificacion").ToString() == calificacionSeleccionada);
-                }
+            return inmueblesFiltrados.Any() ? inmueblesFiltrados.CopyToDataTable() : new DataTable();
+        }
 
-                DataTable dtFiltrados = inmueblesFiltrados.Any() ? inmueblesFiltrados.CopyToDataTable() : new DataTable();
-                rptInmuebles.DataSource = dtFiltrados;
-                rptInmuebles.DataBind();
-                upd_Panel.Update();
+
+        protected void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (CurrentPageIndex > 0)
+            {
+                CurrentPageIndex--;
+                BindRepeaterConFiltro(Session["DatosFiltrados"] as DataTable);
+            }
+        }
+
+        protected void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            DataTable datosFiltrados = Session["DatosFiltrados"] as DataTable;
+            int maxPageIndex = (datosFiltrados.Rows.Count / PageSize) + (datosFiltrados.Rows.Count % PageSize > 0 ? 1 : 0) - 1;
+
+
+            if (CurrentPageIndex < maxPageIndex)
+            {
+                CurrentPageIndex++;
+                BindRepeaterConFiltro(datosFiltrados);
             }
         }
     }

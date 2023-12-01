@@ -86,7 +86,7 @@ namespace Negocios
             }
             catch (Exception ex)
             {
-                throw ex;
+               
             }
 
         }//fin de agregar usuario

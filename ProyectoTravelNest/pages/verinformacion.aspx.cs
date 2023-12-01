@@ -111,7 +111,9 @@ namespace ProyectoTravelNest.pages
 
                 }
                 fechasOcupadas = ObtenerFechasOcupadasDesdeBD(idInmueble);
-               
+                btnReservar.Enabled = false;
+
+                btnReservar.Text = "Debe Seleccionar las Fechas";
 
                 if (eUsuarios.T_Rol != 'H')
                 {
@@ -287,9 +289,7 @@ namespace ProyectoTravelNest.pages
 
             if (fecha2 == fecha)
             {
-                btnReservar.Enabled = false;
 
-                btnReservar.Text = "Seleccione las Fechas";
                 txtTotal.Text = "$ 0";
             }
             else
@@ -299,6 +299,37 @@ namespace ProyectoTravelNest.pages
                 
 
 
+            }
+
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+
+            if (eUsuarios != null)
+            {
+
+                if (eUsuarios.T_Rol == 'H')
+                {
+
+
+                    if (fecha2 == fecha)
+                    {
+
+
+                        btnReservar.Text = "Seleccione las Fechas";
+                        btnReservar.Enabled = false;
+
+                    }
+                    else
+                    {
+
+                        btnReservar.Text = "Reservar";
+                        // Habilita el botón y muestra el total
+                        btnReservar.Enabled = true;
+
+
+                    }
+
+
+                }
             }
 
             lblFechaEntrada.Text = CalendarInicio.SelectedDate.ToString("d/MM/yyyy");
@@ -322,9 +353,9 @@ namespace ProyectoTravelNest.pages
 
             if(fecha1 == fecha)
             {
-                btnReservar.Enabled = false;
+                
 
-                btnReservar.Text = "Seleccione las Fechas";
+                
                 txtTotal.Text = "$ 0";
             }
             else
@@ -334,8 +365,39 @@ namespace ProyectoTravelNest.pages
                
                 
             }
-
             
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            if (eUsuarios != null)
+            {
+
+
+                if (eUsuarios.T_Rol == 'H')
+                {
+
+
+                    if (fecha1 == fecha)
+                    {
+
+
+                        btnReservar.Text = "Seleccione las Fechas";
+                        btnReservar.Enabled = false;
+
+                    }
+                    else
+                    {
+
+                        btnReservar.Text = "Reservar";
+                        // Habilita el botón y muestra el total
+                        btnReservar.Enabled = true;
+
+
+                    }
+
+
+                }
+            }
+
+
 
             lblFechaSalida.Text = CalendarFinal.SelectedDate.ToString("d/MM/yyyy");
             
@@ -368,8 +430,55 @@ namespace ProyectoTravelNest.pages
 
         protected void btnReservar_Click(object sender, EventArgs e)
         {
-            ObtenerValorDDLHuespedes(); // Llama al método para obtener el valor seleccionado del DropDownList
-            Response.Redirect("cotizacion.aspx?parametro1=" + lblFechaEntrada.Text + "&parametro2=" + lblFechaSalida.Text + "&parametro3=" + txtTotal.Text + "&parametro4=" + valorSeleccionadoDDL + "&parametro5="+IdUsuario+ "&parametro6="+idInmueble+"");
+
+
+
+            try
+            {
+                Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+                Negocios.Negocio_Cupon negocio_Cupon = new Negocio_Cupon();
+
+                string fechaEntrada = lblFechaEntrada.Text;
+                string fechaSalida = lblFechaSalida.Text;
+
+                // Separar las partes de la fecha
+                string[] partesFechaEntrada = fechaEntrada.Split('/');
+                string[] partesFechaSalida = fechaSalida.Split('/');
+
+                // Agregar un cero inicial al día si es necesario
+                string diaEntrada = partesFechaEntrada[0].PadLeft(2, '0');
+                string diaSalida = partesFechaSalida[0].PadLeft(2, '0');
+
+                // Reemplazar el día original con el día corregido
+                string fechaEntradaCorregida = diaEntrada + "/" + partesFechaEntrada[1] + "/" + partesFechaEntrada[2];
+                string fechaSalidaCorregida = diaSalida + "/" + partesFechaSalida[1] + "/" + partesFechaSalida[2];
+
+                // Analizar las fechas en formato dd/MM/yyyy
+                DateTime fechaEntradaParse = DateTime.ParseExact(fechaEntradaCorregida, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime fechaSalidaParse = DateTime.ParseExact(fechaSalidaCorregida, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                // Formatear las fechas en formato yyyy-MM-dd
+                string fechaEntradaFormateada = fechaEntradaParse.ToString("yyyy-MM-dd");
+                string fechaSalidaFormateada = fechaSalidaParse.ToString("yyyy-MM-dd");
+
+
+                //valida las fechas nuevamente, si da error se va para el catch e informa
+                negocio_Cupon.ValidarFechasReserva(eUsuarios.IdUsuario, idInmueble, fechaEntradaFormateada, fechaSalidaFormateada);
+
+                ObtenerValorDDLHuespedes(); // Llama al método para obtener el valor seleccionado del DropDownList
+                Response.Redirect("cotizacion.aspx?parametro1=" + lblFechaEntrada.Text + "&parametro2=" + lblFechaSalida.Text + "&parametro3=" + txtTotal.Text + "&parametro4=" + valorSeleccionadoDDL + "&parametro5=" + IdUsuario + "&parametro6=" + idInmueble + "");
+
+            }
+            catch (Exception ex)
+            {
+
+                string mensajeError = ex.Message.Replace("'", "\\'");
+                string script = $"Swal.fire('¡Error!', 'Revisa tu calendarios, estas seleccionando una fecha de entrada y una de salida donde hay días no disponibles (rojos) entre las fechas seleccionadas', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+            }
+
+
+            
         }
 
         public void ObtenerValorDDLHuespedes()

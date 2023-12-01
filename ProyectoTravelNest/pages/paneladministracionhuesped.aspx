@@ -153,17 +153,52 @@
                     </div>
                     <div class="card">
                         <asp:LinkButton runat="server" ID="lbtnVId" Style="text-decoration: none" OnClick="lbtnVId_Click" CssClass="notification">
-        <span>
-            <h5 class="h5 mt-2">Verificar identificación</h5>
-            <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
-        </span>
+                            <span>
+                                <h5 class="h5 mt-2">Verificar identificación</h5>
+                                <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
+                            </span>
                         </asp:LinkButton>
                     </div>
                 </div>
             </div>
         </div>
-        
-        
+
+
+
+        <div class="row mt-4">
+            <div class="col-12">
+
+                <div class="card-deck">
+
+                    <div class="card">
+                        <a href="cuponeshuesped.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Cupones Disponibles</h5>
+                                <p class="h6 mt-4">Observa sí tienes algún cupon disponible.</p>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="card" style="visibility: hidden;">
+                        <a href="#" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Politicas Travel Nest</h5>
+                                <p class="h6 mt-4">Hecha un vistaso a las reglas y normas de nuestra aplicacion.</p>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="card" style="visibility: hidden;">
+                        <a href="#" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Politicas Travel Nest</h5>
+                                <p class="h6 mt-4">Hecha un vistaso a las reglas y normas de nuestra aplicacion.</p>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 

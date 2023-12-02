@@ -42,15 +42,6 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.Label lblEstado;
 
         /// <summary>
-        /// cartaInmueble control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cartaInmueble;
-
-        /// <summary>
         /// ListaReglas control.
         /// </summary>
         /// <remarks>
@@ -76,5 +67,14 @@ namespace ProyectoTravelNest.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAgregar;
+
+        /// <summary>
+        /// cartaInmueble control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cartaInmueble;
     }
 }

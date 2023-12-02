@@ -33,6 +33,15 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl cajaEstado;
 
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// lblEstado control.
         /// </summary>
         /// <remarks>
@@ -76,5 +85,23 @@ namespace ProyectoTravelNest.pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnVerificar;
+
+        /// <summary>
+        /// cargandoImagen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cargandoImagen;
+
+        /// <summary>
+        /// imagenCargando control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imagenCargando;
     }
 }

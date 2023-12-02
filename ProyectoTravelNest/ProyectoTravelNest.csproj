@@ -204,6 +204,7 @@
     <Content Include="img\politicas.jpg" />
     <Content Include="img\politicasvector.JPG" />
     <Content Include="img\porcentaje.png" />
+    <Content Include="img\loading-1.gif" />
     <Content Include="img\user.png" />
     <Content Include="pages\agregarmibanco.aspx" />
     <Content Include="pages\alojamientospoliticas.aspx" />

@@ -2,36 +2,50 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/stylesInmueble.css" rel="stylesheet" />
     <link href="../Content/styleComentariosPendientes.css" rel="stylesheet" />
+    <style>
+        @media (max-width: 400px) {
+            .btn-group .btnModificar, .btn-group .btnGuardar, .btn-group .btnEliminar {
+                font-size: 0.875rem;
+                margin-left: -150%
+            }
+        }
+        @media (max-width: 380px) {
+            .btn-group .btnModificar, .btn-group .btnGuardar, .btn-group .btnEliminar {
+                margin-left: -320%
+            }
+        }
+        @media (max-width: 350px) {
+            .btn-group .btnModificar, .btn-group .btnGuardar, .btn-group .btnEliminar {
+                margin-left: -600%
+            }
+        }
+    </style>
     <div class="container" style="margin-top: 6vh;">
         <h1>Agregar descuento</h1>
         <h5>Ingrese, modifique o elimine un descuento según sea necesario.</h5>
 
         <div class="container-fluid mt-5">
-            <div class="row">
-                <div class="container" runat="server" id="error" visible="false">
-                    <div class="row">
+            <div class="container" runat="server" id="error" visible="false">
+                <div class="row">
                     <div class="col-sm-3 alert alert-danger" runat="server" id="cajaEstado" role="alert">
                         <asp:Label ID="lblEstado" runat="server" Text=""></asp:Label>
                     </div>
-                    </div>
                 </div>
-                <div class="flex-row-reverse d-flex justify-content-around">
-                    <div class="col-lg-3 col-md-5 p-0 mb-5 me-4 bg-white rounded" runat="server" id="cartaInmueble">
-                        <!-- Inmueble -->
-                    </div>
-                    
-                    <div class="col-md-5" id="Lista" runat="server">
-                        <!-- Cargar descuentos -->
-                        <asp:Repeater ID="Repeater" runat="server">
-                            <ItemTemplate>
-                                <div style="background-color: #F9F9F9;" class="p-3 mb-3 rounded-3">
-                                    <div class="d-flex justify-content-between">
+            </div>
+            <div class="row flex-column-reverse flex-md-row">
+                <div class="col-md-7 mb-5 mb-md-0" id="Lista" runat="server">
+                    <!-- Cargar descuentos -->
+                    <asp:Repeater ID="Repeater" runat="server">
+                        <ItemTemplate>
+                            <div style="background-color: #F9F9F9;" class="p-3 mb-3 rounded-3">
+                                <div class="d-flex justify-content-between">
                                     <asp:TextBox ID="txtPorcentaje" runat="server" Text='<%# Eval("Porcentaje") %>' 
-                                                 AutoCompleteType ="Disabled" CssClass="h5" MaxLength="5" ReadOnly="true"
-                                                 style="border: none; background-color: transparent; outline: none;"
-                                                 ></asp:TextBox>
-                                        <!-- Botones -->
-                                        <div style="right: 0; display: inline-flex; margin-top: -6px;">
+                                                AutoCompleteType ="Disabled" CssClass="h5" MaxLength="5" ReadOnly="true"
+                                                style="border: none; background-color: transparent; outline: none;">
+                                    </asp:TextBox>
+                                    <!-- Botones -->
+                                    <div class="d-flex justify-content-end" style="margin-top: -6px;">
+                                        <div class="btn-group" role="group">
                                             <div style="margin: 0px 5px" runat="server" id="divbtnModificar" visible="true">
                                                 <asp:LinkButton ID="btnModificar" runat="server" CssClass="btnModificar"
                                                             CommandArgument='<%# Eval("IdDescuento") %>' OnClick="btnModificar_Click">
@@ -61,21 +75,24 @@
                                         </div>
                                     </div>
                                 </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-
-                        <!-- Agregar Descuento -->
-                        <div class="p-3 mb-3 rounded-3">
-                            <div class="d-flex justify-content-center">
-                                <asp:LinkButton runat="server" style="width: 100%; height: 100%; padding: 10px 0px; display: flex; justify-content: center; align-items: center;"
-                                                class="align-items-center rounded-3" ID="btnAgregar" OnClick="btnAgregar_Click" CssClass="agregar_promocion">
-                                    <svg style="fill: #9e9e9e" xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 448 512">
-                                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
-                                    </svg>
-                                </asp:LinkButton>
                             </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                    <!-- Agregar Descuento -->
+                    <div class="p-3 mb-3 rounded-3">
+                        <div class="d-flex justify-content-center">
+                            <asp:LinkButton runat="server" style="width: 100%; height: 100%; padding: 10px 0px; display: flex; justify-content: center; align-items: center;"
+                                            class="align-items-center rounded-3" ID="btnAgregar" OnClick="btnAgregar_Click" CssClass="agregar_promocion">
+                                <svg style="fill: #9e9e9e" xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 448 512">
+                                    <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+                                </svg>
+                            </asp:LinkButton>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-4 col-md-5 p-0 mb-5 me-4 bg-white rounded" runat="server" id="cartaInmueble">
+                    <!-- Inmueble -->
                 </div>
             </div>
         </div>

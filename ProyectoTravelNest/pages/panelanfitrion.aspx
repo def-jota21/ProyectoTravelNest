@@ -31,8 +31,8 @@
             </div>
         </div>
     </div>
-
     <div class="container mt-5">
+        <h1 style="margin-top: -65px">Panel de Anfitrión</h1>
         <!-- [Cartas anfitrion] -->
         <!-- Fila #1 -->
         <div class="row mt-4">

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ProyectoTravelNest.pages
@@ -50,27 +54,45 @@ namespace ProyectoTravelNest.pages
                     cajaEstado.Attributes["class"] = String.Join(" ", clases);
                     cajaEstado.Attributes["class"] += " alert-success";
                     lblEstado.Text = "Estado: Aprobado";
+                    //btnVerificar.Visible = false;
                 }
                 lblIdentificacion.Text = IdUsuario;
             }
         }
 
-        protected void btnVerificar_Click(object sender, EventArgs e)
+        protected async void btnVerificar_Click(object sender, EventArgs e)
         {
-            if (Documento.HasFile)
+            try
             {
-                Stream fs = Documento.PostedFile.InputStream;
-                BinaryReader br = new BinaryReader(fs);
-                imgDocumento = br.ReadBytes((Int32)fs.Length);
+                if (Documento.HasFile)
+                {
+                    Stream fs = Documento.PostedFile.InputStream;
+                    BinaryReader br = new BinaryReader(fs);
+                    imgDocumento = br.ReadBytes((Int32)fs.Length);
+                }
+                if (Rostro.HasFile)
+                {
+                    Stream fs = Rostro.PostedFile.InputStream;
+                    BinaryReader br = new BinaryReader(fs);
+                    imgRostro = br.ReadBytes((Int32)fs.Length);
+                }
+                await verificarIdentidad.compararImagenes(IdUsuario, imgDocumento, imgRostro);
+                await verificarIdentidad.compararCedula(IdUsuario, imgDocumento);
+                Response.Redirect(Request.RawUrl);
             }
-            if (Rostro.HasFile)
+            catch (SqlException sqlEx)
             {
-                Stream fs = Rostro.PostedFile.InputStream;
-                BinaryReader br = new BinaryReader(fs);
-                imgRostro = br.ReadBytes((Int32)fs.Length);
+                throw sqlEx;
             }
-            verificarIdentidad.compararImagenes(IdUsuario, imgRostro, imgDocumento);
-            Response.Redirect(Request.RawUrl);
+            catch (Exception ex)
+            {
+                string[] clases = cajaEstado.Attributes["class"].Split(' ');
+                clases = clases.Where(clase => clase != "alert-warning" && clase != "alert-success").ToArray();
+                cajaEstado.Attributes["class"] = String.Join(" ", clases);
+                cajaEstado.Attributes["class"] += " alert-danger";
+                lblEstado.Text = "Error: " + ex.Message;
+                cargandoImagen.Style["display"] = "none";
+            }
         }
     }
 }

@@ -327,5 +327,39 @@ namespace Negocios
             }
 
         }
+
+
+        public DataTable ObtenerPoliticas()
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "PoliticasRegistradas";
+            
+            
+
+            dt = Datos.ConexionSQL.ExecuteQueryTableGeneral(strNombreSP);
+
+            return dt;
+        }
+
+
+        public void agregarPoliticas(String Politica)
+        {
+
+            try
+            {
+                string strNombreSP = "CRUDPoliticasGes";
+                List<SqlParameter> lstParametros = new List<SqlParameter>();
+                lstParametros.Add(new SqlParameter("@Politica", Politica));
+
+                Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
     }
 }

@@ -481,10 +481,19 @@ namespace ProyectoTravelNest.pages
             }
             catch (Exception ex)
             {
-
-                string mensajeError = ex.Message.Replace("'", "\\'");
-                string script = $"Swal.fire('¡Error!', 'Revisa tu calendarios, estas seleccionando una fecha de entrada y una de salida donde hay días no disponibles (rojos) entre las fechas seleccionadas', 'error');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                if (ex.Message.ToString().Contains("sentimos"))
+                {
+                    string mensajeError = ex.Message.Replace("'", "\\'");
+                    string script = $"Swal.fire('¡Error!', '{mensajeError}', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                }
+                else
+                {
+                    
+                    string script = $"Swal.fire('¡Error!', 'Revisa tu calendarios, estas seleccionando una fecha de entrada y una de salida donde hay días no disponibles (rojos) entre las fechas seleccionadas', 'error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                }
+                
             }
 
 

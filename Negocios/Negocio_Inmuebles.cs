@@ -126,6 +126,19 @@ namespace Negocios
 
             return dt;
         }
+        public DataTable ListarAlojamientosReservados(string idUsuario)
+        {
+            DataTable dt = new DataTable();
+
+            string strNombreSP = "AlojamientosReservados";
+            List<SqlParameter> lstParametros = new List<SqlParameter>();
+            lstParametros.Add(new SqlParameter("@IdUsuario", idUsuario));
+
+
+            dt = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
+
+            return dt;
+        }
         public DataTable ListarInmueblesInactivosAnfitrion(string idAnfitrion)
         {
             DataTable dt = new DataTable();

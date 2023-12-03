@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace ProyectoTravelNest.pages
 {
-    public partial class alojamientosvisitados : System.Web.UI.Page
+    public partial class reservasactivas : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +24,7 @@ namespace ProyectoTravelNest.pages
                 Negocios.Negocio_Inmuebles iInmueble = new Negocios.Negocio_Inmuebles();
 
                 //aca tambien se debe de obtener la variable session al inciciar sesion
-                rptAlojamientos.DataSource = iInmueble.ListarAlojamientosVisitados(eUsuarios.IdUsuario);
+                rptAlojamientos.DataSource = iInmueble.ListarAlojamientosReservados(eUsuarios.IdUsuario);
                 rptAlojamientos.DataBind();
             }
         }

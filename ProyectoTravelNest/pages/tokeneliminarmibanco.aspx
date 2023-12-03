@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="validartokenmibanco.aspx.cs" Inherits="ProyectoTravelNest.pages.validartokenmibanco" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="tokeneliminarmibanco.aspx.cs" Inherits="ProyectoTravelNest.pages.tokeneliminarmibanco" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="Content/style.css" rel="stylesheet" />
 <style>
@@ -79,5 +79,4 @@
             Style="height: 44px; margin-top: -2px; background: #7AB730; border-color: #7AB730;"/>
     </div>
 </div>
-
 </asp:Content>

@@ -56,7 +56,7 @@ namespace ProyectoTravelNest.pages
                 CantidadesCategoriasJson = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(cantidades);
             }
 
-            
+
         }
     }
 }

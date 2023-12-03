@@ -30,7 +30,18 @@ namespace ProyectoTravelNest
         protected void Page_Load(object sender, EventArgs e)
 
         {
-
+            Entidades.Usuarios usuario = Session["IdUsuario"] as Entidades.Usuarios;
+            if (!IsPostBack & usuario != null)
+            {
+                if (usuario.T_Rol == 'A')
+                {
+                    Response.Redirect("pages/panelanfitrion.aspx");
+                }                 
+                else if (usuario.T_Rol == 'G')
+                {
+                    Response.Redirect("pages/dashbord.aspx");
+                }
+            }
 
             if (!IsPostBack)
             {

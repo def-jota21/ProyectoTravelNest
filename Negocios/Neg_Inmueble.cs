@@ -29,6 +29,15 @@ namespace Negocios
 
             return tablaPoliticas;
         }
+
+        public bool ValidarReservacionesInmuebles(string IdInmueble)
+        {
+            
+            Datos.InmuebleSQL inmuebleSQL = new Datos.InmuebleSQL();
+            bool valor = inmuebleSQL.ValidarReservacionesInmuebles(IdInmueble);
+
+            return valor;
+        }
         public int ObtenerContadorInmuebleActivos()
         {
             
@@ -103,6 +112,14 @@ namespace Negocios
             tablaServicios = serviciosSQL.ObtenerServiciosPorInmueble(idInmueble);
 
             return tablaServicios;
+        }
+        public DataTable ObtenerAmenidadesxInmueble(string idInmueble)
+        {
+            DataTable tablaAmenidades = new DataTable();
+            Datos.ServiciosSQL serviciosSQL = new Datos.ServiciosSQL();
+            tablaAmenidades = serviciosSQL.ObtenerAmenidadesPorInmueble(idInmueble);
+
+            return tablaAmenidades;
         }
         public DataTable ObtenerContadorCategorias()
         {

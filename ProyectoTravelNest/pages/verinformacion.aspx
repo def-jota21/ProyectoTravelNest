@@ -129,9 +129,6 @@
                             <small><i class="fa fa-map-marker-alt text-primary mr-1"></i><%# Eval("Direccion") %></small>
                         </div>
                     </div>
-
-
-
                 </ItemTemplate>
             </asp:Repeater>
         </div>
@@ -224,10 +221,15 @@
                     </div>
                     <hr>
                     <h4>Amenidades</h4>
-                    <p style="display: inline;">
-                        <i class="fa fa-wifi text-primary mr-1" style="display: inline;"></i>
-                        Wifi
-                    </p>
+                    <asp:Repeater ID="rptAmenidades" runat="server">
+                        <ItemTemplate>
+                            <p class="d-inline-block m-2">
+
+                                <i class="fa <%# ObtenerIconoAmenidad(Eval("Nombre").ToString()) %> text-primary mr-1 mx-2" style="display: inline;"></i>
+                                <%# Eval("Nombre") %>
+                            </p>
+                        </ItemTemplate>
+                    </asp:Repeater>
                     <hr />
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>

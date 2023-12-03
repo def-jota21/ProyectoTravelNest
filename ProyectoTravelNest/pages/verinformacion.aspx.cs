@@ -99,6 +99,11 @@ namespace ProyectoTravelNest.pages
                 // Enlaza los servicios restantes al rptTodosServicios dentro del modal
                 rptTodosServicios.DataSource = dtServiciosRestantes;
                 rptTodosServicios.DataBind();
+
+                DataTable dtAmenidades = neg_Inmueble.ObtenerAmenidadesxInmueble(idInmueble);
+
+                rptAmenidades.DataSource = dtAmenidades;
+                rptAmenidades.DataBind();
             }
 
             if (!IsPostBack & eUsuarios != null)
@@ -175,6 +180,11 @@ namespace ProyectoTravelNest.pages
                 // Enlaza los servicios restantes al rptTodosServicios dentro del modal
                 rptTodosServicios.DataSource = dtServiciosRestantes;
                 rptTodosServicios.DataBind();
+
+                DataTable dtAmenidades = neg_Inmueble.ObtenerAmenidadesxInmueble(idInmueble);
+
+                rptAmenidades.DataSource = dtAmenidades;
+                rptAmenidades.DataBind();
             }
 
         }
@@ -492,6 +502,31 @@ namespace ProyectoTravelNest.pages
                     valorSeleccionadoDDL = ddlHuespedes.SelectedValue;
                     break; // Termina el bucle una vez que se encuentra un DropDownList válido
                 }
+            }
+        }
+        protected string ObtenerIconoAmenidad(string nombreAmenidad)
+        {
+            // Diccionario de iconos y las correspondencias entre nombres de amenidades y clases de iconos
+            Dictionary<string, string> diccionarioIconos = new Dictionary<string, string>
+    {
+        {"Estacionamiento", "fa fa-parking"},
+        {"Piscina Comunitaria", "fa fa-water"},
+        {"Cercanía a Restaurantes", "fa fa-mug-hot"},
+        {"Gimnasio Cercano", "fa fa-dumbbell"},
+        {"Transporte Público Cercano", "fa fa-bus"},
+        {"Juegos al aire libre", "fa fa-futbol"},
+        {"Acceso a la Playa", "fa fa-water"}
+    };
+
+            // Verifica si el nombre de la amenidad existe en el diccionario y devuelve la clase de icono correspondiente
+            if (diccionarioIconos.TryGetValue(nombreAmenidad, out string icono))
+            {
+                return icono;
+            }
+            else
+            {
+                // Devuelve un icono por defecto o una clase de icono desconocida si la amenidad no se encuentra en el diccionario
+                return "fa fa-question-circle";
             }
         }
 

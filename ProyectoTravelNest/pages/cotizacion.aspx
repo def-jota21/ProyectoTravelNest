@@ -26,8 +26,11 @@
                     <asp:DropDownList ID="ddlCupones" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCupones_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
-                <asp:Button ID="btnPagar" runat="server" Text="Pagar" CssClass="btn btn-primary mt-4" OnClick="btnPagar_Click" />
-
+                <asp:Button ID="btnPagar" runat="server" Text="Pagar" CssClass="btn btn-primary mt-4 mb-3 btn-lg" OnClick="btnPagar_Click" />
+                <br />
+                <asp:Label ID="lblVerificacion" runat="server" CssClass="form-label mt-2 " Style="color: red;">Falta Verificar Identidad</asp:Label>
+                <br />
+                <asp:Label ID="lblMiBanco" runat="server" CssClass="form-label mt-2 " Style="color: red;">Falta Enlazar Mi Banco</asp:Label>
             </div>
             <div class="col">
                 <div class="card border-light mb-3" style="max-width: 30rem;">

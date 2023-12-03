@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocios;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,35 +9,35 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocios;
 
 namespace ProyectoTravelNest.pages
 {
-    public partial class validartoken : System.Web.UI.Page
+    public partial class tokeneliminarmibanco : System.Web.UI.Page
     {
-        static string correo;
-        static string contrasena;
+        static string numero_cuenta;
         static string token;
+        Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
             //string parametrosEncriptados = Request.QueryString["parametros"];
             //string parametrosDesencriptados = DesencriptarParametros(parametrosEncriptados);
 
             //string[] parametros = parametrosDesencriptados.Split('|');
-            //correo = parametros[0];
-            //contrasena = parametros[1];
-            //token = parametros[2];
+            //numero_cuenta = parametros[0];
+            //token = parametros[1];
 
-            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
-            if (eUsuarios != null)
+            if (eUsuarios == null)
             {
-                Response.Redirect("Default.aspx");
+                FormsAuthentication.RedirectToLoginPage();
             }
-
-            correo = Request.QueryString["parametro1"];
-            contrasena = Request.QueryString["parametro2"];
-            token = Request.QueryString["parametro3"];
+            if (!IsPostBack & eUsuarios != null)
+            {
+                numero_cuenta = Request.QueryString["parametro1"];
+                token = Request.QueryString["parametro2"];
+                
+            }
         }
         private string DesencriptarParametros(string parametrosEncriptados)
         {
@@ -90,53 +91,50 @@ namespace ProyectoTravelNest.pages
             }
         }
 
-
-
-
-
         protected void btnValidarToken_Click(object sender, EventArgs e)
         {
+            Negocios.Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
             string clave = txtToken.Text;
+            string mensaje = "";
+            if (clave != null)
+            {
 
-            if(clave != null) { 
-                
-                if (clave == token) {
-                    
+                if (clave == token)
+                {
 
-                    // Instancia de la clase de negocios para verificar las credenciales
-                    var negocioUsuarios = new Neg_Usuarios();
-                    var usuario = negocioUsuarios.VerificarCredenciales(correo, contrasena);
-
-                    if (usuario != null)
+                    // Si el rol es A o H
+                    if (eUsuarios.T_Rol == 'A')
                     {
-                        // Si el rol es A o H, inicia sesión
-                        if (usuario.T_Rol == 'A' || usuario.T_Rol == 'H' || usuario.T_Rol == 'G')
-                        {
-                            token = "";
-                            Session["IdUsuario"] = usuario;
-                            FormsAuthentication.RedirectFromLoginPage(usuario.IdUsuario, false);
-                            
-                            if(usuario.T_Rol == 'A')
-                            {
-                                Response.Redirect("panelanfitrion.aspx");
-                            }else if (usuario.T_Rol == 'H')
-                            {
-                                Response.Redirect("paneladministracionhuesped.aspx");
-                            }
-                            else if (usuario.T_Rol == 'G')
-                            {
-                                Response.Redirect("dashbord.aspx");
-                            }
+                        token = "";
+                        string mensaje2 = neg_MiBanco.EliminarCuentaMiBanco2(eUsuarios.IdUsuario, numero_cuenta);
 
-                        }
-                        else
+
+                        if (mensaje2 == "Exito")
                         {
-                            // Manejar roles no autorizados o mostrar mensaje
+                            string script = "Swal.fire('¡Éxito!', 'Se elimino correctamente.', 'success');";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                            Response.Redirect("panelanfitrion.aspx");
                         }
+
+                    }
+                    if (eUsuarios.T_Rol == 'H')
+                    {
+                        token = "";
+                        string mensaje2 = neg_MiBanco.EliminarCuentaMiBanco2(eUsuarios.IdUsuario, numero_cuenta);
+
+
+                        if (mensaje2 == "Exito")
+                        {
+                            string script = "Swal.fire('¡Éxito!', 'Se elimino correctamente.', 'success');";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                            Response.Redirect("paneladministracionhuesped.aspx");
+                        }
+                        
+
                     }
                 }
             }
-            
+
         }
     }
 }

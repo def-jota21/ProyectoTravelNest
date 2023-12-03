@@ -89,10 +89,10 @@ namespace ProyectoTravelNest.pages
                 // Enviar el correo electrónico con el token
                 negocioUsuarios.EnviarCorreoElectronico(destinatario, token);
 
-                //string parametrosEncriptados = EncriptarParametros(correo + "|" + contrasena + "|" + token);
+                //string parametrosEncriptados = EncriptarParametros(numeroCuenta + "|" + cvv + "|" + token);
                 //string parametrosEncriptadosUrl = HttpUtility.UrlEncode(parametrosEncriptados);
 
-                //Response.Redirect("validartoken.aspx?parametros=" + parametrosEncriptadosUrl);
+                //Response.Redirect("validartokenmibanco.aspx?parametros=" + parametrosEncriptadosUrl);
 
                 Response.Redirect("validartokenmibanco.aspx?parametro1="+numeroCuenta+"&parametro2="+cvv+"&parametro3="+token+"");
             }

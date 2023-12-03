@@ -52,9 +52,9 @@ namespace ProyectoTravelNest
                     PrivadaHuesped2.Visible = false;
                     
 
-                    PrivadaGestor1.Visible = false;
-                    PrivadaGestor2.Visible = false;
-                    PrivadaGestor3.Visible = false;
+                    //PrivadaGestor1.Visible = false;
+                    //PrivadaGestor2.Visible = false;
+                    //PrivadaGestor3.Visible = false;
 
                     Registrarse.Visible = false;
                 }
@@ -68,9 +68,9 @@ namespace ProyectoTravelNest
                     PrivadaHuesped2.Visible = true;
                     
 
-                    PrivadaGestor1.Visible = false;
-                    PrivadaGestor2.Visible = false;
-                    PrivadaGestor3.Visible = false;
+                    //PrivadaGestor1.Visible = false;
+                    //PrivadaGestor2.Visible = false;
+                    //PrivadaGestor3.Visible = false;
 
                     Registrarse.Visible = false;
                 }
@@ -84,9 +84,9 @@ namespace ProyectoTravelNest
                     PrivadaHuesped2.Visible = false;
                     
 
-                    PrivadaGestor1.Visible = true;
-                    PrivadaGestor2.Visible = true;
-                    PrivadaGestor3.Visible = true;
+                    //PrivadaGestor1.Visible = true;
+                    //PrivadaGestor2.Visible = true;
+                    //PrivadaGestor3.Visible = true;
 
                     Registrarse.Visible = false;
                 }
@@ -119,9 +119,9 @@ namespace ProyectoTravelNest
            
 
 
-            PrivadaGestor1.Visible = false;
-            PrivadaGestor2.Visible = false;
-            PrivadaGestor3.Visible = false;
+            //PrivadaGestor1.Visible = false;
+            //PrivadaGestor2.Visible = false;
+            //PrivadaGestor3.Visible = false;
         }
     }
 }

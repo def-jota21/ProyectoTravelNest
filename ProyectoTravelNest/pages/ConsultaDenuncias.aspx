@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ConsultaDenuncias.aspx.cs" Inherits="ProyectoTravelNest.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="consultadenuncias.aspx.cs" Inherits="ProyectoTravelNest.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="updPanel_ConsultaDenuncias" runat="server" UpdateMode="Conditional">

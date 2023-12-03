@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="recepciondedenuncias.aspx.cs" Inherits="ProyectoTravelNest.pages.recepciondedenuncias" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
+  
+    
         <meta charset="UTF-8">
-        <title>Formulario de Denuncias</title>
+        
         <link href="../Content/Denuncias.css" rel="stylesheet" />
 
         <style>
@@ -25,11 +24,9 @@
             }
         </style>
 
-    </head>
-    <body>
         <asp:UpdatePanel runat="server" ID="UpdPanel_CRUDDenuncias" UpdateMode="Conditional">
             <ContentTemplate>
-        <div class="container mt-4">
+        <div class="container con mt-4">
             <h1>Formulario de Denuncias</h1>
             <div class="form-container">
                 <div class="form-column">
@@ -81,8 +78,6 @@
     <script src="../Scripts/WebForms/NotificacionesToastr.js"></script>
             </ContentTemplate>
         </asp:UpdatePanel>
-    </body>
-    </html>
 
   
 

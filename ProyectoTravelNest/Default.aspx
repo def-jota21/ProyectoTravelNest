@@ -212,20 +212,17 @@
                         </asp:ListView>
                         <div class="container mt-4">
                             <div class="row col-lg-12 col-sm-12 text-center">
-                                
+                                <p style="margin-top: 3px; margin-bottom:3px;">Páginas</p>
                                 <div class="DataPagerContainer">
-    <asp:DataPager ID="DataPager1" runat="server" PageSize="15" PagedControlID="lvInmuebles">
-        <Fields>
-            <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
-            <asp:NumericPagerField />
-        </Fields>
-    </asp:DataPager>
-</div>
-
+                                    <asp:DataPager ID="DataPager1" runat="server" PageSize="15" PagedControlID="lvInmuebles">
+                                        <Fields>
+                                            <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
+                                            <asp:NumericPagerField />
+                                        </Fields>
+                                    </asp:DataPager>
+                                </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

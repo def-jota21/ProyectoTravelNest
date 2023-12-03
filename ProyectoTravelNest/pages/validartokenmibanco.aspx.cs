@@ -20,13 +20,7 @@ namespace ProyectoTravelNest.pages
         Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string parametrosEncriptados = Request.QueryString["parametros"];
-            //string parametrosDesencriptados = DesencriptarParametros(parametrosEncriptados);
-
-            //string[] parametros = parametrosDesencriptados.Split('|');
-            //numero_cuenta = parametros[0];
-            //cvv = parametros[1];
-            //token = parametros[2];
+            
 
             eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
 
@@ -36,9 +30,17 @@ namespace ProyectoTravelNest.pages
             }
             if (!IsPostBack & eUsuarios != null)
             {
-                numero_cuenta = Request.QueryString["parametro1"];
-                cvv = Request.QueryString["parametro2"];
-                token = Request.QueryString["parametro3"];
+
+                string parametrosEncriptados = Request.QueryString["parametros"];
+                string parametrosDesencriptados = DesencriptarParametros(parametrosEncriptados);
+
+                string[] parametros = parametrosDesencriptados.Split('|');
+                numero_cuenta = parametros[0];
+                cvv = parametros[1];
+                token = parametros[2];
+                //numero_cuenta = Request.QueryString["parametro1"];
+                //cvv = Request.QueryString["parametro2"];
+                //token = Request.QueryString["parametro3"];
             }
         }
         private string DesencriptarParametros(string parametrosEncriptados)

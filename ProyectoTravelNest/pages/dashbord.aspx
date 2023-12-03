@@ -93,6 +93,40 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card bg-success text-white mb-4 ">
+                            <div class="card-body">
+                                <asp:Label ID="Label5" Visible="false" runat="server" CssClass="h1 text-white"></asp:Label>
+                                <p>Consulta de denuncias</p>
+                            </div>
+                            <div
+                                class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link"
+                                    href="consultadenuncias.aspx">Ver Denuncias</a>
+                                <div class="small text-white">
+                                    <i
+                                        class="fas fa-angle-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card bg-success text-white mb-4 ">
+                            <div class="card-body">
+                                <asp:Label ID="Label6" Visible="false" runat="server" CssClass="h1 text-white"></asp:Label>
+                                <p>Configurar Correos</p>
+                            </div>
+                            <div
+                                class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link"
+                                    href="configuracioncorreos.aspx">Configurar</a>
+                                <div class="small text-white">
+                                    <i
+                                        class="fas fa-angle-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row mb-4 ">
                     <div class="container mt-5">

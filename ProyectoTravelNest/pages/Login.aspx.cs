@@ -50,12 +50,12 @@ namespace ProyectoTravelNest.pages
                 // Enviar el correo electrónico con el token
                 negocioUsuarios.EnviarCorreoElectronico(destinatario, token);
 
-                //string parametrosEncriptados = EncriptarParametros(correo + "|" + contrasena + "|" + token);
-                //string parametrosEncriptadosUrl = HttpUtility.UrlEncode(parametrosEncriptados);
+                string parametrosEncriptados = EncriptarParametros(correo + "|" + contrasena + "|" + token);
+                string parametrosEncriptadosUrl = HttpUtility.UrlEncode(parametrosEncriptados);
 
-                //Response.Redirect("validartoken.aspx?parametros=" + parametrosEncriptadosUrl);
+                Response.Redirect("validartoken.aspx?parametros=" + parametrosEncriptadosUrl);
 
-                Response.Redirect("validartoken.aspx?parametro1="+correo+"&parametro2="+contrasena+"&parametro3="+token+"");
+                //Response.Redirect("validartoken.aspx?parametro1="+correo+"&parametro2="+contrasena+"&parametro3="+token+"");
             }
         }
 

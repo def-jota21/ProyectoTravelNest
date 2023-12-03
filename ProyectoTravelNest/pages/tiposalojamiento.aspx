@@ -78,7 +78,7 @@
         <div class="container">
             <h1 style="color: #7AB730;">Agregar Tipos de Alojamientos</h1>
             <p style="color: dimgrey;">Podrá presionar el botón agregar si desea agregar una nueva categoria.</p>
-            <a style="margin-bottom: 4px !important;" href="#"><i class="fa fa-arrow-left text-primary mr-2"></i>Regresar</a>
+            <a style="margin-bottom: 4px !important;" href="dashbord.aspx"><i class="fa fa-arrow-left text-primary mr-2"></i>Regresar</a>
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">
                     <div class="row" style="margin-top: 5px; margin-bottom: 15px; max-width: 200px; margin-left: 2px;">

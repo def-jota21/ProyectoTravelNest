@@ -149,8 +149,15 @@
                             </span>
                         </a>
                     </div>
-                     <div class="card">
-                        <a href="ConsultaDenuncias.aspx" class="notification" style="text-decoration: none">
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card-deck">
+                    <div class="card">
+                        <a href="consultadenuncias.aspx" class="notification" style="text-decoration: none">
                             <span>
                                 <h5 class="h5 mt-2">Recepcion de Denuncias</h5>
                                 <p class="h6 mt-4">Puedes ver las denuncias que realizaste.</p>
@@ -186,39 +193,48 @@
                             }
                         %>
                     </div>
+
+                    <div class="card">
+                        <a href="pantallapoliticas.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Politicas Travel Nest</h5>
+                                <p class="h6 mt-4">Hecha un vistaso a las reglas y nomras de nuestra aplicacion.</p>
+                            </span>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card-deck">
-                    <div class="card">
-    <a href="pantallapoliticas.aspx" class="notification" style="text-decoration: none">
-        <span>
-            <h5 class="h5 mt-2">Politicas Travel Nest</h5>
-            <p class="h6 mt-4">Hecha un vistaso a las reglas y nomras de nuestra aplicacion.</p>
-        </span>
-    </a>
-</div>
-<div class="card">
-    <a href="anunciosguardados.aspx" class="notification" style="text-decoration: none">
-        <span>
-            <h5 class="h5 mt-2">Anuncios Guardados</h5>
-            <p class="h6 mt-4">Puedes ver los anuncios que tienes guardados</p>
-        </span>
-    </a>
-</div>
-<div class="card" style="visibility: hidden;">
-    <a href="#" class="notification" style="text-decoration: none">
-        <span>
-            <h5 class="h5 mt-2">Politicas Travel Nest</h5>
-            <p class="h6 mt-4">Hecha un vistaso a las reglas y normas de nuestra aplicacion.</p>
-        </span>
-    </a>
-</div>
 
+                    <div class="card">
+                        <a href="anunciosguardados.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Anuncios Guardados</h5>
+                                <p class="h6 mt-4">Puedes ver los anuncios que tienes guardados</p>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="card" style="visibility: hidden;">
+                        <a href="#" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Politicas Travel Nest</h5>
+                                <p class="h6 mt-4">Hecha un vistaso a las reglas y normas de nuestra aplicacion.</p>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="card" style="visibility: hidden;">
+                        <a href="#" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Politicas Travel Nest</h5>
+                                <p class="h6 mt-4">Hecha un vistaso a las reglas y normas de nuestra aplicacion.</p>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

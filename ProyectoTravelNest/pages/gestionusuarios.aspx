@@ -78,7 +78,7 @@
     </style>
     <div class="container">
         <h1 style="color: #7AB730;">Gestion de Usuarios</h1>
-        <a style="margin-bottom:4px !important;" href="#"><i class="fa fa-arrow-left text-primary mr-2"></i>Regresar</a>
+        <a style="margin-bottom:4px !important;" href="dashbord.aspx"><i class="fa fa-arrow-left text-primary mr-2"></i>Regresar</a>
         <img src="../img/covergestionusuarios.jpg" alt="" class="img-fluid">
         <div class="container">
             <div class="row">

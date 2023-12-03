@@ -43,6 +43,7 @@ namespace ProyectoTravelNest.pages
 
                     RepeaterComentarios.DataSource = comentarios.cargarComentarios(Request.QueryString["IdUsuario"]);
                     RepeaterComentarios.DataBind();
+                    rptImagen.DataSource = dtDestinatario; rptImagen.DataBind();
                 }
                 catch (Exception ex)
                 {

@@ -3,6 +3,7 @@
     <link href="../Content/style.css" rel="stylesheet" />
     <div class="container-fluid">
         <div class="container pt-5 pb-3">
+            <h2 class="mb-5">Centro de Ayuda</h2>
             <a class="h3 mx-2 ver_huesped" style="cursor: pointer">Huesped</a>
             <a class="h3 ver_anfitrion" style="cursor: pointer">Anfitrión</a>
             <div class="row">

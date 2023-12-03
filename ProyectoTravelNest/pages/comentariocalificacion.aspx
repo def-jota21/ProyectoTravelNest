@@ -4,9 +4,14 @@
     <div class="container" style="margin-top: 6vh;">
         <div class="row">
             <div class="col-md-8 my-5">
-                <div id="user-image">
-                    <img src="../img/user.png" style="width: 6%;">
-                </div>
+                <asp:Repeater ID="rptImagen" runat="server">
+                    <ItemTemplate>
+                        <div id="user-image">
+                            <img src='<%# Eval("Rostro") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Rostro")) : "../img/user.png" %>' style="width: 6%;">
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+                
 
                 <div style="width: 90%;" id="user-info" class="ms-4">
                     <asp:Label runat="server" ID="lblNombreDestinatario" Text="Nombre Completo Destinatario" CssClass="h3"></asp:Label>
@@ -20,7 +25,7 @@
                     <ItemTemplate>
                         <div class="my-5" style="clear: both;" id="comentario">
                             <div id="user-image">
-                                <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
+                                <asp:Image ID="imgRostro" CssClass="img-fluid" runat="server"
                                            src='<%# Eval("Rostro") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Rostro")) : "../img/user.png" %>'
                                            style="width: 30px; height: 30px; object-fit: cover; border-radius: 100px;" />
                             </div>

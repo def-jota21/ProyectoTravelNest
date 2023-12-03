@@ -62,7 +62,7 @@ namespace Negocios
         public async Task compararCedula(string IdUsuario, byte[] img1)
         {
             String texto = await ObtenerTexto(img1, 0.0f, 0.0f, 1.0f, 0.6667f);
-            Match match = Regex.Match(texto.Replace(" ",""), "\\d+");
+            Match match = Regex.Match(texto.Replace(" ",""), "\\d{9}");
             String Id = Regex.Replace(IdUsuario, "[ -]", "");
             if (!match.Value.Equals(Id))
             {
@@ -127,7 +127,7 @@ namespace Negocios
             }
             catch
             {
-                throw new Exception("No se detectó un rostro en las imágenes proporcionadas.");
+                throw new Exception("Por favor, verifica que el peso de las imágenes no exceda los 2 MB y que ambas sean del mismo formato, ya sea JPEG o PNG.");
             }
         }
 

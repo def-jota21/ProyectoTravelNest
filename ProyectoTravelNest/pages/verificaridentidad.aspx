@@ -30,7 +30,9 @@
                             la confianza y la seguridad en la comunidad.
                         </p>
                         <p class="h6">
-                            Se recomienda que la imagen se presente en horizontal y que no exceda los 2 MB de peso.
+                            Se recomienda que la imagen se presente en horizontal y que no exceda los 2 MB de peso.<br />
+                            El formato de las imágenes debe ser <span style="color: #2CC50E; text-decoration: underline;">jpeg</span> o <span style="color: #2CC50E; text-decoration: underline;">png</span>.<br />
+                            <span title="Cambiar el formato de la imagen manualmente no es efectivo. Es necesario utilizar un convertidor de formato."><span style="color: #f83333; font-weight: bold;" class="h5">Importante: </span>Ambas imágenes deben estar en el mismo formato.</span>
                         </p>
                         <asp:FileUpload ID="Documento" runat="server" CssClass="btn btn-primary"/>
                     </div>
@@ -44,7 +46,8 @@
                             que están interactuando con una persona real.
                         </p>
                         <p class="h6">
-                            Se recomienda que la imagen no exceda los 2 MB de peso.
+                            Se recomienda que la imagen no exceda los 2 MB de peso.<br />
+                            El formato de las imágenes debe ser <span style="color: #2CC50E; text-decoration: underline;">jpeg</span> o <span style="color: #2CC50E; text-decoration: underline;">png</span>
                         </p>
                         <asp:FileUpload ID="Rostro" runat="server" CssClass="btn btn-primary"/>
                     </div>

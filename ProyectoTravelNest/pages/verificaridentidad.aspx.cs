@@ -76,6 +76,15 @@ namespace ProyectoTravelNest.pages
                     BinaryReader br = new BinaryReader(fs);
                     imgRostro = br.ReadBytes((Int32)fs.Length);
                 }
+                if(imgDocumento == null)
+                {
+                    throw new Exception("Por favor, cargue una imagen del documento.");
+                }
+                else if (imgRostro == null)
+                {
+                    throw new Exception("Por favor, cargue una imagen del rostro.");
+                }
+
                 await verificarIdentidad.compararImagenes(IdUsuario, imgDocumento, imgRostro);
                 await verificarIdentidad.compararCedula(IdUsuario, imgDocumento);
                 Response.Redirect(Request.RawUrl);

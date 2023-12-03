@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -46,38 +47,42 @@ namespace ProyectoTravelNest.pages
 
                    
                 }
-              
-
-               
 
 
             }
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Obtener valores de los campos del formulario
-            string idUsuario = txtid.Text;
-            string nombre = txtnombres.Text;
-            string apellidos = txtapellidos.Text;
-            string correo = txtcorreo.Text;
-            int telefono = int.Parse(txtTelefono.Text);
+            try
+            {
+                // Obtener valores de los campos del formulario
+                string idUsuario = txtid.Text;
+                string nombre = txtnombres.Text;
+                string apellidos = txtapellidos.Text;
+                string correo = txtcorreo.Text;
+                int telefono = int.Parse(txtTelefono.Text);
 
-            // Crear objeto de usuario con los nuevos datos
-            Usuarios usuario = new Usuarios();
-            usuario.IdUsuario = idUsuario;
-            usuario.Nombre = nombre;
-            usuario.Apellidos = apellidos;
-            usuario.Correo = correo;
-            usuario.Telefono = telefono;
+                // Crear objeto de usuario con los nuevos datos
+                Usuarios usuario = new Usuarios();
+                usuario.IdUsuario = idUsuario;
+                usuario.Nombre = nombre;
+                usuario.Apellidos = apellidos;
+                usuario.Correo = correo;
+                usuario.Telefono = telefono;
 
-            // Llamar capa de negocio para actualizar
-            Neg_Usuarios negocio = new Neg_Usuarios();
-            negocio.ActualizarUsuario(usuario);
+                // Llamar capa de negocio para actualizar
+                Neg_Usuarios negocio = new Neg_Usuarios();
+                negocio.ActualizarUsuario(usuario);
 
-
-            string successScript = "Swal.fire('¡Éxito!', 'Modificación de datos personales', 'success');";
-            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", successScript, true);
-
+                string successScript = "Swal.fire('¡Éxito!', 'Modificación de datos personales', 'success');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", successScript, true);
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción, ya sea mostrando un mensaje de error o registrándolo en algún lugar.
+                string errorScript = $"Swal.fire('¡Error!', '{ex.Message}', 'error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarError", errorScript, true);
+            }
         }
     }
 }

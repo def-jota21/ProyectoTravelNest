@@ -142,29 +142,52 @@
                             </span>
                         </a>
                     </div>
-
-                    <div class="card">
-                        <a href="pantallapoliticas.aspx" class="notification" style="text-decoration: none">
-                            <span>
-                                <h5 class="h5 mt-2">Politicas Travel Nest</h5>
-                                <p class="h6 mt-4">Hecha un vistaso a las reglas y nomras de nuestra aplicacion.</p>
-                            </span>
-                        </a>
                     </div>
-                    <div class="card">
-                        <asp:LinkButton runat="server" ID="lbtnVId" Style="text-decoration: none" OnClick="lbtnVId_Click" CssClass="notification">
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+
+                            <div class="card-deck">
+
+                                <div class="card">
+                                    <a href="recepciondedenuncias.aspx" class="notification" style="text-decoration: none">
+                                        <span>
+                                            <h5 class="h5 mt-2">
+                                            <h5 class="h5 mt-2">Denuncias</h5>
+                                            <p class="h6 mt-4">Realiza tus denuncias.</p>
+                                        </span>
+                                    </a>
+                                </div>
+                                 <div class="card">
+                                    <a href="ConsultaDenuncias.aspx" class="notification" style="text-decoration: none">
+                                        <span>
+                                            <h5 class="h5 mt-2">Recepcion de denuncias</h5>
+                                            <p class="h6 mt-4">Aqui puedes ver las denuncias realizadas.</p>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="card">
+                                    <a href="pantallapoliticas.aspx" class="notification" style="text-decoration: none">
+                                        <span>
+                                            <h5 class="h5 mt-2">Politicas Travel Nest</h5>
+                                            <p class="h6 mt-4">Hecha un vistaso a las reglas y nomras de nuestra aplicacion.</p>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="card">
+                                    <asp:LinkButton runat="server" ID="lbtnVId" Style="text-decoration: none" OnClick="lbtnVId_Click" CssClass="notification">
         <span>
             <h5 class="h5 mt-2">Verificar identificación</h5>
             <p class="h6 mt-4">Confirma tu identidad con una foto de tu rostro y documento.</p>
         </span>
-                        </asp:LinkButton>
+                                    </asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        
 
-    </div>
+
+                </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

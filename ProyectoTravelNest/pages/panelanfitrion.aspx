@@ -137,7 +137,23 @@
                         <a href="recepcionmensajes.aspx" class="notification" style="text-decoration: none">
                             <span>
                                 <h5 class="h5 mt-2">Mensajes</h5>
-                                <p class="h6 mt-4">Visualiza los alojamientos que ya han sido reservados.</p>
+                                <p class="h6 mt-4">Conversa con los demas usuarios encargados que se encuentran alojados en tus inmuebles.</p>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="recepciondedenuncias.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Denuncias</h5>
+                                <p class="h6 mt-4">Realiza su denuncia.</p>
+                            </span>
+                        </a>
+                    </div>
+                     <div class="card">
+                        <a href="ConsultaDenuncias.aspx" class="notification" style="text-decoration: none">
+                            <span>
+                                <h5 class="h5 mt-2">Recepcion de Denuncias</h5>
+                                <p class="h6 mt-4">Puedes ver las denuncias que realizaste.</p>
                             </span>
                         </a>
                     </div>

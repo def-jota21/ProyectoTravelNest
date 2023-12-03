@@ -1,9 +1,7 @@
 ﻿using Entidades;
+using Negocios;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -13,6 +11,7 @@ namespace ProyectoTravelNest.pages
 {
     public partial class sesionyseguridad : System.Web.UI.Page
     {
+        Negocios.Neg_Usuarios negocio = new Negocios.Neg_Usuarios();
         protected void Page_Load(object sender, EventArgs e)
         {
             Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
@@ -24,27 +23,76 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
-
-                Negocios.Neg_Usuarios negocio = new Negocios.Neg_Usuarios();
+                
                 DataTable dt = negocio.ObtenerContraseñaUsuario(eUsuarios.IdUsuario);
 
                 if (dt.Rows.Count > 0)
                 {
-                    // Guardamos la contraseña en Session para usarla después
-                    Session["Contrasena"] = dt.Rows[0]["Contrasena"].ToString();
+                    txtcontraseña.Text = dt.Rows[0]["Contrasena"].ToString();
+                    
                 }
             }
         }
-
-        protected void btnGuardarContrasena_Click(object sender, EventArgs e)
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            string contrasena = Session["Contrasena"] as string;
+            // Obtener el valor del TextBox de contraseña
+            string nuevaContrasena = txtcontraseña.Text;
 
-            String script = "document.getElementById('modalTxtContraseñaActual').value = '" + contrasena + "';";
+            // Asegúrate de obtener el IdUsuario del usuario actual
+            Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+            if (eUsuarios == null)
+            {
+                // Manejar la situación donde no hay un usuario en sesión
+                return;
+            }
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "asignarValor", script, true);
+            // Verificar si la nueva contraseña es diferente de la contraseña actual
+            if (eUsuarios.Contrasena == nuevaContrasena)
+            {
+                // Mostrar una notificación de que no se realizó ningún cambio
+                string noChangeScript = "Swal.fire('Atención', 'La nueva contraseña es igual a la contraseña actual. No se realizó ningún cambio.', 'warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlertaNoCambio", noChangeScript, true);
+                return;
+            }
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "$('#modalContrasena').modal('show');", true);
+            // Crear objeto de usuario con los nuevos datos
+            Usuarios usuario = new Usuarios();
+            usuario.IdUsuario = eUsuarios.IdUsuario; // Asegúrate de que esto está asignado
+            usuario.Contrasena = nuevaContrasena;
+
+            // Llamar capa de negocio para actualizar
+            Neg_Usuarios negocio = new Neg_Usuarios();
+            negocio.ActualizarContrasenaUsuario(usuario);
+
+            // Mostrar una notificación de éxito
+            string successScript = "Swal.fire('¡Éxito!', 'Modificación de la contraseña exitosa', 'success');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", successScript, true);
         }
+
+
+        protected void btnConfirmarDesactivacion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Obtener el IdUsuario de la sesión
+                Entidades.Usuarios eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
+                string idUsuario = eUsuarios.IdUsuario;
+
+                // Llamar al método para desactivar la cuenta
+                Neg_Usuarios negocio = new Neg_Usuarios();
+                negocio.DesactivarCuenta(idUsuario);
+                HttpContext.Current.Session.Abandon();
+
+                // Redirigir a una página de confirmación o realizar otras acciones necesarias
+                Response.Redirect("../pages/login.aspx");
+            }
+            catch (Exception ex)
+            {
+               
+            }
+        }
+
     }
-} 
+}
+
+

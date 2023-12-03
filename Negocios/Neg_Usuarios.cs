@@ -209,9 +209,11 @@ namespace Negocios
         
             return UsuariosBD.ObtenerDatosUsuario(idUsuario);
         }
+
+        UsuariosBD datos = new UsuariosBD();
         public void ActualizarUsuario(Usuarios usuario)
         {
-            UsuariosBD datos = new UsuariosBD();
+           
 
             datos.ActualizarUsuario(usuario.IdUsuario, usuario.Nombre,usuario.Apellidos, usuario.Correo, usuario.Telefono);
 
@@ -227,7 +229,14 @@ namespace Negocios
         {
             UsuariosBD datos = new UsuariosBD();
 
-            datos.ActualizarContrasenaUsuario(usuario.Contrasena);
+            datos.ActualizarContrasenaUsuario(usuario.Contrasena, usuario.IdUsuario);
+        }
+
+        private UsuariosBD usuariosBD = new UsuariosBD();
+
+        public void DesactivarCuenta(string idUsuario)
+        {
+            usuariosBD.DesactivarCuenta(idUsuario);
         }
     }
 

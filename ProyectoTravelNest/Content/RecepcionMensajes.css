@@ -1,13 +1,8 @@
-﻿/* Estilo para la sección de chat */
-.body {
-    margin-top: 100%;
-}
-
-/* Estilo general */
+﻿/* Estilo general */
 .container {
     padding-top: 2rem; /* Espacio superior en la contenedor */
 }
-/* Estilo para el botón de selección de categorías */
+
 /* Estilo para el botón de selección de categorías */
 .category-button {
     background-color: #4CAF50;
@@ -37,18 +32,11 @@
     margin-top: 1rem; /* Espacio superior uniforme */
 }
 
-.divider {
-    background-color: #ccc;
-    height: 2px;
-    margin-top: 20px;
-}
-
 /* Estilo para la columna de categorías */
 .col-md-4 {
     padding-bottom: 1rem; /* Espacio inferior para separar de otros elementos */
+    font-size: 16px;
 }
-
-
 
 /* Estilo para la columna de chat */
 .col-md-8 {
@@ -57,6 +45,7 @@
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.5); /* Sombra para la elevación */
     margin-bottom: 1rem; /* Espacio inferior */
 }
+
 /* Ajuste en el estilo para el botón de enviar */
 .btnSend {
     margin-right: 10px; /* Ajusta el valor según tus necesidades */
@@ -64,7 +53,7 @@
 
 /* Estilos para la imagen a la derecha del botón */
 .left-image {
-    width: 300px; /* Ajusta el ancho según tus necesidades */
+    width: 100%; /* Ajusta el ancho según tus necesidades */
     height: auto; /* Ajusta la altura de forma proporcional */
     margin-left: 10px; /* Espacio entre el botón y la imagen */
     margin-top: -300px; /* Ajusta el margen superior para mover la imagen arriba */
@@ -73,4 +62,17 @@
 .btn-secondary {
     background-color: #4CAF50; /* Color más profesional */
     color: white;
+}
+
+/* Estilo para pantallas más pequeñas (ejemplo: dispositivos móviles) */
+@media (max-width: 768px) {
+    .col-md-4,
+    .col-md-8 {
+        padding: 0.5rem; /* Reduce el padding en pantallas más pequeñas */
+    }
+
+    .category-button,
+    .user-button {
+        width: 100%; /* Ocupar todo el ancho en pantallas más pequeñas */
+    }
 }

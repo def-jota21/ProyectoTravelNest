@@ -19,7 +19,112 @@ namespace Datos
             string strConexion = "Data Source=tiusr21pl.cuc-carrera-ti.ac.cr\\MSSQLSERVER2019;Initial Catalog=ProyectoG6;User ID=Proyecto;Password=Proyecto#12345";
             sqlCon = new SqlConnection(strConexion);
         }
+        public int EjecutarContadorInmuebles(int opcion)
+        {
+            int contador = 0; // Valor predeterminado en caso de que no se encuentren inmuebles
+            CadenaConexion();
 
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                using (SqlCommand command = new SqlCommand("ContadorInmuebles", sqlCon))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@opcion", SqlDbType.Int)).Value = opcion;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            contador = (int)reader[0];
+                        }
+                    }
+                }
+            }
+
+            return contador;
+        }
+
+        public int EjecutarContadorReservaciones(int opcion)
+        {
+            int contador = 0; // Valor predeterminado en caso de que no se encuentren inmuebles
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                using (SqlCommand command = new SqlCommand("ContadorReservaciones", sqlCon))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@opcion", SqlDbType.Int)).Value = opcion;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            contador = (int)reader[0];
+                        }
+                    }
+                }
+            }
+
+            return contador;
+        }
+
+        public int EjecutarContadorUsuario(int opcion)
+        {
+            int contador = 0; // Valor predeterminado en caso de que no se encuentren inmuebles
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                using (SqlCommand command = new SqlCommand("ContadorUsuarios", sqlCon))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@opcion", SqlDbType.Int)).Value = opcion;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            contador = (int)reader[0];
+                        }
+                    }
+                }
+            }
+
+            return contador;
+        }
+
+        public DataTable ObtenerContadoresCategoria()
+        {
+            DataTable tablaServicios = new DataTable();
+
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                string query = "SELECT c.Nombre, COUNT(i.IdInmueble) AS CantidadInmuebles FROM Proyecto.Inmueble i JOIN Proyecto.Categorias c ON i.IdCategoria = c.IdCategoria GROUP BY c.IdCategoria, c.Nombre ORDER BY CantidadInmuebles DESC;";
+
+                using (SqlCommand command = new SqlCommand(query, sqlCon))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(tablaServicios);
+                    }
+                }
+            }
+
+            return tablaServicios;
+        }
+
+       
         public DataTable ObtenerTablaCategoria()
         {
             DataTable tablaServicios = new DataTable();
@@ -43,7 +148,27 @@ namespace Datos
 
             return tablaServicios;
         }
+        public string ObtenerIdAnfitrion(string idInmueble)
+        {
+            string IdAnfitrion = string.Empty;
+            CadenaConexion();
 
+            using (sqlCon)
+            {
+                sqlCon.Open();
+                string query = "SELECT IdAnfitrion FROM Inmueble WHERE IdInmueble = @IdInmueble";
+
+                using (SqlCommand command = new SqlCommand(query, sqlCon))
+                {
+                    command.Parameters.AddWithValue("@IdMueble", idInmueble);
+
+                    // Ejecutar la consulta y obtener el nombre de la categoría
+                    IdAnfitrion = (string)command.ExecuteScalar();
+                }
+            }
+
+            return IdAnfitrion;
+        }
         public string ObtenerNombreCategoriaPorId(string idCategoria)
         {
             string nombreCategoria = string.Empty;
@@ -64,6 +189,28 @@ namespace Datos
             }
 
             return nombreCategoria;
+        }
+
+        public string ObtenerCorreo(string id)
+        {
+            string correo = string.Empty;
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+                string query = "SELECT Correo FROM Usuario WHERE IdUsuario = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, sqlCon))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    // Ejecutar la consulta y obtener el nombre de la categoría
+                    correo= (string)command.ExecuteScalar();
+                }
+            }
+
+            return correo;
         }
 
 
@@ -385,5 +532,33 @@ namespace Datos
                 }
             }
         }
+
+        public bool CambiarEstadoInactivo(string idInmueble)
+        {
+            try
+            {
+                CadenaConexion(); 
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+
+                    string query = "UPDATE Inmueble SET Estado = 'Inactivo' WHERE IdInmueble = @IdInmueble";
+                    using (SqlCommand cmd = new SqlCommand(query, sqlCon))
+                    {
+                        // Asignar los parámetros de forma segura
+                        cmd.Parameters.AddWithValue("@IdInmueble", idInmueble);
+
+                        
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0; 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

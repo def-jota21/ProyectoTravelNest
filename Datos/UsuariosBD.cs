@@ -33,7 +33,10 @@ namespace Entidades
 
 
 
+
         public void ActualizarUsuario(string idUsuario, string nombre, string apellidos, string correo, int telefono)
+
+      
         {
             try
             {

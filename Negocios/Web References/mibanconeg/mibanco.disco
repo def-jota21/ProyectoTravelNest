@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/mibanco.asmx?wsdl" docRef="https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/mibanco.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/mibanco.asmx" xmlns:q1="http://tempuri.org/" binding="q1:mibancoSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="https://tiusr21pl.cuc-carrera-ti.ac.cr/mibancoapi/mibanco.asmx" xmlns:q2="http://tempuri.org/" binding="q2:mibancoSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-</discovery>

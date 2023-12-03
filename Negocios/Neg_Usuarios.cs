@@ -87,7 +87,7 @@ namespace Negocios
             }
             catch (Exception ex)
             {
-                throw ex;
+               
             }
 
         }//fin de agregar usuario
@@ -181,13 +181,28 @@ namespace Negocios
                     mailMessage.From = new MailAddress("josejulianrm8@gmail.com"); // Dirección de correo electrónico del remitente
                     mailMessage.To.Add(destinatario); // Dirección de correo electrónico del destinatario
                     mailMessage.Subject = "Código de verificación"; // Asunto del correo electrónico
-                    mailMessage.Body = $"Tu código de verificación es: {token}"; // Cuerpo del correo electrónico
+                    mailMessage.IsBodyHtml = true; // Indicar que el cuerpo del mensaje será HTML
+
+                    // Construir el cuerpo del mensaje con HTML
+                    string htmlBody = $@"
+                <html>
+                    <body>
+                        <p>Buenas</p>
+                        <p>Tu código de verificación es: <strong>{token}</strong></p>
+                        <p>Por favor, ingresa este código en la aplicación de TravelNest continuar.</p>
+                        <p>Saludos,<br>El equipo de TravelNest</p>
+                    </body>
+                </html>";
+
+                    mailMessage.Body = htmlBody; // Cuerpo del correo electrónico
 
                     // Enviar el correo electrónico
                     smtpClient.Send(mailMessage);
                 }
             }
         }
+
+
         //FIN ENVIO DE CORREO Y VALIDACION
 
 

@@ -25,6 +25,21 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <style>
+        .enlace-comun {
+            color: #7AB730; /* Cambia el color del texto según tus preferencias */
+            text-decoration: none; /* Quita la subraya predeterminada */
+        }
+
+        .enlace-togg {
+            color: #7AB730 !important; /* Cambia el color del texto según tus preferencias */
+        }
+
+        .enlace-comun:hover {
+            text-decoration: underline; /* Agrega la subraya cuando se pasa el cursor por encima */
+            color: #7AB730 !important;
+        }
+    </style>
+    <style>
         .center-content {
             display: flex;
             flex-direction: column;
@@ -53,6 +68,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12 my-2">
                     <h3 class="mb-3">Comentario y Evaluación al Huésped</h3>
+                    <a class="enlace-comun" style="margin-bottom: 4px !important;" href="comentariopendientesa.aspx"><i class="fa fa-arrow-left mr-3" style="margin-right: 3px;"></i>Regresar</a>
                     <div class="col-lg-7 col-md-12 col-sm-12 my-2">
                         <div class="row">
                             <h3>Comentario para el huésped</h3>
@@ -104,8 +120,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 my-2 text-center">
                     <div class="col-lg-4 col-md-4 mx-auto">
-                        <asp:Button class="btn btn-primary btn-block rounded"  runat="server" name="btnEnviarComentario" OnClick="EnviarComentarioHuesped_Click" ID="btnEnviarComentario"
-                            Style="height: 47px; margin-top: -2px;" Text="Enviar" disabled="false"/>
+                        <asp:Button class="btn btn-primary btn-block rounded" runat="server" name="btnEnviarComentario" OnClick="EnviarComentarioHuesped_Click" ID="btnEnviarComentario"
+                            Style="height: 47px; margin-top: -2px;" Text="Enviar" disabled="false" />
                     </div>
                 </div>
             </div>
@@ -155,7 +171,7 @@
             var btnEnviarComentario = document.getElementById('<%= btnEnviarComentario.ClientID %>')
 
             var comentarioPublico = txtcomentarioPublico.value.trim();
-            
+
 
             if (comentarioPublico.length > 0) {
                 btnEnviarComentario.disabled = false;

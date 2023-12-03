@@ -48,6 +48,58 @@
         .calendar-inicio {
             background-color: #f9f9f9; /* Puedes cambiar "#FFA500" al color que desees */
         }
+
+        .responsive-calendar table {
+            width: 100% !important;
+            font-size: 12px !important; /* Reduce el tamaño de la fuente */
+            table-layout: fixed; /* Asegura que la tabla no exceda el ancho del contenedor */
+        }
+
+        @media screen and (max-width: 768px) {
+            .responsive-calendar table {
+                font-size: 8px !important; /* Reduce aún más el tamaño de la fuente para dispositivos móviles */
+            }
+
+            .responsive-calendar th, .responsive-calendar td {
+                padding: 4px !important; /* Reduce el padding para ahorrar espacio */
+            }
+
+            .responsive-calendar .day-header, .responsive-calendar .week-number {
+                display: none; /* Ocultar encabezados de día y números de semana para simplificar */
+            }
+
+            .responsive-calendar .next-prev a {
+                font-size: 10px; /* Reduce el tamaño de la fuente en los botones de navegación del calendario */
+            }
+
+            /* Opcional: Estilos para controlar la altura de las filas */
+            .responsive-calendar tr {
+                height: 20px; /* Altura reducida para las filas */
+            }
+
+            .responsive-calendar td {
+                font-size: 10px !important; /* Reduce el tamaño de la fuente de los números */
+
+                width: 100%;
+                height: 100%;
+                line-height: normal; /* Ajusta la línea si es necesario */
+                padding: 2px; /* Ajusta el padding si es necesario */
+            }
+
+            .responsive-calendar th {
+                font-size: 10px !important; /* Reduce el tamaño de la fuente de los números */
+
+                width: 100%;
+                height: 100%;
+                line-height: normal; /* Ajusta la línea si es necesario */
+                padding: 2px; /* Ajusta el padding si es necesario */
+            }
+        }
+
+        /* Estilo para evitar desbordamiento en pantallas pequeñas */
+        .responsive-calendar {
+            overflow-x: auto;
+        }
     </style>
 
 
@@ -59,15 +111,27 @@
                 <ItemTemplate>
                     <asp:Label ID="lblNombreLugar" runat="server" Text='<%# Eval("Nombre") %>' CssClass="h1" />
 
-                    <div class="d-flex mb-3 mt-2">
-                        <small class="mr-3"><i class="fa fa-user text-primary mr-1"></i> El anfitrión: </small>
-                        <small class="mr-3"><i class="fa fa-star text-primary mr-1"></i><%# Eval("Calificacion") %></small>
 
-                        <small class="mr-3"><a href="comentariocalificacion?IdUsuario=<%# Request.QueryString["IdUsuario"] %>">Comentarios</a></small>
-                        <small class="mr-3"><i class="fa fa-medal text-primary mr-1"></i><%# Eval("TipoAnfitrion") %></small>
-                        <small class="mr-3"><i class="fa fa-map-marker-alt text-primary mr-1"></i><%# Eval("Direccion") %></small>
-
+                    <div class="row mb-3 mt-2">
+                        <div class="col-12 col-lg-auto">
+                            <small><i class="fa fa-user text-primary mr-1"></i>El anfitrión: </small>
+                        </div>
+                        <div class="col-12 col-lg-auto">
+                            <small><i class="fa fa-star text-primary mr-1"></i><%# Eval("Calificacion") %></small>
+                        </div>
+                        <div class="col-12 col-lg-auto">
+                            <small><i class="fa fa-comment text-primary mr-1"></i><a href="comentariocalificacion?IdUsuario=<%# Request.QueryString["IdUsuario"] %>">Comentarios</a></small>
+                        </div>
+                        <div class="col-12 col-lg-auto">
+                            <small><i class="fa fa-medal text-primary mr-1"></i><%# Eval("TipoAnfitrion") %></small>
+                        </div>
+                        <div class="col-lg-auto">
+                            <small><i class="fa fa-map-marker-alt text-primary mr-1"></i><%# Eval("Direccion") %></small>
+                        </div>
                     </div>
+
+
+
                 </ItemTemplate>
             </asp:Repeater>
         </div>
@@ -112,7 +176,8 @@
                             <h4 style="display: inline-block;"><%# Eval("Dueno") %></h4>
                             <div class="d-flex ">
                                 <small class="mr-3">
-                                    <p style="display: inline;"><i class="fa fa-user text-primary mr-1"></i> 
+                                    <p style="display: inline;">
+                                        <i class="fa fa-user text-primary mr-1"></i>
                                         <p style="display: inline;"><%# Eval("Cantidad_Huesped") %></p>
                                         Huéspedes
                                     </p>
@@ -124,7 +189,8 @@
                                     </p>
                                 </small>
                                 <small class="mr-3">
-                                    <p style="display: inline;"><i class="fa fa-bed text-primary mr-1"></i> 
+                                    <p style="display: inline;">
+                                        <i class="fa fa-bed text-primary mr-1"></i>
                                         <p style="display: inline;"><%# Eval("Habitaciones") %></p>
                                         Habitaciones
                                     </p>
@@ -145,7 +211,7 @@
                         <asp:Repeater ID="rptServicios" runat="server">
                             <ItemTemplate>
                                 <div class="col-lg-4 col-md-6 mt-3 mb-4">
-                                    <div class="service-item bg-white text-center mb-2 py-5 px-4" style=" height: 230px;">
+                                    <div class="service-item bg-white text-center mb-2 py-5 px-4" style="height: 230px;">
                                         <i class="fa fa-2x <%# ObtenerIconoServicio(Eval("Nombre").ToString()) %> mx-auto mb-4"></i>
                                         <h5 class="mb-2"><%# Eval("Nombre") %></h5>
                                     </div>
@@ -166,16 +232,20 @@
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                <p style="color: red;">Fechas en rojo: No Disponibles</p>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+
                                     <!-- Cambiado a col-lg-6 -->
                                     <h4>Fecha de Entrada</h4>
-                                    <asp:Calendar ID="CalendarInicio" CssClass="calendar-inicio" SelectionMode="DayWeekMonth" runat="server" OnDayRender="CalendarInicio_DayRender" OnSelectionChanged="CalendarInicio_SelectionChanged" AutoPostBack="false" />
+                                    <asp:Calendar ID="CalendarInicio" CssClass="calendar-inicio responsive-calendar" SelectionMode="DayWeekMonth" runat="server" OnDayRender="CalendarInicio_DayRender" OnSelectionChanged="CalendarInicio_SelectionChanged" AutoPostBack="false" />
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
                                     <!-- Cambiado a col-lg-6 -->
                                     <h4>Fecha de Salida</h4>
-                                    <asp:Calendar ID="CalendarFinal" CssClass="calendar-inicio" SelectionMode="DayWeekMonth" runat="server" OnDayRender="CalendarFinal_DayRender" OnSelectionChanged="CalendarFinal_SelectionChanged" AutoPostBack="false" />
+                                    <asp:Calendar ID="CalendarFinal" CssClass="calendar-inicio responsive-calendar" SelectionMode="DayWeekMonth" runat="server" OnDayRender="CalendarFinal_DayRender" OnSelectionChanged="CalendarFinal_SelectionChanged" AutoPostBack="false" />
                                 </div>
+
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -188,8 +258,8 @@
                                 <div class="my-2" style="clear: both;" id="comentario">
                                     <div id="user-image">
                                         <asp:Image ID="imgMueble" CssClass="img-fluid" runat="server"
-                                                   src='<%# Eval("Rostro") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Rostro")) : "../img/user.png" %>'
-                                                   style="width: 30px; height: 30px; object-fit: cover; border-radius: 100px;" />
+                                            src='<%# Eval("Rostro") != DBNull.Value ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Rostro")) : "../img/user.png" %>'
+                                            Style="width: 30px; height: 30px; object-fit: cover; border-radius: 100px;" />
                                     </div>
                                     <div style="width: 60%;" id="user-info" class="ms-4">
                                         <a href="/pages/comentariocalificacion?IdUsuario=<%# Eval("Autor") %>" style="text-decoration: none; color: #212529;">
@@ -198,7 +268,8 @@
                                         <br />
                                         <div class="rate r-3" style="margin-top: -9px; margin-bottom: -15px;">
                                             <%# generarCalificacion(Convert.ToInt32(Eval("Calificacion"))) %>
-                                        </div><br>
+                                        </div>
+                                        <br>
                                         <label style="font-size: 15px; margin-bottom: 20px;">
                                             <%# Eval("Comentario") %>
                                         </label>
@@ -207,7 +278,7 @@
                             </ItemTemplate>
                         </asp:Repeater>
                     </div>
-                     
+
                     <hr />
                     <h4>Lo que debes saber</h4>
                     <div class="row">
@@ -262,7 +333,7 @@
                                                 <ItemTemplate>
                                                     <div>
                                                         <div style="display: inline-block;">
-                                                            
+
                                                             <h5 class="card-title" style="display: inline-block;">$<%# Math.Round(Convert.ToDecimal(Eval("Precio")), 2) %></h5>
                                                             <h5 class="card-title" style="display: inline-block;">/ noche</h5>
                                                         </div>
@@ -285,12 +356,14 @@
                                                 <asp:Label ID="txtTotal" runat="server" Text="" CssClass="etiquetaPersonalizada"></asp:Label>
 
                                             </div>
+
+                                            <div class="mt-2">
+                                                <asp:Button ID="btnReservar" runat="server" Text="Reservar" CssClass="btn btn-primary btn-block rounded"
+                                                    Style="height: 47px; margin-top: -2px;" OnClick="btnReservar_Click" />
+                                            </div>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-                                    <div class="mt-2">
-                                        <asp:Button ID="btnReservar" runat="server" Text="Reservar" CssClass="btn btn-primary btn-block rounded"
-                                            Style="height: 47px; margin-top: -2px;" OnClick="btnReservar_Click" />
-                                    </div>
+
 
                                 </div>
                             </div>
@@ -367,7 +440,7 @@
                 <div class="modal-body">
                     <asp:Repeater ID="rptTodosServicios" runat="server">
                         <ItemTemplate>
-                            <div class="service-item bg-white text-center mb-2 py-5 px-4" style="margin-bottom: 8px; display:flex;">
+                            <div class="service-item bg-white text-center mb-2 py-5 px-4" style="margin-bottom: 8px; display: flex;">
                                 <i class="fa fa-2x <%# ObtenerIconoServicio(Eval("Nombre").ToString()) %>"></i>
                                 <h3 class="mt-3 mx-5"><%# Eval("Nombre") %></h3>
                             </div>

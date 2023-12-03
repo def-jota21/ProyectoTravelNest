@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigCorreos.cs" />
     <Compile Include="Negocio_Cupon.cs" />
     <Compile Include="Neg_Descuentos.cs" />
     <Compile Include="Politicas.cs" />

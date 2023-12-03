@@ -8,6 +8,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
+using Entidades;
+using System.Data.SqlClient;
+using System.Data;
+using System.Text.RegularExpressions;
+using System.Web.Services.Description;
+
 namespace Negocios
 {
     public class Email
@@ -65,6 +71,67 @@ namespace Negocios
             catch (Exception ex)
             {
                 throw new Exception("Error al enviar el email" + ex.Message);
+            }
+        }
+
+        public string getReservaHuesped()
+        {
+            string strNombreSP = "CRUDConfigCorreo";
+            List<SqlParameter> lstParametros = new List<SqlParameter>
+            {
+                new SqlParameter("@Opcion", "getReservaHuesped")
+            };
+            return ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros).Rows[0][0].ToString();
+        }
+        public string getReservaAnfitrion()
+        {
+            string strNombreSP = "CRUDConfigCorreo";
+            List<SqlParameter> lstParametros = new List<SqlParameter>
+            {
+                new SqlParameter("@Opcion", "getReservaAnfitrion")
+            };
+            return ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros).Rows[0][0].ToString();
+        }
+        public void setReservaHuesped(String mensaje)
+        {
+            try
+            {
+                string strNombreSP = "CRUDConfigCorreo";
+                List<SqlParameter> lstParametros = new List<SqlParameter>
+                {
+                    new SqlParameter("@Opcion", "setReservaHuesped"),
+                    new SqlParameter("@MensajeA_Huesped", mensaje)
+                };
+                Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
+            }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void setReservaAnfitrion(String mensaje)
+        {
+            try
+            {
+                string strNombreSP = "CRUDConfigCorreo";
+                List<SqlParameter> lstParametros = new List<SqlParameter>
+                {
+                    new SqlParameter("@Opcion", "setReservaAnfitrion"),
+                    new SqlParameter("@MensajeA_Anfitrion", mensaje)
+                };
+                Datos.ConexionSQL.ExecuteQuery(strNombreSP, lstParametros);
+            }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

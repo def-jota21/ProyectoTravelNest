@@ -138,6 +138,7 @@
                             <%-- Privadas Gestor --%>
                             <li><a runat="server" visible="false" id="PrivadaGestor1" href="pages/gestionusuarios.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Usuarios</a></li>
                             <li><a runat="server" visible="false" id="PrivadaGestor2" href="pages/pantallapoliticas.aspx" style="margin-left: 20px;" class="enlace-comun">Administrar Políticas</a></li>
+                            <li><a runat="server" visible="false" id="PrivadaGestor3" href="pages/configuracioncorreos.aspx" style="margin-left: 20px;" class="enlace-comun">Configurar mensajes de correo</a></li>
 
                             <%-- Privadas Gestor --%>
                         </div>

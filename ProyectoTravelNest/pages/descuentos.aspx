@@ -80,7 +80,7 @@
                     </asp:Repeater>
 
                     <!-- Agregar Descuento -->
-                    <div class="p-3 mb-3 rounded-3">
+                    <div class="p-3 mb-3 rounded-3" runat="server" id="addDescuento">
                         <div class="d-flex justify-content-center">
                             <asp:LinkButton runat="server" style="width: 100%; height: 100%; padding: 10px 0px; display: flex; justify-content: center; align-items: center;"
                                             class="align-items-center rounded-3" ID="btnAgregar" OnClick="btnAgregar_Click" CssClass="agregar_promocion">

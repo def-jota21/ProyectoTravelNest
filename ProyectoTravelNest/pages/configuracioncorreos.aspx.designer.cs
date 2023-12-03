@@ -7,119 +7,137 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProyectoTravelNest
+namespace ProyectoTravelNest.pages
 {
 
 
-    public partial class SiteMaster
+    public partial class configuracioncorreos
     {
 
         /// <summary>
-        /// lblNombreUsuario control.
+        /// updPanel_Editar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreUsuario;
+        protected global::System.Web.UI.UpdatePanel updPanel_Editar;
 
         /// <summary>
-        /// lblNombreUsuarioMobile control.
+        /// divFormulario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreUsuarioMobile;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFormulario;
 
         /// <summary>
-        /// Login control.
+        /// lblTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor Login;
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// Registrarse control.
+        /// txtContenido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor Registrarse;
+        protected global::System.Web.UI.WebControls.TextBox txtContenido;
 
         /// <summary>
-        /// CerrarSesion control.
+        /// btnGuardarEdicion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CerrarSesion;
+        protected global::System.Web.UI.WebControls.Button btnGuardarEdicion;
 
         /// <summary>
-        /// PrivadaAnfitrion1 control.
+        /// btnCancelarEdicion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor PrivadaAnfitrion1;
+        protected global::System.Web.UI.WebControls.Button btnCancelarEdicion;
 
         /// <summary>
-        /// PrivadaHuesped1 control.
+        /// updPanel_Correos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor PrivadaHuesped1;
+        protected global::System.Web.UI.UpdatePanel updPanel_Correos;
 
         /// <summary>
-        /// PrivadaHuesped2 control.
+        /// divTarjetas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor PrivadaHuesped2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTarjetas;
 
         /// <summary>
-        /// PrivadaGestor1 control.
+        /// lblHuespedReservaTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor PrivadaGestor1;
+        protected global::System.Web.UI.WebControls.Label lblHuespedReservaTitulo;
 
         /// <summary>
-        /// PrivadaGestor2 control.
+        /// lblHuespedReserva control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor PrivadaGestor2;
+        protected global::System.Web.UI.WebControls.Label lblHuespedReserva;
 
         /// <summary>
-        /// PrivadaGestor3 control.
+        /// btnEditarHuespedReserva control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor PrivadaGestor3;
+        protected global::System.Web.UI.WebControls.Button btnEditarHuespedReserva;
 
         /// <summary>
-        /// MainContent control.
+        /// lblAnfitrionReservaTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Label lblAnfitrionReservaTitulo;
+
+        /// <summary>
+        /// lblAnfitrionReserva control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnfitrionReserva;
+
+        /// <summary>
+        /// btnEditarAnfitrionReserva control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditarAnfitrionReserva;
     }
 }

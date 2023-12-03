@@ -219,6 +219,7 @@
     <Content Include="pages\comentariosanfitrion.aspx" />
     <Content Include="pages\comentariospendientesh.aspx" />
     <Content Include="pages\comocobrarcentroayuda.aspx" />
+    <Content Include="pages\configuracioncorreos.aspx" />
     <Content Include="pages\cotizacion.aspx" />
     <Content Include="pages\crearalojamiento.aspx" />
     <Content Include="pages\crearcuenta.aspx" />
@@ -455,6 +456,13 @@
     </Compile>
     <Compile Include="pages\comocobrarcentroayuda.aspx.designer.cs">
       <DependentUpon>comocobrarcentroayuda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\configuracioncorreos.aspx.cs">
+      <DependentUpon>configuracioncorreos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\configuracioncorreos.aspx.designer.cs">
+      <DependentUpon>configuracioncorreos.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\cotizacion.aspx.cs">
       <DependentUpon>cotizacion.aspx</DependentUpon>

@@ -29,7 +29,7 @@ namespace Negocios
         {
             DataTable dt = new DataTable();
             DataTable dtReserva = new DataTable();
-            String destinatario = "";
+            string destinatario;
             try
             {
                 string strNombreSP = "CRUDUsuarios";
@@ -44,11 +44,19 @@ namespace Negocios
                 lstParametros.Add(new SqlParameter("@IdUsuario", IdUsuario));
                 dtReserva = Datos.ConexionSQL.ExecuteQueryTable(strNombreSP, lstParametros);
             }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
             catch (Exception ex)
             {
-                
+                throw ex;
             }
             
+            Negocios.Email email = new Negocios.Email();
+            String correoHuesped = cambioParametros(email.getReservaHuesped(), PrecioTotal, dt, dtReserva);
+            String correoAnfitrion = cambioParametros(email.getReservaAnfitrion(), PrecioTotal, dt, dtReserva);
+
             // Configuración del cliente SMTP
             using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com"))
             {
@@ -63,35 +71,58 @@ namespace Negocios
                     mailMessage.To.Add(destinatario); // Dirección de correo electrónico del destinatario
                     mailMessage.IsBodyHtml = true;
                     mailMessage.Subject = $"Reserva realizada: {dtReserva.Rows[0]["Nombre"].ToString()}"; // Asunto del correo electrónico
-                    mailMessage.Body = $@"
+                    mailMessage.Body = @"
                                         <html>
-                                        <body>
-                                            <div style='text-align:center'>
-                                                <img src='cid:imagen' style='width:200px;height:auto'/> <!-- Reemplaza 'cid:imagen' con el ContentId de la imagen -->
-                                                <h1 style='font-family:Poppins;font-weight:bold'>¡Gracias por su compra!</h1>
-                                                <p style='font-family:Poppins'>
-                                                    Estimado/a {dt.Rows[0]["Nombre"].ToString() + ' ' + dt.Rows[0]["Apellidos"].ToString()},
-
-                                                    Le agradecemos por elegir nuestro servicio TravelNest para su reserva. Estamos encantados de confirmar que su reserva, {dtReserva.Rows[0]["Nombre"].ToString()}, está programada desde el {dtReserva.Rows[0]["FechaInicio"].ToString()} hasta el {dtReserva.Rows[0]["FechaFin"].ToString()}.
-
-                                                    El monto total a pagar por su reserva es {PrecioTotal.ToString("N2")}. Nuestra meta es brindarle la mejor experiencia durante su alojamiento.
-
-                                                    Si requiere más información o asistencia adicional, puede contactar al anfitrión al siguiente número: {dtReserva.Rows[0]["Telefono"].ToString()}.
-
-                                                    Atentamente,
-                                                    {dtReserva.Rows[0]["Anfitrion"].ToString()}
-                                                </p>
-                                            </div>
-                                        </body>
-                                        </html>";
-                    // Agregar la imagen como un recurso vinculado
-                    //LinkedResource linkedResource = new LinkedResource("/pages/logo2.png", "image/jpeg");
-                    //linkedResource.ContentId = "imagen";
-                    //AlternateView htmlView = AlternateView.CreateAlternateViewFromString(mailMessage.Body, null, "text/html");
-                   // htmlView.LinkedResources.Add(linkedResource);
-                    //mailMessage.AlternateViews.Add(htmlView);
-
-                    // Enviar el correo electrónico
+                                            <head>
+                                                <style>
+                                                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+                                                    .poppins-text {
+                                                        font - family: 'Poppins', sans-serif;
+                                                        color: black;
+                                                    }
+                                                    .im{
+                                                        color: black;
+                                                    }
+                                                </style>
+                                            </head>
+                                            <body>
+                                                <div style='text-align:center'>
+                                                    <img src='cid:imagen' style='width:200px;height:auto'/>
+                                                    <h1 class='poppins-text' style='font-weight:bold'>¡Gracias por su compra!</h1>
+                                                    <p class='poppins-text'>" + correoHuesped +
+                                                    @"</p>
+                                                </div>
+                                            </body>
+                                            </html>";
+                    smtpClient.Send(mailMessage);
+                    // Correo para el anfitrión
+                    mailMessage.From = new MailAddress("josejulianrm8@gmail.com");
+                    mailMessage.To.Add(dtReserva.Rows[0]["AnfitrionCorreo"].ToString());
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Subject = $"Han realizado una reservación en {dtReserva.Rows[0]["Nombre"].ToString()}";
+                    mailMessage.Body = @"
+                                        <html>
+                                            <head>
+                                                <style>
+                                                    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+                                                    .poppins-text {
+                                                        font - family: 'Poppins', sans-serif;
+                                                        color: black;
+                                                    }
+                                                    .im{
+                                                        color: black;
+                                                    }
+                                                </style>
+                                            </head>
+                                            <body>
+                                                <div style='text-align:center'>
+                                                    <img src='cid:imagen' style='width:200px;height:auto'/>
+                                                    <h1 class='poppins-text' style='font-weight:bold'>¡Un huésped ha realizado una reservación!</h1>
+                                                    <p class='poppins-text'>" + correoAnfitrion +
+                                                    @"</p>
+                                                </div>
+                                            </body>
+                                            </html>";
                     smtpClient.Send(mailMessage);
                 }
             }
@@ -115,6 +146,24 @@ namespace Negocios
                 Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
+        }
+
+        private String cambioParametros(String mensaje, Decimal PrecioTotal, DataTable dt, DataTable dtReserva)
+        {
+            mensaje = mensaje.Replace("{HuespedNombre}", dt.Rows[0]["Nombre"].ToString())
+                             .Replace("{HuespedApellidos}", dt.Rows[0]["Apellidos"].ToString())
+                             .Replace("{HuespedCorreo}", dt.Rows[0]["Correo"].ToString())
+                             .Replace("{HuespedTelefono}", dt.Rows[0]["Telefono"].ToString())
+                             .Replace("{AnfitrionNombre}", dtReserva.Rows[0]["AnfitrionNombre"].ToString())
+                             .Replace("{AnfitrionApellidos}", dtReserva.Rows[0]["AnfitrionApellidos"].ToString())
+                             .Replace("{AnfitrionTelefono}", dtReserva.Rows[0]["Telefono"].ToString())
+                             .Replace("{AnfitrionCorreo}", dtReserva.Rows[0]["AnfitrionCorreo"].ToString())
+                             .Replace("{NombreReservacion}", dtReserva.Rows[0]["Nombre"].ToString())
+                             .Replace("{ReservaPrecioTotal}", PrecioTotal.ToString("N2"))
+                             .Replace("{ReservaInicio}", dtReserva.Rows[0]["FechaInicio"].ToString())
+                             .Replace("{ReservaFin}", dtReserva.Rows[0]["FechaFin"].ToString())
+                             .Replace("\n", "<br/>");
+            return mensaje;
         }
     }
 }

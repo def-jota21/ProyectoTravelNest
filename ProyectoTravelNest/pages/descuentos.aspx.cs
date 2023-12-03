@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -27,12 +28,23 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
-                String IdUsuario = eUsuarios.IdUsuario;
+                string IdUsuario = eUsuarios.IdUsuario;
                 ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
-                Control div_Inmueble = mainContent.FindControl("cartaInmueble");
-
+                DataTable dt = descuento.getDescuentos(Request.QueryString["IdInmueble"]);
+                string porcentaje;
+                if (dt.Rows.Count > 0)
+                {
+                    Repeater.DataSource = dt;
+                    Repeater.DataBind();
+                    addDescuento.Visible = false;
+                    porcentaje = dt.Rows[0]["Porcentaje"].ToString() + "%";
+                }
+                else
+                {
+                    porcentaje = "0%";
+                }
                 List<Inmueble> ListaInmuebles = nInmueble.ListaInmuebleIndividual(IdUsuario, Request.QueryString["IdInmueble"]);
-
+                Control div_Inmueble = mainContent.FindControl("cartaInmueble");
                 foreach (Inmueble inmueble in ListaInmuebles)
                 {
                     string imagen = inmueble.Imagen != null ? Convert.ToBase64String(inmueble.Imagen) : null;
@@ -45,32 +57,36 @@ namespace ProyectoTravelNest.pages
                     {
                         imagen = $@"<img class='img-fluid' src='data:image/jpeg;base64,{imagen}' style='border-radius: 7px;'>";
                     }
-                    htmlSnippet.Text = $@"
-                                    <div class='bg-white mb-2'>" +
-                                                                imagen +
-                                        $@"<div style='clear: both;'>
-                                            <h5 class='ms-1'>{inmueble.Nombre}</h5>
-                                            <label class='text-muted'>{inmueble.Descripcion}</label>
-                                            <div class='border-top mt-4 pt-4'>
-                                                <div class='d-flex justify-content-around'>
-                                                    <h6 class='m-0'><i class='fa fa-star text-primary' style='color: #8cd56e !important'></i>{inmueble.Calificacion} <small></small>
-                                                    </h6>
-                                                    <h5 class='m-0'>${Math.Round(inmueble.Precio, 2)}</h5>
-                                                    <p><b>por noche</b></p>
-                                                </div>
-                                            </div>
+                    Session["inmueblemostrar_dr2"] = $@"
+                            <div class='bg-white mb-2'>" +
+                                                        imagen +
+                                $@"<div style='clear: both;'>
+                                    <h5 class='ms-1'>{inmueble.Nombre}</h5>
+                                    <label class='text-muted'>{inmueble.Descripcion}</label>
+                                    <div class='border-top mt-4 pt-4'>
+                                        <div class='d-flex justify-content-around'>
+                                            <h6 class='m-0'><i class='fa fa-star text-primary' style='color: #8cd56e !important'></i>{inmueble.Calificacion} <small></small>
+                                            </h6>
+                                            <h5 class='m-0'>${Math.Round(inmueble.Precio, 2)} <span style='color: #1fcd42; margin-left: 23px;'>{porcentaje}</span></h5>
+                                            <p><b>por noche</b></p>
                                         </div>
-                                    </div>";
+                                    </div>
+                                </div>
+                            </div>";
+                    htmlSnippet.Text = Session["inmueblemostrar_dr2"].ToString();
                     div_Inmueble.Controls.Add(htmlSnippet);
                 }
-
-                Repeater.DataSource = descuento.getDescuentos(Request.QueryString["IdInmueble"]);
-                Repeater.DataBind();
             }
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
+            ContentPlaceHolder mainContent = (ContentPlaceHolder)this.Master.FindControl("MainContent");
+            Control div_Inmueble = mainContent.FindControl("cartaInmueble");
+            LiteralControl htmlSnippet = new LiteralControl();
+            htmlSnippet.Text = Session["inmueblemostrar_dr2"].ToString();
+            div_Inmueble.Controls.Add(htmlSnippet);
+
             LinkButton btn = (LinkButton)sender;
             RepeaterItem item = (RepeaterItem)btn.NamingContainer;
 

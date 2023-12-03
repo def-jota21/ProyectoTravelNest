@@ -240,6 +240,7 @@
     <Content Include="pages\paneladministracionhuesped.aspx" />
     <Content Include="pages\panelanfitrion.aspx" />
     <Content Include="pages\pantallapoliticas.aspx" />
+    <Content Include="pages\politicasgestor.aspx" />
     <Content Include="pages\promociones.aspx" />
     <Content Include="pages\recepciondedenuncias.aspx" />
     <Content Include="pages\recepcionmensajes.aspx" />
@@ -608,6 +609,13 @@
     </Compile>
     <Compile Include="pages\pantallapoliticas.aspx.designer.cs">
       <DependentUpon>pantallapoliticas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\politicasgestor.aspx.cs">
+      <DependentUpon>politicasgestor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\politicasgestor.aspx.designer.cs">
+      <DependentUpon>politicasgestor.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\promociones.aspx.cs">
       <DependentUpon>promociones.aspx</DependentUpon>

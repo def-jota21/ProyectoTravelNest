@@ -46,6 +46,35 @@ namespace Datos
             return contador;
         }
 
+        public bool ValidarReservacionesInmuebles(string IdInmueble)
+        {
+            bool sinReservacionesActivas = true; // Valor predeterminado si no hay reservaciones activas
+            CadenaConexion();
+
+            using (sqlCon)
+            {
+                sqlCon.Open();
+
+                using (SqlCommand command = new SqlCommand("ValidarEstadoReservacion", sqlCon))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@IdInmueble", SqlDbType.NChar, 13)).Value = IdInmueble;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int contador = (int)reader[0];
+                            sinReservacionesActivas = contador == 0;
+                        }
+                    }
+                }
+            }
+
+            return sinReservacionesActivas;
+        }
+
+
         public int EjecutarContadorReservaciones(int opcion)
         {
             int contador = 0; // Valor predeterminado en caso de que no se encuentren inmuebles
@@ -156,11 +185,11 @@ namespace Datos
             using (sqlCon)
             {
                 sqlCon.Open();
-                string query = "SELECT IdAnfitrion FROM Inmueble WHERE IdInmueble = @IdInmueble";
+                string query = "SELECT IdUsuario FROM Inmueble WHERE IdInmueble = @IdInmueble";
 
                 using (SqlCommand command = new SqlCommand(query, sqlCon))
                 {
-                    command.Parameters.AddWithValue("@IdMueble", idInmueble);
+                    command.Parameters.AddWithValue("@IdInmueble", idInmueble);
 
                     // Ejecutar la consulta y obtener el nombre de la categoría
                     IdAnfitrion = (string)command.ExecuteScalar();

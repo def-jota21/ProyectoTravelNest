@@ -34,7 +34,7 @@
                             <div
                                 class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link"
-                                    href="gestionusuarios.aspx">Ver Politicas</a>
+                                    href="pantallapoliticas.aspx">Ver Politicas</a>
                                 <div class="small text-white">
                                     <i
                                         class="fas fa-angle-right"></i>
@@ -51,7 +51,7 @@
                             <div
                                 class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link"
-                                    href="gestionusuarios.aspx">Ver Cupones</a>
+                                    href="vergenerarcupon.aspx">Ver Cupones</a>
                                 <div class="small text-white">
                                     <i
                                         class="fas fa-angle-right"></i>
@@ -68,7 +68,24 @@
                             <div
                                 class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link"
-                                    href="gestionusuarios.aspx">Ver Categorias</a>
+                                    href="tiposalojamiento.aspx">Ver Categorias</a>
+                                <div class="small text-white">
+                                    <i
+                                        class="fas fa-angle-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card bg-success text-white mb-4 ">
+                            <div class="card-body">
+                                <asp:Label ID="Label4" Visible="false" runat="server" CssClass="h1 text-white"></asp:Label>
+                                <p>Politicas Inmuebles</p>
+                            </div>
+                            <div
+                                class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link"
+                                    href="politicasgestor.aspx">Ver Politicas</a>
                                 <div class="small text-white">
                                     <i
                                         class="fas fa-angle-right"></i>
@@ -170,7 +187,7 @@
     <script>
         // Suponiendo que estas variables contienen los datos obtenidos desde el backend
         var contadorActivosReser = <%= ReserActivos %>;
-    var contadorfinal = <%= ReserFinalizados %>;
+        var contadorfinal = <%= ReserFinalizados %>;
 
         var ctxReservaciones = document.getElementById('pieChartReservaciones').getContext('2d');
         var myPieChartReservaciones = new Chart(ctxReservaciones, {

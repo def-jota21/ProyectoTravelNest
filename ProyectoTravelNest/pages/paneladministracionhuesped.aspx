@@ -34,6 +34,7 @@
 
     <div class="container mt-5">
         <div class="row">
+            <h2 class="mb-3">Panel Huesped</h2>
             <div class="col-12">
                 <div class="card-deck">
                     <div class="card">
@@ -53,7 +54,7 @@
                                 <h5 class="h5 mt-2">Inicio de sesion y seguridad</h5>
                                 <p class="h6 mt-4">Configura la forma que ingresas.</p>
                             </span>
-                            <span class="badgeCard">1</span>
+                            <span class="badgeCard"><i class="fa-solid fa-triangle-exclamation"></i></span>
                         </a>
                     </div>
                     <div class="card">
@@ -111,14 +112,14 @@
                                 <h5 class="h5 mt-2">Mi Banco</h5>
                                 <p class="h6 mt-4">Proporciona tus datos de tu cuenta para poder hacer el pago.</p>
                             </span>
-                            <span class="badgeCard">1</span>
+                            <span class="badgeCard"><i class="fa-solid fa-triangle-exclamation"></i></span>
                         </a>
                         <% 
                             }
                         %>
                     </div>
                     <div class="card">
-                        <a href="#" class="notification" style="text-decoration: none">
+                        <a href="alojamientosvisitados.aspx" class="notification" style="text-decoration: none">
                             <span>
                                 <h5 class="h5 mt-2">Lugares Visitados</h5>
                                 <p class="h6 mt-4">Mira los hermosos lugares que has visitado.</p>

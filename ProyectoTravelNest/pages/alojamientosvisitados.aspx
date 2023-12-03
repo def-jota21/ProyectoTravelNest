@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="container pt-5 pb-3">
             <div class="mb-3 pb-3">
-                <h2>Anuncios Publicados</h2>
+                <h2>Historico de Lugares Visitados</h2>
             </div>
             <div class="row">
                 <asp:Repeater ID="rptAlojamientos" runat="server">

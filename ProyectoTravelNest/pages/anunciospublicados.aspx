@@ -31,7 +31,7 @@
                                                 Style="height: 47px; margin-top: -2px;" CommandName="VerInformacion" CommandArgument='<%# $"{Eval("IdUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnVerInformacion_Command" />
                                         </div>
                                         <div class="d-flex justify-content-between mt-2">
-                                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-info btn-block"
+                                            <asp:Button ID="btnModificar" runat="server" Text="Guardar" CssClass="btn btn-info btn-block"
                                                 Style="height: 47px; margin-top: -2px;" CommandName="Modificar" CommandArgument='<%# $"{Eval("idUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnModificar_Command" />
                                         </div>
                                     </div>

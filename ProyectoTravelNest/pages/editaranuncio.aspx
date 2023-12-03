@@ -16,15 +16,16 @@
         }
 
         .containerimg {
-            background-color: #ffffff;
-            width: 60%;
-            min-width: 450px;
-            position: relative;
-            margin: 50px auto;
-            padding: 50px 20px;
-            border-radius: 7px;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.05);
-        }
+    background-color: #ffffff;
+    width: 100%; /* Usa 100% para máxima flexibilidad */
+    max-width: 60%; /* Mantiene un máximo de 60% si lo prefieres */
+    position: relative;
+    margin: 50px auto;
+    padding: 50px 20px;
+    border-radius: 7px;
+    box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+}
+
 
         input[type="file"] {
             display: none;
@@ -117,7 +118,7 @@
                 <label for="exampleFormControlInput1" class="form-label">Categoria</label>
                 <asp:DropDownList ID="categoria" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="IdCategoria">
                 </asp:DropDownList>
-                <asp:Label ID="lblPrecio" runat="server" CssClass="form-label mt-4" AssociatedControlID="txtprecio">Precio/Noche</asp:Label>
+                <asp:Label ID="lblPrecio" runat="server" CssClass="form-label mt-4" AssociatedControlID="txtprecio">Precio/Noche en Dolares</asp:Label>
                 <asp:TextBox ID="txtprecio" runat="server" type="number" step="0.01" CssClass="form-control" autocomplete="off"></asp:TextBox>
                 <asp:Label ID="lblErrorPrecio" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                 <br />
@@ -142,10 +143,10 @@
                 <asp:TextBox ID="txtbaños" step="0.01" runat="server" type="number" CssClass="form-control" autocomplete="off"></asp:TextBox>
                 <asp:Label ID="lblErrorBanhos" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                 <label for="exampleFormControlInput1" class="form-label mt-4">Servicios</label>
-                <a href="#" id="editarServicios" class="stretched-link text-danger " style="position: relative; margin-left: 25rem;">Editar</a>
-
+                <a  id="editarServicios" class="stretched-link text-danger " style="position: relative; margin-left: 10rem;">Editar</a>
+                <br>
                 <label for="exampleFormControlInput1" class="form-label mt-4">Amenidades</label>
-                <a href="#" id="editarAmenidades" class="stretched-link text-danger " style="position: relative; margin-left: 23.5rem;">Editar</a>
+                <a  id="editarAmenidades" class="stretched-link text-danger " style="position: relative; margin-left: 8.5rem;">Editar</a>
                 <br>
 
                 <asp:Label ID="Label1" runat="server" CssClass="form-label mt-4" AssociatedControlID="txtbaños">Descripcion</asp:Label>

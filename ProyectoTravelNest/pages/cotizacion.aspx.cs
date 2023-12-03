@@ -10,6 +10,7 @@ using System.Web.DynamicData;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebGrease.Css.Ast.Selectors;
 
 namespace ProyectoTravelNest.pages
 {
@@ -27,11 +28,15 @@ namespace ProyectoTravelNest.pages
         static decimal tarifaPorNoche;
         static decimal tarifaServicio;
         static bool aplicoCupon = false;
+        static bool VerificacionAceptado;
+        static bool VerificacionMiBanco;
+        
+        
         Entidades.Usuarios eUsuarios;
         protected void Page_Load(object sender, EventArgs e)
         {
             eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
-
+            
             if (eUsuarios == null)
             {
                 FormsAuthentication.RedirectToLoginPage();
@@ -39,6 +44,7 @@ namespace ProyectoTravelNest.pages
 
             if (!IsPostBack & eUsuarios != null)
             {
+                btnPagar.Enabled = false;
                 // Verifica si los parámetros se pasaron en la URL
                 if (Request.QueryString["parametro1"] != null &&
                     Request.QueryString["parametro2"] != null &&
@@ -124,13 +130,50 @@ namespace ProyectoTravelNest.pages
                         // Asigna los resultados a los controles
                         txtf_inicio.Text = parametro1;
                         txtf_fin.Text = parametro2;
-                        lblNoches.Text = string.Format("${0:N2} x {1} noches", tarifaPorNoche, diferenciaDias);
+                        lblNoches.Text = string.Format("${0:N2} x noche", tarifaPorNoche);
                         lblLimpieza.Text = string.Format("${0:N2}", tarifaLimpieza);
                         lblServicio.Text = string.Format("${0:N2}", tarifaServicio);
                         lblImpuestos.Text = string.Format("${0:N2}", impuestos);
                         lblCupon.Text = "No aplicar";
                         lblTotal.Text = string.Format("${0:N2}", totalTarifas);
 
+                        Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
+                        VerificacionMiBanco = neg_MiBanco.VerificarMiBanco(eUsuarios.IdUsuario);
+
+                        if (VerificacionMiBanco)
+                        {
+                            lblMiBanco.Visible = false;
+                            
+                        }
+                        else
+                        {
+                            lblMiBanco.Visible = true;
+                        }
+
+                        Neg_VerificarIdentidad neg_VerificarIdentidad = new Neg_VerificarIdentidad();
+                        string estado = neg_VerificarIdentidad.getEstado(eUsuarios.IdUsuario);
+
+                        if(estado == "A" )
+                        {                          
+                            VerificacionAceptado = true;
+                            lblVerificacion.Visible = false;
+
+                        }else
+                        {
+                            VerificacionAceptado = false;
+                            lblVerificacion.Visible=true;
+                        }
+
+                        if (VerificacionAceptado && VerificacionMiBanco)
+                        {
+                            btnPagar.Enabled = true;
+
+                        }
+                        else
+                        {
+                            btnPagar.Enabled = false;
+
+                        }
                     }
 
 
@@ -206,6 +249,8 @@ namespace ProyectoTravelNest.pages
                         string script = "Swal.fire('¡Éxito!', 'Se reservo con Exito', 'success');";
                         ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
                         reservaciones.enviarCorreo(eUsuarios.IdUsuario, totalTarifas);
+                        string redirectScript = "setTimeout(function(){window.location.href = 'paneladministracionhuesped.aspx';}, 3000);";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Redirigir", redirectScript, true);
                     }
                     else
                     {
@@ -218,36 +263,14 @@ namespace ProyectoTravelNest.pages
                 else
                 {
 
-                    string script = "Swal.fire('¡Error!', 'Ocurrio un error', 'error');";
+                    string script = "Swal.fire('¡Error!', 'No tiene fondos', 'error');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
 
 
                 }
 
 
-                //si no da error, continua
-                bool inserto = reservaciones.InsertarReservacion(parametro6, parametro5, fechaEntradaFormateada, fechaSalidaFormateada);
-
-                if (inserto)
-                {
-                    if (aplicoCupon)
-                    {
-
-                        //si se inserta cambiar el estado del cupon
-                         negocio_Cupon = new Negocio_Cupon();
-
-                        negocio_Cupon.UsarCupon(ddlCupones.SelectedItem.Text.Substring(0,6), eUsuarios.IdUsuario);
-
-                    }
-                    string script = "Swal.fire('¡Éxito!', 'Se reservo con Exito', 'success');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                    reservaciones.enviarCorreo(eUsuarios.IdUsuario, totalTarifas);
-                }
-                else
-                {
-                    string script = "Swal.fire('¡Error!', 'Ocurrio un error', 'error');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
-                }
+               
 
 
             }
@@ -338,7 +361,7 @@ namespace ProyectoTravelNest.pages
                     // Asigna los resultados a los controles
                     txtf_inicio.Text = parametro1;
                     txtf_fin.Text = parametro2;
-                    lblNoches.Text = string.Format("${0:N2} x {1} noches", tarifaPorNoche, diferenciaDias);
+                    lblNoches.Text = string.Format("${0:N2} x noche", tarifaPorNoche);
                     lblLimpieza.Text = string.Format("${0:N2}", tarifaLimpieza);
                     lblServicio.Text = string.Format("${0:N2}", tarifaServicio);
                     lblImpuestos.Text = string.Format("${0:N2}", impuestos);
@@ -401,7 +424,7 @@ namespace ProyectoTravelNest.pages
                     // Asigna los resultados a los controles
                     txtf_inicio.Text = parametro1;
                     txtf_fin.Text = parametro2;
-                    lblNoches.Text = string.Format("${0:N2} x {1} noches", tarifaPorNoche, diferenciaDias);
+                    lblNoches.Text = string.Format("${0:N2} x noche", tarifaPorNoche);
                     lblLimpieza.Text = string.Format("${0:N2}", tarifaLimpieza);
                     lblServicio.Text = string.Format("${0:N2}", tarifaServicio);
                     lblImpuestos.Text = string.Format("${0:N2}", impuestos);

@@ -23,9 +23,13 @@
     <!-- Customized Bootstrap Stylesheet -->
 
     <link href="Content/style.css" rel="stylesheet" />
-
+    
 
     <style>
+        .DataPagerContainer > span, .DataPagerContainer > div {
+        display: block; /* Asegura que cada elemento ocupe su propia línea */
+        text-align: center; /* Centra los elementos horizontalmente */
+    }
         .package-item {
             display: flex;
             flex-direction: column;
@@ -206,15 +210,22 @@
                                 </div>
                             </ItemTemplate>
                         </asp:ListView>
-                        <div>
-                            <b>Páginas</b>
+                        <div class="container mt-4">
+                            <div class="row col-lg-12 col-sm-12 text-center">
+                                
+                                <div class="DataPagerContainer">
+    <asp:DataPager ID="DataPager1" runat="server" PageSize="15" PagedControlID="lvInmuebles">
+        <Fields>
+            <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
+            <asp:NumericPagerField />
+        </Fields>
+    </asp:DataPager>
+</div>
+
+                            </div>
                         </div>
-                        <asp:DataPager ID="DataPager1" runat="server" PageSize="15" PagedControlID="lvInmuebles">
-                            <Fields>
-                                <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
-                                <asp:NumericPagerField />
-                            </Fields>
-                        </asp:DataPager>
+
+
                     </div>
                 </div>
             </div>

@@ -17,6 +17,8 @@ namespace ProyectoTravelNest.pages
     public partial class crearalojamiento : System.Web.UI.Page
     {
         Entidades.Usuarios eUsuarios = new Entidades.Usuarios();
+        static bool VerificacionAceptado;
+        static bool VerificacionMiBanco;
         protected void Page_Load(object sender, EventArgs e)
         {
              eUsuarios = Session["IdUsuario"] as Entidades.Usuarios;
@@ -67,6 +69,45 @@ namespace ProyectoTravelNest.pages
                     selectElementPoliticas.DataTextField = "Nombre";
                     selectElementPoliticas.DataValueField = "IdPolitica";
                     selectElementPoliticas.DataBind();
+                }
+
+                Neg_MiBanco neg_MiBanco = new Neg_MiBanco();
+                VerificacionMiBanco = neg_MiBanco.VerificarMiBanco(eUsuarios.IdUsuario);
+
+                if (VerificacionMiBanco)
+                {
+                    lblMiBanco.Visible = false;
+
+                }
+                else
+                {
+                    lblMiBanco.Visible = true;
+                }
+
+                Neg_VerificarIdentidad neg_VerificarIdentidad = new Neg_VerificarIdentidad();
+                string estado = neg_VerificarIdentidad.getEstado(eUsuarios.IdUsuario);
+
+                if (estado == "A")
+                {
+                    VerificacionAceptado = true;
+                    lblVerificacion.Visible = false;
+
+                }
+                else
+                {
+                    VerificacionAceptado = false;
+                    lblVerificacion.Visible = true;
+                }
+
+                if (VerificacionAceptado && VerificacionMiBanco)
+                {
+                    btnPublicar.Enabled = true;
+
+                }
+                else
+                {
+                    btnPublicar.Enabled = false;
+
                 }
             }
 

@@ -17,8 +17,8 @@
 
         .containerimg {
             background-color: #ffffff;
-            width: 60%;
-            min-width: 450px;
+            width: 100%; /* Usa 100% para máxima flexibilidad */
+            max-width: 60%; /* Mantiene un máximo de 60% si lo prefieres */
             position: relative;
             margin: 50px auto;
             padding: 50px 20px;
@@ -110,7 +110,7 @@
                 <label for="exampleFormControlInput1" class="form-label mt-2">Categoria</label>
                 <asp:DropDownList ID="categoria" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="IdCategoria">
                 </asp:DropDownList>
-                <asp:Label ID="lblPrecio" runat="server" CssClass="form-label mt-2" AssociatedControlID="txtprecio">Precio/Noche</asp:Label>
+                <asp:Label ID="lblPrecio" runat="server" CssClass="form-label mt-2" AssociatedControlID="txtprecio">Precio/Noche en Dolares</asp:Label>
                 <asp:TextBox ID="txtprecio" runat="server" type="number" step="0.01" CssClass="form-control" autocomplete="off"></asp:TextBox>
                 <asp:Label ID="lblErrorPrecio" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                 <br />
@@ -127,53 +127,60 @@
                 <asp:Label ID="lblErrorBanhos" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                 <br />
                 <label for="exampleFormControlInput1" class="form-label mt-4">Servicios</label>
-                 <a href="#" id="editarServicios" class="stretched-link text-danger " style="position: relative; margin-left: 25rem;">Editar</a>
+                <a href="#" id="editarServicios" class="stretched-link text-danger " style="position: relative; margin-left: 10rem;">Editar</a>
+                <br>
                 <label for="exampleFormControlInput1" class="form-label mt-4">Politicas</label>
-                <a id="editarPoliticas" class="stretched-link text-danger " style="position: relative; margin-left: 25.3rem;">Editar</a>
+                <a id="editarPoliticas" class="stretched-link text-danger " style="position: relative; margin-left: 10.3rem;">Editar</a>
                 <br>
                 <label for="exampleFormControlInput1" class="form-label mt-4">Amenidades</label>
-                <a id="editarAmenidades" class="stretched-link text-danger " style="position: relative; margin-left: 23.5rem;">Editar</a>
-            
+                <a id="editarAmenidades" class="stretched-link text-danger " style="position: relative; margin-left: 8.5rem;">Editar</a>
+                <br>
                 <asp:Label ID="Label1" runat="server" CssClass="form-label mt-2" AssociatedControlID="txtbaños">Descripcion</asp:Label>
                 <asp:TextBox ID="descripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" autocomplete="off"></asp:TextBox>
                 <asp:Label ID="lblErrorDescripcion" runat="server" ForeColor="Red" Visible="false"></asp:Label>
                 <br />
                 <asp:Button ID="btnPublicar" runat="server" CssClass="btn btn-primary btn-lg mt-4" Text="Publicar Alojamiento" OnClick="btnPublicar_Click" />
                 <br />
+                <asp:Label ID="lblVerificacion" runat="server" CssClass="form-label mt-2 " Style="color: red;">Falta Verificar Identidad</asp:Label>
+                <br />
+                <asp:Label ID="lblMiBanco" runat="server" CssClass="form-label mt-2 " Style="color: red;">Falta Enlazar Mi Banco</asp:Label>
 
 
             </div>
-            <div class="col">
-                <img class="img-fluid" src="../img/about-1.jpg" alt="">
+            <div class="col d-none d-lg-block">
+                <div class="col">
+                    <img class="img-fluid" src="../img/about-1.jpg" alt="">
 
-                <div class="container-fluid py-5">
-                    <div class="container pt-5">
-                        <div class="row">
-                            <div class="col-lg-6" style="min-height: 300px;">
-                                <div class="position-relative h-100">
-                                    <img class="position-absolute w-90 h-90" src="../img/about.jpg" style="object-fit: cover;">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 pt-5 pb-lg-5">
-                                <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                                    <h2 class="mb-3">Crea una experiencia para los huespedes</h2>
-                                    <p>Los huespedes son tus clientes brindales el mejor servicio para tener exito.</p>
-                                    <div class="row mb-4">
-                                        <div class="col-6">
-                                            <img class="img-fluid" src="../img/destination-1.jpg" alt="">
-                                        </div>
-                                        <div class="col-6">
-                                            <img class="img-fluid" src="../img/destination-2.jpg" alt="">
-                                        </div>
+                    <div class="container-fluid py-5">
+                        <div class="container pt-5">
+                            <div class="row">
+                                <div class="col-lg-6" style="min-height: 300px;">
+                                    <div class="position-relative h-100">
+                                        <img class="position-absolute w-90 h-90" src="../img/about.jpg" style="object-fit: cover;">
                                     </div>
+                                </div>
+                                <div class="col-lg-6 pt-5 pb-lg-5">
+                                    <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                                        <h2 class="mb-3">Crea una experiencia para los huespedes</h2>
+                                        <p>Los huespedes son tus clientes brindales el mejor servicio para tener exito.</p>
+                                        <div class="row mb-4">
+                                            <div class="col-6">
+                                                <img class="img-fluid" src="../img/destination-1.jpg" alt="">
+                                            </div>
+                                            <div class="col-6">
+                                                <img class="img-fluid" src="../img/destination-2.jpg" alt="">
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
+
 
         </div>
         <div class="row">
@@ -312,7 +319,7 @@
         document.getElementById("cargarImagenesButton").addEventListener("click", function () {
             // Simular clic en el control de carga de archivos
             document.getElementById("<%= fileUpload.ClientID %>").click();
-    });
+        });
 
 
 
@@ -330,11 +337,11 @@
 
             // Almacenar los IDs en el HiddenField
             var hiddenElementos = document.getElementById('<%= hiddenElementos.ClientID %>');
-        hiddenElementos.value = idsSeparadosPorComas;
+            hiddenElementos.value = idsSeparadosPorComas;
 
-        var modal = document.getElementById('serviciosModal');
-        $('#serviciosModal').modal('hide');
-    });
+            var modal = document.getElementById('serviciosModal');
+            $('#serviciosModal').modal('hide');
+        });
 
 
         document.getElementById("guardarAmenidades").addEventListener("click", function () {
@@ -352,9 +359,9 @@
 
             // Almacenar los datos en el HiddenField
             var hiddenElementos = document.getElementById('<%= elementosAmenidades.ClientID %>');
-        hiddenElementos.value = datosSeparadosPorComas;
-        $('#amenidadesModal').modal('hide');
-    });
+            hiddenElementos.value = datosSeparadosPorComas;
+            $('#amenidadesModal').modal('hide');
+        });
 
         document.getElementById("guardarPoliticas").addEventListener("click", function () {
             var listaElementos = document.getElementById("listaElementosPoliticas").getElementsByTagName("li");
@@ -376,242 +383,242 @@
 
             // Almacenar los IDs y las descripciones en HiddenFields
             var hiddenIdsPoliticas = document.getElementById('<%= hiddenIdsPoliticas.ClientID %>');
-        var hiddenDescripcionesPoliticas = document.getElementById('<%= hiddenDescripcionesPoliticas.ClientID %>');
+            var hiddenDescripcionesPoliticas = document.getElementById('<%= hiddenDescripcionesPoliticas.ClientID %>');
 
-        hiddenIdsPoliticas.value = idsSeparadosPorComas;
-        hiddenDescripcionesPoliticas.value = descripcionesSeparadasPorComas;
+            hiddenIdsPoliticas.value = idsSeparadosPorComas;
+            hiddenDescripcionesPoliticas.value = descripcionesSeparadasPorComas;
 
-        // Cerrar el modal (si estás usando Bootstrap)
-        var modal = document.getElementById('politicasModal');
-        $('#politicasModal').modal('hide');
-    });
+            // Cerrar el modal (si estás usando Bootstrap)
+            var modal = document.getElementById('politicasModal');
+            $('#politicasModal').modal('hide');
+        });
 
         // Obtener referencias a los elementos HTML
         var fileUpload = document.getElementById('<%= fileUpload.ClientID %>');
-    var numOfFiles = document.getElementById("num-of-files");
-    var imageContainer = document.getElementById("images");
+        var numOfFiles = document.getElementById("num-of-files");
+        var imageContainer = document.getElementById("images");
 
-    // Escuchar el evento de cambio del control de carga de archivos
-    fileUpload.addEventListener("change", function () {
-        // Limpiar el contenedor de imágenes
-        imageContainer.innerHTML = "";
+        // Escuchar el evento de cambio del control de carga de archivos
+        fileUpload.addEventListener("change", function () {
+            // Limpiar el contenedor de imágenes
+            imageContainer.innerHTML = "";
 
-        // Verificar si se seleccionaron archivos
-        if (fileUpload.files.length > 0) {
-            numOfFiles.textContent = fileUpload.files.length + " Imágenes Seleccionadas";
-
-            // Recorrer los archivos seleccionados
-            for (var i = 0; i < fileUpload.files.length; i++) {
-                var file = fileUpload.files[i];
-                var imageDiv = document.createElement("div");
-                imageDiv.className = "image-preview"; // Aplicar clase CSS
-                var image = document.createElement("img");
-                image.src = URL.createObjectURL(file); // Obtener la URL temporal de la imagen
+            // Verificar si se seleccionaron archivos
+            if (fileUpload.files.length > 0) {
+                numOfFiles.textContent = fileUpload.files.length + " Imágenes Seleccionadas";
 
                 // Recorrer los archivos seleccionados
                 for (var i = 0; i < fileUpload.files.length; i++) {
                     var file = fileUpload.files[i];
                     var imageDiv = document.createElement("div");
-                    imageDiv.className = "image-preview";
+                    imageDiv.className = "image-preview"; // Aplicar clase CSS
                     var image = document.createElement("img");
-                    image.src = URL.createObjectURL(file);
+                    image.src = URL.createObjectURL(file); // Obtener la URL temporal de la imagen
 
-                    imageDiv.appendChild(image);
+                    // Recorrer los archivos seleccionados
+                    for (var i = 0; i < fileUpload.files.length; i++) {
+                        var file = fileUpload.files[i];
+                        var imageDiv = document.createElement("div");
+                        imageDiv.className = "image-preview";
+                        var image = document.createElement("img");
+                        image.src = URL.createObjectURL(file);
 
-                    var deleteIcon = document.createElement("i");
-                    deleteIcon.className = "fa-solid fa-trash delete-icon";
+                        imageDiv.appendChild(image);
 
-                    // Envolver la lógica de eliminación en una función inmediatamente invocada
-                    (function (imageDiv) {
-                        deleteIcon.addEventListener("click", function () {
-                            imageDiv.remove(); // Elimina el div de imagen correcto
-                            fileUpload.value = ""; // Restablece el control de carga de archivos
+                        var deleteIcon = document.createElement("i");
+                        deleteIcon.className = "fa-solid fa-trash delete-icon";
 
-                            // Actualizar el contador de imágenes seleccionadas
-                            numOfFiles.textContent = (fileUpload.files.length > 0) ? fileUpload.files.length + " Imágenes Seleccionadas" : "Ninguna Imagen Seleccionada";
-                        });
-                    })(imageDiv);
+                        // Envolver la lógica de eliminación en una función inmediatamente invocada
+                        (function (imageDiv) {
+                            deleteIcon.addEventListener("click", function () {
+                                imageDiv.remove(); // Elimina el div de imagen correcto
+                                fileUpload.value = ""; // Restablece el control de carga de archivos
 
-                    imageDiv.appendChild(deleteIcon);
-                    imageContainer.appendChild(imageDiv);
+                                // Actualizar el contador de imágenes seleccionadas
+                                numOfFiles.textContent = (fileUpload.files.length > 0) ? fileUpload.files.length + " Imágenes Seleccionadas" : "Ninguna Imagen Seleccionada";
+                            });
+                        })(imageDiv);
+
+                        imageDiv.appendChild(deleteIcon);
+                        imageContainer.appendChild(imageDiv);
+                    }
                 }
+            } else {
+                numOfFiles.textContent = "Ninguna Imagen Seleccionada";
             }
-        } else {
-            numOfFiles.textContent = "Ninguna Imagen Seleccionada";
-        }
-    });
-
-</script>
-
-<script>
-    function agregarElemento() {
-        // Obtener el DropDownList y la opción seleccionada
-        var ddlSelectElement = document.getElementById("<%= selectElement.ClientID %>");
-        var opcionSeleccionada = ddlSelectElement.options[ddlSelectElement.selectedIndex];
-        var idServicioSeleccionado = opcionSeleccionada.value;
-
-        // Agregar el elemento a la lista
-        var listaElementos = document.getElementById("listaElementos");
-
-        // Verificar si el idServicio ya está en la lista
-        var existe = Array.from(listaElementos.children).some(function (elemento) {
-            return elemento.getAttribute("data-idservicio") === idServicioSeleccionado;
         });
 
-        if (existe) {
-            alert("El elemento seleccionado ya está en la lista.");
-            return;
+    </script>
+
+    <script>
+        function agregarElemento() {
+            // Obtener el DropDownList y la opción seleccionada
+            var ddlSelectElement = document.getElementById("<%= selectElement.ClientID %>");
+            var opcionSeleccionada = ddlSelectElement.options[ddlSelectElement.selectedIndex];
+            var idServicioSeleccionado = opcionSeleccionada.value;
+
+            // Agregar el elemento a la lista
+            var listaElementos = document.getElementById("listaElementos");
+
+            // Verificar si el idServicio ya está en la lista
+            var existe = Array.from(listaElementos.children).some(function (elemento) {
+                return elemento.getAttribute("data-idservicio") === idServicioSeleccionado;
+            });
+
+            if (existe) {
+                alert("El elemento seleccionado ya está en la lista.");
+                return;
+            }
+            // Crear un nuevo elemento de lista
+            var nuevoElemento = document.createElement("li");
+            nuevoElemento.style.display = "flex"; // Utilizar flexbox
+
+            // Almacenar el IdServicio como atributo personalizado en el elemento <li>
+            nuevoElemento.setAttribute("data-idservicio", opcionSeleccionada.value);
+
+
+            // Crear una columna para el texto
+            var columnaTexto = document.createElement("div");
+            columnaTexto.textContent = opcionSeleccionada.text;
+            columnaTexto.style.width = "200px"; // Ancho fijo para el texto
+
+            // Crear una columna para el botón eliminar
+            var columnaBoton = document.createElement("div");
+            columnaBoton.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
+            columnaBoton.style.marginTop = "-1rem";
+
+            // Botón para eliminar el elemento
+            var botonEliminar = document.createElement("button");
+            botonEliminar.className = "btn btn-danger my-3";
+            botonEliminar.style.fontSize = "12px";
+
+            var icono = document.createElement("i");
+            icono.className = "fa-solid fa-x";
+            icono.style.color = "#f5f5f5";
+
+            botonEliminar.appendChild(icono);
+
+            botonEliminar.onclick = function () {
+                nuevoElemento.remove(); // Eliminar el elemento de la lista al hacer clic en el botón
+            };
+
+            // Agregar el botón de eliminar a la columna de botón
+            columnaBoton.appendChild(botonEliminar);
+
+            // Agregar las columnas al elemento de lista
+            nuevoElemento.appendChild(columnaTexto);
+            nuevoElemento.appendChild(columnaBoton);
+
+
+            listaElementos.appendChild(nuevoElemento);
         }
-        // Crear un nuevo elemento de lista
-        var nuevoElemento = document.createElement("li");
-        nuevoElemento.style.display = "flex"; // Utilizar flexbox
 
-        // Almacenar el IdServicio como atributo personalizado en el elemento <li>
-        nuevoElemento.setAttribute("data-idservicio", opcionSeleccionada.value);
+        function agregarElementoPoliticas() {
+            // Obtener el DropDownList y la opción seleccionada
+            var ddlSelectPoliticas = document.getElementById("<%= selectElementPoliticas.ClientID %>");
+            var opcionSeleccionadaPoliticas = ddlSelectPoliticas.options[ddlSelectPoliticas.selectedIndex];
 
-        
-        // Crear una columna para el texto
-        var columnaTexto = document.createElement("div");
-        columnaTexto.textContent = opcionSeleccionada.text;
-        columnaTexto.style.width = "200px"; // Ancho fijo para el texto
+            // Crear un nuevo elemento de lista para políticas
+            var nuevoElementoPoliticas = document.createElement("li");
+            nuevoElementoPoliticas.style.display = "flex"; // Utilizar flexbox
 
-        // Crear una columna para el botón eliminar
-        var columnaBoton = document.createElement("div");
-        columnaBoton.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
-        columnaBoton.style.marginTop = "-1rem";
+            var textboxDescripcionPolitica = document.getElementById("<%= descripcionPolitica.ClientID %>"); // Asegúrate de que este es el ID correcto
+            var descripcionPolitica = textboxDescripcionPolitica.value;
 
-        // Botón para eliminar el elemento
-        var botonEliminar = document.createElement("button");
-        botonEliminar.className = "btn btn-danger my-3";
-        botonEliminar.style.fontSize = "12px";
+            // Suponiendo que el valor de la opción es el ID de la política
+            var idPolitica = opcionSeleccionadaPoliticas.value;
 
-        var icono = document.createElement("i");
-        icono.className = "fa-solid fa-x";
-        icono.style.color = "#f5f5f5";
 
-        botonEliminar.appendChild(icono);
+            // Configurar los atributos data-idservicio y data-descripcion
+            nuevoElementoPoliticas.setAttribute("data-idservicio", idPolitica);
+            nuevoElementoPoliticas.setAttribute("data-descripcion", descripcionPolitica);
 
-        botonEliminar.onclick = function () {
-            nuevoElemento.remove(); // Eliminar el elemento de la lista al hacer clic en el botón
-        };
+            // Crear una columna para el texto
+            var columnaTextoPoliticas = document.createElement("div");
+            columnaTextoPoliticas.textContent = descripcionPolitica;
+            columnaTextoPoliticas.style.width = "200px"; // Ancho fijo para el texto
 
-        // Agregar el botón de eliminar a la columna de botón
-        columnaBoton.appendChild(botonEliminar);
+            // Crear una columna para el botón eliminar
+            var columnaBotonPoliticas = document.createElement("div");
+            columnaBotonPoliticas.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
+            columnaBotonPoliticas.style.marginTop = "-1rem"; // Ajuste para subir el botón
 
-        // Agregar las columnas al elemento de lista
-        nuevoElemento.appendChild(columnaTexto);
-        nuevoElemento.appendChild(columnaBoton);
+            // Botón para eliminar el elemento de políticas
+            var botonEliminarPoliticas = document.createElement("button");
+            botonEliminarPoliticas.className = "btn btn-danger my-3";
+            botonEliminarPoliticas.style.fontSize = "12px";
 
-        
-        listaElementos.appendChild(nuevoElemento);
-    }
+            var iconoPoliticas = document.createElement("i");
+            iconoPoliticas.className = "fa-solid fa-x";
+            iconoPoliticas.style.color = "#f5f5f5";
 
-    function agregarElementoPoliticas() {
-        // Obtener el DropDownList y la opción seleccionada
-        var ddlSelectPoliticas = document.getElementById("<%= selectElementPoliticas.ClientID %>");
-        var opcionSeleccionadaPoliticas = ddlSelectPoliticas.options[ddlSelectPoliticas.selectedIndex];
+            botonEliminarPoliticas.appendChild(iconoPoliticas);
 
-        // Crear un nuevo elemento de lista para políticas
-        var nuevoElementoPoliticas = document.createElement("li");
-        nuevoElementoPoliticas.style.display = "flex"; // Utilizar flexbox
+            botonEliminarPoliticas.onclick = function () {
+                nuevoElementoPoliticas.remove(); // Eliminar el elemento de políticas de la lista al hacer clic en el botón
+            };
 
-        var textboxDescripcionPolitica = document.getElementById("<%= descripcionPolitica.ClientID %>"); // Asegúrate de que este es el ID correcto
-        var descripcionPolitica = textboxDescripcionPolitica.value;
+            // Agregar el botón de eliminar a la columna de botón
+            columnaBotonPoliticas.appendChild(botonEliminarPoliticas);
 
-        // Suponiendo que el valor de la opción es el ID de la política
-        var idPolitica = opcionSeleccionadaPoliticas.value;
-       
+            // Agregar las columnas al elemento de lista
+            nuevoElementoPoliticas.appendChild(columnaTextoPoliticas);
+            nuevoElementoPoliticas.appendChild(columnaBotonPoliticas);
 
-        // Configurar los atributos data-idservicio y data-descripcion
-        nuevoElementoPoliticas.setAttribute("data-idservicio", idPolitica);
-        nuevoElementoPoliticas.setAttribute("data-descripcion", descripcionPolitica);
-
-        // Crear una columna para el texto
-        var columnaTextoPoliticas = document.createElement("div");
-        columnaTextoPoliticas.textContent = descripcionPolitica;
-        columnaTextoPoliticas.style.width = "200px"; // Ancho fijo para el texto
-
-        // Crear una columna para el botón eliminar
-        var columnaBotonPoliticas = document.createElement("div");
-        columnaBotonPoliticas.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
-        columnaBotonPoliticas.style.marginTop = "-1rem"; // Ajuste para subir el botón
-
-        // Botón para eliminar el elemento de políticas
-        var botonEliminarPoliticas = document.createElement("button");
-        botonEliminarPoliticas.className = "btn btn-danger my-3";
-        botonEliminarPoliticas.style.fontSize = "12px";
-
-        var iconoPoliticas = document.createElement("i");
-        iconoPoliticas.className = "fa-solid fa-x";
-        iconoPoliticas.style.color = "#f5f5f5";
-
-        botonEliminarPoliticas.appendChild(iconoPoliticas);
-
-        botonEliminarPoliticas.onclick = function () {
-            nuevoElementoPoliticas.remove(); // Eliminar el elemento de políticas de la lista al hacer clic en el botón
-        };
-
-        // Agregar el botón de eliminar a la columna de botón
-        columnaBotonPoliticas.appendChild(botonEliminarPoliticas);
-
-        // Agregar las columnas al elemento de lista
-        nuevoElementoPoliticas.appendChild(columnaTextoPoliticas);
-        nuevoElementoPoliticas.appendChild(columnaBotonPoliticas);
-
-        // Agregar el elemento de políticas a la lista
-        var listaElementosPoliticas = document.getElementById("listaElementosPoliticas");
-        listaElementosPoliticas.appendChild(nuevoElementoPoliticas);
-    }
+            // Agregar el elemento de políticas a la lista
+            var listaElementosPoliticas = document.getElementById("listaElementosPoliticas");
+            listaElementosPoliticas.appendChild(nuevoElementoPoliticas);
+        }
 
 
 
-    function agregarElementoAmenidades() {
-        // Obtener el DropDownList y la opción seleccionada
-        var ddlSelectAmenidades = document.getElementById("<%= selectElementAmenidades.ClientID %>");
-        var opcionSeleccionadaAmenidades = ddlSelectAmenidades.options[ddlSelectAmenidades.selectedIndex];
+        function agregarElementoAmenidades() {
+            // Obtener el DropDownList y la opción seleccionada
+            var ddlSelectAmenidades = document.getElementById("<%= selectElementAmenidades.ClientID %>");
+            var opcionSeleccionadaAmenidades = ddlSelectAmenidades.options[ddlSelectAmenidades.selectedIndex];
 
-        // Crear un nuevo elemento de lista para amenidades
-        var nuevoElementoAmenidades = document.createElement("li");
-        nuevoElementoAmenidades.style.display = "flex"; // Utilizar flexbox
+            // Crear un nuevo elemento de lista para amenidades
+            var nuevoElementoAmenidades = document.createElement("li");
+            nuevoElementoAmenidades.style.display = "flex"; // Utilizar flexbox
 
-        // Almacenar el IdAmenidad como atributo personalizado en el elemento <li>
-        nuevoElementoAmenidades.setAttribute("data-idamenidad", opcionSeleccionadaAmenidades.value);
+            // Almacenar el IdAmenidad como atributo personalizado en el elemento <li>
+            nuevoElementoAmenidades.setAttribute("data-idamenidad", opcionSeleccionadaAmenidades.value);
 
-        // Crear una columna para el texto
-        var columnaTextoAmenidades = document.createElement("div");
-        columnaTextoAmenidades.textContent = opcionSeleccionadaAmenidades.text;
-        columnaTextoAmenidades.style.width = "200px"; // Ancho fijo para el texto
+            // Crear una columna para el texto
+            var columnaTextoAmenidades = document.createElement("div");
+            columnaTextoAmenidades.textContent = opcionSeleccionadaAmenidades.text;
+            columnaTextoAmenidades.style.width = "200px"; // Ancho fijo para el texto
 
-        // Crear una columna para el botón eliminar
-        var columnaBotonAmenidades = document.createElement("div");
-        columnaBotonAmenidades.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
-        columnaBotonAmenidades.style.marginTop = "-1rem"; // Ajuste para subir el botón
+            // Crear una columna para el botón eliminar
+            var columnaBotonAmenidades = document.createElement("div");
+            columnaBotonAmenidades.style.marginLeft = "1rem"; // Espacio entre el texto y el botón
+            columnaBotonAmenidades.style.marginTop = "-1rem"; // Ajuste para subir el botón
 
-        // Botón para eliminar el elemento de amenidades
-        var botonEliminarAmenidades = document.createElement("button");
-        botonEliminarAmenidades.className = "btn btn-danger my-3";
-        botonEliminarAmenidades.style.fontSize = "12px";
+            // Botón para eliminar el elemento de amenidades
+            var botonEliminarAmenidades = document.createElement("button");
+            botonEliminarAmenidades.className = "btn btn-danger my-3";
+            botonEliminarAmenidades.style.fontSize = "12px";
 
-        var iconoAmenidades = document.createElement("i");
-        iconoAmenidades.className = "fa-solid fa-x";
-        iconoAmenidades.style.color = "#f5f5f5";
+            var iconoAmenidades = document.createElement("i");
+            iconoAmenidades.className = "fa-solid fa-x";
+            iconoAmenidades.style.color = "#f5f5f5";
 
-        botonEliminarAmenidades.appendChild(iconoAmenidades);
+            botonEliminarAmenidades.appendChild(iconoAmenidades);
 
-        botonEliminarAmenidades.onclick = function () {
-            nuevoElementoAmenidades.remove(); // Eliminar el elemento de amenidades de la lista al hacer clic en el botón
-        };
+            botonEliminarAmenidades.onclick = function () {
+                nuevoElementoAmenidades.remove(); // Eliminar el elemento de amenidades de la lista al hacer clic en el botón
+            };
 
-        // Agregar el botón de eliminar a la columna de botón
-        columnaBotonAmenidades.appendChild(botonEliminarAmenidades);
+            // Agregar el botón de eliminar a la columna de botón
+            columnaBotonAmenidades.appendChild(botonEliminarAmenidades);
 
-        // Agregar las columnas al elemento de lista
-        nuevoElementoAmenidades.appendChild(columnaTextoAmenidades);
-        nuevoElementoAmenidades.appendChild(columnaBotonAmenidades);
+            // Agregar las columnas al elemento de lista
+            nuevoElementoAmenidades.appendChild(columnaTextoAmenidades);
+            nuevoElementoAmenidades.appendChild(columnaBotonAmenidades);
 
-        // Agregar el elemento de amenidades a la lista
-        document.getElementById("listaElementosAmenidades").appendChild(nuevoElementoAmenidades);
-    }
+            // Agregar el elemento de amenidades a la lista
+            document.getElementById("listaElementosAmenidades").appendChild(nuevoElementoAmenidades);
+        }
 
-</script>
+    </script>
 </asp:Content>

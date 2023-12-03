@@ -158,5 +158,29 @@ namespace Datos
             return tablaServicios;
         }
 
+        public DataTable ObtenerAmenidadesPorInmueble(string idInmueble)
+        {
+            DataTable tablaAmenidades = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "  SELECT A.Nombre FROM AmenidadxInmueble AI JOIN Amenidades A ON AI.IdAmenidad = A.IdAmenidades WHERE AI.IdInmueble = @IdInmueble";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdInmueble", idInmueble);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(tablaAmenidades);
+                    }
+                }
+            }
+
+            return tablaAmenidades;
+        }
+
     }
 }

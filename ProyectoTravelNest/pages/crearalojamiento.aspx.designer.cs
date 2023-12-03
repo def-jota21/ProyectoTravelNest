@@ -222,6 +222,24 @@ namespace ProyectoTravelNest.pages
         protected global::System.Web.UI.WebControls.Button btnPublicar;
 
         /// <summary>
+        /// Control lblVerificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVerificacion;
+
+        /// <summary>
+        /// Control lblMiBanco.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMiBanco;
+
+        /// <summary>
         /// Control fileUpload.
         /// </summary>
         /// <remarks>

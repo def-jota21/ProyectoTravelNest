@@ -248,6 +248,7 @@
     <Content Include="pages\reservas.aspx" />
     <Content Include="pages\sesionyseguridad.aspx" />
     <Content Include="pages\tiposalojamiento.aspx" />
+    <Content Include="pages\tokeneliminarmibanco.aspx" />
     <Content Include="pages\validartoken.aspx" />
     <Content Include="pages\validartokenmibanco.aspx" />
     <Content Include="pages\vergenerarcupon.aspx" />
@@ -664,6 +665,13 @@
     </Compile>
     <Compile Include="pages\tiposalojamiento.aspx.designer.cs">
       <DependentUpon>tiposalojamiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\tokeneliminarmibanco.aspx.cs">
+      <DependentUpon>tokeneliminarmibanco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\tokeneliminarmibanco.aspx.designer.cs">
+      <DependentUpon>tokeneliminarmibanco.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\validartoken.aspx.cs">
       <DependentUpon>validartoken.aspx</DependentUpon>

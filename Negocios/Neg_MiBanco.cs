@@ -34,7 +34,7 @@ namespace Negocios
 
             mibanconeg.mibanco iBanco = new mibanconeg.mibanco();
 
-            if (iBanco.ValidarExistencia(NumeroCuenta, cvv, IdUsuario))
+            if (iBanco.ValidarExistencia(NumeroCuenta, cvv, IdUsuario.Trim()))
             {
                 mensaje = true;
             }

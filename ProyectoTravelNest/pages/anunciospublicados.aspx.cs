@@ -51,9 +51,11 @@ namespace ProyectoTravelNest.pages
 
         protected void btnModificar_Command(object sender, CommandEventArgs e)
         {
+            Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
             bool modifico = false;
             if (e.CommandName == "Modificar")
             {
+                
                 string[] args = e.CommandArgument.ToString().Split(',');
 
                 if (args.Length == 2)
@@ -62,8 +64,18 @@ namespace ProyectoTravelNest.pages
                     string IdInmueble = args[1].Trim();
 
                     // Redirige a la página de destino con los parámetros
-                    Neg_Inmueble neg_Inmueble = new Neg_Inmueble();
-                    modifico = neg_Inmueble.CambiarEstadoInactivo(IdInmueble);
+                    bool valor = neg_Inmueble.ValidarReservacionesInmuebles(IdInmueble);
+                    if (valor)
+                    {
+                        modifico = neg_Inmueble.CambiarEstadoInactivo(IdInmueble);
+                    }
+                    else
+                    {
+                        string script = "Swal.fire('ERROR', 'El inmueble tiene reservaciones activas', 'error');";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "MostrarAlerta", script, true);
+                        return;
+                    }
+                    
                 }
 
                 if (modifico)

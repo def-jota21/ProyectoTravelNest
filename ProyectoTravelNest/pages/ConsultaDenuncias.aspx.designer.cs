@@ -7,101 +7,74 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace ProyectoTravelNest.pages
+namespace ProyectoTravelNest
 {
 
 
-    public partial class recepciondedenuncias
+    public partial class WebForm1
     {
 
         /// <summary>
-        /// Control UpdPanel_CRUDDenuncias.
+        /// Control updPanel_ConsultaDenuncias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdPanel_CRUDDenuncias;
+        protected global::System.Web.UI.UpdatePanel updPanel_ConsultaDenuncias;
 
         /// <summary>
-        /// Control divDdlHuespedes.
+        /// Control divformCambiarEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDdlHuespedes;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divformCambiarEstado;
 
         /// <summary>
-        /// Control ddlHuesped.
+        /// Control txtIdDenuncia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHuesped;
+        protected global::System.Web.UI.WebControls.TextBox txtIdDenuncia;
 
         /// <summary>
-        /// Control divDdlInmuebles.
+        /// Control ddlNuevoEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDdlInmuebles;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNuevoEstado;
 
         /// <summary>
-        /// Control ddlInmueble.
+        /// Control btnCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlInmueble;
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control txtMotivo.
+        /// Control btnGuardarEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMotivo;
+        protected global::System.Web.UI.WebControls.Button btnGuardarEstado;
 
         /// <summary>
-        /// Control txtSancion.
+        /// Control rptDenuncias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSancion;
-
-        /// <summary>
-        /// Control ddlTipoUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
-
-        /// <summary>
-        /// Control txtDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
-
-        /// <summary>
-        /// Control btnEnviarDenuncia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnviarDenuncia;
+        protected global::System.Web.UI.WebControls.Repeater rptDenuncias;
     }
 }

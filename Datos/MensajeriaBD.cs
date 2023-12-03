@@ -137,5 +137,45 @@ namespace Datos
                 throw new Exception("Error al recuperar los mensajes del chat especifico" + ex.Message);
             }
         }
+
+        public string GetDenuncianteID(string idDenuncia)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("GetDenuncianteEmail", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parametros de entrada
+                        cmd.Parameters.AddWithValue("@idDenuncia", idDenuncia);
+
+                        // Declarar una variable para almacenar el resultado
+                        string userEmail = string.Empty;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Obtener el valor del identificador del chat desde el resultado de la consulta
+                                userEmail = reader["Correo"].ToString();
+                            }
+
+                        }
+
+                        return userEmail;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al recuperar el email del ID Receptor" + ex.Message);
+            }
+        }
+
+
     }
 }

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="ConexionSQL.cs" />
     <Compile Include="InmuebleSQL.cs" />
+    <Compile Include="DenunciasBD.cs" />
     <Compile Include="MiBancoSQL.cs" />
     <Compile Include="NotificacionesSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

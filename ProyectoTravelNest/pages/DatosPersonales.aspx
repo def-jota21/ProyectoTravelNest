@@ -10,23 +10,23 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="txtid" CssClass="form-label mt-4">Identificacion</asp:Label>
                     <div class="input-group">
-                        <asp:TextBox runat="server" ID="txtid" CssClass="form-control" autocomplete="off" ReadOnly="true"></asp:TextBox>
+                       <asp:TextBox runat="server" ID="txtid" CssClass="form-control" autocomplete="off" Enabled="true"></asp:TextBox>
                         <a href="#" id="editarIdentificacion" data-bs-toggle="modal" data-bs-target="#modalIdentificacion" class="text-danger mx-2">Modificar</a>
                     </div>
 
                     <asp:Label runat="server" AssociatedControlID="txtnombres" CssClass="form-label mt-2">Nombre</asp:Label>
                     <div class="input-group">
-                        <asp:TextBox runat="server" ID="txtnombres" CssClass="form-control" autocomplete="off" ReadOnly="true"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtnombres" CssClass="form-control" autocomplete="off"  Enabled="true"></asp:TextBox>
                         <a href="#" id="editarnombres" data-bs-toggle="modal" data-bs-target="#modalNombre" class="text-danger mx-2">Modificar</a>
                     </div>
                     <asp:Label runat="server" AssociatedControlID="txtapellidos" CssClass="form-label mt-2">Apellidos</asp:Label>
                     <div class="input-group">
-                        <asp:TextBox runat="server" ID="txtapellidos" CssClass="form-control" autocomplete="off" ReadOnly="true"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtapellidos" CssClass="form-control" autocomplete="off"  Enabled="true"></asp:TextBox>
                         <a href="#" id="editarapellidos" data-bs-toggle="modal" data-bs-target="#modalApellidos" class="text-danger mx-2">Modificar</a>
                     </div>
                     <asp:Label runat="server" AssociatedControlID="txtcorreo" CssClass="form-label mt-2">Correo</asp:Label>
                     <div class="input-group">
-                        <asp:TextBox runat="server" ID="txtcorreo" CssClass="form-control" autocomplete="off" ReadOnly="true"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtcorreo" CssClass="form-control" autocomplete="off"  Enabled="true"></asp:TextBox>
                         <a href="#" id="editarcorreo" data-bs-toggle="modal" data-bs-target="#modalCorreo" class="text-danger mx-2">Modificar</a>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
             <div class="col-md-6">
                 <asp:Label runat="server" AssociatedControlID="txttelefono" CssClass="form-label mt-2">Telefono</asp:Label>
                     <div class="input-group">
-                        <asp:TextBox runat="server" ID="txtTelefono" CssClass="form-control" autocomplete="off" ReadOnly="true"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtTelefono" CssClass="form-control" autocomplete="off"  Enabled="true"></asp:TextBox>
                         <a href="#" id="editartelefono" data-bs-toggle="modal" data-bs-target="#modalTelefono" class="text-danger mx-2">Modificar</a>
                 </div>
 
@@ -43,6 +43,7 @@
             </div>
         </div>
     </div>
+   
 
 
     <!-- Modal para Identificacion -->
@@ -172,6 +173,10 @@
             var txtApellidos = document.getElementById("<%= txtapellidos.ClientID %>");
             $('#modalTxtApellidos').val(txtApellidos.value);
         });
+        document.getElementById("editarcorreo").addEventListener("click", function () {
+            var TxtCorreo= document.getElementById("<%= txtcorreo.ClientID %>");
+            $('#modalTxtCorreo').val(TxtCorreo.value);
+         });
 
         document.getElementById("editartelefono").addEventListener("click", function () {
             var TxtTelefono = document.getElementById("<%= txtTelefono.ClientID %>");
@@ -183,16 +188,14 @@
             var TxtId = document.getElementById("<%= txtid.ClientID %>");
             TxtId.value = $('#modalTxtId').val();
         });
-
-        $('#modalApellidos button.btn-primary').click(function () {
-            var TxtApellidos = document.getElementById("<%= txtapellidos.ClientID %>");
-            TxtApellidos.value = $('#modalTxtApellidos').val();
-        });
-
         $('#modalNombre button.btn-primary').click(function () {
             var txtNombres = document.getElementById("<%= txtnombres.ClientID %>");
             txtNombres.value = $('#modalTxtNombre').val();
         });
+        $('#modalApellidos button.btn-primary').click(function () {
+            var TxtApellidos = document.getElementById("<%= txtapellidos.ClientID %>");
+             TxtApellidos.value = $('#modalTxtApellidos').val();
+         });
 
         $('#modalCorreo button.btn-primary').click(function () {
             var txtCorreo = document.getElementById("<%= txtcorreo.ClientID %>");

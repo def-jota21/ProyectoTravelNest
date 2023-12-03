@@ -36,8 +36,7 @@
                                         </asp:Label></small>
 
                                     <small class="m-0"><i class="fa fa-heart text-danger"></i>
-                                        <asp:LinkButton runat="server" CssClass="m-0" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("IdInmueble") %>'>
-Favorito
+                                        <asp:LinkButton runat="server" CssClass="m-0" OnClick="btnEliminar_Click" CommandArgument='<%# Eval("IdInmueble") %>'>Favorito                                
                                         </asp:LinkButton>
                                     </small>
                                     <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>
@@ -61,7 +60,7 @@ Favorito
                                             Style="height: 47px; margin-top: -2px" CommandName="VerInformacion"
                                             CommandArgument='<%# $"{Eval("IdUsuario")},{Eval("IdInmueble")}" %>' OnCommand="btnVerInformacion_Command"
                                             UseSubmitBehavior="false" />
-                                    </div>
+                            </div>
                                 </div>
                             </div>
                         </div>

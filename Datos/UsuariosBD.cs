@@ -32,32 +32,49 @@ namespace Entidades
         }
 
 
-        public void ActualizarUsuario(string idUsuario, string nombre,string apellidos, string correo, int telefono)
+
+
+        public void ActualizarUsuario(string idUsuario, string nombre, string apellidos, string correo, int telefono)
+
+      
         {
             try
             {
                 string spName = "SP_ActualizarUsuario";
 
-                var parametros = new List<SqlParameter>();
-                parametros.Add(new SqlParameter("@IdUsuario", idUsuario));
-                parametros.Add(new SqlParameter("@Nombre", nombre));
-                parametros.Add(new SqlParameter("@Apellidos", apellidos));
-                parametros.Add(new SqlParameter("@Correo", correo));
-                parametros.Add(new SqlParameter("@Telefono", telefono));
-                
+                var parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@IdUsuario", idUsuario),
+                new SqlParameter("@Nombre", nombre),
+                new SqlParameter("@Apellidos", apellidos),
+                new SqlParameter("@Correo", correo),
+                new SqlParameter("@Telefono", telefono)
+            };
 
-                ConexionSQL conexion = new ConexionSQL();
-                conexion.ExecuteSP(spName, parametros);
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(spName, con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddRange(parametros.ToArray());
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                // Manejar la excepción o volver a lanzarla según tus requisitos
+                throw new Exception($"Ha ocurrido un error  al intentar actualizar los datos del usuario: {ex.Message}");
             }
         }
+    
 
 
 
-        public DataTable ObtenerContraseñaUsuario(string idUsuario)
+    public DataTable ObtenerContraseñaUsuario(string idUsuario)
         {
             DataTable dtUsuario = new DataTable();
 
@@ -76,24 +93,66 @@ namespace Entidades
 
             return dtUsuario;
         }
-        public void ActualizarContrasenaUsuario(string Contrasena)
+        public void ActualizarContrasenaUsuario(string Contrasena,string IdUsuario)
         {
             try
             {
-                string spName = "ActualizarContrasenaUsuario";
+                string spName = "[Proyecto].[SP.ActualizarContrasenaUsuario]";
 
-                var parametros = new List<SqlParameter>();
-                parametros.Add(new SqlParameter("@Contrasena", Contrasena));
-                ConexionSQL conexion = new ConexionSQL();
-                conexion.ExecuteSP(spName, parametros);
+
+                var parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@IdUsuario", IdUsuario),
+                new SqlParameter("@Contrasena", Contrasena)
+                
+            };
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(spName, con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddRange(parametros.ToArray());
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                // Manejar la excepción o volver a lanzarla según tus requisitos
+                throw new Exception($"Ha ocurrido un error  al intentar actualizar los datos del usuario: {ex.Message}");
+            }
+        }
+
+        public void DesactivarCuenta(string idUsuario)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("[Proyecto].[SP.DesactivarCuenta]", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepción
+                throw new Exception("Error al desactivar la cuenta: " + ex.Message);
             }
         }
     }
+
 }
+
 
 
 

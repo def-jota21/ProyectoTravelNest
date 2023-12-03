@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Negocio_Cupon.cs" />
     <Compile Include="Neg_Descuentos.cs" />
+    <Compile Include="Neg_Denuncias.cs" />
     <Compile Include="Politicas.cs" />
     <Compile Include="Neg_MiBanco.cs" />
     <Compile Include="Neg_Promocion.cs" />

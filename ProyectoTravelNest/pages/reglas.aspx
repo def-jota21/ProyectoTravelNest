@@ -6,7 +6,7 @@
         @media (max-width: 480px) {
             .btn-group .btnModificar, .btn-group .btnGuardar, .btn-group .btnEliminar {
                 font-size: 0.875rem;
-                margin-left: -150%
+                margin-left: -10%
             }
         }
         @media (max-width: 450px) {
@@ -16,8 +16,8 @@
         }
         @media (max-width: 430px) {
             .btn-group .btnModificar, .btn-group .btnGuardar, .btn-group .btnEliminar {
-                margin-left: -600%;
-                font-size: 0.600rem;
+                margin-left: -300%;
+                font-size: 0.700rem;
             }
         }
     </style>
